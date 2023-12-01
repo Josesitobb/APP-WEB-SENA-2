@@ -25,5 +25,5 @@ if (mysqli_real_connect($conn, $servername, $username, $password, $db, $port)) {
 }
 
 // Cerrar la conexión
-mysqli_close($conn);
+
 ?>
