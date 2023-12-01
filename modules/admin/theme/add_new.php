@@ -1,8 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 include "db.php";
 
 if (isset($_POST['Enviar'])) {
-
     $Nombre = $_POST['Nombre'];
     $Apellido = $_POST['Apellido'];
     $Username = $_POST['Username'];
@@ -10,20 +12,17 @@ if (isset($_POST['Enviar'])) {
     $Contraseña = $_POST['Contraseña'];
     $IdRol = $_POST['IdRol'];
 
-    // $sql="INSERT INTO `usuarios`(`id_usuarios`, `Nombre_usuarios`, `Apellido_usuarios`, `IdRol`, `contraseña`, `correo`) VALUES (NULL,'$Nombre','$Apellido',NULL,'$Contraseña','$Correo')";
     $sql = "INSERT INTO `usuarios`(`idUSUARIOS`, `usuarios_nombres`, `usuario_apellido`, `usuario_username`, `usuario_contraseña`, `usuario_correo`, `ROLES_IdROLES`) VALUES (NULL,'$Nombre','$Apellido','$Username','$Contraseña','$Correo','$IdRol')";
 
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-
         header("Location:index.php?msg=New record created successfully");
     } else {
         echo "fallido" . mysqli_error($conn);
     }
 }
 ?>
-
 
 
 <!DOCTYPE html>
