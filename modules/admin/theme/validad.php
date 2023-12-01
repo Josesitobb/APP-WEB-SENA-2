@@ -1,5 +1,6 @@
 <?php
-session_start();  // Mueve session_start() al principio del script
+ob_start(); // Start output buffering
+session_start();
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -20,6 +21,7 @@ if ($filas) {
     header("location:./index.php");
     exit();  // Asegúrate de salir después de redirigir
 } else {
+    ob_end_flush(); // Flush the output buffer
     echo '<script>
         alert("DATOS INCORRECTOS");
         window.location.href = "otra_vista.php";
@@ -28,4 +30,3 @@ if ($filas) {
 
 mysqli_free_result($resultados);
 ?>
-
