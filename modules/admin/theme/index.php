@@ -1,23 +1,16 @@
-<!-- <?php
-error_reporting(E_ALL);
+<?php
 session_start();
-$varsesion=$_SESSION['username'];
-
-if($varsesion == null || $varsesion=''){
-    // echo 'USTED INICIE SESION';
-    echo '<script>
-
-    alert("INICIE SESION");
-    window.location.replace("../../../../company/PAGINA INICIAL/ice-cream-shop-website-template/index.html");
-    // window.history.go(-1);
-    </script>
-    
-    ';
-    die();
+error_reporting(E_ALL);
+// Verifica si el nombre de usuario está en la sesión
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    echo "¡Hola, $username!";
+} else {
+    // El usuario no ha iniciado sesión, realiza la lógica correspondiente
+    echo "Bienvenido a otra_vista.php";
 }
+?>
 
-echo $_SESSION['username'];
-?> -->
 
 
 <!DOCTYPE html>
