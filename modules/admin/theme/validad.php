@@ -9,12 +9,13 @@ $username = $_POST['usernamelog'];
 $password = $_POST['passwordlog'];
 
 // SE INICIA SESIÓN
+session_start();  // Mueve session_start() al principio del script
+
 $consulta = "SELECT * FROM `usuarios` WHERE  usuario_username='$username' AND usuario_contraseña='$password'";
 $resultados = mysqli_query($conn, $consulta);
 $filas = mysqli_num_rows($resultados);
 
 if ($filas) {
-    session_start();
     $_SESSION['username'] = $username;
     header("location: index.php");
 } else {
