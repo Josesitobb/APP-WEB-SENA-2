@@ -44,7 +44,6 @@ $_SESSION['username']=$username;
   
 }
 mysqli_free_result($resultados);
-mysqli_close($conexion)
 
 
 ?>
