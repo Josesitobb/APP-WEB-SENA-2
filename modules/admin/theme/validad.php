@@ -1,4 +1,5 @@
 <?php
+session_start();  // Mueve session_start() al principio del script
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -9,7 +10,7 @@ $username = $_POST['usernamelog'];
 $password = $_POST['passwordlog'];
 
 // SE INICIA SESIÓN
-session_start();  // Mueve session_start() al principio del script
+
 
 $consulta = "SELECT * FROM `usuarios` WHERE  usuario_username='$username' AND usuario_contraseña='$password'";
 $resultados = mysqli_query($conn, $consulta);
