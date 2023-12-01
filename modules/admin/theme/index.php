@@ -1,3 +1,24 @@
+<!-- <?php
+session_start();
+$varsesion=$_SESSION['username'];
+
+if($varsesion == null || $varsesion=''){
+    // echo 'USTED INICIE SESION';
+    echo '<script>
+
+    alert("INICIE SESION");
+    window.location.replace("../../../../company/PAGINA INICIAL/ice-cream-shop-website-template/index.html");
+    // window.history.go(-1);
+    </script>
+    
+    ';
+    die();
+}
+
+echo $_SESSION['username'];
+?> -->
+
+
 <!DOCTYPE html>
 <html lang="es">
 
