@@ -12,15 +12,13 @@ $password = $_POST['passwordlog'];
 
 // SE INICIA SESIÓN
 
-
 $consulta = "SELECT * FROM `usuarios` WHERE  usuario_username='$username' AND usuario_contraseña='$password'";
 $resultados = mysqli_query($conn, $consulta);
 $filas = mysqli_num_rows($resultados);
 
 if ($filas) {
-    
-    header("location:https://sgcitas.azurewebsites.net/index.php");
-
+    header("location:./index.php");
+    exit();  // Asegúrate de salir después de redirigir
 } else {
     echo '<script>
         alert("DATOS INCORRECTOS");
@@ -30,3 +28,4 @@ if ($filas) {
 
 mysqli_free_result($resultados);
 ?>
+
