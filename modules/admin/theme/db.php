@@ -8,7 +8,8 @@ $db = "mydb";
 $port = 3306;
 
 
-$ssl_cert = '../../../base de datos/DigiCertGlobalRootCA.crt.pem"';
+$ssl_cert = realpath('../../../base de datos/DigiCertGlobalRootCA.crt.pem');
+
 
 
 
