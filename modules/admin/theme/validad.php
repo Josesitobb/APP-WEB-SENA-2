@@ -19,7 +19,8 @@ $filas = mysqli_num_rows($resultados);
 
 if ($filas) {
     
-    header("location: index.php");
+    header("location:https://sgcitas.azurewebsites.net/index.php");
+
 } else {
     echo '<script>
         alert("DATOS INCORRECTOS");
