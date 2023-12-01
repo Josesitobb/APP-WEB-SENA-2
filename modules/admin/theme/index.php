@@ -1,6 +1,7 @@
 <?php
 session_start();
 error_reporting(E_ALL);
+
 // Verifica si el nombre de usuario está en la sesión
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
@@ -8,6 +9,11 @@ if (isset($_SESSION['username'])) {
 } else {
     // El usuario no ha iniciado sesión, realiza la lógica correspondiente
     echo "Bienvenido a otra_vista.php";
+
+    // Destruye la sesión solo si no ha iniciado sesión
+    if(session_status() == PHP_SESSION_ACTIVE) {
+        session_destroy();
+    }
 }
 ?>
 

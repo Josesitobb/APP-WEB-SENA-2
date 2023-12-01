@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 
 include "db.php";
 
+// Asegúrate de que no haya espacios en blanco ni caracteres antes de <?php
+// ...
+
 if (isset($_POST['Enviar'])) {
     $Nombre = $_POST['Nombre'];
     $Apellido = $_POST['Apellido'];
@@ -17,7 +20,10 @@ if (isset($_POST['Enviar'])) {
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
-        header("Location:index.php?msg=New record created successfully");
+        // Usa ob_start() y ob_end_flush() para bufferizar la salida y evitar el error de encabezados
+        ob_start();
+        header("Location:index.php?msg=¡Nuevo registro creado exitosamente!");
+        ob_end_flush();
     } else {
         echo "fallido" . mysqli_error($conn);
     }
