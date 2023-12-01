@@ -1,5 +1,6 @@
 <?php
 session_start();  // Mueve session_start() al principio del script
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -17,7 +18,7 @@ $resultados = mysqli_query($conn, $consulta);
 $filas = mysqli_num_rows($resultados);
 
 if ($filas) {
-    $_SESSION['username'] = $username;
+    
     header("location: index.php");
 } else {
     echo '<script>
