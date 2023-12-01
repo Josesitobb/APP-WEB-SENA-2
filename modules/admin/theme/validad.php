@@ -1,49 +1,28 @@
-<!-- en este documento se validad el login y se abre el inicio de sesion  -->
-
-
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include('db.php');
 
 // SE CAPTURAN LOS DATOS DEL FORMULARIO
-$username=$_POST['usernamelog'];
-$password=$_POST['passwordlog'];
+$username = $_POST['usernamelog'];
+$password = $_POST['passwordlog'];
 
-// SE INICIA SESION
+// SE INICIA SESIÓN
+$consulta = "SELECT * FROM `usuarios` WHERE  usuario_username='$username' AND usuario_contraseña='$password'";
+$resultados = mysqli_query($conn, $consulta);
+$filas = mysqli_num_rows($resultados);
 
-
-$consulta="SELECT * FROM `usuarios` WHERE  usuario_username='$username' and usuario_contraseña='$password'";
-
-// "SELECT * FROM `usuarios` WHERE usuario =	usuarios_nombres='$username' and usuario_contraseña = '$passowrd'";
-
-$resultados=mysqli_query($conn,$consulta);
-
-
-$filas=mysqli_num_rows($resultados);
-
-
-if($filas){
+if ($filas) {
     session_start();
-$_SESSION['username']=$username;
-    header("location:index.php");
-}else{
-    // include("../modules/users/LOGIN/login-form-04/index.html");
-    // header("location:");
+    $_SESSION['username'] = $username;
+    header("location: index.php");
+} else {
     echo '<script>
-
-    alert("DATOS INCORRECTOS");
-    
-    window.history.go(-1);
-    </script>
-    
-    ';
-   
-    ?>
-
-    <?php
-  
+        alert("DATOS INCORRECTOS");
+        window.location.href = "otra_vista.php";
+    </script>';
 }
+
 mysqli_free_result($resultados);
-
-
 ?>
