@@ -42,7 +42,7 @@ if(isset($_POST['Enviar'])){
 rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
 crossorigin="anonymous">
 <!-- FONS -->
-    <title>Maryuri</title>
+    <title>EDITAR USUARIOS</title>
 </head>
 <body>
     <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color:#c6e5d9">
