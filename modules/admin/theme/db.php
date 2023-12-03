@@ -17,13 +17,12 @@ mysqli_ssl_set($conn, NULL, NULL, $ssl_cert, NULL, NULL);
 mysqli_options($conn, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
 
 // Intentar conectar
-if (mysqli_real_connect($conn, $servername, $username, $password, $db, $port)) {
-    echo "Hay conexión";
-} else {
-    // Manejar el error en caso de que la conexión falle
-    echo "No hay conexión. Error: " . mysqli_connect_error();
-}
+// if (mysqli_real_connect($conn, $servername, $username, $password, $db, $port)) {
+//     echo "Hay conexión";
+// } else {
+//     // Manejar el error en caso de que la conexión falle
+//     echo "No hay conexión. Error: " . mysqli_connect_error();
+// }
 
-// Cerrar la conexión
 
 ?>
