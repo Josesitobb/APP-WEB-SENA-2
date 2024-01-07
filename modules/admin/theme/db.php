@@ -37,6 +37,7 @@
 // conexion local
 
 $servername="SGCitas";
+echo "hola";
 $username ="root";
 $password ="";
 $db="mydb";
