@@ -36,7 +36,7 @@
 
 // conexion local
 
-$servername="localhost";
+$servername="SGCitas";
 $username ="root";
 $password ="";
 $db="mydb";
