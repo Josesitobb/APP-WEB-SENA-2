@@ -12,28 +12,19 @@ $username = $_POST['usernamelog'];
 $password = $_POST['passwordlog'];
 
 // SE INICIA SESIÓN
-$consulta = "SELECT * FROM `usuarios` WHERE usuario_username='$username' AND usuario_contraseña='$password'";
+
+$consulta = "SELECT * FROM `usuarios` WHERE Correo_Usuarios='$username' AND Contraseña_Usuarios='$password'";
 $resultados = mysqli_query($conn, $consulta);
 $filas = mysqli_num_rows($resultados);
 
 if ($filas) {
-    // Obtiene los datos del usuario
-    $usuario = mysqli_fetch_assoc($resultados);
-
-    // Almacena el nombre de usuario y el rol en la sesión
-    $_SESSION['username'] = $usuario['usuario_username'];
-    $_SESSION['rol'] = $usuario['ROLES_IdROLES'];
-
-    // Redirecciona según el rol
-    if ($_SESSION['rol'] == 2) {
-        header("location:./index.php");; // Cambia a la vista de administrador
-    } else {
-        header("location:./vista_usuario.php"); // Cambia a la vista de usuario normal
-    }
-
+    // Almacena el nombre de usuario en la sesión
+    $_SESSION['username'] = $username;
+    
+    header("location:./index.php");
     exit();  // Asegúrate de salir después de redirigir
 } else {
-    ob_end_flush(); 
+    ob_end_flush(); // Limpia el búfer de salida
     echo '<script>
         alert("DATOS INCORRECTOS");
         window.location.href = "otra_vista.php";

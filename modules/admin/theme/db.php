@@ -36,11 +36,12 @@
 
 // conexion local
 
-$servername="SGCitas";
+
+$servername="localhost";
 echo "hola";
 $username ="root";
 $password ="";
-$db="mydb";
+$db="SGCitas";
 
 $conn=mysqli_connect($servername,$username,$password,$db);
 
@@ -50,8 +51,4 @@ $conn=mysqli_connect($servername,$username,$password,$db);
 // }
 // echo "La conexion esta muy fina"
 // 
-
-
-
-
 ?>

@@ -270,18 +270,11 @@ echo $_SESSION['username'];
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./layout-blank.php">Blank</a></li>
-                            <li><a href="./layout-one-column.php">One Column</a></li>
-                            <li><a href="./layout-two-column.php">Two column</a></li>
-                            <li><a href="./layout-compact-nav.php">Compact Nav</a></li>
-                            <li><a href="./layout-vertical.php">Vertical</a></li>
-                            <li><a href="./layout-horizontal.php">Horizontal</a></li>
-                            <li><a href="./layout-boxed.php">Boxed</a></li>
-                            <li><a href="./layout-wide.php">Wide</a></li>
-
-
-                            <li><a href="./layout-fixed-header.php">Fixed Header</a></li>
-                            <li><a href="layout-fixed-sidebar.php">Fixed Sidebar</a></li>
+                            <li><a href="./Clientes.php">Usuarios/Clientes</a></li>
+                            <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
+                            <li><a href="./layout-one-column.php">Productos</a></li>
+                            <li><a href="./layout-two-column.php">Servicios</a></li>
+                            <li><a href="./layout-compact-nav.php">Roles </a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Apps</li>

@@ -141,7 +141,8 @@ if (isset($_SESSION['username'])) {
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Modulos</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./layout-blank.php">Usuarios</a></li>
+                            <li><a href="./Clientes.php">Usuarios/Clientes</a></li>
+                            <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
                             <li><a href="./layout-one-column.php">Productos</a></li>
                             <li><a href="./layout-two-column.php">Servicios</a></li>
                             <li><a href="./layout-compact-nav.php">Roles </a></li>
