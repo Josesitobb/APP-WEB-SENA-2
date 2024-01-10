@@ -23,6 +23,7 @@ echo $_SESSION['username'];
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 
 </head>
 
@@ -417,62 +418,62 @@ echo $_SESSION['username'];
                         <div class="card">
                             <div class="card-body">
                             <div class="container">
-        <br>
-        <h1>Lista de Servicio</h1>
+      
+    
     </div>
 
+    <h1><center>USUARIOS ESTILISTAS</center></h1>
+    
+    <a href="Agregar_Estilista.php" class="btn btn-primary">AGREGAR NUEVO ESTILISTA</a>
+    <br>
+  
+      <br>
+      <table class="table table-hover">
+        <thead>
+          <tr class="table-active">
+            <th scope="col">ROL</th>
+            <th scope="col">NOMBRE USUARIO</th>
+            <th scope="col">APELIIDO USUARIO</th>
+            <th scope="col">COREOO</th>
+            <th scope="col">TELEFONO</th>
+            <th scope="col">CONTRASEÑA</th>
+            <th scope="col">ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          require_once("db.php");
+  
+          $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
+          FROM Usuarios U
+          JOIN Roles R ON U.Id_Rol = R.Id_Rol
+          WHERE R.Nombre_Rol = 'estilistas'");
+          
+          while ($resultado = $sql->fetch_assoc()) {
+          ?>
+          <tr class="table-light">
+            <th scope="row"><?php echo $resultado['Rol'] ?></th>
+            <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
+            <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
+            <td><?php echo $resultado['Correo_Usuarios'] ?></td>
+            <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
+            <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
+            <td>
+            <a href="Editar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios'] ?>">EDITAR</a>
+            <a href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">ELIMINAR</a>
+  
+              
+            </td>
+          </tr>
+          <?php
+          }
+          ?>
+        </tbody>
+      </table>
 
 
 
-
-    <div class="cotainer">
-        <br>
-
-        <a href="./new_servicio.php" class="btn btn-dark">Agregar Nuevo Servicio</a>
-        <br>
-        <table class="table">
-            <br>
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Servicio_Nombre</th>
-                    <th scope="col">Servicio_Precio</th>
-                    <th scope="col">Servicio_cantidad</th>
-                    <th scope="col">Servicio_Imagen</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php
-
-                include("./db.php");
-                $sql = "SELECT * FROM `servicios` ";
-                $resultado = $conn->query($sql);
-
-                while ($fila = $resultado->fetch_assoc()) { ?>
-
-
-
-
-
-                    <tr>
-                        <th scope="row"><?php echo $fila['idSERVICIOS'] ?></th>
-                        <th><?php echo $fila['servicio_nombre'] ?></th>
-                        <th><?php echo $fila['servicio_valor'] ?></th>
-                        <th><?php echo $fila['servicio_cantidad'] ?></th>
-                        <th><img style="width: 200px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['servicio_Imagen'])  ?>" alt=""></th>
-                        <th><a class="btn  btn-warning" href="deleteServicios.php?id=<?php echo $fila['idSERVICIOS'] ?>">eliminar</a>
-                            <a class="btn  btn-danger" href="vistas_Editar_Servicio.php?Id=<?php echo $fila['idSERVICIOS'] ?>">modificar</a>
-                        </th>
-
-                    </tr>
-                    </tr>
-            </tbody>
-
-        <?php } ?>
-        </table>
-    </div>
+   
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->

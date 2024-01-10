@@ -38,7 +38,7 @@
 
 
 $servername="localhost";
-echo "hola";
+
 $username ="root";
 $password ="";
 $db="SGCitas";
