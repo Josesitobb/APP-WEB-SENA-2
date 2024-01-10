@@ -418,13 +418,13 @@ echo $_SESSION['username'];
                             <div class="card-body">
                             <div class="container">
         <br>
-        <h1>Lista de Servicio</h1>
+       
     </div>
     <br>
   <h1><center>USUARIOS CLIENTES</center></h1>
     
   <a href="Agregar_Clientes.php" class="btn btn-primary">AGREGAR NUEVO CLIENTE</a>
-
+  <br>
     <br>
     <table class="table table-hover">
       <thead>

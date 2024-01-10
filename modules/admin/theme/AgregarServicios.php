@@ -8,7 +8,7 @@ $Servicio_Precio = $_POST['Servicio_Precio'];
 $Servicio_cantidad = $_POST['Servicio_cantidad'];
 $Servicio_Imagen = addslashes(file_get_contents($_FILES['servicio_Imagen']['tmp_name']));
 
-$sql = "INSERT INTO `servicios`(`idSERVICIOS`, `servicio_nombre`, `servicio_valor`, `servicio_cantidad`, `servicio_Imagen`) VALUES (null,'$Servicio_Nombre','$Servicio_Precio','$Servicio_cantidad','$Servicio_Imagen')";
+$sql = "INSERT INTO `servicios`(`Id_Servicios`, `Nombre_Servicios`, `Valor_Servicios`, `Cantidad_Servicios`, `Imagen_Servicios`) VALUES (null,'$Servicio_Nombre','$Servicio_Precio','$Servicio_cantidad','$Servicio_Imagen')";
 
 $Resultado = $conn->query($sql);
 

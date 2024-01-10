@@ -442,7 +442,7 @@ echo $_SESSION['username'];
                                                 <th scope="col">idPRODUCTOS</th>
                                                 <th scope="col">producto_nombre</th>
                                                 <th scope="col">producto_precio</th>
-                                                <th scope="col">producto_precio</th>
+                                                <th scope="col">producto_cantidad</th>
                                                 <th scope="col">Imagen_productos</th>
                                                 <th scope="col">acciones</th>
                                             </tr>
@@ -451,7 +451,7 @@ echo $_SESSION['username'];
 
                                             <?php
 
-                                            include("./db.php");
+                                            include("db.php");
                                             $sql = "SELECT * FROM `productos` ";
                                             $resultado = $conn->query($sql);
 
@@ -462,13 +462,13 @@ echo $_SESSION['username'];
 
 
                                                 <tr>
-                                                    <th scope="row"><?php echo $fila['idPRODUCTOS'] ?></th>
-                                                    <th><?php echo $fila['producto_nombre'] ?></th>
-                                                    <th><?php echo $fila['producto_precio'] ?></th>
-                                                    <th><?php echo $fila['producto_cantidad'] ?></th>
-                                                    <th><img style="width: 200px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_productos'])  ?>" alt=""></th>
-                                                    <th><a class="btn  btn-warning" href="deleteProducto.php?id=<?php echo $fila['idPRODUCTOS'] ?>">eliminar</a>
-                                                        <a class="btn  btn-danger" href="vistas_Editar.php?Id=<?php echo $fila['idPRODUCTOS'] ?>">modificar</a>
+                                                    <th scope="row"><?php echo $fila['Id_Productos'] ?></th>
+                                                    <th><?php echo $fila['Nombre_Productos'] ?></th>
+                                                    <th><?php echo $fila['Precio_Productos'] ?></th>
+                                                    <th><?php echo $fila['Cantidad_Productos'] ?></th>
+                                                    <th><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos'])  ?>" alt=""></th>
+                                                    <th><a class="btn  btn-warning" href="deleteProducto.php?id=<?php echo $fila['Id_Productos'] ?>">eliminar</a>
+                                                        <a class="btn  btn-danger" href="vistas_Editar.php?Id=<?php echo $fila['Id_Productos'] ?>">modificar</a>
                                                     </th>
 
                                                 </tr>

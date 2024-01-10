@@ -43,16 +43,17 @@ ON UPDATE CASCADE
 );
 select * from Estilistas;
 
-create table Productos(
-Id_Productos INT auto_increment,
-Nombre_Productos varchar(45) NOT NULL,
-Precio_Productos varchar(45) NOT NULL,
-Imagen_Productos mediumblob NOT NULL,
-primary key(Id_Productos), 
+CREATE TABLE Productos (
+Id_Productos INT AUTO_INCREMENT,
+Nombre_Productos VARCHAR(45) NOT NULL,
+Precio_Productos DECIMAL(12,2) NOT NULL, -- Cambié varchar a DECIMAL(12,2)
+Cantidad_Productos INT NOT NULL,
+Imagen_Productos MEDIUMBLOB NOT NULL,
+PRIMARY KEY (Id_Productos), 
 Id_Clientes INT,
-constraint Fk_Id_Clientes foreign key (Id_Clientes) references clientes(Id_Clientes)
-ON DELETE CASCADE
-ON UPDATE CASCADE
+CONSTRAINT Fk_Id_Clientes FOREIGN KEY (Id_Clientes) REFERENCES clientes(Id_Clientes)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
 );
 Select * from Productos;
 

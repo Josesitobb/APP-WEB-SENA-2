@@ -5,7 +5,7 @@ include("db.php");
 
 $id=$_REQUEST['id'];
 
-$sql="DELETE FROM `servicios` WHERE idSERVICIOS = $id";
+$sql="DELETE FROM `servicios` WHERE Id_Servicios = $id";
 
 $Resultado= $conn ->query($sql);
 

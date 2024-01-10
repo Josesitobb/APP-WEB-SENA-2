@@ -1,23 +1,32 @@
 <?php
 include("db.php");
-// $NombreRol=$_POST['NombreRol'];
-$nombreUsuario=$_POST['nombreUsuario'];
-$apellidoUsuario=$_POST['apellidoUsuario'];
-$correoUsuario=$_POST['correoUsuario'];
-$telefonoUsuario=$_POST['telefonoUsuario'];
-$contrasenaUsuario=$_POST['contrasenaUsuario'];
 
-$sql ="INSERT INTO `usuarios`(`Id_Usuarios`, `Nombre_Usuarios`, `Apellido_Usuarios`, `Correo_Usuarios`, `Telefono_Usuarios`, `Contraseña_Usuarios`, `Id_Rol`) 
+$nombreUsuario = $_POST['nombreUsuario'];
+$apellidoUsuario = $_POST['apellidoUsuario'];
+$correoUsuario = $_POST['correoUsuario'];
+$telefonoUsuario = $_POST['telefonoUsuario'];
+$contrasenaUsuario = $_POST['contrasenaUsuario'];
+
+$sqlUsuarios = "INSERT INTO `usuarios`(`Id_Usuarios`, `Nombre_Usuarios`, `Apellido_Usuarios`, `Correo_Usuarios`, `Telefono_Usuarios`, `Contraseña_Usuarios`, `Id_Rol`) 
 VALUES (null,'$nombreUsuario','$apellidoUsuario','$correoUsuario','$telefonoUsuario','$contrasenaUsuario',2)";
 
-$Resultado = mysqli_query($conn,$sql);
+$ResultadoUsuarios = mysqli_query($conn, $sqlUsuarios);
 
-if($Resultado){
-    header("location:Clientes.php");
-}else{
-    echo "paila";
+if ($ResultadoUsuarios) {
+    // Obtener el ID del último registro insertado
+    $ultimoIdInsertado = mysqli_insert_id($conn);
+
+    // Insertar en la tabla clientes
+    $sqlClientes = "INSERT INTO `clientes`(`Id_Clientes`, `Id_Usuarios`) VALUES (null, $ultimoIdInsertado)";
+
+    $ResultadoClientes = mysqli_query($conn, $sqlClientes);
+
+    if ($ResultadoClientes) {
+        header("location:Clientes.php");
+    } else {
+        echo "Error al agregar cliente en la tabla clientes: " . mysqli_error($conn);
+    }
+} else {
+    echo "Error al agregar usuario en la tabla usuarios: " . mysqli_error($conn);
 }
-
 ?>
-
-

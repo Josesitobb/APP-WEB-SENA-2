@@ -446,7 +446,7 @@ echo $_SESSION['username'];
 
                 <?php
 
-                include("./db.php");
+                include("db.php");
                 $sql = "SELECT * FROM `servicios` ";
                 $resultado = $conn->query($sql);
 
@@ -457,13 +457,13 @@ echo $_SESSION['username'];
 
 
                     <tr>
-                        <th scope="row"><?php echo $fila['idSERVICIOS'] ?></th>
-                        <th><?php echo $fila['servicio_nombre'] ?></th>
-                        <th><?php echo $fila['servicio_valor'] ?></th>
-                        <th><?php echo $fila['servicio_cantidad'] ?></th>
-                        <th><img style="width: 200px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['servicio_Imagen'])  ?>" alt=""></th>
-                        <th><a class="btn  btn-warning" href="deleteServicios.php?id=<?php echo $fila['idSERVICIOS'] ?>">eliminar</a>
-                            <a class="btn  btn-danger" href="vistas_Editar_Servicio.php?Id=<?php echo $fila['idSERVICIOS'] ?>">modificar</a>
+                        <th scope="row"><?php echo $fila['Id_Servicios'] ?></th>
+                        <th><?php echo $fila['Nombre_Servicios'] ?></th>
+                        <th><?php echo $fila['Valor_Servicios'] ?></th>
+                        <th><?php echo $fila['Cantidad_Servicios'] ?></th>
+                        <th><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios'])  ?>" alt=""></th>
+                        <th><a class="btn  btn-warning" href="deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">eliminar</a>
+                            <a class="btn  btn-danger" href="vistas_Editar_Servicio.php?Id=<?php echo $fila['Id_Servicios'] ?>">modificar</a>
                         </th>
 
                     </tr>

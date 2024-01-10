@@ -6,26 +6,41 @@ ini_set('display_errors', 1);
 include("db.php");
 
 $Id = $_REQUEST['IdEditar'];
+$servicio_nombre = $_POST['servicio_nombre'];
+$servicio_valor = $_POST['servicio_valor'];
+$servicio_cantidad = $_POST['servicio_cantidad'];
 
-$servicio_nombre= $_POST['servicio_nombre'];
+// Check if a new image is uploaded
+if (!empty($_FILES['servicio_Imagen']['tmp_name'])) {
+    $servicio_Imagen = addslashes(file_get_contents($_FILES['servicio_Imagen']['tmp_name']));
+    $updateImage = true;
+} else {
+    // No new image uploaded, use the existing image from the database
+    $query = "SELECT Imagen_Servicios FROM servicios WHERE Id_Servicios = $Id";
+    $result = $conn->query($query);
 
-$servicio_valor=$_POST['servicio_valor'];
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $servicio_Imagen = $row['Imagen_Servicios'];
+    } else {
+        echo "Error: No existing image found for the specified ID.";
+        exit();
+    }
+    $updateImage = false;
+}
 
-$servicio_cantidad=$_POST['servicio_cantidad'];
+// Construir la consulta SQL de actualización
+if ($updateImage) {
+    $sql = "UPDATE `servicios` SET `Nombre_Servicios`='$servicio_nombre', `Valor_Servicios`='$servicio_valor', `Cantidad_Servicios`='$servicio_cantidad', `Imagen_Servicios`='$servicio_Imagen' WHERE Id_Servicios = $Id";
+} else {
+    $sql = "UPDATE `servicios` SET `Nombre_Servicios`='$servicio_nombre', `Valor_Servicios`='$servicio_valor', `Cantidad_Servicios`='$servicio_cantidad' WHERE Id_Servicios = $Id";
+}
 
-$servicio_Imagen= addslashes(file_get_contents($_FILES['servicio_Imagen']['tmp_name']));
+$resultado = $conn->query($sql);
 
-
-
-// $sql="UPDATE `servicios` SET `idSERVICIOS`=null,`servicio_nombre`='$servicio_nombre',`servicio_valor`='$servicio_valor',`servicio_cantidad`='$servicio_cantidad',`servicio_Imagen`='$servicio_Imagen' WHERE idSERVICIOS = $Id ";
-$sql = "UPDATE `servicios` SET `servicio_nombre`='$servicio_nombre', `servicio_valor`='$servicio_valor', `servicio_cantidad`='$servicio_cantidad', `servicio_Imagen`='$servicio_Imagen' WHERE idSERVICIOS = $Id";
-
-
-$resultado = $conn -> query($sql);
-
-if($resultado){
+if ($resultado) {
     header('location:layout-two-column.php');
-}else{
-    echo "no se edito el dato";
+} else {
+    echo "No se editó el dato.";
 }
 ?>
