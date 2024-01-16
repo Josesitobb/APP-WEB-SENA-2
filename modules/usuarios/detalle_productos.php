@@ -173,7 +173,7 @@ if ($id == '' || $token == '') {
 
             <div class="col-md-6 order-md-2 text-center">
                 <h2><?php echo MONEDA . number_format($Precio_Producto, 2, '.', ','); ?></h2>
-               <p><?php echo $Descripcion_Producto ?></p>
+               <p><?php echo das$Descripcion_Producto ?></p>
                 <div class="d-grid gap-3 col-10 mx-auto">
                     <button class="btn btn-primary" type="button">COMPRAR AHORA</button>
                     <button class="btn btn-outline-primary" type="button">Agregar al carrito</button>
