@@ -48,6 +48,7 @@ Id_Productos INT AUTO_INCREMENT,
 Nombre_Productos VARCHAR(45) NOT NULL,
 Precio_Productos DECIMAL(12,2) NOT NULL, -- Cambié varchar a DECIMAL(12,2)
 Cantidad_Productos INT NOT NULL,
+Descripcion_Productos VARCHAR(200),
 Imagen_Productos MEDIUMBLOB NOT NULL,
 PRIMARY KEY (Id_Productos), 
 Id_Clientes INT,
@@ -69,7 +70,10 @@ Select * from servicios;
 
 create table Citas(
 Id_Citas INT auto_increment,
-Fecha_Citas datetime NOT NULL,
+title varchar(100),
+color varchar(100),
+start datetime NOT NULL,
+end datetime not null,
 primary key(Id_Citas),
 Id_Clientes INT,
 Id_Estilistas INT,

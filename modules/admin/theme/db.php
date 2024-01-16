@@ -45,6 +45,16 @@ $db="SGCitas";
 
 $conn=mysqli_connect($servername,$username,$password,$db);
 
+
+
+// $servername="localhost";
+
+// $username ="id21791927_sgcitas";
+// $password ="Joseguerra302004#";
+// $db="id21791927_sgcitas";
+
+// $conn=mysqli_connect($servername,$username,$password,$db);
+
 // Probar la conexion
 // if(!$conn){
 //     die("Muy bot".mysqli_connect_error());
