@@ -4,14 +4,41 @@ require('config/config.php');
 $db = new db();
 $conn = $db->conectar();
 
-// session_destroy();
+$productos = isset($_SESSION['carrito']['productos']) ? $_SESSION['carrito']['productos'] : null;
 
+print_r($_SESSION);
+$lista_Carrito = array();
+$total = 0; // Asegúrate de inicializar la variable $total
 
-$sql = $conn->prepare("SELECT `Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Cantidad_Productos`, `Imagen_Productos`, `Id_Clientes` FROM `productos` WHERE 1");
-$sql->execute(); // Debes ejecutar la consulta antes de obtener los resultados
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+if ($productos != null) {
+    foreach ($productos as $id_producto => $cantidad) {
+        $sql = $conn->prepare("SELECT `Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Imagen_Productos`, `Id_Clientes` FROM `productos` WHERE `Id_Productos` = :id_producto");
+        $sql->bindParam(':id_producto', $id_producto, PDO::PARAM_INT);
+        $sql->execute();
+        $producto = $sql->fetch(PDO::FETCH_ASSOC);
+
+        $id = $producto['Id_Productos'];
+        $nombre = $producto['Nombre_Productos'];
+        $precio = $producto['Precio_Productos'];
+        $imagen = $producto['Imagen_Productos'];
+        $id_cliente = $producto['Id_Clientes'];
+
+        $subtotal = $cantidad * $precio;
+        $total += $subtotal;
+
+        // Agregar este producto a la lista del carrito
+        $lista_Carrito[] = array(
+            'Id_Productos' => $id,
+            'Nombre_Productos' => $nombre,
+            'Precio_Productos' => $precio,
+            'Imagen_Productos' => $imagen,
+            'Id_Clientes' => $id_cliente,
+            'Cantidad' => $cantidad,
+            'Subtotal' => $subtotal
+        );
+    }
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -94,14 +121,14 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <!-- <a href="./about.php" class="nav-item nav-link">Nosotros</a> -->
                         <a href="./product.php" class="nav-item nav-link">Productos</a>
                     </div>
-                    <a href="ver_carrito_productos.php" class="navbar-brand mx-5 d-none d-lg-block">
+                    <a href="index.php" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
-                        <a href="ver_carrito_productos.php" class="nav-item nav-link">Carrito
+                        <a href="clases/carrito_Productos.php" class="nav-item nav-link">Carrito
                             <span id="num_cart" class="badge bg-secondary"><?php echo $num_cart ?> </span>
                         </a>
                     </div>
@@ -122,44 +149,92 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 
     <!-- Products Start -->
+    <!-- Products Start -->
     <div class="container-fluid py-5">
-    <div class="container py-5">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <h1 class="section-title position-relative text-center mb-5">Tu mejor versión</h1>
             </div>
         </div>
-        <div class="row">
-            <?php foreach ($resultado as $row) { ?>
-                <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <div class="bg-primary mt-n5 py-3" style="">
-                            <h4 class="font-weight-bold text-white mb-0">$<?php echo $row['Precio_Productos']; ?></h4>
-                        </div>
-                        <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                        <?php
-                            $imagen_base64 = base64_encode($row['Imagen_Productos']);
-                            $imagen_src = 'data:image/png;base64,' . $imagen_base64;
-                            ?>
-                            <img class="rounded-circle w-100 h-100" src="<?php echo $imagen_src; ?>" alt="<?php echo $row['Nombre_Productos']; ?>">
-                        </div>
-                        <h5 class="font-weight-bold mb-4"><?php echo $row['Nombre_Productos']; ?></h5>
-                        <br>
-                        <a href="detalle_productos.php?Id_Productos=<?php echo $row['Id_Productos']; ?>&token=<?php echo hash_hmac('sha1', $row['Id_Productos'], KEY_TOKEN); ?>#detalle_<?php echo $row['Id_Productos']; ?>" class="btn btn-sm btn-secondary">Detalle</a>
-                        <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $row['Id_Productos']; ?>, '<?php echo hash_hmac('sha1', $row['Id_Productos'], KEY_TOKEN); ?>')">Agregar al carrito</button>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if ($lista_Carrito == null) {
+                        echo '<tr><td colspan="5" class="text-center"><b> Lista vacía </b></td></tr>';
+                    } else {
+                        foreach ($lista_Carrito as $productos) {
+                            $id = $productos['Id_Productos'];
+                            $nombre = $productos['Nombre_Productos'];
+                            $precio = $productos['Precio_Productos'];
+                            $imagen = $productos['Imagen_Productos'];
+                            $id_cliente = $productos['Id_Clientes'];
+                            $cantidad = $productos['Cantidad'];
+                            $subtotal = $cantidad * $precio;
+                            $total += $subtotal;
+                    ?>
+                            <tr>
+                                <td><?php echo $nombre; ?></td>
+                                <td><?php echo number_format($precio, 2, '.', ','); ?></td>
+                                <td>
+                                    <input type="number" min="1" max="10" step="1" value="<?php echo $cantidad; ?>" size="5" id="cantidad_<?php echo $id; ?>" onchange="actualizaCantidad(this.value, <?php echo $id; ?>);">
+
+                                </td>
+                                <td>
+    <div id="subtotal<?php echo $id ?>" name="subtotal[]">
+        <?php echo MONEDA . number_format($subtotal, 2, '.', ','); ?>
+    </div>
+</td>
 
 
+                               </div>
+                                
+                               <!-- Enlace para activar la confirmación de eliminación -->
+                               <td>
+                               <a href="#" class="btn btn-warning btn-sm eliminar-producto" data-bs-id="<?php echo $id; ?>">Eliminar</a>
 
-                    </div>
-                </div>
-            <?php } ?>
+</td>
+
+<!-- Función JavaScript para mostrar la confirmación de eliminación -->
+<script>
+  function confirmarEliminar() {
+    return confirm("¿Está seguro de que desea eliminar?");
+  }
+</script>
+
+
+                            </tr>
+                    <?php
+                        }
+                    }
+                    ?>
+
+                    <tr>
+                        <td colspan="3" class="text-right"><b>Total:</b></td>
+                        <td colspan="2" id=total><?php echo number_format($total, 2, '.', ','); ?></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-12 text-center">
-            <a href="" class="btn btn-primary py-3 px-5">Ver más</a>
+            <!-- Agrega el botón "Seleccionar Fecha" -->
+            <button class="btn btn-success py-3 px-5" data-bs-toggle="modal" data-bs-target="#seleccionarFechaModal">Seleccionar Fecha</button>
         </div>
     </div>
 </div>
+>
+
     <!-- Products End -->
+
 
 
     <!-- Footer Start -->
@@ -199,6 +274,29 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
     <!-- Footer End -->
+    #
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro de que desea eliminar?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmarEliminar" onclick="eliminar()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
     <!-- Back to Top -->
@@ -214,34 +312,90 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
+    <script>
+ // Agrega un evento de clic a los enlaces con la clase "eliminar-producto"
+document.querySelectorAll('.eliminar-producto').forEach(function(el) {
+  el.addEventListener('click', function () {
+    // Abre el modal
+    $('#exampleModal').modal('show');
+
+    // Puedes obtener el ID específico del producto haciendo referencia al atributo data-bs-id
+    var productId = el.getAttribute('data-bs-id');
+
+    // Aquí puedes hacer algo con el ID del producto, como almacenarlo en una variable global o realizar otras acciones
+  });
+});
+
+// Agrega un evento de clic al botón de confirmar dentro del modal
+document.getElementById('confirmarEliminar').addEventListener('click', function () {
+  // Aquí puedes agregar la lógica de eliminación si es necesario
+  // En este ejemplo, solo se cierra el modal
+  $('#exampleModal').modal('hide');
+});
+
+
+
+
+</script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
-        function addProducto(id, token) {
-    let url = 'clases/carrito_Productos.php';
-    let formData = new FormData();
+
+let Eliminamodal = document.getElementById('Eliminamodal');
+
+Eliminamodal.addEventListener('show.bs.modal', function (event) {
+    let button = event.relatedTarget;
+    let id = button.getAttribute('data-bs-id');
+   let buttonElimina = eliminaModal.querySelectot('.modal-footer #confirmarEliminar')
+   buttonElimina.value = id
+    
+});
+
+
+ function actualizaCantidad(cantidad, id) {
+    let url = 'clases/actualizar_Productos.php';
+    let formData = new FormData()
     formData.append('Id_Productos', id);
-    formData.append('token', token);
+    formData.append('action', 'agregar')
+    formData.append('cantidad', cantidad);
 
     fetch(url, {
         method: 'POST',
         body: formData,
-        mode: 'cors' 
+        mode: 'cors'
     }).then(response => response.json())
-      .then(data => {
-          if (data.ok) {
-            let elemento = document.getElementById("num_cart");
-            elemento.innerHTML = data.numero;
+        .then(data => {
+            if (data.ok) {
+                let divsubtotal = document.getElementById("subtotal" + id);
+                divsubtotal.innerHTML = data.sub;
 
-          }
-      });
+                let total = 0.00
+                let list = document.getElementsByName('subtotal[]')
+                for (let i = 0; i < list.length; i++) {
+                    total += parseFloat(list[i].innerHTML.replace(/[$,]/g,''));
+
+                }
+                total = new Intl.NumberFormat('en-US', {
+            minimumFractionDigits: 2
+            }).format(total);
+                document.getElementById('total').innerHTML = '<?php echo MONEDA; ?>' + total
+            }
+        })
+        .catch(error => console.error('Error en la solicitud fetch:', error));
+
+        
 }
 
+
+
     </script>
+    
 </body>
 
 </html>

@@ -4,6 +4,8 @@ require('config/config.php');
 $db = new db();
 $conn = $db->conectar();
 
+
+
 $id = isset($_GET['Id_Productos']) ? $_GET['Id_Productos'] : '';
 $token = isset($_GET['token']) ? $_GET['token'] : '';
 
@@ -127,7 +129,21 @@ if ($id == '' || $token == '') {
                     <div class="navbar-nav mr-auto py-0">
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
+                      <?php 
+                      $num_cart = 0;
+
+                      if(isset($_SESSION['carrito']['productos'])){
+                          foreach ($_SESSION['carrito']['productos'] as $cantidad) {
+                              $num_cart += $cantidad;
+                          }
+                      }
+                      
+                      echo '<a href="clases/carrito_Productos.php" class="nav-item nav-link">Carrito
+                            <span id="num_cart" class="badge bg-secondary">' . $num_cart . '</span>
+                            </a>';
+                      ?>
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
+                        
                     </div>
                 </div>
             </nav>
@@ -176,7 +192,8 @@ if ($id == '' || $token == '') {
                <p><?php echo $Descripcion_Producto ?></p>
                 <div class="d-grid gap-3 col-10 mx-auto">
                     <button class="btn btn-primary" type="button">COMPRAR AHORA</button>
-                    <button class="btn btn-outline-primary" type="button">Agregar al carrito</button>
+                    <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
+
                 </div>
             </div>
             
@@ -246,6 +263,28 @@ if ($id == '' || $token == '') {
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+    function addProducto(id, token) {
+    let url = 'clases/carrito_Productos.php';
+    let formData = new FormData();
+    formData.append('Id_Productos', id);
+    formData.append('token', token);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors' 
+    }).then(response => response.json())
+      .then(data => {
+          if (data.ok) {
+            let elemento = document.getElementById("num_cart");
+            elemento.innerHTML = data.numero;
+          }
+      });
+}
+
+
+    </script>
 </body>
 
 </html>
