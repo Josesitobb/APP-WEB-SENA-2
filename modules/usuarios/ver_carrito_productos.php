@@ -347,15 +347,51 @@ document.getElementById('confirmarEliminar').addEventListener('click', function 
     <script src="js/main.js"></script>
     <script>
 
-let Eliminamodal = document.getElementById('Eliminamodal');
+<!-- Agrega un evento de clic a los enlaces con la clase "eliminar-producto" -->
+document.querySelectorAll('.eliminar-producto').forEach(function(el) {
+  el.addEventListener('click', function () {
+    // Abre el modal
+    $('#exampleModal').modal('show');
 
-Eliminamodal.addEventListener('show.bs.modal', function (event) {
-    let button = event.relatedTarget;
-    let id = button.getAttribute('data-bs-id');
-   let buttonElimina = eliminaModal.querySelectot('.modal-footer #confirmarEliminar')
-   buttonElimina.value = id
-    
+    // Guarda el ID específico del producto haciendo referencia al atributo data-bs-id
+    var productId = el.getAttribute('data-bs-id');
+
+    // Agrega un evento de clic al botón de confirmar dentro del modal
+    document.getElementById('confirmarEliminar').addEventListener('click', function () {
+      // Realiza la lógica de eliminación aquí
+      eliminarProducto(productId);
+      // Cierra el modal
+      $('#exampleModal').modal('hide');
+    });
+  });
 });
+
+// Función para eliminar un producto del carrito
+function eliminarProducto(id) {
+  let url = 'clases/eliminar_Productos.php';
+  let formData = new FormData();
+  formData.append('Id_Productos', id);
+  formData.append('action', 'eliminar');
+
+  fetch(url, {
+    method: 'POST',
+    body: formData,
+    mode: 'cors'
+  }).then(response => response.json())
+    .then(data => {
+      if (data.ok) {
+        // Actualiza la interfaz u otras acciones necesarias después de la eliminación
+        // Puedes recargar la página o actualizar el contenido del carrito de alguna otra manera
+        location.reload(); // Recarga la página
+      } else {
+        console.error('Error al intentar eliminar el producto');
+      }
+    })
+    .catch(error => console.error('Error en la solicitud fetch:', error));
+}
+
+
+
 
 
  function actualizaCantidad(cantidad, id) {
