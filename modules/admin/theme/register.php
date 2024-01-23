@@ -2,23 +2,27 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include("db.php");
-// RESIVIR DATOS
-$usernamereg=$_POST['usernamereg'];
-$lastnamereg=$_POST['lastnamereg'];
-$nameuserg=$_POST['nameuserg'];
-$passwordreg=$_POST['passwordreg'];
-$emailreg=$_POST['emailreg'];
-// CONSULTA PARA INSENTAR
+$Nombre_usuario = $_POST['Nombre_usuario'];
+$Apellido_Usuario = $_POST['Apellido_Usuario'];
+$Correo_Usuario = $_POST['Correo_Usuario'];
+$Telefono_usuario = $_POST['Telefono_usuario'];
+$Contraseña_Usuario = $_POST['Contraseña_Usuario'];
 
-// $insert="INSERT INTO `usuarios`( `usuarios_nombres`, `usuario_contraseña`, `usuario_correo`, `ROLES_IdROLES`) VALUES ('$usernamereg','$passwordreg','$emailreg','1')";
-$insert="INSERT INTO `usuarios`(`usuarios_nombres`, `usuario_apellido`, `usuario_username`, `usuario_contraseña`, `usuario_correo`, `ROLES_IdROLES`) VALUES ('$usernamereg','$lastnamereg','$nameuserg','$passwordreg','$emailreg','1')";
+// CONSULTA PARA INSERTAR
+$insert = "INSERT INTO `usuarios`(`Nombre_Usuarios`, `Apellido_Usuarios`, `Correo_Usuarios`, `Telefono_Usuarios`, `Contraseña_Usuarios`, `Id_Rol`) VALUES ('$Nombre_usuario', '$Apellido_Usuario', '$Correo_Usuario', '$Telefono_usuario', '$Contraseña_Usuario', 2)";
 
-// VERIFICAR CONSULTA USUARIOS
-$verify_username= mysqli_query($conn,"SELECT * FROM `usuarios` WHERE `usuario_username` ='$nameuserg'");
-if(mysqli_num_rows($verify_username)>0){
+
+
+
+// $insert="INSERT INTO `usuarios`(`Nombre_Usuarios`, `Apellido_Usuarios`, `usuario_contraseña`, `usuario_correo`, `ROLES_IdROLES`) 
+// VALUES ('$usernamereg','$lastnamereg','$nameuserg','$passwordreg','$emailreg','1')";
+
+// VERIFICAR CONSULTA CORREOS
+$verifica_telefono= mysqli_query($conn,"SELECT * FROM `usuarios` WHERE `Telefono_Usuarios` ='$Telefono_usuario'");
+if(mysqli_num_rows($verifica_telefono)>0){
     echo '<script>
 
-    alert("EL NOMBRE DE USUARIO  YA ESTA EN USO")
+    alert("Numero de telefono ya registrado intente con otro")
     window.history.go(-1);
     </script>
     
@@ -26,12 +30,14 @@ if(mysqli_num_rows($verify_username)>0){
     exit;
 }
 
+
+
 // VERIFICAR CONSULTA CORREOS
-$verify_correos= mysqli_query($conn,"SELECT * FROM `usuarios` WHERE `usuario_correo` ='$emailreg'");
+$verify_correos= mysqli_query($conn,"SELECT * FROM `usuarios` WHERE `Correo_Usuarios` ='$Correo_Usuario'");
 if(mysqli_num_rows($verify_correos)>0){
     echo '<script>
 
-    alert("CORREO YA ESTA REGISTRADO")
+    alert("Correo ya registrado intente con otro")
     window.history.go(-1);
     </script>
     

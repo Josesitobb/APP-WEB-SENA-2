@@ -41,31 +41,28 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 
-                                    <a class="text-center" href="index.php"> <h4>Rosella</h4></a>
+                                    <a class="text-center" href="index.php"> <h4>Regitrar nuevo usuario</h4></a>
         
                                 <form class="mt-5 mb-5 login-input" action="./register.php" method="post"  onsubmit="return validarRegister();">
-                                    <!-- <h1>title="SOLO LETRAS CON ESPACIO,MAXIMO 10 CARACTERES" required pattern="(^[a-zA-Z]{1,10}[a-zA-Z]{1,10}$)" 
-                                    title="SOLO LETRAS CON ESPACIO,MAXIMO 10 CARACTERES" required pattern="(^[a-zA-Z]{1,10}[a-zA-Z]{1,10}$)"
-                                    title="SOLO LETRAS CON ESPACIO,MAXIMO 30 CARACTERES" required pattern="(^[a-zA-Z]{1,30}[a-zA-Z]{1,30}$)"
-                                    </h1> -->
+
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  placeholder="Nombre" name="usernamereg" id="usernamereg" required >
+                                        <input type="text" class="form-control"  placeholder="Nombre" name="Nombre_usuario" id="Nombre_usuario" required >
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  placeholder="Apellido" name="lastnamereg" id="lastnamereg" required >
+                                        <input type="text" class="form-control"  placeholder="Apellido" name="Apellido_Usuario" id="Apellido_Usuario" required >
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="form-control"  placeholder="Nombre De Usuario" name="nameuserg"  id="nameuserg" required >
-                                    </div> 
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Contraseña" name="passwordreg" id="passwordreg" required >
+                                        <input type="password" class="form-control" placeholder="Contraseña" name="Contraseña_Usuario" id="Contraseña_Usuario" required >
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Correo" name="emailreg" id="emailreg" required >
+                                        <input type="email" class="form-control" placeholder="Correo" name="Correo_Usuario" id="Correo_Usuario" required >
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Telefono" name="Telefono_usuario" id="Telefono_usuario" required >
                                     </div>
                                     <button class="btn login-form__btn submit w-100">Sign in</button>
                                 </form>
-                                    <p class="mt-5 login-form__footer">Ya tiene cuenta <a href="page-login.php" class="text-primary">click aqui Up </a> :3</p>
+                                    <p class="mt-5 login-form__footer">Ya tiene cuenta <a href="page-login.php" class="text-primary">click  </a>aqui</p>
                                     </p>
                                 </div>
                             </div>

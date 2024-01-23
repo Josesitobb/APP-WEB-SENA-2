@@ -1,5 +1,5 @@
 <?php
-ob_start(); // Inicia el almacenamiento en búfer de salida
+ob_start();
 session_start();
 
 error_reporting(E_ALL);
@@ -8,28 +8,48 @@ ini_set('display_errors', 1);
 include('db.php');
 
 // SE CAPTURAN LOS DATOS DEL FORMULARIO
-$username = $_POST['usernamelog'];
+$email = $_POST['emailuser'];
 $password = $_POST['passwordlog'];
 
 // SE INICIA SESIÓN
 
-$consulta = "SELECT * FROM `usuarios` WHERE Correo_Usuarios='$username' AND Contraseña_Usuarios='$password'";
+$consulta = "SELECT * FROM `usuarios` WHERE Correo_Usuarios='$email' AND Contraseña_Usuarios='$password'";
 $resultados = mysqli_query($conn, $consulta);
 $filas = mysqli_num_rows($resultados);
 
 if ($filas) {
+    // Obtener datos del usuario
+    $usuario = mysqli_fetch_assoc($resultados);
+
     // Almacena el nombre de usuario en la sesión
-    $_SESSION['username'] = $username;
-    
-    header("location:./index.php");
-    exit();  // Asegúrate de salir después de redirigir
+    $_SESSION['username'] = $usuario['Nombre_Usuarios'];
+
+    // Redirige según el rol del usuario
+    switch ($usuario['Id_Rol']) {
+        case 1:
+           
+            header("location:./index.php");
+            break;
+        case 2:
+  
+            header("location:../../usuarios/index.php");
+            break;
+        
+        default:
+           
+        header("location:./index.php");
+            break;
+    }
+
+    exit();
 } else {
     ob_end_flush(); // Limpia el búfer de salida
     echo '<script>
         alert("DATOS INCORRECTOS");
-        window.location.href = "otra_vista.php";
+        window.history.go(-1);
     </script>';
 }
 
 mysqli_free_result($resultados);
 ?>
+

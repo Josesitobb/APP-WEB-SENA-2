@@ -41,19 +41,19 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.php"> <h4>Rosella</h4></a>
+                                <a class="text-center" href="index.php"> <h4>Iniciar sesion</h4></a>
         
                                 <form class="mt-5 mb-5 login-input" action="validad.php" method="post" onsubmit="return validarlogin();" >
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Nombre De usuario" name="usernamelog" id="usernamelog" required/>
+                                        <input type="text" class="form-control" placeholder="Correo de usuario" name="emailuser" id="emailuser" required/>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Contraseña" name="passwordlog" id="passwordlog" required/>
                                     </div>
                                     
-                                    <button class="btn login-form__btn submit w-100">Sign In</button>
+                                    <button class="btn login-form__btn submit w-100">Iniciar sesion</button>
                                 </form>
-                                <p class="mt-5 login-form__footer">Dont have account? <a href="page-register.php" class="text-primary">Sign Up</a> now</p>
+                                <p class="mt-5 login-form__footer">¿No tienes una cuenta? <a href="page-register.php" class="text-primary">Click </a> aqui para crear una</p>
                             </div>
                         </div>
                     </div>
