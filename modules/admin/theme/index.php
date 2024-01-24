@@ -59,8 +59,8 @@ if (isset($_SESSION['username'])) {
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/logi.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/logi.png" alt=""></span>
                     <span class="brand-title">
                         <img src="images/logi.png" alt="">
                     </span>
@@ -99,7 +99,6 @@ if (isset($_SESSION['username'])) {
                     <ul class="clearfix">
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                                <span class="activity active"></span>
                                 <img src="images/user/1.png" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
@@ -149,23 +148,26 @@ if (isset($_SESSION['username'])) {
                             <li><a href="./layout-compact-nav.php">Roles </a></li>
                         </ul>
                     </li>
-                    <li class="nav-label">Apps</li>
-                    <li>
-                        <ul aria-expanded="false">
-                            <li><a href="./email-inbox.php">Inbox</a></li>
-                            <li><a href="./email-read.php">Read</a></li>
-                            <li><a href="./email-compose.php">Compose</a></li>
-                        </ul>
-                    </li>
-                    <li>
+
+
+<li>
+    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+        <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Apps</span>
+    </a>
+    <ul aria-expanded="false">
+        <li><a href="./app-calender.php">Calender</a></li>
+    </ul>
+</li>
+<li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Graficas</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.php">Flot</a></li>
-                            <li><a href="./chart-morris.php">Morris</a></li>
+                            <li><a href="./chart-chartjs.php">Chartjs</a></li>
+
                         </ul>
                     </li>
+                    
                     </li>
                 </ul>
             </div>
