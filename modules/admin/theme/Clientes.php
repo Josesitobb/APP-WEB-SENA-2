@@ -21,7 +21,7 @@ echo $_SESSION['username'];
 
     <title>Clientes</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -149,8 +149,6 @@ echo $_SESSION['username'];
                             <li><a href="./layout-compact-nav.php">Roles </a></li>
                         </ul>
                     </li>
-
-
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Apps</span>
