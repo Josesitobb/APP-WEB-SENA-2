@@ -103,12 +103,16 @@ if (isset($_SESSION['username'])) {
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
-                                    <ul>
+                                <ul>
                                         <li>
-                                            <a href="app-profile.php"><i class="icon-user"></i> <span>Perfil</span></a>
+                                            <a href="app-profile.php"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
-                                        <li> <a href="../theme/cerrar.php">Logout</a><i class="icon-key"></i> <span></span></a></li>
-                                    </ul>
+
+                                        
+                                        <hr class="my-2">
+
+                                        <li><a href="page-login.php"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>   
                                 </div>
                             </div>
                         </li>
@@ -166,6 +170,53 @@ if (isset($_SESSION['username'])) {
                             <li><a href="./chart-chartjs.php">Chartjs</a></li>
 
                         </ul>
+                        </li>
+                    <li class="nav-label">Alerta</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">Alerta</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./ui-alert.php">Alerta</a></li>
+                        <!-- </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-layers menu-icon"></i><span class="nav-text">Components</span>
+                        </a>
+                        <ul aria-expanded="false"> -->
+
+                        </ul>
+                    </li>
+                    <li class="nav-label">Table</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-menu menu-icon"></i><span class="nav-text">Table</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./table-basic.php" aria-expanded="false">Basic Table</a></li>
+                            <li><a href="./table-datatable.php" aria-expanded="false">Data Table</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">Pages</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Pages</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./page-login.php">Login</a></li>
+                            <li><a href="./page-register.php">Register</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="./page-error-404.php">Error 404</a></li>
+                                    <li><a href="./page-error-403.php">Error 403</a></li>
+                                    <li><a href="./page-error-400.php">Error 400</a></li>
+                                    <li><a href="./page-error-500.php">Error 500</a></li>
+                                    <li><a href="./page-error-503.php">Error 503</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     </li>
                     
                     </li>
