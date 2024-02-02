@@ -51,7 +51,7 @@ if(mysqli_num_rows($verify_correos)>0){
 $result = mysqli_query($conn,$insert);
 
 if(!$result){
-    echo"ERRO ";
+    echo"ERROR ";
 }else{
     echo '<script>
 

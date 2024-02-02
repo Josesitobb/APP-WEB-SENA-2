@@ -1,4 +1,4 @@
-! function(e) {
+!function(e) {
     "use strict";
     var t = function() {
         this.$body = e("body"), this.$modal = e("#event-modal"), this.$event = "#external-events div.external-event", this.$calendar = e("#calendar"), this.$saveCategoryBtn = e(".save-category"), this.$categoryForm = e("#add-category form"), this.$extEvents = e("#external-events"), this.$calendarObj = null
@@ -11,14 +11,22 @@
     }, t.prototype.onEventClick = function(t, n, a) {
         var o = this,
             i = e("<form></form>");
-        i.append("<label>Change event name</label>"), i.append("<div class='input-group'><input class='form-control' type=text value='" + t.title + "' /><span class='input-group-btn'><button type='submit' class='btn btn-success waves-effect waves-light'><i class='fa fa-check'></i> Save</button></span></div>"), o.$modal.modal({
+        i.append("<label>Change event name</label>");
+        i.append("<div class='input-group'><input class='form-control' type=text value='" + t.title + "' /><span class='input-group-btn'><button type='submit' class='btn btn-success waves-effect waves-light'><i class='fa fa-check'></i> Save</button></span></div>");
+        i.append("<label>Estilista</label><input class='form-control' type='text' name='stylist' value='" + (t.stylist || '') + "' />");
+        i.append("<label>Cliente</label><input class='form-control' type='text' name='client' value='" + (t.client || '') + "' />");
+        i.append("<label>Servicio</label><input class='form-control' type='text' name='service' value='" + (t.service || '') + "' />");
+        i.append("<label>Fecha</label><input class='form-control' type='text' name='date' value='" + (t.date || '') + "' />");
+        i.append("<label>Color</label><input class='form-control' type='text' name='color' value='" + (t.color || '') + "' />");
+        o.$modal.modal({
             backdrop: "static"
-        }), o.$modal.find(".delete-event").show().end().find(".save-event").hide().end().find(".modal-body").empty().prepend(i).end().find(".delete-event").unbind("click").on("click", function() {
+        });
+        o.$modal.find(".delete-event").show().end().find(".save-event").hide().end().find(".modal-body").empty().prepend(i).end().find(".delete-event").unbind("click").on("click", function() {
             o.$calendarObj.fullCalendar("removeEvents", function(e) {
                 return e._id == t._id
             }), o.$modal.modal("hide")
         }), o.$modal.find("form").on("submit", function() {
-            return t.title = i.find("input[type=text]").val(), o.$calendarObj.fullCalendar("updateEvent", t), o.$modal.modal("hide"), !1
+            return t.title = i.find("input[type=text]").val(), t.stylist = i.find("input[name='stylist']").val(), t.client = i.find("input[name='client']").val(), t.service = i.find("input[name='service']").val(), t.date = i.find("input[name='date']").val(), t.color = i.find("input[name='color']").val(), o.$calendarObj.fullCalendar("updateEvent", t), o.$modal.modal("hide"), !1
         })
     }, t.prototype.onSelect = function(t, n, a) {
         var o = this;
@@ -26,17 +34,33 @@
             backdrop: "static"
         });
         var i = e("<form></form>");
-        i.append("<div class='row'></div>"), i.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div></div>").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Category</label><select class='form-control' name='category'></select></div></div>").find("select[name='category']").append("<option value='bg-danger'>Danger</option>").append("<option value='bg-success'>Success</option>").append("<option value='bg-dark'>Dark</option>").append("<option value='bg-primary'>Primary</option>").append("<option value='bg-pink'>Pink</option>").append("<option value='bg-info'>Info</option>").append("<option value='bg-warning'>Warning</option></div></div>"), o.$modal.find(".delete-event").hide().end().find(".save-event").show().end().find(".modal-body").empty().prepend(i).end().find(".save-event").unbind("click").on("click", function() {
+        i.append("<div class='row'></div>");
+        i.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Event Name</label><input class='form-control' placeholder='Insert Event Name' type='text' name='title'/></div></div>");
+        i.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Estilista</label><input class='form-control' placeholder='Insert Stylist Name' type='text' name='stylist'/></div></div>");
+        i.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Cliente</label><input class='form-control' placeholder='Insert Client Name' type='text' name='client'/></div></div>");
+        i.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Servicio</label><input class='form-control' placeholder='Insert Service Name' type='text' name='service'/></div></div>");
+        i.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Fecha</label><input class='form-control' placeholder='Insert Date' type='text' name='date'/></div></div>");
+        i.find(".row").append("<div class='col-md-6'><div class='form-group'><label class='control-label'>Color</label><input class='form-control' placeholder='Insert Color' type='text' name='color'/></div></div>");
+        o.$modal.find(".delete-event").hide().end().find(".save-event").show().end().find(".modal-body").empty().prepend(i).end().find(".save-event").unbind("click").on("click", function() {
             i.submit()
         }), o.$modal.find("form").on("submit", function() {
             var e = i.find("input[name='title']").val(),
-                a = (i.find("input[name='beginning']").val(), i.find("input[name='ending']").val(), i.find("select[name='category'] option:checked").val());
+                a = i.find("input[name='stylist']").val(),
+                s = i.find("input[name='client']").val(),
+                c = i.find("input[name='service']").val(),
+                d = i.find("input[name='date']").val(),
+                l = i.find("input[name='color']").val();
             return null !== e && 0 != e.length ? (o.$calendarObj.fullCalendar("renderEvent", {
                 title: e,
                 start: t,
                 end: n,
                 allDay: !1,
-                className: a
+                className: l,
+                stylist: a,
+                client: s,
+                service: c,
+                date: d,
+                color: l
             }, !0), o.$modal.modal("hide")) : alert("You have to give a title to your event"), !1
         }), o.$calendarObj.fullCalendar("unselect")
     }, t.prototype.enableDrag = function() {
@@ -99,10 +123,11 @@
             var e = o.$categoryForm.find("input[name='category-name']").val(),
                 t = o.$categoryForm.find("select[name='category-color']").val();
             null !== e && 0 != e.length && (o.$extEvents.append('<div class="external-event bg-' + t + '" data-class="bg-' + t + '" style="position: relative;"><i class="fa fa-move"></i>' + e + "</div>"), o.enableDrag())
+            
         })
+        
     }, e.CalendarApp = new t, e.CalendarApp.Constructor = t
-}(window.jQuery),
-function(e) {
+}(window.jQuery), function(e) {
     "use strict";
     e.CalendarApp.init()
 }(window.jQuery);
