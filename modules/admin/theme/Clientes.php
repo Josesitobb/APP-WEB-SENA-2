@@ -18,9 +18,10 @@ echo $_SESSION['username'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+
+    <title>Clientes</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -93,7 +94,6 @@ echo $_SESSION['username'];
                 <div class="header-right">
                     <ul class="clearfix">
 
-                        
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <img src="images/user/1.png" height="40" width="40" alt="">
@@ -104,14 +104,10 @@ echo $_SESSION['username'];
                                         <li>
                                             <a href="app-profile.php"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
-                                        <li>
-                                            <a href="email-inbox.php"><i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill badge-primary">3</div></a>
-                                        </li>
+
                                         
                                         <hr class="my-2">
-                                        <li>
-                                            <a href="page-lock.php"><i class="icon-lock"></i> <span>Lock Screen</span></a>
-                                        </li>
+
                                         <li><a href="page-login.php"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
@@ -153,8 +149,6 @@ echo $_SESSION['username'];
                             <li><a href="./layout-compact-nav.php">Roles </a></li>
                         </ul>
                     </li>
-
-
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Apps</span>
@@ -172,28 +166,13 @@ echo $_SESSION['username'];
 
                         </ul>
                     </li>
-                    <li class="nav-label">UI Components</li>
+                    <li class="nav-label">Alerta</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-grid menu-icon"></i><span class="nav-text">UI Components</span>
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">Alerta</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.php">Accordion</a></li>
-                            <li><a href="./ui-alert.php">Alert</a></li>
-                            <li><a href="./ui-badge.php">Badge</a></li>
-                            <li><a href="./ui-button.php">Button</a></li>
-                            <li><a href="./ui-button-group.php">Button Group</a></li>
-                            <li><a href="./ui-cards.php">Cards</a></li>
-                            <li><a href="./ui-carousel.php">Carousel</a></li>
-                            <li><a href="./ui-dropdown.php">Dropdown</a></li>
-                            <li><a href="./ui-list-group.php">List Group</a></li>
-                            <li><a href="./ui-media-object.php">Media Object</a></li>
-                            <li><a href="./ui-modal.php">Modal</a></li>
-                            <li><a href="./ui-pagination.php">Pagination</a></li>
-                            <li><a href="./ui-popover.php">Popover</a></li>
-                            <li><a href="./ui-progressbar.php">Progressbar</a></li>
-                            <li><a href="./ui-tab.php">Tab</a></li>
-                            <li><a href="./ui-typography.php">Typography</a></li>
+                            <li><a href="./ui-alert.php">Alerta</a></li>
                         <!-- </ul>
                     </li>
                     <li>
@@ -201,30 +180,10 @@ echo $_SESSION['username'];
                             <i class="icon-layers menu-icon"></i><span class="nav-text">Components</span>
                         </a>
                         <ul aria-expanded="false"> -->
-                            <li><a href="./uc-nestedable.php">Nestedable</a></li>
-                            <li><a href="./uc-noui-slider.php">Noui Slider</a></li>
-                            <li><a href="./uc-sweetalert.php">Sweet Alert</a></li>
-                            <li><a href="./uc-toastr.php">Toastr</a></li>
+
                         </ul>
                     </li>
-                    <li>
-                        <a href="widgets.php" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text">Widget</span>
-                        </a>
-                    </li>
-                    <li class="nav-label">Forms</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-note menu-icon"></i><span class="nav-text">Forms</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./form-basic.php">Basic Form</a></li>
-                            <li><a href="./form-validation.php">Form Validation</a></li>
-                            <li><a href="./form-step.php">Step Form</a></li>
-                            <li><a href="./form-editor.php">Editor</a></li>
-                            <li><a href="./form-picker.php">Picker</a></li>
-                        </ul>
-                    </li>
+
                     <li class="nav-label">Table</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -243,7 +202,6 @@ echo $_SESSION['username'];
                         <ul aria-expanded="false">
                             <li><a href="./page-login.php">Login</a></li>
                             <li><a href="./page-register.php">Register</a></li>
-                            <li><a href="./page-lock.php">Lock Screen</a></li>
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
                                 <ul aria-expanded="false">
                                     <li><a href="./page-error-404.php">Error 404</a></li>
@@ -267,14 +225,7 @@ echo $_SESSION['username'];
         ***********************************-->
         <div class="content-body">
 
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                    </ol>
-                </div>
-            </div>
+
             <!-- row -->
 
             <div class="container-fluid">
