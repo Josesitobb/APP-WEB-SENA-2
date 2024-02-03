@@ -70,8 +70,6 @@ Select * from servicios;
 
 create table Citas(
 Id_Citas INT auto_increment,
-title varchar(100),
-color varchar(100),
 start datetime NOT NULL,
 end datetime not null,
 primary key(Id_Citas),

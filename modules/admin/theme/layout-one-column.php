@@ -142,7 +142,7 @@ echo $_SESSION['username'];
                             <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
                             <li><a href="./layout-one-column.php">Productos</a></li>
                             <li><a href="./layout-two-column.php">Servicios</a></li>
-                            <li><a href="./Facturas.php">Facturas </a></li>
+                            <li><a href="./Citas.php">Citas </a></li>
                             <li><a href="./layout-compact-nav.php">Roles </a></li>
                         </ul>
                     </li>
