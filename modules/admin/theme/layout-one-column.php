@@ -247,12 +247,13 @@ echo $_SESSION['username'];
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">idPRODUCTOS</th>
-                                                <th scope="col">producto_nombre</th>
-                                                <th scope="col">producto_precio</th>
-                                                <th scope="col">producto_cantidad</th>
-                                                <th scope="col">Imagen_productos</th>
-                                                <th scope="col">acciones</th>
+                                                <th scope="col">Id Productos</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Detalle</th>
+                                                <th scope="col">Precio</th>
+                                                <th scope="col">Cantidad</th>
+                                                <th scope="col">Imagenes</th>
+                                                <th scope="col">Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -272,6 +273,7 @@ echo $_SESSION['username'];
                                                 <tr>
                                                     <th scope="row"><?php echo $fila['Id_Productos'] ?></th>
                                                     <th><?php echo $fila['Nombre_Productos'] ?></th>
+                                                    <th><?php echo $fila['Descripcion_Productos'] ?></th>
                                                     <th><?php echo $fila['Precio_Productos'] ?></th>
                                                     <th><?php echo $fila['Cantidad_Productos'] ?></th>
                                                     <th><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos'])  ?>" alt=""></th>

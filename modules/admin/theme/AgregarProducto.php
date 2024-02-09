@@ -8,11 +8,13 @@ $Name_product=$_POST['Name_product'];
 
 $Price_Name = $_POST['Price_Name'];
 
+$Product_description= $_POST['Product_description'];
+
 $Product_amount = $_POST['Product_amount'];
 
 $Product_Image =addslashes(file_get_contents($_FILES['Product_Image']['tmp_name']));
 
-$sql="INSERT INTO `productos`(`Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Cantidad_Productos`, `Imagen_Productos`) VALUES (null,'$Name_product','$Price_Name','$Product_amount','$Product_Image')";
+$sql="INSERT INTO `productos`(`Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Cantidad_Productos`, `Descripcion_Productos`,`Imagen_Productos`) VALUES (null,'$Name_product','$Price_Name','$Product_amount','$Product_description','$Product_Image')";
 
 
 $Resultado=$conn -> query($sql);
