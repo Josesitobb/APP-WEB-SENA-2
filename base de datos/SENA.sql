@@ -62,7 +62,7 @@ create table servicios (
 Id_Servicios INT auto_increment,
 Nombre_Servicios varchar(45) NOT NULL,
 Valor_Servicios decimal(12,2) NOT NULL,
-Cantidad_Servicios INT NOT NULL,
+Descripcion_Servicios VARCHAR(200),
 Imagen_Servicios mediumblob NOT NULL,
 primary key(Id_Servicios)
 );
