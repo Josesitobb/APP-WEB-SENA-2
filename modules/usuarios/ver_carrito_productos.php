@@ -53,6 +53,11 @@ if ($productos != null) {
     <!-- Favicon -->
     <link href="img/favicon1.png" rel="icon">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -296,6 +301,38 @@ if ($productos != null) {
 </div>
 
 
+<div id="seleccionarFechaModal" class="modal fade" tabindex="-1" aria-labelledby="seleccionarFechaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="seleccionarFechaModalLabel">Seleccionar Fecha y Hora</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para seleccionar fecha y hora -->
+                <form id="fechaHoraForm">
+                    <div class="form-group">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hora">Hora:</label>
+                        <input type="time" id="hora" class="form-control" required>
+                    </div>
+
+                    <!-- Mostrar detalles del carrito aquí -->
+                    <div id="detallesCarrito">
+                        <!-- Aquí se mostrarán los detalles del carrito -->
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -431,7 +468,7 @@ function eliminarProducto(id) {
 
 
     </script>
-    
+
 </body>
 
 </html>

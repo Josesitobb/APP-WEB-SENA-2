@@ -8,7 +8,7 @@ include("db.php");
 $Id = $_REQUEST['IdEditar'];
 $servicio_nombre = $_POST['servicio_nombre'];
 $servicio_valor = $_POST['servicio_valor'];
-$servicio_cantidad = $_POST['servicio_cantidad'];
+$servicio_descripcion = $_POST['servicio_descripcion'];
 
 // Check if a new image is uploaded
 if (!empty($_FILES['servicio_Imagen']['tmp_name'])) {
@@ -31,9 +31,9 @@ if (!empty($_FILES['servicio_Imagen']['tmp_name'])) {
 
 // Construir la consulta SQL de actualización
 if ($updateImage) {
-    $sql = "UPDATE `servicios` SET `Nombre_Servicios`='$servicio_nombre', `Valor_Servicios`='$servicio_valor', `Cantidad_Servicios`='$servicio_cantidad', `Imagen_Servicios`='$servicio_Imagen' WHERE Id_Servicios = $Id";
+    $sql = "UPDATE `servicios` SET `Nombre_Servicios`='$servicio_nombre', `Valor_Servicios`='$servicio_valor', `Descripcion_Servicios`='$servicio_descripcion', `Imagen_Servicios`='$servicio_Imagen' WHERE Id_Servicios = $Id";
 } else {
-    $sql = "UPDATE `servicios` SET `Nombre_Servicios`='$servicio_nombre', `Valor_Servicios`='$servicio_valor', `Cantidad_Servicios`='$servicio_cantidad' WHERE Id_Servicios = $Id";
+    $sql = "UPDATE `servicios` SET `Nombre_Servicios`='$servicio_nombre', `Valor_Servicios`='$servicio_valor', `Descripcion_Servicios`='$servicio_descripcion' WHERE Id_Servicios = $Id";
 }
 
 $resultado = $conn->query($sql);

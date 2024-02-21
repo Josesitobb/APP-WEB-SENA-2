@@ -140,7 +140,7 @@ echo $_SESSION['username'];
                             <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
                             <li><a href="./layout-one-column.php">Productos</a></li>
                             <li><a href="./layout-two-column.php">Servicios</a></li>
-                            <li><a href="./Facturas.php">Facturas </a></li>
+                            <li><a href="./Citas.php">Citas </a></li>
                             <li><a href="./layout-compact-nav.php">Roles </a></li>
                         </ul>
                     </li>
@@ -246,11 +246,11 @@ echo $_SESSION['username'];
             <br>
             <thead>
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Servicio_Nombre</th>
-                    <th scope="col">Servicio_Precio</th>
-                    <th scope="col">Servicio_cantidad</th>
-                    <th scope="col">Servicio_Imagen</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Imagen</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -263,16 +263,11 @@ echo $_SESSION['username'];
                 $resultado = $conn->query($sql);
 
                 while ($fila = $resultado->fetch_assoc()) { ?>
-
-
-
-
-
                     <tr>
                         <th scope="row"><?php echo $fila['Id_Servicios'] ?></th>
                         <th><?php echo $fila['Nombre_Servicios'] ?></th>
                         <th><?php echo $fila['Valor_Servicios'] ?></th>
-                        <th><?php echo $fila['Cantidad_Servicios'] ?></th>
+                        <th><?php echo $fila['Descripcion_Servicios'] ?></th>
                         <th><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios'])  ?>" alt=""></th>
                         <th><a class="btn  btn-warning" href="deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">eliminar</a>
                             <a class="btn  btn-danger" href="vistas_Editar_Servicio.php?Id=<?php echo $fila['Id_Servicios'] ?>">modificar</a>

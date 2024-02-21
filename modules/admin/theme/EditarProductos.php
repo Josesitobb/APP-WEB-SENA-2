@@ -8,6 +8,7 @@ $Id = $_REQUEST['IdEditar'];
 $producto_nombret = $_POST['Name_producto'];
 $producto_precio = $_POST['Price_producto'];
 $producto_cantidad = $_POST['Amount_producto'];
+$Descripcion_Productos = $_POST['Product_description'];
 
 // Verificar si se ha subido un nuevo archivo de imagen
 if (!empty($_FILES['Producto_Imagen']['tmp_name'])) {
@@ -20,9 +21,9 @@ if (!empty($_FILES['Producto_Imagen']['tmp_name'])) {
 
 // Construir la consulta SQL de actualización
 if ($updateImage) {
-    $sql = "UPDATE `productos` SET `Nombre_Productos`='$producto_nombret', `Precio_Productos`='$producto_precio', `Cantidad_Productos`='$producto_cantidad', `Imagen_Productos`='$Imagen_productos' WHERE Id_Productos = $Id";
+    $sql = "UPDATE `productos` SET `Nombre_Productos`='$producto_nombret', `Precio_Productos`='$producto_precio', `Cantidad_Productos`='$producto_cantidad', `Imagen_Productos`='$Imagen_productos', `Descripcion_Productos`='$Descripcion_Productos' WHERE Id_Productos = $Id";
 } else {
-    $sql = "UPDATE `productos` SET `Nombre_Productos`='$producto_nombret', `Precio_Productos`='$producto_precio', `Cantidad_Productos`='$producto_cantidad' WHERE Id_Productos = $Id";
+    $sql = "UPDATE `productos` SET `Nombre_Productos`='$producto_nombret', `Precio_Productos`='$producto_precio', `Cantidad_Productos`='$producto_cantidad', `Descripcion_Productos`='$Descripcion_Productos' WHERE Id_Productos = $Id";
 }
 
 $resultado = $conn->query($sql);

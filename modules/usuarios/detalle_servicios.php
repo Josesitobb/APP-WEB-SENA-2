@@ -1,18 +1,35 @@
 <?php
 include('config/db.php');
-require('config/config2.php');
+require('config/config.php');
 $db = new db();
 $conn = $db->conectar();
 
-// session_destroy();
+$id = isset($_GET['Id_Servicios']) ? $_GET['Id_Servicios'] : '';
+$token = isset($_GET['token']) ? $_GET['token'] : '';
 
+if ($id == '' || $token == '') {
+    echo 'Error al procesar la petición';
+    exit;
+} else {
+    $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
 
-$sql = $conn->prepare("SELECT `Id_Servicios`, `Nombre_Servicios`, `Valor_Servicios`, `Descripcion_Servicios`, `Imagen_Servicios` FROM `servicios` WHERE 1");
-$sql->execute(); // Debes ejecutar la consulta antes de obtener los resultados
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($token == $token_tmp) {
+        $sql = $conn->prepare("SELECT `Id_Servicios`, `Nombre_Servicios`, `Valor_Servicios`, `Descripcion_Servicios`, `Imagen_Servicios` FROM `servicios` WHERE Id_Servicios=? ");
+        $sql->execute([$id]);
+
+        if($sql->rowCount() > 0) {
+            $row = $sql->fetch(PDO::FETCH_ASSOC);
+            $Nombre_servicio = $row['Nombre_Servicios'];
+            $Precio_servicio = $row['Valor_Servicios'];
+            $Imagen_servicio = $row['Imagen_Servicios'];
+            $Descripcion_servicio = $row['Descripcion_Servicios'];
+        }
+    } else {
+        echo 'Error al procesar la petición';
+        exit;
+    }
+}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,66 +117,80 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                     <div class="navbar-nav mr-auto py-0">
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
+                      <?php 
+                      $num_cart = 0;
+
+                      if(isset($_SESSION['carrito']['productos'])){
+                          foreach ($_SESSION['carrito']['productos'] as $cantidad) {
+                              $num_cart += $cantidad;
+                          }
+                      }
+                      
+                      echo '<a href="clases/carrito_Productos.php" class="nav-item nav-link">Carrito
+                            <span id="num_cart" class="badge bg-secondary">' . $num_cart . '</span>
+                            </a>';
+                      ?>
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
+                        
                     </div>
                 </div>
             </nav>
         </div>
     </div>
-    <!-- Navbar End -->
+    <!-- Navbar End -->   
 
+  
 
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Servicios</h1>
+            <h1 class="text-white display-3 mt-lg-5">Productos</h1>
         </div>
     </div>
     <!-- Header End -->
+ 
 
-
- <!-- Products Start -->
- <div class="container-fluid py-5">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <h1 class="section-title position-relative text-center mb-5">Tu mejor versión</h1>
+    <div id="detalle_<?php echo $row['Id_Servicios']; ?>">
+    <!-- Contenido de los detalles del producto -->
+    <!-- Products Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h1 class="section-title position-relative text-center mb-5"><?php echo $Nombre_servicio ?></h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <?php foreach ($resultado as $row) { ?>
-                <div class="col-lg-3 col-md-6 mb-4 pb-2">
-                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
-                        <div class="bg-primary mt-n5 py-3" style="">
-                            <h4 class="font-weight-bold text-white mb-0">$<?php echo $row['Valor_Servicios']; ?></h4>
-                        </div>
-                        <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
-                        <?php
-                            $imagen_base64 = base64_encode($row['Imagen_Servicios']);
-                            $imagen_src = 'data:image/png;base64,' . $imagen_base64;
-                            ?>
-                            <img class="rounded-circle w-100 h-100" src="<?php echo $imagen_src; ?>" alt="<?php echo $row['Nombre_Servicios']; ?>">
-                        </div>
-                        <h5 class="font-weight-bold mb-4"><?php echo $row['Nombre_Servicios']; ?></h5>
-                        <br>
-                        <a href="detalle_servicios.php?Id_Servicios=<?php echo $row['Id_Servicios']; ?>&token=<?php echo hash_hmac('sha1', $row['Id_Servicios'], KEY_TOKEN); ?>#detalle_<?php echo $row['Id_Servicios']; ?>" class="btn btn-sm btn-secondary">Detalle</a>
-                        <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $row['Id_Servicios']; ?>, '<?php echo hash_hmac('sha1', $row['Id_Servicios'], KEY_TOKEN); ?>')">Agregar al carrito</button>
+            <div class="row justify-content-center">
+                <div class="col-md-6 order-md-1 text-center">
+                    <?php
+                    // Verifica si la columna Imagen_Servicios contiene datos binarios
+                    if (!empty($Imagen_servicio)) {
+                        $imagenBase64 = base64_encode($Imagen_servicio);
+                        $imagenTipo = pathinfo($Nombre_servicio, PATHINFO_EXTENSION);
+                        $imagenSrc = 'data:image/' . $imagenTipo . ';base64,' . $imagenBase64;
+                        echo '<img src="' . $imagenSrc . '" alt="' . $Nombre_servicio . '" width="500" height="500">';
+                    } else {
+                        echo '<p>Imagen no disponible</p>';
+                    }
+                    ?>
+                </div>
 
-
-
+                <div class="col-md-6 order-md-2 text-center">
+                    <h2><?php echo MONEDA . number_format($Precio_servicio, 2, '.', ','); ?></h2>
+                    <p><?php echo $Descripcion_servicio ?></p>
+                    <div class="d-grid gap-3 col-10 mx-auto">
+                        <button class="btn btn-primary" type="button">COMPRAR AHORA</button>
+                        <!-- Agregar al carrito -->
                     </div>
                 </div>
-            <?php } ?>
-        </div>
-        <div class="col-12 text-center">
-            <a href="" class="btn btn-primary py-3 px-5">Ver más</a>
+            </div>
         </div>
     </div>
+
 </div>
+    <!-- Products End -->
 
 
-
-    
     <!-- Footer Start -->
     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
         <div class="container text-center py-5">
@@ -218,6 +249,28 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+    function addProducto(id, token) {
+    let url = 'clases/carrito_Productos.php';
+    let formData = new FormData();
+    formData.append('Id_Productos', id);
+    formData.append('token', token);
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        mode: 'cors' 
+    }).then(response => response.json())
+      .then(data => {
+          if (data.ok) {
+            let elemento = document.getElementById("num_cart");
+            elemento.innerHTML = data.numero;
+          }
+      });
+}
+
+
+    </script>
 </body>
 
 </html>

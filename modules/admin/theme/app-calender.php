@@ -425,8 +425,10 @@ echo $_SESSION['username'];
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <h4>Calendar</h4>
+                                    <h4>Calendario</h4>
                                 </div>
+
+                                <!-- BOTON AGREGAR -->
                                 <div class="row">
                                     <div class="col-lg-4 mt-5">
                                         <a href="#" data-toggle="modal" data-target="#add-category" class="btn btn-primary btn-block"><i class="ti-plus f-s-12 m-r-5"></i> Create New</a>
@@ -437,12 +439,14 @@ echo $_SESSION['username'];
                                             <div class="external-event bg-warning text-white" data-class="bg-warning"><i class="fa fa-move"></i>Meet manager</div>
                                             <div class="external-event bg-dark text-white" data-class="bg-dark"><i class="fa fa-move"></i>Create New theme</div>
                                         </div>
+                                     
                                         <!-- checkbox -->
                                         <div class="checkbox m-t-40">
                                             <input id="drop-remove" type="checkbox">
                                             <label for="drop-remove">Remove after drop</label>
                                         </div>
                                     </div>
+                                       <!-- BOTON AGREGAR -->
                                     <div class="col-md-8">
                                         <div class="card-box m-b-50">
                                             <div id="calendar"></div>
@@ -455,13 +459,13 @@ echo $_SESSION['username'];
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title"><strong>Add New Event</strong></h4>
+                                                    <h4 class="modal-title"><strong>Agregar una nueva cita</strong></h4>
                                                 </div>
                                                 <div class="modal-body"></div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
-                                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-success save-event waves-effect waves-light">Crear una nueva cita</button>
+                                                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Borrar</button>
                                                 </div>
                                             </div>
                                         </div>
