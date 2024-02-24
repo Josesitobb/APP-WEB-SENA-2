@@ -1,15 +1,17 @@
 <?php
 include('config/db.php');
-require('config/config2.php');
-$db = new db();
-$conn = $db->conectar();
+require('config/config.php');
 
-// session_destroy();
+// Consulta SQL
+$sql = "SELECT Id_Servicios, Nombre_Servicios, Valor_Servicios, Descripcion_Servicios, Imagen_Servicios FROM servicios";
+
+// Ejecutar consulta
+$resultado = mysqli_query($conn, $sql);
 
 
-$sql = $conn->prepare("SELECT `Id_Servicios`, `Nombre_Servicios`, `Valor_Servicios`, `Descripcion_Servicios`, `Imagen_Servicios` FROM `servicios` WHERE 1");
-$sql->execute(); // Debes ejecutar la consulta antes de obtener los resultados
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+// Cerrar conexión
+mysqli_close($conn);
 ?>
 
 
@@ -39,6 +41,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    
 </head>
 
 <body>
@@ -143,7 +147,9 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <h5 class="font-weight-bold mb-4"><?php echo $row['Nombre_Servicios']; ?></h5>
                         <br>
                         <a href="detalle_servicios.php?Id_Servicios=<?php echo $row['Id_Servicios']; ?>&token=<?php echo hash_hmac('sha1', $row['Id_Servicios'], KEY_TOKEN); ?>#detalle_<?php echo $row['Id_Servicios']; ?>" class="btn btn-sm btn-secondary">Detalle</a>
-                        <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $row['Id_Servicios']; ?>, '<?php echo hash_hmac('sha1', $row['Id_Servicios'], KEY_TOKEN); ?>')">Agregar al carrito</button>
+                        <a href="#" id="myBtn" class="btn btn-sm btn-secondary open-modal">Agregar cita</a>
+
+
 
 
 
@@ -218,6 +224,11 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+</script>
+
+
+
 </body>
 
 </html>

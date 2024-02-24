@@ -1,23 +1,11 @@
 <?php
 
-class db {
-    private $hostname = "localhost";
-    private $namedb = "sgcitas";
-    private $username = "root";
-    private $password = "";
+$servername="localhost";
 
-    private $conn;
+$username ="root";
+$password ="";
+$db="SGCitas";
 
-    function conectar() {
-        try {
-            $this->conn = new PDO("mysql:host=$this->hostname;dbname=$this->namedb", $this->username, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $this->conn;
-        } catch (PDOException $e) {
-            echo "Error de conexión: " . $e->getMessage();
-            return null;
-        }
-    }
-}
+$conn=mysqli_connect($servername,$username,$password,$db);
 
 ?>

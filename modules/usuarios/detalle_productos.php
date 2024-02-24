@@ -1,45 +1,41 @@
 <?php
-include('config/db.php');
-require('config/config.php');
-$db = new db();
-$conn = $db->conectar();
+// Verificar si el parámetro Id_Productos está presente en la URL
+if (isset($_GET['Id_Productos'])) {
+    // Obtener el Id_Productos de la URL
+    $id_producto = $_GET['Id_Productos'];
 
+    // Incluir el archivo de configuración de la base de datos
+    include('config/db.php');
 
+    // Consulta SQL para obtener los detalles del producto
+    $sql = "SELECT * FROM productos WHERE Id_Productos = $id_producto";
 
-$id = isset($_GET['Id_Productos']) ? $_GET['Id_Productos'] : '';
-$token = isset($_GET['token']) ? $_GET['token'] : '';
+    // Ejecutar la consulta
+    $resultado = $conn->query($sql);
 
-if ($id == '' || $token == '') {
-    echo 'Error al procesar la petición';
-    exit;
-} else {
-    $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
-
-    if ($token == $token_tmp) {
-        $sql = $conn->prepare("SELECT `Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Cantidad_Productos`, `Imagen_Productos`, `Id_Clientes`, `Descripcion_Productos` FROM `productos` WHERE Id_Productos=? ");
-        $sql->execute([$id]);
-
-        $sql->execute([$id]); 
-        if($sql->fetchColumn()>0){
-            $sql = $conn->prepare("SELECT `Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Cantidad_Productos`, `Imagen_Productos`, `Id_Clientes`, `Descripcion_Productos` FROM `productos` WHERE Id_Productos=? LIMIT 1 ");            $sql->execute([$id]);
-            $row =$sql->fetch(PDO::FETCH_ASSOC);
-            $Nombre_producto = $row['Nombre_Productos'];
-            $Precio_Producto = $row['Precio_Productos'];
-            $Imagen_Producto = $row['Imagen_Productos'];
-            $Descripcion_Producto =$row['Descripcion_Productos'];
-
-
-        }
-        
+    // Verificar si se encontraron resultados
+    if ($resultado->num_rows > 0) {
+        // Obtener el detalle del producto y mostrarlo
+        $producto = $resultado->fetch_assoc();
+        $imagenDecodificada = base64_decode($producto['Imagen_Productos']);
+        ?>
+       
+        <?php
     } else {
-        echo 'Error al procesar la petición';
-        exit;
+        // Manejar el caso donde no se encontró el producto
+        echo '<script>alert("No se encontró el producto.");</script>';
+        header("Location: index.php");
+        exit(); 
     }
+
+    // Cerrar conexión
+    $conn->close();
+} else {
+    // Manejar el caso donde el parámetro Id_Productos no está presente en la URL
+    echo "Error: ID de producto no especificado.";
 }
-
-
-
 ?>
+
 
 
 <!DOCTYPE html>
@@ -80,24 +76,23 @@ if ($id == '' || $token == '') {
                         <a class="text-white pr-3" href="../admin/theme/page-login.php">Iniciar sesión</a>
                         <span class="text-white">|</span>
                         <a class="text-white px-3" href="../admin/theme/page-register.php">Registrarse</a>
- 
                     </div>
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="">
+                        <a class="text-white px-3" href="#">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="text-white px-3" href="">
+                        <a class="text-white px-3" href="#">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        <a class="text-white px-3" href="">
+                        <a class="text-white px-3" href="#">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
-                        <a class="text-white px-3" href="">
+                        <a class="text-white px-3" href="#">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a class="text-white pl-3" href="">
+                        <a class="text-white pl-3" href="#">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </div>
@@ -129,29 +124,15 @@ if ($id == '' || $token == '') {
                     <div class="navbar-nav mr-auto py-0">
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
-                      <?php 
-                      $num_cart = 0;
-
-                      if(isset($_SESSION['carrito']['productos'])){
-                          foreach ($_SESSION['carrito']['productos'] as $cantidad) {
-                              $num_cart += $cantidad;
-                          }
-                      }
-                      
-                      echo '<a href="clases/carrito_Productos.php" class="nav-item nav-link">Carrito
-                            <span id="num_cart" class="badge bg-secondary">' . $num_cart . '</span>
-                            </a>';
-                      ?>
-                        <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
-                        
+                        <a href="clases/carrito_Productos.php" class="nav-item nav-link">Carrito
+                            <span id="num_cart" class="badge bg-secondary">0</span>
+                        </a>
                     </div>
                 </div>
             </nav>
         </div>
     </div>
     <!-- Navbar End -->   
-
-  
 
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
@@ -160,50 +141,40 @@ if ($id == '' || $token == '') {
         </div>
     </div>
     <!-- Header End -->
- 
 
-    <div id="detalle_<?php echo $row['Id_Productos']; ?>">
     <!-- Contenido de los detalles del producto -->
     <!-- Products Start -->
     <div class="container-fluid py-5">
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-6">
-                <h1 class="section-title position-relative text-center mb-5"><?php echo $Nombre_producto ?></h1>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-md-6 order-md-1 text-center">
-                <?php
-                // Verifica si la columna Imagen_Productos contiene datos binarios
-                if (!empty($row['Imagen_Productos'])) {
-                    $imagenBase64 = base64_encode($row['Imagen_Productos']);
-                    $imagenTipo = pathinfo($row['Nombre_Productos'], PATHINFO_EXTENSION);
-                    $imagenSrc = 'data:image/' . $imagenTipo . ';base64,' . $imagenBase64;
-                    echo '<img src="' . $imagenSrc . '" alt="' . $Nombre_producto . '" width="500" height="500">';
-                } else {
-                    echo '<p>Imagen no disponible</p>';
-                }
-                ?>
-            </div>
-
-            <div class="col-md-6 order-md-2 text-center">
-                <h2><?php echo MONEDA . number_format($Precio_Producto, 2, '.', ','); ?></h2>
-               <p><?php echo $Descripcion_Producto ?></p>
-                <div class="d-grid gap-3 col-10 mx-auto">
-                    <button class="btn btn-primary" type="button">COMPRAR AHORA</button>
-                    <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
-
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h1 class="section-title position-relative text-center mb-5"><?php echo $producto['Nombre_Productos']; ?></h1>
+                   
                 </div>
             </div>
-            
+            <div class="row justify-content-center">
+                <div class="col-md-6 order-md-1 text-center">
+                    <!-- Imagen del producto -->
+
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($producto['Imagen_Productos']); ?>" alt="Nombre del Producto" width="500" height="500">
+
+           
+                </div>
+                <div class="col-md-6 order-md-2 text-center">
+                    <!-- Precio y descripción del producto -->
+                    <h2><?php echo $producto['Precio_Productos']; ?></h2>
+                    
+                    <p><?php echo $producto['Descripcion_Productos']; ?></p>
+                    <!-- Botón para comprar -->
+                    <div class="d-grid gap-3 col-10 mx-auto">
+                    <a href="product.php" class="btn btn-primary">Volver al inicio</a>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-</div>
     <!-- Products End -->
-
 
     <!-- Footer Start -->
     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
@@ -215,9 +186,7 @@ if ($id == '' || $token == '') {
                     </a>
                 </div>
                 <div class="col-12 mb-4">
-                    
                     <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-
                     <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="col-12 mt-2 mb-4">
@@ -235,18 +204,15 @@ if ($id == '' || $token == '') {
                     </div>
                 </div>
                 <div class="col-12">
-                    <p class="m-0">&copy; <a href="#"></a>Estamos aquí para servirte<a href=""></a>
-                    </p>
+                    <p class="m-0">&copy; <a href="#"></a>Estamos aquí para servirte<a href=""></a></p>
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -264,26 +230,7 @@ if ($id == '' || $token == '') {
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script>
-    function addProducto(id, token) {
-    let url = 'clases/carrito_Productos.php';
-    let formData = new FormData();
-    formData.append('Id_Productos', id);
-    formData.append('token', token);
-
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-        mode: 'cors' 
-    }).then(response => response.json())
-      .then(data => {
-          if (data.ok) {
-            let elemento = document.getElementById("num_cart");
-            elemento.innerHTML = data.numero;
-          }
-      });
-}
-
-
+        // Aquí puedes agregar cualquier script adicional necesario
     </script>
 </body>
 

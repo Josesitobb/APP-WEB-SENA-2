@@ -21,23 +21,22 @@ if ($filas) {
     // Obtener datos del usuario
     $usuario = mysqli_fetch_assoc($resultados);
 
+    // Inicializar variable de sesión
+    $_SESSION['sesion_iniciada'] = true;
+
     // Almacena el nombre de usuario en la sesión
     $_SESSION['username'] = $usuario['Nombre_Usuarios'];
 
     // Redirige según el rol del usuario
     switch ($usuario['Id_Rol']) {
         case 1:
-           
             header("location:./index.php");
             break;
         case 2:
-  
             header("location:../../usuarios/index.php");
             break;
-        
         default:
-           
-        header("location:./index.php");
+            header("location:./index.php");
             break;
     }
 
@@ -52,4 +51,3 @@ if ($filas) {
 
 mysqli_free_result($resultados);
 ?>
-

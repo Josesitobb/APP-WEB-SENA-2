@@ -1,17 +1,28 @@
 <?php
 include('config/db.php');
 require('config/config.php');
-$db = new db();
-$conn = $db->conectar();
-
-// session_destroy();
 
 
-$sql = $conn->prepare("SELECT `Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Cantidad_Productos`, `Imagen_Productos`, `Id_Clientes` FROM `productos` WHERE 1");
-$sql->execute(); // Debes ejecutar la consulta antes de obtener los resultados
-$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+// Consulta SQL
+$sql = "SELECT Id_Productos, Nombre_Productos, Precio_Productos, Cantidad_Productos, Imagen_Productos, Id_Clientes FROM productos";
+
+// Ejecutar consulta
+$resultado = $conn->query($sql);
+
+// Verificar si se encontraron resultados
+if ($resultado->num_rows > 0) {
+    // Obtener resultados y procesarlos
+    while ($row = $resultado->fetch_assoc()) {
+        // Procesar cada fila de resultados aquí
+        // echo "ID: " . $row["Id_Productos"]. " - Nombre: " . $row["Nombre_Productos"]. "<br>";
+    }
+} else {
+    echo "0 resultados";
+}
+
+// Cerrar conexión
+$conn->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -101,9 +112,7 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
-                        <a href="ver_carrito_productos.php" class="nav-item nav-link">Carrito
-                            <span id="num_cart" class="badge bg-secondary"><?php echo $num_cart ?> </span>
-                        </a>
+                       
                     </div>
                 </div>
             </nav>
@@ -146,7 +155,8 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                         <h5 class="font-weight-bold mb-4"><?php echo $row['Nombre_Productos']; ?></h5>
                         <br>
                         <a href="detalle_productos.php?Id_Productos=<?php echo $row['Id_Productos']; ?>&token=<?php echo hash_hmac('sha1', $row['Id_Productos'], KEY_TOKEN); ?>#detalle_<?php echo $row['Id_Productos']; ?>" class="btn btn-sm btn-secondary">Detalle</a>
-                        <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $row['Id_Productos']; ?>, '<?php echo hash_hmac('sha1', $row['Id_Productos'], KEY_TOKEN); ?>')">Agregar al carrito</button>
+
+                        
 
 
 

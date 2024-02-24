@@ -1,4 +1,16 @@
+<?php
+ session_start();
 
+ // Verifica si la sesión está iniciada y la variable de sesión está definida
+ if (isset($_SESSION['sesion_iniciada'])) {
+     $sesionIniciada = $_SESSION['sesion_iniciada'];
+     echo "<p>El valor de la variable de sesión es: $sesionIniciada</p>";
+ } else {
+     echo "<p>La sesión no está iniciada o la variable de sesión no está definida.</p>";
+ }
+ 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -67,6 +79,7 @@
     </div>
     <!-- Topbar End -->
 
+    
 
     <!-- Navbar Start -->
     <div class="container-fluid position-relative nav-bar p-0">
