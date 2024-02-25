@@ -1,0 +1,220 @@
+footer{
+    text-align: center;
+    margin: 0 2em;
+    padding: 0.3em;
+    border-radius: 1em;
+    background-image: url(../imagenes/Logo.png);
+    background-repeat: no-repeat;
+    background-position: right 10px bottom;
+    background-size: 10em auto;
+    box-shadow: -1px -1px 10px rgba(85,107,47,0.5);
+  }
+  
+  footer p{
+    margin: 0;
+    padding: 2px;
+  }
+  
+  html body {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+  }
+  
+  label{
+    margin: 0;
+    display: inline-block;
+    padding: 0;
+    width: 25%;
+  }
+  
+  nav{
+    text-align: center;
+    background: rgba(31, 17, 16, 0.9);
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    color: white;
+  
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0 2px;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  nav ul li{
+    display: inline-block;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    border-image-slice: 1;
+    margin: 0 2em;
+    padding: 0.5em 50px;
+  }
+  
+  #cabecera{
+    margin: 0;
+    padding: 0;
+    background: url(../imagenes/fondoLogo.jpg) center;
+    background-repeat: no-repeat;
+    height:  400px;
+  }
+  
+  #colPortada1, #colPortada2, #colPortada3{
+    width: 22%;
+  }
+  
+  #colPortada4{
+    margin: 2em;
+    padding: 0 ;
+    background: rgba(0,0,0,0.1);
+    border-radius: 3em;
+    border-color: olive;
+    box-shadow: 5px 5px 10px olive;
+  }
+  
+  #columnas{
+  color: black;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: inline-flex;
+  vertical-align: top;
+  }
+  
+  #columnas h2{
+    color: olive;
+    text-align: center;
+  }
+  
+  #columnas ul{
+    list-style: none;
+  }
+  
+  #formulario{
+    margin: 0;
+    padding: 0;
+  }
+  
+  #formulario input {
+    margin: 0;
+    height: 20px;
+    width: 160px;
+    padding: 5px 8px;
+    border-radius: 0.5em;
+  }
+  
+  #formulario li{
+    margin: 0.5em;
+  }
+  
+  #guarderia {
+    margin: 0;
+    padding: 0;
+    background: url(../imagenes/fondoGuarderia.png) center;
+    background-repeat: no-repeat;
+    height:  400px;
+  }
+  
+  #logo{
+    margin-left: 0;
+    margin-top: 2.5em;
+  }
+  
+  #principal{
+    margin: 0;
+    padding: 0;
+    height: 400px;
+    width: 100%;
+  }
+  
+  #productos {
+    margin: 0;
+    padding: 0;
+    background: url(../imagenes/fondoProductos.jpg) center;
+    background-repeat: no-repeat;
+    height:  400px;
+  }
+  
+  #promociones {
+    margin: 0;
+    padding: 0;
+    background: url(../imagenes/fondoPromociones.jpg) center;
+    background-repeat: no-repeat;
+    height:  400px;
+  }
+  
+  #servicios {
+    margin: 0;
+    padding: 0;
+    background: url(../imagenes/fondoServicios.jpg) center;
+    background-repeat: no-repeat;
+    height:  400px;
+  }
+  
+  #validarCita{
+    margin: 1em;
+    display: block;
+    margin: 0 auto;
+    border-radius: 0.5em;
+  }
+  
+  .col{
+    padding: 1em;
+    text-align: justify;
+  }
+  
+  .header {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .iconoh2{
+    width: 1em;
+    margin: 0;
+    padding-right: 0.5em ;
+  }
+  
+  .imgComplemento{
+    float: left;
+    margin: 2px 5px;
+    width: 50%;
+    border-radius: 1em;
+  }
+  
+  .imgContenido{
+    float: left;
+    margin: 0 1em 0 0;
+  }
+  
+  .imgContenido2{
+    float: right;
+    margin: 0 0 1em 1em;
+  }
+  
+  .imgContenido, .imgContenido2{
+    width: 30%;
+    border-radius: 2em;
+    box-shadow: 5px 6px 5px olive;
+  }
+  
+  .intro-logo{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  }
+  
+  .menu {
+    width: 100%;
+    display: inline-block;
+    margin: 0;
+  }
