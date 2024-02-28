@@ -1,15 +1,15 @@
 <?php
- session_start();
+session_start();
 
- // Verifica si la sesión está iniciada y la variable de sesión está definida
- if (isset($_SESSION['sesion_iniciada'])) {
-     $sesionIniciada = $_SESSION['sesion_iniciada'];
-     echo "<p>El valor de la variable de sesión es: $sesionIniciada</p>";
- } else {
-     echo "<p>La sesión no está iniciada o la variable de sesión no está definida.</p>";
- }
- 
+// Verificar si la sesión está iniciada y la variable de sesión está definida
+if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
+    // La sesión no está iniciada o la variable de sesión no está definida, redirige al usuario a la página de inicio de sesión
+    header("Location: modules/admin/theme/page-login.php");
+    exit();
+}
 
+// Imprimir la ID del usuario almacenada en la sesión
+echo "Bienvenido, tu ID de usuario es: " . $_SESSION['user_id'];
 ?>
 
 <!DOCTYPE html>
@@ -101,8 +101,11 @@
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
+                        
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
+                        <a href="./citas.php" class="nav-item nav-link">Citas</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
+
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
                     </div>
                 </div>

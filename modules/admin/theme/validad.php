@@ -27,6 +27,9 @@ if ($filas) {
     // Almacena el nombre de usuario en la sesión
     $_SESSION['username'] = $usuario['Nombre_Usuarios'];
 
+    // Almacena la ID del usuario en la sesión
+    $_SESSION['user_id'] = $usuario['Id_Usuarios'];
+
     // Redirige según el rol del usuario
     switch ($usuario['Id_Rol']) {
         case 1:

@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+
+if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
+ 
+    header("Location: modules/admin/theme/page-login.php");
+    exit();
+}
+?>
+
+<?php
 include('config/db.php');
 require('config/config.php');
 
@@ -110,6 +121,7 @@ $conn->close();
                     </a>
                     <div class="navbar-nav mr-auto py-0">
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
+                        <a href="./citas.php" class="nav-item nav-link">Citas</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
                        
