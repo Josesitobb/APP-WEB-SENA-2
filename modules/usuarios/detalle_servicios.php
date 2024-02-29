@@ -58,6 +58,45 @@ if (isset($_GET['Id_Servicios'])) {
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+/* Estilo para el modal */
+.modal {
+  display: none; /* Ocultar el modal por defecto */
+  position: fixed; /* Posición fija para que el modal permanezca en la misma posición al hacer scroll */
+  z-index: 1000; /* Z-index alto para que el modal esté sobre otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho del modal */
+  height: 100%; /* Altura del modal */
+  overflow: auto; /* Habilitar el desplazamiento si el contenido del modal es demasiado grande */
+  background-color: rgba(0, 0, 0, 0.4); /* Fondo semi-transparente */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+  background-color: #fefefe; /* Fondo blanco */
+  margin: 15% auto; /* Margen superior e inferior automático para centrar verticalmente */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Ancho del contenido del modal */
+}
+
+/* Estilo para el botón de cerrar */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+
 </head>
 
 <body>
@@ -169,7 +208,8 @@ if (isset($_GET['Id_Servicios'])) {
                         <p><?php echo $row['Descripcion_Servicios']; ?></p>
                         <div class="d-grid gap-3 col-10 mx-auto">
 
-                        <a href="index.php" class="btn btn-primary">Agendar Cita</a>
+                        <!-- <a href="#" class="btn btn-primary btn-agendar-cita">Agendar Cita</a> -->
+
                         <a href="index.php" class="btn btn-primary">Volver Al inicio</a>
 
                  
@@ -223,6 +263,7 @@ if (isset($_GET['Id_Servicios'])) {
     <!-- Footer End -->
 
 
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
@@ -264,6 +305,9 @@ if (isset($_GET['Id_Servicios'])) {
 
 
     </script>
+
+
+
 </body>
 
 </html>

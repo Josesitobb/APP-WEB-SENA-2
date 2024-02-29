@@ -2,68 +2,40 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include("db.php");
+
 $Nombre_usuario = $_POST['Nombre_usuario'];
 $Apellido_Usuario = $_POST['Apellido_Usuario'];
 $Correo_Usuario = $_POST['Correo_Usuario'];
 $Telefono_usuario = $_POST['Telefono_usuario'];
 $Contraseña_Usuario = $_POST['Contraseña_Usuario'];
 
-// CONSULTA PARA INSERTAR
-$insert = "INSERT INTO `usuarios`(`Nombre_Usuarios`, `Apellido_Usuarios`, `Correo_Usuarios`, `Telefono_Usuarios`, `Contraseña_Usuarios`, `Id_Rol`) VALUES ('$Nombre_usuario', '$Apellido_Usuario', '$Correo_Usuario', '$Telefono_usuario', '$Contraseña_Usuario', 2)";
+// CONSULTA PARA INSERTAR USUARIO
+$insert_usuario = "INSERT INTO `usuarios`(`Nombre_Usuarios`, `Apellido_Usuarios`, `Correo_Usuarios`, `Telefono_Usuarios`, `Contraseña_Usuarios`, `Id_Rol`) VALUES ('$Nombre_usuario', '$Apellido_Usuario', '$Correo_Usuario', '$Telefono_usuario', '$Contraseña_Usuario', 2)";
 
+// EJECUTAR CONSULTA PARA INSERTAR USUARIO
+$result_usuario = mysqli_query($conn, $insert_usuario);
 
+if(!$result_usuario){
+    echo "ERROR al insertar usuario";
+} else {
+    // OBTENER Id_Usuarios GENERADO AUTOMÁTICAMENTE
+    $id_usuario_insertado = mysqli_insert_id($conn);
 
+    // CONSULTA PARA INSERTAR CLIENTE
+    $insert_cliente = "INSERT INTO `clientes`(`Id_Usuarios`) VALUES ($id_usuario_insertado)";
 
-// $insert="INSERT INTO `usuarios`(`Nombre_Usuarios`, `Apellido_Usuarios`, `usuario_contraseña`, `usuario_correo`, `ROLES_IdROLES`) 
-// VALUES ('$usernamereg','$lastnamereg','$nameuserg','$passwordreg','$emailreg','1')";
+    // EJECUTAR CONSULTA PARA INSERTAR CLIENTE
+    $result_cliente = mysqli_query($conn, $insert_cliente);
 
-// VERIFICAR CONSULTA CORREOS
-$verifica_telefono= mysqli_query($conn,"SELECT * FROM `usuarios` WHERE `Telefono_Usuarios` ='$Telefono_usuario'");
-if(mysqli_num_rows($verifica_telefono)>0){
-    echo '<script>
-
-    alert("Numero de telefono ya registrado intente con otro")
-    window.history.go(-1);
-    </script>
-    
-    ';
-    exit;
+    if(!$result_cliente){
+        echo "ERROR al insertar cliente";
+    } else {
+        echo '<script>
+        alert("Usuario registrado y cliente creado");
+        window.location.replace("../../../index.html");
+        </script>';
+    }
 }
 
-
-
-// VERIFICAR CONSULTA CORREOS
-$verify_correos= mysqli_query($conn,"SELECT * FROM `usuarios` WHERE `Correo_Usuarios` ='$Correo_Usuario'");
-if(mysqli_num_rows($verify_correos)>0){
-    echo '<script>
-
-    alert("Correo ya registrado intente con otro")
-    window.history.go(-1);
-    </script>
-    
-    ';
-    exit;
-}
-
-
-// EJECUTAR CONSULTA
-
-$result = mysqli_query($conn,$insert);
-
-if(!$result){
-    echo"ERROR ";
-}else{
-    echo '<script>
-
-    alert("usuario registrado");
-    window.location.replace("../../../index.html");
-    // window.history.go(-1);
-    </script>
-    
-    ';
-}
-
-
-
+mysqli_close($conn);
 ?>
-
