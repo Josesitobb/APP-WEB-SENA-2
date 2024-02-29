@@ -40,7 +40,8 @@ INNER JOIN Usuarios AS Usuarios_Clientes ON Clientes.Id_Usuarios = Usuarios_Clie
 INNER JOIN Estilistas ON Citas.Id_Estilistas = Estilistas.Id_Estilistas 
 INNER JOIN Usuarios AS Usuarios_Estilistas ON Estilistas.Id_Usuarios = Usuarios_Estilistas.Id_Usuarios 
 INNER JOIN Servicios ON Citas.Id_Servicios = Servicios.Id_Servicios
-WHERE Clientes.Id_Clientes = ?"; 
+WHERE Clientes.Id_Clientes = ? AND Citas.activo = 1"; 
+
 // Preparar la consulta
 $stmt = $conn->prepare($sql_citas);
 if (!$stmt) {
@@ -321,7 +322,9 @@ $conn->close();
                     data-nombre-servicio="<?php echo $row_cita['Nombre_Servicios']; ?>"
                     data-precio="<?php echo $row_cita['Precio_Servicio']; ?>"
                     data-fecha="<?php echo $row_cita['start']; ?>">Editar</button>
-            <button>Inactivar</button>
+                 
+                 <button class="btn-inactivar" data-id="<?php echo $row_cita['Id_Citas']; ?>">Cancelar cita</button>
+</td>
         </td>
     </tr>
 <?php } ?>
@@ -581,6 +584,39 @@ document.addEventListener("DOMContentLoaded", function() {
         time_24hr: true
     });
 </script>
+
+
+<script>
+    // JavaScript para inactivar citas
+document.addEventListener("DOMContentLoaded", function() {
+    // Capturar el evento de clic del botón "Inactivar"
+    var buttonsInactivar = document.querySelectorAll('.btn-inactivar');
+    buttonsInactivar.forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Obtener la ID de la cita desde el atributo "data-id" del botón
+            var citaId = button.getAttribute('data-id');
+
+            // Crear objeto FormData con la ID de la cita
+            var formData = new FormData();
+            formData.append('cita_id', citaId);
+
+            // Crear y enviar la solicitud AJAX al archivo PHP
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'inactivar_cita.php', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // Manejar la respuesta del servidor si es necesario
+                    alert('La cita se ha marcado como inactiva.');
+                    // Actualizar la página o realizar otras acciones según sea necesario
+                }
+            };
+            xhr.send(formData);
+        });
+    });
+});
+
+</script>
+
 
 </body>
 

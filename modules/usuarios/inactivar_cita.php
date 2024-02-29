@@ -1,39 +1,45 @@
 <?php
-// Verifica si se ha enviado el formulario para inactivar la cita
-if (isset($_POST['inactivar_cita'])) {
-    // Verifica si se ha proporcionado el ID de la cita
-    if (isset($_POST['id_cita'])) {
-        // Incluye el archivo de configuración y conexión a la base de datos
-        include('config/db.php');
+// Verificar si se ha recibido la solicitud POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener la ID de la cita de la solicitud
+    $citaId = $_POST['cita_id'];
 
-        // Prepara la consulta para actualizar el estado de la cita a "inactivo"
-        $sql_inactivar_cita = "UPDATE Citas SET estado = 'inactivo' WHERE Id_Citas = ?";
+    // Incluir el archivo de configuración y conexión a la base de datos
+    include('config/db.php');
 
-        // Prepara la declaración
-        $stmt = $conn->prepare($sql_inactivar_cita);
+    // Consulta SQL para actualizar el estado de la cita como inactiva
+    $sql = "UPDATE Citas SET activo = 0 WHERE Id_Citas = ?";
 
-        // Vincula los parámetros
-        $stmt->bind_param("i", $_POST['id_cita']);
-
-        // Ejecuta la consulta
-        if ($stmt->execute()) {
-            // Redirecciona de vuelta a la página de citas después de inactivar la cita
-            header("Location: citas.php");
-            exit();
-        } else {
-            // Maneja el error si la consulta no se ejecuta correctamente
-            echo "Error al inactivar la cita: " . $conn->error;
-        }
-
-        // Cierra la declaración y la conexión
-        $stmt->close();
-        $conn->close();
-    } else {
-        // Maneja el caso en que no se proporciona el ID de la cita
-        echo "ID de la cita no proporcionado.";
+    // Preparar la consulta
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        // Manejar el error de preparación de consulta
+        http_response_code(500); // Código de respuesta HTTP 500 (Error interno del servidor)
+        echo "Error al preparar la consulta: " . $conn->error;
+        exit();
     }
+
+    // Enlazar parámetros
+    $stmt->bind_param("i", $citaId);
+
+    // Ejecutar la consulta
+    if (!$stmt->execute()) {
+        // Manejar el error de ejecución de consulta
+        http_response_code(500); // Código de respuesta HTTP 500 (Error interno del servidor)
+        echo "Error al ejecutar la consulta: " . $stmt->error;
+        exit();
+    }
+
+    // Cerrar la conexión y el statement
+    $stmt->close();
+    $conn->close();
+
+    // Si la actualización fue exitosa, enviar una respuesta de éxito al cliente
+    http_response_code(200); // Código de respuesta HTTP 200 (OK)
+    echo "La cita se ha marcado como inactiva.";
 } else {
-    // Maneja el caso en que el formulario no se ha enviado correctamente
-    echo "El formulario no se ha enviado correctamente.";
+    // Si no se recibió una solicitud POST, responder con un código de error
+    http_response_code(400); // Código de respuesta HTTP 400 (Solicitud incorrecta)
+    echo "Solicitud incorrecta.";
 }
 ?>

@@ -76,6 +76,7 @@ primary key(Id_Citas),
 Id_Clientes INT,
 Id_Estilistas INT,
 Id_Servicios INT,
+activo BOOLEAN DEFAULT 1,
 constraint FK1_Id_Clientes foreign key(Id_Clientes) references clientes(Id_Clientes),
 constraint FK2_Id_Estilistas foreign key(Id_Estilistas) references Estilistas(Id_Estilistas),
 constraint FK3_Id_Servicios foreign key(Id_Servicios) references servicios(Id_Servicios)
