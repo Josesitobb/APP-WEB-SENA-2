@@ -12,7 +12,7 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
 $id_cliente = $_SESSION['user_id'];
 
 // Imprimir la ID del usuario almacenada en la sesión
-echo "Bienvenido, tu ID de usuario es: " . $_SESSION['user_id'];
+// echo "Bienvenido, tu ID de usuario es: " . $_SESSION['user_id'];
 
 
 
@@ -20,9 +20,9 @@ echo "Bienvenido, tu ID de usuario es: " . $_SESSION['user_id'];
 $id_cliente = $_SESSION['client_id'];
 
 // Imprimir la ID del cliente
-echo "La ID del cliente es: " . $id_cliente;
+// echo "La ID del cliente es: " . $id_cliente;
 
-
+$nombre_usuario = $_SESSION['username'];
 // Incluir archivos de configuración y conexión a la base de datos
 include('config/db.php');
 require('config/config.php');
@@ -82,39 +82,39 @@ if (!$resultado_estilistas) {
 <body>
     
     <!-- Topbar Start -->
-    <div class="container-fluid bg-primary py-3 d-none d-md-block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="../admin/theme/page-login.php">Iniciar sesión</a>
-                        <span class="text-white">|</span>
-                        <a class="text-white px-3" href="../admin/theme/page-register.php">Registrarse</a>
- 
-                    </div>
+<div class="container-fluid bg-primary py-3 d-none d-md-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                <h6>Bienvenido <?php echo $nombre_usuario; ?></h6>
+
                 </div>
-                <div class="col-md-6 text-center text-lg-right">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a class="text-white pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
+            </div>
+            <div class="col-md-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-white px-3" href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-white px-3" href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-white px-3" href="#">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-white px-3" href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-white px-3" href="./cerrar_Sesion.php">
+                        <i class="fas fa-sign-out-alt"></i> <!-- Ícono de salida -->
+                        Cerrar sesión
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
     <!-- Topbar End -->
 
     <!-- Navbar Start -->
