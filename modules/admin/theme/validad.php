@@ -30,6 +30,20 @@ if ($filas) {
     // Almacena la ID del usuario en la sesión
     $_SESSION['user_id'] = $usuario['Id_Usuarios'];
 
+    // Obtener la ID de cliente del usuario
+    $consulta_cliente = "SELECT Id_Clientes FROM `clientes` WHERE Id_Usuarios = '{$usuario['Id_Usuarios']}'";
+    $resultado_cliente = mysqli_query($conn, $consulta_cliente);
+
+    if ($resultado_cliente && mysqli_num_rows($resultado_cliente) > 0) {
+        $cliente = mysqli_fetch_assoc($resultado_cliente);
+        // Almacena la ID de cliente en la sesión
+        $_SESSION['client_id'] = $cliente['Id_Clientes'];
+    } else {
+        // Manejo de error si no se encuentra la ID de cliente
+        echo "Error: No se pudo encontrar la ID de cliente para el usuario.";
+        // Puedes redirigir a una página de error o realizar otra acción apropiada aquí
+    }
+
     // Redirige según el rol del usuario
     switch ($usuario['Id_Rol']) {
         case 1:

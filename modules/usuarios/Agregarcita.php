@@ -1,54 +1,47 @@
 <?php
-// Iniciar sesión
-session_start();
-
-// Verificar si la variable de sesión 'user_id' está vacía o no está definida
-if (empty($_SESSION['user_id'])) {
-    // Si 'user_id' está vacía, redirigir al usuario a la página de inicio de sesión
-    header("Location: modules/admin/theme/page-login.php");
-    exit(); // Terminar la ejecución del script después de la redirección
-}
-
-// Obtener el ID del cliente desde la sesión
-$id_cliente = $_SESSION['user_id'];
-
-// Incluir archivo de configuración y conexión a la base de datos
 include('config/db.php');
-require('config/config.php');
 
-// Verificar si se recibieron los datos del formulario de manera adecuada
+// Verificar si se ha enviado información a través del método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recuperar los datos del formulario
+    // Obtener los datos del formulario
     $servicioId = $_POST['servicioId'];
     $estilistaId = $_POST['estilistaId'];
     $fecha = $_POST['fecha'];
     $hora = $_POST['hora'];
+    $clienteId = $_POST['clienteId'];
 
-    // Consulta SQL para insertar la cita en la base de datos
-    $sql_insertar_cita = "INSERT INTO Citas (Id_Servicios, Id_Estilistas, start, end, Id_Clientes) VALUES (?, ?, ?, ?, ?)";
-    
-    // Preparar la consulta
-    $stmt = $conn->prepare($sql_insertar_cita);
+    // Mostrar los valores recibidos del formulario
+    echo "ID del Servicio: " . $servicioId . "<br>";
+    echo "ID del Estilista: " . $estilistaId . "<br>";
+    echo "Fecha: " . $fecha . "<br>";
+    echo "Hora: " . $hora . "<br>";
+    echo "ID del Cliente: " . $clienteId . "<br>";
 
-    // Enlazar parámetros
-    $stmt->bind_param("iissi", $servicioId, $estilistaId, $fecha, $hora, $id_cliente);
+    // Preparar la consulta SQL usando una consulta preparada para prevenir inyección SQL
+    $sql_citas = "INSERT INTO `citas`(`start`, `end`, `Id_Clientes`, `Id_Estilistas`, `Id_Servicios`) VALUES (?, ?, ?, ?, ?)";
 
-    // Ejecutar la consulta
-    if ($stmt->execute()) {
-        // La cita se ha insertado correctamente
-        echo "La cita se ha programado correctamente.";
+    // Preparar la sentencia
+    $stmt = mysqli_prepare($conn, $sql_citas);
+
+    // Vincular parámetros a la consulta preparada
+    mysqli_stmt_bind_param($stmt, "sssss", $fechaHora, $fechaHora, $clienteId, $estilistaId, $servicioId);
+
+    // Combinar fecha y hora en un solo campo
+    $fechaHora = $fecha . ' ' . $hora;
+
+    // Ejecutar la consulta preparada
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Cita agregada correctamente.";
     } else {
-        // Error al insertar la cita
-        echo "Error al programar la cita: " . $conn->error;
+        echo "Error al agregar la cita: " . mysqli_error($conn);
     }
 
-    // Cerrar la declaración
-    $stmt->close();
-
-    // Cerrar la conexión a la base de datos
-    $conn->close();
+    // Cerrar la sentencia
+    mysqli_stmt_close($stmt);
 } else {
-    // Si no se recibieron datos por POST, redirigir o mostrar un mensaje de error
-    echo "Error: No se recibieron datos del formulario.";
+    // Si no se ha enviado información a través del método POST, mostrar un mensaje de error
+    echo "Error: No se han recibido datos del formulario.";
 }
 ?>
+
+

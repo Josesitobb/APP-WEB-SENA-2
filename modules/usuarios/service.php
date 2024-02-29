@@ -8,11 +8,20 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
     exit();
 }
 
-// Obtener el ID del cliente desde la sesión
+// Obtener el ID del cliente desde la sesión (asegúrate de haber inicializado $_SESSION['user_id'] en algún lugar)
 $id_cliente = $_SESSION['user_id'];
 
 // Imprimir la ID del usuario almacenada en la sesión
 echo "Bienvenido, tu ID de usuario es: " . $_SESSION['user_id'];
+
+
+
+// Obtener el ID del cliente desde la sesión
+$id_cliente = $_SESSION['client_id'];
+
+// Imprimir la ID del cliente
+echo "La ID del cliente es: " . $id_cliente;
+
 
 // Incluir archivos de configuración y conexión a la base de datos
 include('config/db.php');
@@ -25,9 +34,9 @@ $sql_servicios = "SELECT Id_Servicios, Nombre_Servicios, Valor_Servicios, Descri
 $resultado = mysqli_query($conn, $sql_servicios);
 
 // Consulta SQL para obtener información de estilistas
-$sql_estilistas = "SELECT u.Id_Usuarios, u.Nombre_Usuarios 
-                   FROM Usuarios u 
-                   INNER JOIN Estilistas e ON u.Id_Usuarios = e.Id_Usuarios";
+$sql_estilistas = "SELECT e.Id_Estilistas, u.Nombre_Usuarios 
+FROM Usuarios u 
+INNER JOIN Estilistas e ON u.Id_Usuarios = e.Id_Usuarios";
 
 // Ejecutar consulta de estilistas
 $resultado_estilistas = mysqli_query($conn, $sql_estilistas);
@@ -236,49 +245,49 @@ if (!$resultado_estilistas) {
 
 <!-- Modal -->
 <div id="citaModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Agregar Cita</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="servicio">Servicio:</label>
-          <input type="text" class="form-control" id="servicio" readonly>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar Cita</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="servicio">Servicio:</label>
+                    <input type="text" class="form-control" id="servicio" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="estilista">Estilista:</label>
+                    <select class="form-control" id="estilista">
+                        <?php
+                        while ($row_estilista = mysqli_fetch_assoc($resultado_estilistas)) {
+                            echo '<option value="' . $row_estilista['Id_Estilistas'] . '" data-nombre="' . $row_estilista['Nombre_Usuarios'] . '">' . $row_estilista['Nombre_Usuarios'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" class="form-control" id="fecha">
+                </div>
+                <div class="form-group">
+                    <label for="hora">Hora:</label>
+                    <input type="time" class="form-control" id="hora">
+                </div>
+                <div class="form-group">
+                    <label for="precio">Precio:</label>
+                    <input type="text" class="form-control" id="precio" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="confirmarCitaBtn" class="btn btn-primary">Confirmar Cita</button>
+                <input type="hidden" id="idServicio">
+            </div>
         </div>
-        <div class="form-group">
-          <label for="estilista">Estilista:</label>
-          <select class="form-control" id="estilista">
-            <?php
-            // Iterar sobre los resultados de la consulta de estilistas y mostrar la información en el modal
-            while ($row_estilista = mysqli_fetch_assoc($resultado_estilistas)) {
-                echo '<option value="' . $row_estilista['Id_Usuarios'] . '">' . $row_estilista['Nombre_Usuarios'] . '</option>';
-            }
-            ?>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="fecha">Fecha:</label>
-          <input type="date" class="form-control" id="fecha">
-        </div>
-        <div class="form-group">
-          <label for="hora">Hora:</label>
-          <input type="time" class="form-control" id="hora">
-        </div>
-        <div class="form-group">
-          <label for="precio">Precio:</label>
-          <input type="text" class="form-control" id="precio" readonly>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" id="confirmarCitaBtn" class="btn btn-primary">Confirmar Cita</button>
-        <input type="hidden" id="idServicio">
-      </div>
     </div>
-  </div>
 </div>
+
 
 
 
@@ -320,40 +329,43 @@ $(document).ready(function() {
         $('#precio').val('$' + servicioPrecio); // Agregar el signo de dólar antes del precio
     });
 
-    // Manejar el evento de clic en el botón "Confirmar cita"
     $('#confirmarCitaBtn').click(function() {
         // Obtener los valores de los campos del formulario
         var servicioId = $('#idServicio').val();
-        var estilistaId = $('#estilista').val();
+        var estilistaId = $('#estilista').val(); // Obtener la ID del estilista seleccionado
+        var estilistaNombre = $('#estilista option:selected').data('nombre'); // Obtener el nombre del estilista seleccionado
         var fecha = $('#fecha').val();
         var hora = $('#hora').val();
         var clienteId = "<?php echo $id_cliente; ?>"; // Obtener el ID del cliente desde PHP
         
         // Enviar los datos del formulario a través de una solicitud AJAX
         $.ajax({
-            url: 'Agregarcita.php',
-            type: 'POST',
-            data: {
-                servicioId: servicioId,
-                estilistaId: estilistaId,
-                fecha: fecha,
-                hora: hora,
-                clienteId: clienteId // Agregar el ID del cliente
-            },
-            success: function(response) {
-                // Mostrar mensaje de éxito
-                alert('La cita ha sido programada correctamente.');
-                // Cerrar el modal después de mostrar el mensaje de éxito
-                $('#citaModal').modal('hide');
-            },
-            error: function(xhr, status, error) {
-                // Mostrar mensaje de error
-                alert('Error al programar la cita. Por favor, inténtalo de nuevo.');
-            }
-        });
+    url: 'Agregarcita.php',
+    type: 'POST',
+    data: {
+        servicioId: servicioId, // Agregar el ID del servicio
+        estilistaId: estilistaId, // Agregar el ID del estilista seleccionado
+        estilistaNombre: estilistaNombre, // Agregar el nombre del estilista seleccionado
+        fecha: fecha,
+        hora: hora,
+        clienteId: clienteId // Esta es la ID del cliente, asegúrate de que sea correcta
+    },
+    success: function(response) {
+        // Mostrar mensaje de éxito
+        alert('La cita ha sido programada correctamente.');
+        // Cerrar el modal después de mostrar el mensaje de éxito
+        $('#citaModal').modal('hide');
+    },
+    error: function(xhr, status, error) {
+        // Mostrar mensaje de error
+        alert('Error al programar la cita. Por favor, inténtalo de nuevo.');
+    }
+});
+
     });
 });
 </script>
+
 
 
 </body>

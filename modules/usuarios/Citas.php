@@ -9,12 +9,30 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
 }
 
 // Obtener el ID del cliente desde la sesión
-$id_cliente = $_SESSION['user_id'];
+if (isset($_SESSION['client_id'])) {
+    $id_cliente = $_SESSION['client_id'];
+} else {
+    // Manejar el caso en que el ID del cliente no esté definido en la sesión
+    // Puedes redirigir a otra página de error o mostrar un mensaje al usuario
+    echo "ID del cliente no encontrado en la sesión.";
+    exit();
+}
+
+// Imprimir la ID del cliente
+echo "La ID del cliente es: " . $id_cliente;
+
+
 
 // Incluir archivos de configuración y conexión a la base de datos
 include('config/db.php');
 require('config/config.php');
 
+// Verificar la conexión a la base de datos
+if ($conn->connect_error) {
+    die("Error de conexión a la base de datos: " . $conn->connect_error);
+}
+
+// Consulta SQL para obtener citas del cliente
 $sql_citas = "SELECT Citas.Id_Citas, Citas.start, Citas.end, Clientes.Id_Clientes, CONCAT(Usuarios_Clientes.Nombre_Usuarios, ' ', Usuarios_Clientes.Apellido_Usuarios) AS Nombre_Cliente, Estilistas.Id_Estilistas, CONCAT(Usuarios_Estilistas.Nombre_Usuarios, ' ', Usuarios_Estilistas.Apellido_Usuarios) AS Nombre_Estilista, Servicios.Id_Servicios, Servicios.Nombre_Servicios, Servicios.Valor_Servicios AS Precio_Servicio 
 FROM Citas 
 INNER JOIN Clientes ON Citas.Id_Clientes = Clientes.Id_Clientes 
@@ -22,23 +40,34 @@ INNER JOIN Usuarios AS Usuarios_Clientes ON Clientes.Id_Usuarios = Usuarios_Clie
 INNER JOIN Estilistas ON Citas.Id_Estilistas = Estilistas.Id_Estilistas 
 INNER JOIN Usuarios AS Usuarios_Estilistas ON Estilistas.Id_Usuarios = Usuarios_Estilistas.Id_Usuarios 
 INNER JOIN Servicios ON Citas.Id_Servicios = Servicios.Id_Servicios
-WHERE Clientes.Id_Usuarios = ?"; // Filtrar por el id_cliente
-
+WHERE Clientes.Id_Clientes = ?"; 
 // Preparar la consulta
 $stmt = $conn->prepare($sql_citas);
+if (!$stmt) {
+    // Manejar el error de preparación de consulta
+    echo "Error al preparar la consulta: " . $conn->error;
+    exit();
+}
 
 // Enlazar parámetros
 $stmt->bind_param("i", $id_cliente);
 
 // Ejecutar consulta de citas
-$stmt->execute();
+if (!$stmt->execute()) {
+    // Manejar el error de ejecución de consulta
+    echo "Error al ejecutar la consulta: " . $stmt->error;
+    exit();
+}
 
-// Obtener resultados de la consulta
+
 $resultado_citas = $stmt->get_result();
 
+
+$stmt->close();
+$conn->close();
+
+
 ?>
-
-
 
 
 
@@ -51,6 +80,10 @@ $resultado_citas = $stmt->get_result();
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <!-- NOSE QUE MONDA ES ESTO -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
     <!-- Favicon -->
     <link href="img/favicon1.png" rel="icon">
@@ -86,7 +119,7 @@ $resultado_citas = $stmt->get_result();
             background-color: #f2f2f2;
         }
 
-        /* Estilos para centrar la tabla */
+
         .table-container {
             display: flex;
             justify-content: center;
@@ -94,9 +127,9 @@ $resultado_citas = $stmt->get_result();
         }
     </style>
    <style>
-    /* Estilos para el modal */
+   
     .modal {
-        display: none; /* Por defecto, el modal está oculto */
+        display: none; 
         position: fixed;
         z-index: 9999;
         left: 0;
@@ -104,7 +137,7 @@ $resultado_citas = $stmt->get_result();
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+        background-color: rgba(0, 0, 0, 0.5); 
     }
 
     .modal-content {
@@ -112,14 +145,14 @@ $resultado_citas = $stmt->get_result();
         margin: 10% auto;
         padding: 20px;
         border: 1px solid #888;
-        width: 90%; /* Ancho del modal */
-        max-width: 500px; /* Ancho máximo del modal */
-        border-radius: 10px; /* Bordes redondeados */
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+        width: 90%; 
+        max-width: 500px; 
+        border-radius: 10px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     .modal-content h2 {
-        margin-top: 0; /* Eliminar margen superior del título */
+        margin-top: 0; 
     }
 
     .modal-content label {
@@ -275,18 +308,23 @@ $resultado_citas = $stmt->get_result();
                 </tr>
             </thead>
             <tbody>
-                <?php while ($row_cita = $resultado_citas->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $row_cita['Nombre_Servicios']; ?></td>
-                        <td><?php echo $row_cita['Nombre_Estilista']; ?></td>
-                        <td><?php echo '$' . $row_cita['Precio_Servicio']; ?></td>
-                        <td><?php echo $row_cita['start']; ?></td>
-                        <td>
-                        <button class="btn-editar" data-id="<?php echo $row_cita['Id_Citas']; ?>" data-nombre-estilista="<?php echo $row_cita['Nombre_Estilista']; ?>" data-nombre-servicio="<?php echo $row_cita['Nombre_Servicios']; ?>" data-precio="<?php echo $row_cita['Precio_Servicio']; ?>" data-fecha="<?php echo $row_cita['start']; ?>">Editar</button>
-
-    <button>Inactivar</button>
-</td>
-                <?php } ?>
+            <?php while ($row_cita = $resultado_citas->fetch_assoc()) { ?>
+    <tr>
+        <td><?php echo $row_cita['Nombre_Servicios']; ?></td>
+        <td><?php echo $row_cita['Nombre_Estilista']; ?></td>
+        <td><?php echo '$' . $row_cita['Precio_Servicio']; ?></td>
+        <td><?php echo $row_cita['start']; ?></td>
+        <td>
+            <button class="btn-editar" 
+                    data-id="<?php echo $row_cita['Id_Citas']; ?>"
+                    data-nombre-estilista="<?php echo $row_cita['Nombre_Estilista']; ?>"
+                    data-nombre-servicio="<?php echo $row_cita['Nombre_Servicios']; ?>"
+                    data-precio="<?php echo $row_cita['Precio_Servicio']; ?>"
+                    data-fecha="<?php echo $row_cita['start']; ?>">Editar</button>
+            <button>Inactivar</button>
+        </td>
+    </tr>
+<?php } ?>
             </tbody>
         </table>
     </div>
@@ -337,6 +375,27 @@ $resultado_citas = $stmt->get_result();
     <!-- Back to Top -->
     <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
    <!-- MODAL -->
+
+
+
+   <?php
+// Incluir archivos de configuración y conexión a la base de datos
+include('config/db.php');
+
+
+
+// Consulta SQL para obtener todos los estilistas
+$sql_estilistas = "SELECT Estilistas.Id_Estilistas, usuarios.Nombre_Usuarios
+FROM Estilistas
+INNER JOIN usuarios ON Estilistas.Id_Usuarios = usuarios.Id_Usuarios";
+$resultado_estilistas = $conn->query($sql_estilistas);
+
+// Consulta SQL para obtener todos los servicios
+$sql_servicios = "SELECT * FROM `Servicios` ";
+$resultado_servicios = $conn->query($sql_servicios);
+
+
+?>
 <div id="modalEditarCita" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -344,24 +403,56 @@ $resultado_citas = $stmt->get_result();
         <!-- Formulario de edición de detalles -->
         <form id="formEditarCita">
             <!-- Campos para mostrar detalles de la cita -->
-            <label for="edit-nombre-estilista">Nombre del Estilista:</label>
-            <input type="text" id="edit-nombre-estilista" name="nombre_estilista" readonly>
-            <label for="edit-nombre-servicio">Nombre del Servicio:</label>
-            <input type="text" id="edit-nombre-servicio" name="nombre_servicio" readonly>
-            <label for="edit-precio">Precio:</label>
-            <input type="text" id="edit-precio" name="precio" readonly>
-            <label for="edit-fecha">Fecha:</label>
-            <input type="text" id="edit-fecha" name="fecha" readonly>
+            <input type="hidden" id="id_estilista" name="id_estilista" value="<?php echo $row_cita['Id_Estilistas']; ?>">
+
+<div class="form-group">
+    <label for="edit-estilista">Estilista:</label>
+    <select class="form-control" id="edit-estilista" name="estilista">
+        <?php while ($row_estilista = $resultado_estilistas->fetch_assoc()) { ?>
+            <option value="<?php echo $row_estilista['Id_Estilistas']; ?>">
+                <?php echo $row_estilista['Nombre_Usuarios']; ?>
+            </option>
+        <?php } ?>
+    </select>
+</div>
+
+            <div class="form-group">
+                <label for="edit-servicio">Servicio:</label>
+                <input type="hidden" id="id_servicio" name="id_servicio" value="<?php echo $row_cita['Id_Servicios']; ?>">
+
+<select class="form-control" id="edit-servicio" name="servicio">
+    <?php while ($row_servicio = $resultado_servicios->fetch_assoc()) { ?>
+        <option value="<?php echo $row_servicio['Id_Servicios']; ?>" data-precio="<?php echo $row_servicio['Valor_Servicios']; ?>">
+            <?php echo $row_servicio['Nombre_Servicios']; ?>
+        </option>
+    <?php } ?>
+</select>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="edit-precio">Precio:</label>
+                <input type="text" class="form-control" id="edit-precio" name="precio" readonly>
+            </div>
+
+            <input type="hidden" id="fecha_hora" name="fecha_hora" value="">
+
+<div class="form-group">
+    <label for="edit-fecha">Fecha y Hora:</label>
+    <input type="text" class="form-control" id="edit-fecha" name="fecha">
+</div>
+
             <!-- Campo oculto para almacenar el ID de la cita -->
             <input type="hidden" id="edit-id-cita" name="id_cita" value="">
-            <input type="submit" value="Guardar cambios">
+
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
         </form>
     </div>
 </div>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
@@ -369,72 +460,128 @@ $resultado_citas = $stmt->get_result();
     <script src="lib/isotope/isotope.pkgd.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
-    <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
     <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+ 
     <script>
-    // Obtener el modal
-    var modal = document.getElementById("modalEditarCita");
+// Obtener el modal
+var modal = document.getElementById("modalEditarCita");
 
-    // Obtener el botón que abre el modal
-    var btnsEditar = document.getElementsByClassName("btn-editar");
+// Obtener el botón que abre el modal
+var btnsEditar = document.getElementsByClassName("btn-editar");
 
-    // Obtener el elemento span que cierra el modal
-    var span = document.getElementsByClassName("close")[0];
+// Obtener el elemento span que cierra el modal
+var span = document.getElementsByClassName("close")[0];
 
-    // Cuando el usuario haga clic en un botón de "Editar", abrir el modal y llenar los campos con los detalles de la cita
-    for (var i = 0; i < btnsEditar.length; i++) {
-        btnsEditar[i].onclick = function() {
-            modal.style.display = "block";
-            // Obtener los detalles de la cita desde los atributos de datos del botón
-            var idCita = this.getAttribute("data-id");
-            var nombreEstilista = this.getAttribute("data-nombre-estilista");
-            var nombreServicio = this.getAttribute("data-nombre-servicio");
-            var precio = this.getAttribute("data-precio");
-            var fecha = this.getAttribute("data-fecha");
-            // Llenar los campos del formulario en el modal con los detalles de la cita
-            document.getElementById("edit-id-cita").value = idCita;
-            document.getElementById("edit-nombre-estilista").value = nombreEstilista;
-            document.getElementById("edit-nombre-servicio").value = nombreServicio;
-            document.getElementById("edit-precio").value = precio;
-            document.getElementById("edit-fecha").value = fecha;
+// Cuando el usuario haga clic en un botón de "Editar", abrir el modal y llenar los campos con los detalles de la cita
+for (var i = 0; i < btnsEditar.length; i++) {
+    btnsEditar[i].onclick = function() {
+        modal.style.display = "block";
+        // Obtener los detalles de la cita desde los atributos de datos del botón
+        var idCita = this.getAttribute("data-id");
+        var nombreEstilista = this.getAttribute("data-nombre-estilista");
+        var nombreServicio = this.getAttribute("data-nombre-servicio");
+        var precio = this.getAttribute("data-precio");
+        var fecha = this.getAttribute("data-fecha");
+        // Llenar los campos del formulario en el modal con los detalles de la cita
+        document.getElementById("edit-id-cita").value = idCita;
+
+        // Obtener el elemento select para el estilista
+        var estilistaSelect = document.getElementById("edit-estilista");
+        // Buscar la opción que coincide con el nombre del estilista y establecerla como seleccionada
+        for (var j = 0; j < estilistaSelect.options.length; j++) {
+            if (estilistaSelect.options[j].text === nombreEstilista) {
+                estilistaSelect.options[j].selected = true;
+                break;
+            }
         }
-    }
 
-    // Cuando el usuario haga clic en el botón de cierre (x), cerrar el modal
-    span.onclick = function() {
+        // Obtener el elemento select para el servicio
+        var servicioSelect = document.getElementById("edit-servicio");
+        // Buscar la opción que coincide con el nombre del servicio y establecerla como seleccionada
+        for (var k = 0; k < servicioSelect.options.length; k++) {
+            if (servicioSelect.options[k].text === nombreServicio) {
+                servicioSelect.options[k].selected = true;
+                break;
+            }
+        }
+
+        document.getElementById("edit-precio").value = precio;
+        document.getElementById("edit-fecha").value = fecha;
+    }
+}
+
+// Cuando el usuario haga clic en el botón de cierre (x), cerrar el modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// Cuando el usuario haga clic fuera del modal, cerrar el modal
+window.onclick = function(event) {
+    if (event.target == modal) {
         modal.style.display = "none";
     }
+}
 
-    // Cuando el usuario haga clic fuera del modal, cerrar el modal
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+document.getElementById("formEditarCita").onsubmit = function(event) {
+    event.preventDefault();
+
+    // Obtener el ID del cliente desde la sesión (suponiendo que $id_cliente está disponible aquí)
+    var idCliente = <?php echo $id_cliente; ?>;
+
+    // Obtener valores de los campos
+    var idServicio = document.getElementById("edit-servicio").value;
+    var idEstilista = document.getElementById("edit-estilista").value;
+    var fechaHora = document.getElementById("edit-fecha").value;
+    var idCita = document.getElementById("edit-id-cita").value;
+
+    // Crear objeto FormData
+    var formData = new FormData();
+    formData.append('id_cliente', idCliente); // Agregar el ID del cliente al formData
+    formData.append('id_servicio', idServicio);
+    formData.append('id_estilista', idEstilista);
+    formData.append('fecha_hora', fechaHora);
+    formData.append('id_cita', idCita);
+
+    // Crear y enviar la solicitud AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "editar_cita.php", true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // Mostrar una alerta cuando la cita se ha editado con éxito
+            alert("La cita se ha editado correctamente.");
+            // Redirigir a la página de citas
+            // window.location.href = "citas.php";
         }
-    }
-
-    // Manejar el envío del formulario de edición
-    document.getElementById("formEditarCita").onsubmit = function(event) {
-        event.preventDefault();
-        // Enviar datos del formulario a editar_cita.php usando AJAX
-        var formData = new FormData(this);
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "editar_cita.php", true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-            
-                window.location.href = "citas.php";
-            }
-        };
-        xhr.send(formData);
     };
+    xhr.send(formData);
+};
+
+</script>
+<script>
+// JavaScript para actualizar el precio del servicio automáticamente
+document.addEventListener("DOMContentLoaded", function() {
+    var servicioSelect = document.getElementById("edit-servicio");
+
+    servicioSelect.addEventListener("change", function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var precio = selectedOption.getAttribute("data-precio");
+
+        document.getElementById("edit-precio").value = precio;
+    });
+});
+</script>
+<script>
+    flatpickr("#edit-fecha", {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true
+    });
 </script>
 
-    
-    
 </body>
 
 </html>
