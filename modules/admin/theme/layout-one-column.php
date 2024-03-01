@@ -156,7 +156,7 @@ echo $_SESSION['username'];
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Graficas</span>
+                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Reportes Graficos</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./chart-chartjs.php">Chartjs</a></li>

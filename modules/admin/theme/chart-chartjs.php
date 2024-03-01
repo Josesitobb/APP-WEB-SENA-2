@@ -302,7 +302,7 @@ echo $_SESSION['username'];
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Charts</span>
+                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Reporte Graficos</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./chart-flot.php">Flot</a></li>
@@ -418,116 +418,204 @@ echo $_SESSION['username'];
             </div>
             <!-- row -->
 
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- /# column -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Team</h4>
-                                <canvas id="canvas" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    <!-- /# column -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Team</h4>
-                                <canvas id="team-chart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                        <!-- /# card -->
-                    </div>
-                    
-                </div>
-                <!-- /# row -->
-                <div class="row">
-                    <!-- Bar Chart -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Bar chart</h4>
-                                <canvas id="barChart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
+          
+    <title>Reporte de Citas y Usuarios</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Sales</h4>
-                                <canvas id="sales-chart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="row">
-                    <!-- Line Chart -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Line chart</h4>
-                                <canvas id="lineChart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Pie Chart -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Pie chart</h4>
-                                <canvas id="pieChart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Reporte de Citas y Usuarios</h1>
 
-                <div class="row">
-                    <!-- Radar Chart -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Rader chart</h4>
-                                <canvas id="radarChart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /# column -->
-                        <!-- Doughnut Chart -->
-                        <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Doughut chart</h4>
-                                <canvas id="doughutChart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    
-                    <!-- Polar Chart -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Polar chart</h4>
-                                <canvas id="polarChart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single Bar Chart -->
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Single Bar Chart</h4>
-                                <canvas id="singelBarChart" width="500" height="250"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <canvas id="citasPieChart" width="300" height="300"></canvas>
             </div>
+            <div class="col">
+                <canvas id="citasBarChart" width="300" height="300"></canvas>
+            </div>
+            <div class="col">
+                <canvas id="usuariosPieChart" width="300" height="300"></canvas>
+            </div>
+            <div class="col">
+                <canvas id="usuariosBarChart" width="300" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <?php
+    // Establecer la configuración de localización en español
+    setlocale(LC_TIME, 'es_ES.UTF-8');
+
+    // Conexión a la base de datos
+    include("db.php");
+
+    // Consulta SQL para obtener el número de citas por mes
+    $sqlCitas = "SELECT MONTH(start) AS mes, COUNT(*) AS cantidad_citas
+                 FROM Citas
+                 GROUP BY MONTH(start)";
+    $resultCitas = $conn->query($sqlCitas);
+
+    // Procesar los datos para el gráfico de pastel y barras de citas
+    $labelsCitas = [];
+    $dataCitas = [];
+    while ($row = $resultCitas->fetch_assoc()) {
+        // Obtener el nombre del mes en español
+        $nombre_mes = strftime('%B', mktime(0, 0, 0, $row['mes'], 1));
+        $labelsCitas[] = ucfirst($nombre_mes); // Convertir la primera letra a mayúscula
+        $dataCitas[] = $row['cantidad_citas'];
+    }
+
+    // Consulta SQL para obtener la cantidad de usuarios como clientes
+    $sqlClientes = "SELECT COUNT(*) AS cantidad_clientes FROM clientes";
+    $resultClientes = $conn->query($sqlClientes);
+    $rowClientes = $resultClientes->fetch_assoc();
+    $cantidadClientes = $rowClientes['cantidad_clientes'];
+
+    // Consulta SQL para obtener la cantidad de estilistas
+    $sqlEstilistas = "SELECT COUNT(*) AS cantidad_estilistas FROM estilistas";
+    $resultEstilistas = $conn->query($sqlEstilistas);
+    $rowEstilistas = $resultEstilistas->fetch_assoc();
+    $cantidadEstilistas = $rowEstilistas['cantidad_estilistas'];
+
+    // Consulta SQL para obtener la cantidad de usuarios que se han creado una cuenta
+    $sqlUsuarios = "SELECT COUNT(*) AS cantidad_usuarios FROM Usuarios";
+    $resultUsuarios = $conn->query($sqlUsuarios);
+    $rowUsuarios = $resultUsuarios->fetch_assoc();
+    $cantidadUsuarios = $rowUsuarios['cantidad_usuarios'];
+
+    ?>
+
+    <script>
+        // Gráfico de pastel y barras para las citas
+        var ctxCitasPie = document.getElementById('citasPieChart').getContext('2d');
+        var ctxCitasBar = document.getElementById('citasBarChart').getContext('2d');
+        
+        // Gráfico de pastel para los usuarios
+        var ctxUsuariosPie = document.getElementById('usuariosPieChart').getContext('2d');
+        var ctxUsuariosBar = document.getElementById('usuariosBarChart').getContext('2d');
+        
+        // Crear gráficos
+        var citasPieChart = new Chart(ctxCitasPie, {
+            type: 'pie',
+            data: {
+                labels: <?php echo json_encode($labelsCitas); ?>,
+                datasets: [{
+                    label: 'Número de Citas por Mes',
+                    data: <?php echo json_encode($dataCitas); ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var citasBarChart = new Chart(ctxCitasBar, {
+            type: 'bar',
+            data: {
+                labels: <?php echo json_encode($labelsCitas); ?>,
+                datasets: [{
+                    label: 'Número de Citas por Mes',
+                    data: <?php echo json_encode($dataCitas); ?>,
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var usuariosPieChart = new Chart(ctxUsuariosPie, {
+            type: 'pie',
+            data: {
+                labels: ['Clientes', 'Estilistas', 'Usuarios Registrados'],
+                datasets: [{
+                    label: 'Cantidad de Usuarios',
+                    data: [<?php echo $cantidadClientes; ?>, <?php echo $cantidadEstilistas; ?>, <?php echo $cantidadUsuarios; ?>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var usuariosBarChart = new Chart(ctxUsuariosBar, {
+            type: 'bar',
+            data: {
+                labels: ['Clientes', 'Estilistas', 'Usuarios Registrados'],
+                datasets: [{
+                    label: 'Cantidad de Usuarios',
+                    data: [<?php echo $cantidadClientes; ?>, <?php echo $cantidadEstilistas; ?>, <?php echo $cantidadUsuarios; ?>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <?php
+    // Cerrar la conexión a la base de datos
+    $conn->close();
+    ?>
+
+
             <!-- #/ container -->
         </div>
         <!--**********************************
