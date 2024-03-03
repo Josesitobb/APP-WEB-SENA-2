@@ -163,7 +163,9 @@ echo $_SESSION['username'];
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Reporte Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./chart-chartjs.php">Chartjs</a></li>
+                            <li><a href="./Reporte_Citas.php">Citas</a></li>
+                            <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
+                            <li><a href="./Reporte_Productos.php">Productos</a></li>
 
                         </ul>
                     </li>
