@@ -184,13 +184,6 @@ if (!$resultado_estilistas) {
                         <br>
                         <a href="detalle_servicios.php?Id_Servicios=<?php echo $row['Id_Servicios']; ?>&token=<?php echo hash_hmac('sha1', $row['Id_Servicios'], KEY_TOKEN); ?>#detalle_<?php echo $row['Id_Servicios']; ?>" class="btn btn-sm btn-secondary">Detalle</a>
                         <a href="#" class="btn btn-sm btn-secondary open-modal" data-toggle="modal" data-target="#citaModal" data-id="<?php echo $row['Id_Servicios']; ?>" data-nombre="<?php echo $row['Nombre_Servicios']; ?>" data-precio="<?php echo $row['Valor_Servicios']; ?>">Agregar cita</a>
-
-
-
-
-
-
-
                     </div>
                 </div>
             <?php } ?>
