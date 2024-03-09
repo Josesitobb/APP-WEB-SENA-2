@@ -1,64 +1,29 @@
 <?php
 
-// // conexion azure
-// // $servername = "josecitas.mysql.database.azure.com";
-// // $username = "JOSE";
-// // $password = "Celular528";
-// // $db = "mydb";
-// // $port = 3306;
+$servername = "veico.mysql.database.azure.com";
+$username = "veicol12";
+$password = "Joseguerra302004";
+$db = "sgcitas";
+$port = 3306;
 
-// $servername = "locahost";
-// $username = "root";
-// $password = "Celular528";
-// $db = "mydb";
-// $port = 3306;
+$ssl_cert = realpath('../../base de datos/DigiCertGlobalRootCA.crt.pem');
 
+// Configuración de la conexión
+$conn = mysqli_init();
 
-// $ssl_cert = realpath('../../../base de datos/DigiCertGlobalRootCA.crt.pem');
+// Establecer la ruta del certificado
+mysqli_ssl_set($conn, NULL, NULL, $ssl_cert, NULL, NULL);
 
-// // Configuración de la conexión
-// $conn = mysqli_init();
+// Configuración de opciones SSL
+mysqli_options($conn, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
 
-// // Establecer la ruta del certificado
-// mysqli_ssl_set($conn, NULL, NULL, $ssl_cert, NULL, NULL);
+// Intentar conectar de forma segura
+if (mysqli_real_connect($conn, $servername, $username, $password, $db, $port)) {
+    echo "¡Conexión segura establecida!";
+} else {
+    // Manejar el error en caso de que la conexión falle
+    echo "Error al conectar de forma segura: " . mysqli_connect_error();
+}
 
-// // Configuración de opciones SSL
-// mysqli_options($conn, MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
-
-// // Intentar conectar
-// // if (mysqli_real_connect($conn, $servername, $username, $password, $db, $port)) {
-// //     echo "Hay conexión";
-// // } else {
-// //     // Manejar el error en caso de que la conexión falle
-// //     echo "No hay conexión. Error: " . mysqli_connect_error();
-// // }
-
-
-// conexion local
-
-
-$servername="localhost";
-
-$username ="root";
-$password ="";
-$db="SGCitas";
-
-$conn=mysqli_connect($servername,$username,$password,$db);
-
-
-
-// $servername="localhost";
-
-// $username ="id21791927_sgcitas";
-// $password ="Joseguerra302004#";
-// $db="id21791927_sgcitas";
-
-// $conn=mysqli_connect($servername,$username,$password,$db);
-
-// Probar la conexion
-// if(!$conn){
-//     die("Muy bot".mysqli_connect_error());
-// }
-// echo "La conexion esta muy fina"
-// 
 ?>
+
