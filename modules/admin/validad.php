@@ -44,6 +44,23 @@ if ($filas) {
         // Puedes redirigir a una página de error o realizar otra acción apropiada aquí
     }
 
+    // Verificar si el usuario es un estilista
+    if ($usuario['Id_Rol'] == 1) {
+        // Obtener la ID de estilista del usuario
+        $consulta_estilista = "SELECT Id_Estilistas FROM `Estilistas` WHERE Id_Usuarios = '{$usuario['Id_Usuarios']}'";
+        $resultado_estilista = mysqli_query($conn, $consulta_estilista);
+
+        if ($resultado_estilista && mysqli_num_rows($resultado_estilista) > 0) {
+            $estilista = mysqli_fetch_assoc($resultado_estilista);
+            // Almacena la ID de estilista en la sesión
+            $_SESSION['id_estilista'] = $estilista['Id_Estilistas'];
+        } else {
+            // Manejo de error si no se encuentra la ID de estilista
+            echo "Error: No se pudo encontrar la ID de estilista para el usuario.";
+            // Puedes redirigir a una página de error o realizar otra acción apropiada aquí
+        }
+    }
+
     // Redirige según el rol del usuario
     switch ($usuario['Id_Rol']) {
         case 1:
@@ -71,6 +88,4 @@ if ($filas) {
         window.history.go(-1);
     </script>';
 }
-
-mysqli_free_result($resultados);
 ?>
