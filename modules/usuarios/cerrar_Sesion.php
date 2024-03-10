@@ -1,6 +1,8 @@
 <?php
 // Iniciar o reanudar la sesión
 session_start();
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Destruir todas las variables de sesión
 $_SESSION = array();

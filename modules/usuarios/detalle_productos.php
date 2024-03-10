@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // Verificar si el parámetro Id_Productos está presente en la URL
 if (isset($_GET['Id_Productos'])) {
     // Obtener el Id_Productos de la URL

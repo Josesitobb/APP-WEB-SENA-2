@@ -1,5 +1,7 @@
 <?php
 include('config/db.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Verificar si se ha enviado información a través del método POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -20,6 +20,8 @@
     <div class="container my-4">
     <form method="post" action="Editar_Datos_Estilistas.php" >
         <?php
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
         include("db.php");
         $sql = "SELECT * FROM `usuarios` WHERE Id_Usuarios=" . $_REQUEST['Id_Usuarios'];
         $resultado =$conn->query($sql);

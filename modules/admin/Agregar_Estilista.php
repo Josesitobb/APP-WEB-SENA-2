@@ -29,6 +29,8 @@
             <select class="form-select form-control" name="NombreRol" id="rol">
                 <option selected disabled>SELECCIONAR UN ROL</option>
                 <?php
+                error_reporting(E_ALL);
+                ini_set('display_errors', 1);
                 include("db.php");
 
                 $sql = $conn->query("SELECT * FROM `roles`");

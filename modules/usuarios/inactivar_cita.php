@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 // Verificar si se ha recibido la solicitud POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener la ID de la cita de la solicitud
