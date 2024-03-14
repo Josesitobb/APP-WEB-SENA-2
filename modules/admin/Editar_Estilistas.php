@@ -1,85 +1,40 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>EDITAR ESTILISTA</title>
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-  </head>
-  <style>
-       
-       h1,label {
-           display: block;
-           text-align: center;
-       }
-   </style>
-  <body>
-    <h1>EDITAR ESTILISTAS</h1>
-  
-    <div class="container my-4">
-    <form method="post" action="Editar_Datos_Estilistas.php" >
-        <?php
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
-        include("db.php");
-        $sql = "SELECT * FROM `usuarios` WHERE Id_Usuarios=" . $_REQUEST['Id_Usuarios'];
-        $resultado =$conn->query($sql);
-        $row = $resultado->fetch_assoc();
+<?php
+include("db.php");
 
+// Recibir los datos del formulario
+$nombreUsuario = $_POST['nombreUsuario'];
+$apellidoUsuario = $_POST['apellidoUsuario'];
+$correoUsuario = $_POST['correoUsuario'];
+$telefonoUsuario = $_POST['telefonoUsuario'];
+$contraseñaUsuario = $_POST['contraseñaUsuario'];
+$idUsuario = $_POST['idUsuario']; // Asegúrate de pasar el ID del usuario desde el formulario
 
-        ?>
-        <input type="Hidden" class="form-control" id="nombreUsuario" name="Id_Usuarios" value="<?php echo $row['Id_Usuarios']; ?>">
-        
-       <div class="form-group">
-    <label for="rol">ROL</label>
-    <select class="form-select form-control" name="NombreRol2" id="rol2">
-        <?php
-        include("conexion.php");
+// Imprimir los datos recibidos para verificar
+echo "Nombre de usuario: " . $nombreUsuario . "<br>";
+echo "Apellido de usuario: " . $apellidoUsuario . "<br>";
+echo "Correo de usuario: " . $correoUsuario . "<br>";
+echo "Teléfono de usuario: " . $telefonoUsuario . "<br>";
+echo "Contraseña de usuario: " . $contraseñaUsuario . "<br>";
 
-        $sql = "SELECT * FROM `roles`";
-        $result = $conn->query($sql);
+// Consulta SQL para actualizar los datos en la tabla usuarios
+$sql = "UPDATE usuarios SET 
+            Nombre_Usuarios = '$nombreUsuario',
+            Apellido_Usuarios = '$apellidoUsuario',
+            Correo_Usuarios = '$correoUsuario',
+            Telefono_Usuarios = '$telefonoUsuario',
+            Contraseña_Usuarios = '$contraseñaUsuario',
+            Id_Rol = 1
+        WHERE Id_Usuarios = $idUsuario";
 
-        while ($rowRole = $result->fetch_assoc()) {
-            $selected = ($rowRole['Id_Rol'] == $row['Id_Rol']) ? 'selected' : '';
-            echo '<option value="' . $rowRole['Id_Rol'] . '" ' . $selected . '>' . $rowRole['Nombre_Rol'] . '</option>';
-        }
-        ?>
-    </select>
-</div>
+// Ejecutar la consulta
+if ($conn->query($sql) === TRUE) {
+    echo "Los datos se han actualizado correctamente.";
+} else {
+    echo "Error al actualizar los datos: " . $conn->error;
+}
 
-      
-        <div class="form-group">
-    <label for="nombreUsuario">NOMBRE USUARIO</label>
-    <input type="text" class="form-control" id="nombreUsuario2" name="nombreUsuario2" value="<?php echo $row['Nombre_Usuarios']; ?>">
-    </div>
+// Cerrar la conexión
+$conn->close();
+?>
 
-    <div class="form-group">
-    <label for="apellidoUsuario">APELLIDO USUARIO</label>
-    <input type="text" class="form-control" id="apellidoUsuario2" name="apellidoUsuario2" value="<?php echo $row['Apellido_Usuarios']; ?>">
-    </div>
-
-    <div class="form-group">
-    <label for="correoUsuario">CORREO USUARIO</label>
-    <input type="email" class="form-control" id="correoUsuario2" name="correoUsuario2" value="<?php echo $row['Correo_Usuarios']; ?>">
-    </div>
-
-    <div class="form-group">
-    <label for="telefonoUsuario">TELEFONO USUARIO</label>
-    <input type="tel" class="form-control" id="telefonoUsuario2" name="telefonoUsuario2" value="<?php echo $row['Telefono_Usuarios']; ?>">
-    </div>
-
-    <div class="form-group">
-    <label for="contrasenaUsuario">CONTRASEÑA USUARIO</label>
-    <input type="password" class="form-control" id="contrasenaUsuario2" name="contrasenaUsuario2" value="<?php echo $row['Contraseña_Usuarios']; ?>">
-    </div>
-
-
-    <div class="text-center mt-3">
-                <button type="submit" class="btn btn-primary mr-2">Enviar</button>
-                <a href="Estilistas.php" class="btn btn-primary">VOLVER</a>
-            </div>
-    </form>
-    </div>
-  <body>
-	
+?>

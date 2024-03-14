@@ -220,6 +220,51 @@ echo $_SESSION['username'];
                 </ul>
             </div>
         </div>
+
+<!-- Modal para editar estilista -->
+<div class="modal fade" id="editarEstilistaModal" tabindex="-1" aria-labelledby="editarEstilistaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarEstilistaModalLabel">Editar Estilista</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para editar estilista -->
+                <form id="editarEstilistaForm">
+                    <div class="mb-3">
+                        <label for="nombreUsuario" class="form-label">Nombre Usuario</label>
+                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidoUsuario" class="form-label">Apellido Usuario</label> <!-- Nuevo campo para el apellido -->
+                        <input type="text" class="form-control" id="apellidoUsuario" name="apellidoUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="correoUsuario" class="form-label">Correo Usuario</label>
+                        <input type="email" class="form-control" id="correoUsuario" name="correoUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefonoUsuario" class="form-label">Telefono Usuario</label>
+                        <input type="text" class="form-control" id="telefonoUsuario" name="telefonoUsuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contraseñaUsuario" class="form-label">Contraseña Usuario</label>
+                        <input type="password" class="form-control" id="contraseñaUsuario" name="contraseñaUsuario">
+                    </div>
+                    <input type="hidden" id="idUsuario" name="idUsuario"> <!-- Campo oculto para la ID del usuario -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarCambiosEstilista()">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -244,7 +289,51 @@ echo $_SESSION['username'];
 
     <h1><center>USUARIOS ESTILISTAS</center></h1>
     
-    <a href="Agregar_Estilista.php" class="btn btn-primary">AGREGAR NUEVO ESTILISTA</a>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarEstilistaModal">
+    Agregar Nuevo Estilista
+</button>
+
+
+<!-- Modal para agregar nuevo estilista -->
+<div class="modal fade" id="agregarEstilistaModal" tabindex="-1" aria-labelledby="agregarEstilistaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarEstilistaModalLabel">Agregar Nuevo Estilista</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para agregar nuevo estilista -->
+                <form id="agregarEstilistaForm">
+                    <div class="mb-3">
+                        <label for="nombreNuevoEstilista" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombreNuevoEstilista" name="nombreNuevoEstilista">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidoNuevoEstilista" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellidoNuevoEstilista" name="apellidoNuevoEstilista">
+                    </div>
+                    <div class="mb-3">
+                        <label for="correoNuevoEstilista" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correoNuevoEstilista" name="correoNuevoEstilista">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefonoNuevoEstilista" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" id="telefonoNuevoEstilista" name="telefonoNuevoEstilista">
+                    </div>
+                    <div class="mb-3">
+                        <label for="contraseñaNuevoEstilista" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="contraseñaNuevoEstilista" name="contraseñaNuevoEstilista">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="agregarEstilista()">Agregar Estilista</button>
+            </div>
+        </div>
+    </div>
+</div>
     <br>
   
       <br>
@@ -279,7 +368,10 @@ echo $_SESSION['username'];
             <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
             <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
             <td>
-            <a href="Editar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios'] ?>">EDITAR</a>
+            <a href="#" onclick="cargarDatosEstilista('<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios']; ?>', '<?php echo $resultado['Id_Usuarios']; ?>')" data-bs-toggle="modal" data-bs-target="#editarEstilistaModal">Editar</a>
+
+
+
             <a href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">ELIMINAR</a>
   
               
@@ -341,6 +433,97 @@ echo $_SESSION['username'];
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
+    <script> 
+    function cargarDatosEstilista(nombre, apellido, correo, telefono, contraseña, idUsuario) {
+    document.getElementById("nombreUsuario").value = nombre;
+    document.getElementById("apellidoUsuario").value = apellido;
+    document.getElementById("correoUsuario").value = correo;
+    document.getElementById("telefonoUsuario").value = telefono;
+    document.getElementById("contraseñaUsuario").value = contraseña;
+    document.getElementById("idUsuario").value = idUsuario; // Establecer el valor de la ID del usuario
+}
+
+</script>
+
+<script>
+    function guardarCambiosEstilista() {
+        // Obtener los valores de los campos del formulario
+        var nombreUsuario = document.getElementById('nombreUsuario').value;
+        var apellidoUsuario = document.getElementById('apellidoUsuario').value; // Nuevo
+        var correoUsuario = document.getElementById('correoUsuario').value;
+        var telefonoUsuario = document.getElementById('telefonoUsuario').value;
+        var contraseñaUsuario = document.getElementById('contraseñaUsuario').value;
+        var idUsuario = document.getElementById('idUsuario').value;
+
+        // Crear un objeto FormData para enviar los datos
+        var formData = new FormData();
+        formData.append('nombreUsuario', nombreUsuario);
+        formData.append('apellidoUsuario', apellidoUsuario); // Nuevo
+        formData.append('correoUsuario', correoUsuario);
+        formData.append('telefonoUsuario', telefonoUsuario);
+        formData.append('contraseñaUsuario', contraseñaUsuario);
+        formData.append('idUsuario', idUsuario);
+
+        // Enviar los datos mediante AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'Editar_Estilistas.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Procesar la respuesta del servidor si es necesario
+                console.log(xhr.responseText);
+                
+                // Cerrar el modal
+                var modal = new bootstrap.Modal(document.getElementById('editarEstilistaModal'));
+                modal.hide();
+                
+                // Recargar la página
+                location.reload();
+            } else {
+                // Manejar errores si es necesario
+                console.error('Error al enviar los datos');
+            }
+        };
+        xhr.send(formData);
+    }
+</script>
+
+<script>
+    function agregarEstilista() {
+        // Obtener los valores de los campos del formulario
+        var nombreNuevoEstilista = document.getElementById('nombreNuevoEstilista').value;
+        var apellidoNuevoEstilista = document.getElementById('apellidoNuevoEstilista').value;
+        var correoNuevoEstilista = document.getElementById('correoNuevoEstilista').value;
+        var telefonoNuevoEstilista = document.getElementById('telefonoNuevoEstilista').value;
+        var contraseñaNuevoEstilista = document.getElementById('contraseñaNuevoEstilista').value;
+
+        // Crear un objeto FormData para enviar los datos
+        var formData = new FormData();
+        formData.append('nombreNuevoEstilista', nombreNuevoEstilista);
+        formData.append('apellidoNuevoEstilista', apellidoNuevoEstilista);
+        formData.append('correoNuevoEstilista', correoNuevoEstilista);
+        formData.append('telefonoNuevoEstilista', telefonoNuevoEstilista);
+        formData.append('contraseñaNuevoEstilista', contraseñaNuevoEstilista);
+
+        // Enviar los datos mediante AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'Agregar_Estilista.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Procesar la respuesta del servidor si es necesario
+                console.log(xhr.responseText);
+                // Cerrar el modal después de agregar el estilista
+                var modal = new bootstrap.Modal(document.getElementById('agregarEstilistaModal'));
+                modal.hide();
+                // Recargar la página para reflejar los cambios en la tabla de estilistas
+                location.reload();
+            } else {
+                // Manejar errores si es necesario
+                console.error('Error al enviar los datos');
+            }
+        };
+        xhr.send(formData);
+    }
+</script>
 
 </body>
 

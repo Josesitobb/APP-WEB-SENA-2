@@ -1,82 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+// Assuming you have established a database connection already
+include("db.php");
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="./ESTILOS/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css"> 
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
-    <title>Agregar nuevo estilista</title>
-    <style>
-       
-        h1,label {
-            display: block;
-            text-align: center;
-        }
-    </style>
-</head>
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST["nombreNuevoEstilista"];
+    $apellido = $_POST["apellidoNuevoEstilista"];
+    $correo = $_POST["correoNuevoEstilista"];
+    $telefono = $_POST["telefonoNuevoEstilista"];
+    $contraseña = $_POST["contraseñaNuevoEstilista"];
 
-<body>
-    <h1>Agregar estilista</h1>
-    <div  class="container my-4">
+    // Prepare the SQL statement
+    $sql = "INSERT INTO usuarios (Nombre_Usuarios, Apellido_Usuarios, Correo_Usuarios, Telefono_Usuarios, Contraseña_Usuarios, Id_Rol) 
+            VALUES (?, ?, ?, ?, ?, ?)";
+    
+    // Bind parameters and execute the statement
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssssi", $nombre, $apellido, $correo, $telefono, $contraseña, $idRol);
+    
+    // Set the value for $idRol, assuming it is known
+    $idRol = 1; // Example value
+    
+    // Execute the statement
+    if ($stmt->execute()) {
+        echo "Estilista agregado correctamente.";
+    } else {
+        echo "Error al agregar el estilista: " . $conn->error;
+    }
 
+    // Close the statement
+    $stmt->close();
+}
 
-
-    <form method="post" action="Insertar_Estilistas.php">
-        <div class="form-group">
-            <!-- <label for="rol">ROL</label>
-            <select class="form-select form-control" name="NombreRol" id="rol">
-                <option selected disabled>SELECCIONAR UN ROL</option>
-                <?php
-                error_reporting(E_ALL);
-                ini_set('display_errors', 1);
-                include("db.php");
-
-                $sql = $conn->query("SELECT * FROM `roles`");
-
-                while ($Resultado = $sql->fetch_assoc()) {
-                    echo "<option value='" . $Resultado['Id_Rol'] . "'>" . $Resultado['Nombre_Rol'] . "</option>";
-                }
-                ?>
-            </select>
-        </div> -->
-
-        <div class="form-group">
-            <label for="nombreUsuario">NOMBRE USUARIO</label>
-            <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="NOMBRE USUARIO">
-        </div>
-
-        <div class="form-group">
-            <label for="apellidoUsuario">APELLIDO USUARIO</label>
-            <input type="text" class="form-control" id="apellidoUsuario" name="apellidoUsuario" placeholder="APELLIDO USUARIO">
-        </div>
-
-        <div class="form-group">
-            <label for="correoUsuario">CORREO USUARIO</label>
-            <input type="email" class="form-control" id="correoUsuario" name="correoUsuario" placeholder="CORREO USUARIO">
-        </div>
-
-        <div class="form-group">
-            <label for="telefonoUsuario">TELEFONO USUARIO</label>
-            <input type="tel" class="form-control" id="telefonoUsuario" name="telefonoUsuario" placeholder="TELEFONO USUARIO">
-        </div>
-
-        <div class="form-group">
-            <label for="contrasenaUsuario">CONTRASEÑA USUARIO</label>
-            <input type="password" class="form-control" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="CONTRASEÑA USUARIO">
-        </div>
-
-       
-                 <div class="text-center mt-3">
-                <button type="submit" class="btn btn-primary mr-2">Enviar</button>
-                <a href="Estilistas.php" class="btn btn-primary">VOLVER</a>
-            </div>
-            
-    </form>
-            <br>
-
-    </div>
-</body>
-
-</html>
+// Close the database connection
+$conn->close();
+?>
