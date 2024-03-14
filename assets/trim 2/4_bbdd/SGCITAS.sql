@@ -25,6 +25,7 @@ Select*from usuarios;
 create table clientes(
 Id_Clientes INT auto_increment,
 primary key(Id_Clientes),
+activo BOOLEAN DEFAULT 1,
 Id_Usuarios INT,
 constraint Fk_Id_Usuarios foreign key(Id_Usuarios ) references Usuarios(Id_Usuarios)
 ON DELETE CASCADE
@@ -34,7 +35,7 @@ Select*from clientes;
 
 create table Estilistas(
 Id_Estilistas INT auto_increment,
-Estado TINYINT NOT NULL ,
+activo BOOLEAN DEFAULT 1,
 primary key(Id_Estilistas),
 Id_Usuarios INT,
 constraint Fk_2Id_Usuarios foreign key(Id_Usuarios ) references Usuarios(Id_Usuarios)

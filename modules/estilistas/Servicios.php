@@ -29,7 +29,7 @@ $resultado = mysqli_query($conn, $sql_servicios);
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/Logo_compañia_S.png">
+    <link type="image/png" sizes="16x16" rel="icon" href=".../icons8-s-16.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 

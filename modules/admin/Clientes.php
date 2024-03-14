@@ -13,6 +13,27 @@ if($varsesion == null || $varsesion=''){
 echo $_SESSION['username'];
 ?>
 
+
+<?php
+include("db.php");
+// Realiza una consulta SQL para obtener todos los roles
+$sql_roles = $conn->query("SELECT * FROM Roles");
+
+// Almacena los resultados en un array
+$roles = array();
+while ($row = $sql_roles->fetch_assoc()) {
+    $roles[] = $row;
+}
+
+// Convierte el array de roles a formato JSON
+$roles_json = json_encode($roles);
+?>
+
+<script>
+// Almacena la lista de roles en una variable JavaScript
+var roles = <?php echo $roles_json; ?>;
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -226,6 +247,26 @@ echo $_SESSION['username'];
             Sidebar end
         ***********************************-->
 
+        <div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editarClienteForm">
+          <!-- Aquí van los campos para editar el cliente -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
         <!--**********************************
             Content body start
         ***********************************-->
@@ -246,51 +287,95 @@ echo $_SESSION['username'];
     <br>
   <h1><center>USUARIOS CLIENTES</center></h1>
     
-  <a href="Agregar_Clientes.php" class="btn btn-primary">AGREGAR NUEVO CLIENTE</a>
+  <!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">Agregar Usuario</button>
+
+<!-- Modal para agregar un nuevo usuario -->
+<div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="agregarUsuarioForm">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="correo" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" required>
+          </div>
+          <div class="mb-3">
+            <label for="contraseña" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contraseña" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   <br>
     <br>
+    <div class="table-responsive">
     <table class="table table-hover">
-      <thead>
-        <tr class="table-active">
-          <th scope="col">ROL</th>
-          <th scope="col">NOMBRE USUARIO</th>
-          <th scope="col">APELIIDO USUARIO</th>
-          <th scope="col">COREOO</th>
-          <th scope="col">TELEFONO</th>
-          <th scope="col">CONTRASEÑA</th>
-          <th scope="col">ACCIONES</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        require_once("db.php");
+        <thead>
+            <tr class="table-active">
+                <th scope="col">ROL</th>
+                <th scope="col">NOMBRE USUARIO</th>
+                <th scope="col">APELLIDO USUARIO</th>
+                <th scope="col">CORREO</th>
+                <th scope="col">TELÉFONO</th>
+                <th scope="col">CONTRASEÑA</th>
+                <th scope="col">ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            require_once("db.php");
 
-        $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
-        FROM Usuarios U
-        JOIN Roles R ON U.Id_Rol = R.Id_Rol
-        WHERE R.Nombre_Rol = 'clientes'");
-        
-        while ($resultado = $sql->fetch_assoc()) {
-        ?>
-        <tr class="table-light">
-          <th scope="row"><?php echo $resultado['Rol'] ?></th>
-          <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
-          <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
-          <td><?php echo $resultado['Correo_Usuarios'] ?></td>
-          <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
-          <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
-          <td>
-          <a href="Editar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios'] ?>">EDITAR</a>
-          <a href="Borrar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">ELIMINAR</a>
+            $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
+            FROM Usuarios U
+            JOIN Roles R ON U.Id_Rol = R.Id_Rol
+            WHERE R.Nombre_Rol = 'clientes'");
 
-            
-          </td>
-        </tr>
-        <?php
-        }
-        ?>
-      </tbody>
+            while ($resultado = $sql->fetch_assoc()) {
+            ?>
+                <tr class="table-light">
+                    <td><?php echo $resultado['Rol'] ?></td>
+                    <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Correo_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
+                    <td>
+                        <a href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">Editar</a>
+                        <a href="Borrar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
     </table>
+</div>
+
 
 
 
@@ -318,7 +403,8 @@ echo $_SESSION['username'];
             Content body end
         ***********************************-->
         
-        
+        <div id="mensaje"></div>
+
         <!--**********************************
             Footer start
         ***********************************-->
@@ -344,6 +430,135 @@ echo $_SESSION['username'];
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
+    <script>
+function cargarDatosCliente(idCliente, nombre, apellido, correo, telefono, contraseña ,idRol ) {
+    // Genera las opciones de selección para los roles
+    var opcionesRol = '';
+    for (var i = 0; i < roles.length; i++) {
+        opcionesRol += `<option value="${roles[i].Id_Rol}" ${roles[i].Id_Rol == idRol ? 'selected' : ''}>${roles[i].Nombre_Rol}</option>`;
+    }
+
+    document.getElementById('editarClienteForm').innerHTML = `
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" value="${nombre}">
+      </div>
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="apellido" value="${apellido}">
+      </div>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="correo" value="${correo}">
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" value="${telefono}">
+      </div>
+      <div class="mb-3">
+        <label for="contraseña" class="form-label">Contraseña</label>
+        <input type="text" class="form-control" id="contraseña" value="${contraseña}">
+      </div>
+     
+      <input type="hidden" id="idCliente" value="${idCliente}">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar Cambios</button>
+      </div>
+    `;
+    $('#editarClienteModal').modal('show');
+}
+</script>
+
+
+
+<script>
+function guardarCambios() {
+    // Obtener los valores del formulario
+    var idCliente = document.getElementById('idCliente').value;
+    var nombre = document.getElementById('nombre').value;
+    var apellido = document.getElementById('apellido').value;
+    var correo = document.getElementById('correo').value;
+    var telefono = document.getElementById('telefono').value;
+    var contraseña = document.getElementById('contraseña').value;
+
+
+    // Crear un objeto con los datos del formulario
+    var datos = {
+        idCliente: idCliente,
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        telefono: telefono,
+        contraseña: contraseña,
+
+    };
+
+    // Enviar los datos mediante AJAX a un archivo PHP
+    $.ajax({
+        url: 'Editar_Clientes.php',
+        type: 'POST',
+        data: datos,
+        success: function(response) {
+            // Manejar la respuesta del servidor
+            console.log(response);
+            // Recargar la página
+            location.reload();
+            // Mostrar mensaje de actualización
+            $('#mensaje').text(response); // Aquí se muestra el mensaje recibido del servidor
+        },
+        error: function(xhr, status, error) {
+            // Manejar errores de AJAX
+            console.error(xhr.responseText);
+            // Mostrar mensaje de error
+            $('#mensaje').text('Error al guardar los cambios.'); // Mensaje genérico en caso de error
+        }
+    });
+}
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Cuando se envía el formulario dentro del modal
+    $('#agregarUsuarioForm').submit(function(e) {
+        e.preventDefault(); // Evita que se envíe el formulario de manera tradicional
+
+        // Recopila los datos del formulario
+        var nombre = $('#nombre').val();
+        var apellido = $('#apellido').val();
+        var correo = $('#correo').val();
+        var telefono = $('#telefono').val();
+        var contraseña = $('#contraseña').val();
+
+        // Envía los datos mediante AJAX a un archivo PHP
+        $.ajax({
+            url: 'Agregar_Clientes.php',
+            type: 'POST',
+            data: {
+                nombre: nombre,
+                apellido: apellido,
+                correo: correo,
+                telefono: telefono,
+                contraseña: contraseña
+            },
+            success: function(response) {
+                // Mostrar el mensaje al usuario
+                alert(response);
+                
+                // Recargar la página si la inserción fue exitosa
+                // location.reload();
+            },
+            error: function(xhr, status, error) {
+                // Manejar errores de AJAX
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+</script>
+
+
 
 </body>
 

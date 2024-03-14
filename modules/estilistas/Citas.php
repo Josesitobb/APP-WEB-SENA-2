@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>SGCITAS</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -554,109 +554,133 @@ $result = $conn->query($sql);
     <!-- Enlace a Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
+       body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
 
-        .container {
-            margin-top: 50px;
-        }
+.container {
+    margin-top: 50px;
+}
 
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        form .form-group {
-            margin-bottom: 20px;
-        }
+form .form-group {
+    margin-bottom: 20px;
+}
 
-        label {
-            font-weight: bold;
-        }
+label {
+    font-weight: bold;
+}
 
-        select.form-control {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
+select.form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
 
-        select.form-control:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
+select.form-control:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
 
-        button[type="submit"], button[type="button"] {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+button[type="submit"],
+button[type="button"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+}
 
-        button[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-        }
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
 
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
 
-        button[type="button"] {
-            background-color: #6c757d;
-            color: #fff;
-            margin-left: 10px;
-        }
+button[type="button"] {
+    background-color: #6c757d;
+    color: #fff;
+    margin-left: 10px;
+}
 
-        button[type="button"]:hover {
-            background-color: #5a6268;
-        }
+button[type="button"]:hover {
+    background-color: #5a6268;
+}
 
-        .table-container {
-            display: flex;
-            justify-content: center;
-        }
+.table-container {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+}
 
-        table {
-            background-color: #fff;
-            width: 100%;
-            border-collapse: collapse;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+table {
+    background-color: #fff;
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        table th, table td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
+table th,
+table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
 
-        table th {
-            background-color: #007bff;
-            color: #fff;
-        }
+table th {
+    background-color: #007bff;
+    color: #fff;
+}
 
-        table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-        table tbody tr:hover {
-            background-color: #e2e2e2;
-        }
+table tbody tr:hover {
+    background-color: #e2e2e2;
+}
 
-        .btn-primary, .btn-primary:hover {
-            background-color: #007bff !important;
-            border-color: #007bff !important;
-        }
+.btn-primary,
+.btn-primary:hover {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
 
-        .btn-danger, .btn-danger:hover {
-            background-color: #dc3545 !important;
-            border-color: #dc3545 !important;
-        }
+.btn-danger,
+.btn-danger:hover {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
+
+/* Estilos adicionales para dispositivos de pantalla más pequeña */
+@media screen and (max-width: 768px) {
+    .container {
+        margin-top: 20px;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    button[type="submit"],
+    button[type="button"] {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
     </style>
 </head>
 <body>

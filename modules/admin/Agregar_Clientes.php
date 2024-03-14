@@ -1,83 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="./ESTILOS/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css"> 
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
-    <title>Agregar nuevo estilista</title>
-    <style>
-       
-        h1,label {
-            display: block;
-            text-align: center;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>Agregar clientes</h1>
-    <div  class="container my-4">
+<?php
+include("db.php"); 
 
 
-
-    <form method="post" action="Insertar_Clientes.php">
-        <div class="form-group">
-            <!-- <label for="rol">ROL</label>
-            <select class="form-select form-control" name="NombreRol" id="rol">
-                <option selected disabled>SELECCIONAR UN ROL</option>
-                <?php
-                error_reporting(E_ALL);
-                ini_set('display_errors', 1);
-                include("db.php");
+$nombre = $_POST['nombre'];
+$apellido = $_POST['apellido'];
+$correo = $_POST['correo'];
+$telefono = $_POST['telefono'];
+$contraseña = $_POST['contraseña'];
 
 
-                $sql = $conn->query("SELECT * FROM `roles`");
+$sql_check_correo = "SELECT * FROM Usuarios WHERE Correo_Usuarios = '$correo'";
+$result_correo = $conn->query($sql_check_correo);
 
-                while ($Resultado = $sql->fetch_assoc()) {
-                    echo "<option value='" . $Resultado['Id_Rol'] . "'>" . $Resultado['Nombre_Rol'] . "</option>";
-                }
-                ?>
-            </select>
-        </div> -->
 
-        <div class="form-group">
-            <label for="nombreUsuario">NOMBRE USUARIO</label>
-            <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="NOMBRE USUARIO">
-        </div>
+$sql_check_telefono = "SELECT * FROM Usuarios WHERE Telefono_Usuarios = '$telefono'";
+$result_telefono = $conn->query($sql_check_telefono);
 
-        <div class="form-group">
-            <label for="apellidoUsuario">APELLIDO USUARIO</label>
-            <input type="text" class="form-control" id="apellidoUsuario" name="apellidoUsuario" placeholder="APELLIDO USUARIO">
-        </div>
+if ($result_correo->num_rows > 0) {
 
-        <div class="form-group">
-            <label for="correoUsuario">CORREO USUARIO</label>
-            <input type="email" class="form-control" id="correoUsuario" name="correoUsuario" placeholder="CORREO USUARIO">
-        </div>
+    echo "El correo electrónico ya está registrado";
+} elseif ($result_telefono->num_rows > 0) {
 
-        <div class="form-group">
-            <label for="telefonoUsuario">TELEFONO USUARIO</label>
-            <input type="tel" class="form-control" id="telefonoUsuario" name="telefonoUsuario" placeholder="TELEFONO USUARIO">
-        </div>
+    echo "El número de teléfono ya está registrado";
+} else {
 
-        <div class="form-group">
-            <label for="contrasenaUsuario">CONTRASEÑA USUARIO</label>
-            <input type="password" class="form-control" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="CONTRASEÑA USUARIO">
-        </div>
+    $sql = "INSERT INTO Usuarios (Nombre_Usuarios, Apellido_Usuarios, Correo_Usuarios, Telefono_Usuarios, Contraseña_Usuarios, Id_Rol) 
+            VALUES ('$nombre', '$apellido', '$correo', '$telefono', '$contraseña', 2)";
 
-       
-                 <div class="text-center mt-3">
-                <button type="submit" class="btn btn-primary mr-2">Enviar</button>
-                <a href="Clientes.php" class="btn btn-primary">VOLVER</a>
-            </div>
-            
-    </form>
-            <br>
+    if ($conn->query($sql) === TRUE) {
 
-    </div>
-</body>
+        echo "Usuario agregado correctamente";
+    } else {
 
-</html>
+        echo "Error al agregar el usuario: " . $conn->error;
+    }
+}
+
+
+$conn->close();
+?>
+

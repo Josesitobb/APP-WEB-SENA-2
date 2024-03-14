@@ -9,25 +9,19 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
     exit();
 }
 
-$cantidad_productos_carrito = isset($_SESSION['carrito']) ? count($_SESSION['carrito']) : 0;
-// var_dump($_SESSION['carrito']);
+include("db.php");
 
+// Consultar todos los productos de la base de datos
+$sql = "SELECT * FROM Productos";
+$result = mysqli_query($conn, $sql);
 
-
-$total_productos_carrito = 0; 
-
-if (isset($_SESSION['carrito'])) {
-    foreach ($_SESSION['carrito'] as $producto) {
-        $total_productos_carrito += $producto; 
+$productos = [];
+if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        $productos[] = $row;
     }
 }
-include('db.php');
-
-$sql_servicios = "SELECT Id_Productos, Nombre_Productos, Precio_Productos, Cantidad_Productos, Imagen_Productos, Id_Clientes FROM productos";
-
-$resultado = mysqli_query($conn, $sql_servicios);
 ?>
-
 
 
 <!DOCTYPE html>
@@ -172,7 +166,7 @@ $resultado = mysqli_query($conn, $sql_servicios);
                                 <i class="mdi mdi-bell-outline"></i>
                                  <a href="agregar_al_carrito.php" class="carrito-link">
     <i class="fas fa-shopping-cart"></i> 
-    <span class="badge badge-pill badge-primary"><?php echo $total_productos_carrito; ?></span>
+    <!-- <span class="badge badge-pill badge-primary"><?php echo $total_productos_carrito; ?></span> -->
 </a>
                             </a>
                             <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
@@ -321,41 +315,156 @@ $resultado = mysqli_query($conn, $sql_servicios);
             </div>
             <!-- #/ container -->
             <div class="container">
-    <h2>Tabla de Servicios</h2>
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nombre producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($resultado as $row) { ?>
-                    <tr>
-                    <td>
-    <?php echo $row['Nombre_Productos']; ?>
-</td>
-<td>
-<?php echo $row['Cantidad_Productos']; ?>
-</td>
-<td>
-    
-    <?php echo '$' . number_format($row['Precio_Productos'], 2); ?>
-</td>
-<td>
-    <form action="agregar_al_carrito.php" method="post">
-        <input type="hidden" name="producto_id" value="<?php echo $row['Id_Productos']; ?>">
-        <button type="submit" class="btn btn-primary" name="agregar_al_carrito">Agregar al carrito</button>
-    </form>
-</td>
+            <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <style>
+/* Estilo para tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+}
 
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+th {
+    background-color: #f7f7f7;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: #fff;
+    color: #555;
+}
+
+/* Resaltar fila al pasar el cursor */
+tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilo para campos de entrada de número */
+input[type="number"] {
+    width: 60px;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+/* Estilo para botón de enviar */
+input[type="submit"] {
+    padding: 8px 16px;
+    background-color: #777CD9;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 20px;
+}
+
+/* Cambiar color de botón al pasar el cursor */
+input[type="submit"]:hover {
+    background-color: #353372;
+}
+
+/* Estilos adicionales para hacer la tabla responsive */
+@media screen and (max-width: 600px) {
+    table, thead, tbody, th, td, tr { 
+        display: block; 
+    }
+
+    /* Ocultar encabezados */
+    thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr { 
+        border: 1px solid #ccc;
+        margin-bottom: 10px; /* Margen entre filas */
+    }
+
+    td { 
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 50%; 
+    }
+
+    td:before { 
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+    }
+
+    td:nth-of-type(1):before { content: "ID"; }
+    td:nth-of-type(2):before { content: "Nombre"; }
+    td:nth-of-type(3):before { content: "Descripción"; }
+    td:nth-of-type(4):before { content: "Cantidad"; }
+    td:nth-of-type(5):before { content: "Precio"; }
+    td:nth-of-type(6):before { content: "Acción"; }
+}
+
+
+
+    </style>
+</head>
+<body>
+
+<h2>Productos</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($productos as $producto) : ?>
+            <tr>
+                <td><?php echo $producto['Id_Productos']; ?></td>
+                <td><?php echo $producto['Nombre_Productos']; ?></td>
+                <td><?php echo $producto['Descripcion_Productos']; ?></td>
+                <td><?php echo $producto['Cantidad_Productos']; ?></td>
+                <td>$<?php echo $producto['Precio_Productos']; ?></td>
+                <td>
+                    <form method="post" action="agregar_producto.php">
+                        <input type="hidden" name="id_producto" value="<?php echo $producto['Id_Productos']; ?>">
+                        <input type="number" name="cantidad" value="1" min="1" required>
+                        <input type="submit" value="Agregar al carrito">
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+<a href="ver_carrito.php">Ver Carrito</a>
+
+</body>
+</html>
+           
+              
+           
+   
     </div>
 </div>
         <!--**********************************
