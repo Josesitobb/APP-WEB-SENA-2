@@ -11,16 +11,7 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
 
 include("db.php");
 
-// Consultar todos los productos de la base de datos
-$sql = "SELECT * FROM Productos";
-$result = mysqli_query($conn, $sql);
 
-$productos = [];
-if (mysqli_num_rows($result) > 0) {
-    while($row = mysqli_fetch_assoc($result)) {
-        $productos[] = $row;
-    }
-}
 ?>
 
 
@@ -36,6 +27,57 @@ if (mysqli_num_rows($result) > 0) {
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+        <style>
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .btn-calcular {
+            margin-top: 10px;
+        }
+
+        .btn-enviar {
+            margin-top: 20px;
+        }
+
+        /* Estilo personalizado para etiquetas de selección */
+        .form-label-custom {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        /* Estilo personalizado para opciones de selección */
+        .form-select-option {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Estilo para hacer los select igual que los input */
+        select.form-select {
+            height: calc(2.25rem + 2px);
+            padding: .375rem 2.25rem .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            width: 100%;
+        }
+
+        select.form-select:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(0, 123, 255, .25);
+        }
+    </style>
 
 </head>
 
@@ -113,7 +155,7 @@ if (mysqli_num_rows($result) > 0) {
                             <div class="drop-down animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-heading d-flex justify-content-between">
                                     <span class="">3 New Messages</span>  
-                                    <span class="badge badge-pill badge-primary"><?php echo $total_productos_carrito; ?></span>
+                                    <span class="badge badge-pill badge-primary"></span>
                                 </div>
                                 <div class="dropdown-content-body">
                                     <ul>
@@ -166,7 +208,7 @@ if (mysqli_num_rows($result) > 0) {
                                 <i class="mdi mdi-bell-outline"></i>
                                  <a href="agregar_al_carrito.php" class="carrito-link">
     <i class="fas fa-shopping-cart"></i> 
-    <!-- <span class="badge badge-pill badge-primary"><?php echo $total_productos_carrito; ?></span> -->
+   
 </a>
                             </a>
                             <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
@@ -314,156 +356,101 @@ if (mysqli_num_rows($result) > 0) {
 
             </div>
             <!-- #/ container -->
+
+
+            <?php
+            
+
+$sql_usuarios = "SELECT Id_Usuarios, Nombre_Usuarios FROM usuarios";
+$result_usuarios = $conn->query($sql_usuarios);
+
+
+$sql_productos = "SELECT Id_Productos, Nombre_Productos FROM productos";
+$result_productos = $conn->query($sql_productos);
+
+
+$sql_servicios = "SELECT Id_Servicios, Nombre_Servicios FROM servicios";
+$result_servicios = $conn->query($sql_servicios);
+
+
+if ($result_usuarios->num_rows > 0 && $result_productos->num_rows > 0 && $result_servicios->num_rows > 0) {
+    ?>
+            
             <div class="container">
-            <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos</title>
-    <style>
-/* Estilo para tabla */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-bottom: 20px;
+    <div class="container">
+        <h2 class="text-center">Formulario de Pedido y Facturación</h2>
+        <form action="procesar_pedido_factura.php" method="POST">
+            <div class="mb-3">
+                <label for="usuario" class="form-label form-label-custom">Seleccionar Usuario:</label>
+                <select name="usuario" id="usuario" class="form-select">
+                <?php
+
+                        while ($row = $result_usuarios->fetch_assoc()) {
+                            echo "<option value='" . $row["Id_Usuarios"] . "' class='form-select-option'>" . $row["Nombre_Usuarios"] . "</option>";
+                        }
+                        ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="producto" class="form-label form-label-custom">Seleccionar Producto:</label>
+                <select name="producto" id="producto" class="form-select">
+                <?php
+
+                        while ($row = $result_productos->fetch_assoc()) {
+                            echo "<option value='" . $row["Id_Productos"] . "' class='form-select-option'>" . $row["Nombre_Productos"] . "</option>";
+                        }
+                        ?>
+                </select>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md">
+                    <label for="precio_unitario" class="form-label form-label-custom">Precio Unitario:</label>
+                    <input type="number" name="precio_unitario" id="precio_unitario" class="form-control"
+                        step="0.01">
+                </div>
+                <div class="col-md">
+                    <label for="cantidad" class="form-label form-label-custom">Cantidad:</label>
+                    <input type="number" name="cantidad" id="cantidad" class="form-control" min="1">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="total_productos" class="form-label form-label-custom">Valor Total Productos:</label>
+                <input type="text" name="total_productos" id="total_productos" class="form-control" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="servicio" class="form-label form-label-custom">Seleccionar Servicio:</label>
+                <select name="servicio" id="servicio" class="form-select">
+                <?php
+
+                        while ($row = $result_servicios->fetch_assoc()) {
+                            echo "<option value='" . $row["Id_Servicios"] . "' class='form-select-option'>" . $row["Nombre_Servicios"] . "</option>";
+                        }
+                        ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="precio_servicio" class="form-label form-label-custom">Precio Servicio:</label>
+                <input type="number" name="precio_servicio" id="precio_servicio" class="form-control" step="0.01">
+            </div>
+            <div class="mb-3">
+                <label for="total_factura" class="form-label form-label-custom">Valor Total Factura:</label>
+                <input type="text" name="total_factura" id="total_factura" class="form-control" readonly>
+            </div>
+            <button type="button" class="btn btn-primary btn-calcular" onclick="calcularTotal()">Calcular Total
+            </button>
+            <button type="submit" class="btn btn-success btn-enviar">Enviar Pedido y Factura</button>
+        </form>
+    </div>
+
+    
+    <?php
+} else {
+    echo "No se encontraron usuarios, productos o servicios en la base de datos.";
 }
 
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 2px solid #ddd;
-}
-
-th {
-    background-color: #f7f7f7;
-    color: #333;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-td {
-    background-color: #fff;
-    color: #555;
-}
-
-/* Resaltar fila al pasar el cursor */
-tr:hover {
-    background-color: #f0f0f0;
-}
-
-/* Estilo para campos de entrada de número */
-input[type="number"] {
-    width: 60px;
-    padding: 6px;
-    box-sizing: border-box;
-}
-
-/* Estilo para botón de enviar */
-input[type="submit"] {
-    padding: 8px 16px;
-    background-color: #777CD9;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-    margin: 20px;
-}
-
-/* Cambiar color de botón al pasar el cursor */
-input[type="submit"]:hover {
-    background-color: #353372;
-}
-
-/* Estilos adicionales para hacer la tabla responsive */
-@media screen and (max-width: 600px) {
-    table, thead, tbody, th, td, tr { 
-        display: block; 
-    }
-
-    /* Ocultar encabezados */
-    thead tr { 
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-
-    tr { 
-        border: 1px solid #ccc;
-        margin-bottom: 10px; /* Margen entre filas */
-    }
-
-    td { 
-        border: none;
-        border-bottom: 1px solid #eee; 
-        position: relative;
-        padding-left: 50%; 
-    }
-
-    td:before { 
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        width: 45%; 
-        padding-right: 10px; 
-        white-space: nowrap;
-    }
-
-    td:nth-of-type(1):before { content: "ID"; }
-    td:nth-of-type(2):before { content: "Nombre"; }
-    td:nth-of-type(3):before { content: "Descripción"; }
-    td:nth-of-type(4):before { content: "Cantidad"; }
-    td:nth-of-type(5):before { content: "Precio"; }
-    td:nth-of-type(6):before { content: "Acción"; }
-}
-
-
-
-    </style>
-</head>
-<body>
-
-<h2>Productos</h2>
-
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th>Acción</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($productos as $producto) : ?>
-            <tr>
-                <td><?php echo $producto['Id_Productos']; ?></td>
-                <td><?php echo $producto['Nombre_Productos']; ?></td>
-                <td><?php echo $producto['Descripcion_Productos']; ?></td>
-                <td><?php echo $producto['Cantidad_Productos']; ?></td>
-                <td>$<?php echo $producto['Precio_Productos']; ?></td>
-                <td>
-                    <form method="post" action="agregar_producto.php">
-                        <input type="hidden" name="id_producto" value="<?php echo $producto['Id_Productos']; ?>">
-                        <input type="number" name="cantidad" value="1" min="1" required>
-                        <input type="submit" value="Agregar al carrito">
-                    </form>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-
-<a href="ver_carrito.php">Ver Carrito</a>
-
-</body>
-</html>
-           
-              
-           
+// Cerrar conexión
+$conn->close();
+?>
    
     </div>
 </div>
@@ -496,5 +483,28 @@ input[type="submit"]:hover {
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gb1y9jZ2MZoS7a1zWv3XTKXvRv5u5vwqyZZc1az5V7czbsuEV0Ic8d4bdAi8u1Yb"
+        crossorigin="anonymous"></script>
+        <script>
+    // Función para calcular el valor total de los productos
+    function calcularTotal() {
+        // Obtener el valor seleccionado del producto y el valor ingresado en la cantidad
+        var precioUnitario = parseFloat(document.getElementById("precio_unitario").value);
+        var cantidad = parseInt(document.getElementById("cantidad").value);
+        
+        // Calcular el valor total de los productos
+        var totalProductos = precioUnitario * cantidad;
+        
+        // Actualizar el valor del campo "Valor Total Productos"
+        document.getElementById("total_productos").value = totalProductos.toFixed(2); // Mostrar solo 2 decimales
+    }
+    
+    // Asignar la función calcularTotal al evento onchange de los elementos select de "producto" y "cantidad"
+    document.getElementById("producto").onchange = calcularTotal;
+    document.getElementById("cantidad").onchange = calcularTotal;
+</script>
+
 
 </body>

@@ -220,6 +220,46 @@ echo $_SESSION['username'];
         <!--**********************************
             Sidebar end
         ***********************************-->
+<!-- Modal para modificar producto -->
+<div class="modal fade" id="modificarProductoModal" tabindex="-1" aria-labelledby="modificarProductoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modificarProductoModalLabel">Modificar Producto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="modificarProductoForm">
+                    <div class="mb-3">
+                        <label for="nombreProducto" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="detalleProducto" class="form-label">Detalle</label>
+                        <input type="text" class="form-control" id="detalleProducto" name="detalleProducto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="precioProducto" class="form-label">Precio</label>
+                        <input type="text" class="form-control" id="precioProducto" name="precioProducto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidadProducto" class="form-label">Cantidad</label>
+                        <input type="text" class="form-control" id="cantidadProducto" name="cantidadProducto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagenProducto" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="imagenProducto" name="imagenProducto">
+                    </div>
+                    <input type="hidden" id="idProducto" name="idProducto">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarCambiosProducto()">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
 
         <!--**********************************
             Content body start
@@ -283,7 +323,10 @@ echo $_SESSION['username'];
                                                     <th><?php echo $fila['Cantidad_Productos'] ?></th>
                                                     <th><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos'])  ?>" alt=""></th>
                                                     <th><a class="btn  btn-warning" href="deleteProducto.php?id=<?php echo $fila['Id_Productos'] ?>">eliminar</a>
-                                                        <a class="btn  btn-danger" href="vistas_Editar.php?Id=<?php echo $fila['Id_Productos'] ?>">modificar</a>
+                                                    <th>
+    <a class="btn btn-danger" onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Modificar</a>
+</th>
+
                                                     </th>
 
                                                 </tr>
@@ -330,6 +373,23 @@ echo $_SESSION['username'];
         <script src="js/settings.js"></script>
         <script src="js/gleek.js"></script>
         <script src="js/styleSwitcher.js"></script>
+
+        <script>
+    function mostrarModalModificar(id, nombre, detalle, precio, cantidad, imagen) {
+        document.getElementById('idProducto').value = id;
+        document.getElementById('nombreProducto').value = nombre;
+        document.getElementById('detalleProducto').value = detalle;
+        document.getElementById('precioProducto').value = precio;
+        document.getElementById('cantidadProducto').value = cantidad;
+
+        // Puedes manejar la carga de la imagen aquí, por ejemplo, si tienes la URL de la imagen, puedes asignarla a un elemento <img> en el modal.
+        // document.getElementById('imagenProducto').src = imagen;
+
+        var modal = new bootstrap.Modal(document.getElementById('modificarProductoModal'));
+        modal.show();
+    }
+</script>
+
 
 </body>
 
