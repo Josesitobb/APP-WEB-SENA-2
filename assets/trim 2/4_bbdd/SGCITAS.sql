@@ -89,7 +89,11 @@ Select * from Citas;
 create table facturas(
 Id_Facturas INT auto_increment,
 Fecha_Factura datetime NOT NULL ,
+Precio_Total_Productos int NOT NULL,
+Precio_Total_Servicios int NOT NULL,
 Factura_Total decimal(12,2) NOT NULL,
+Cantidad_Productos int,
+Cantidad_Servicios,
 primary key(Id_Facturas),
 Id_Productos INT,
 Id_Servicios INT,

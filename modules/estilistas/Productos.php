@@ -353,7 +353,7 @@ include("db.php");
 
             <div class="container-fluid">
 
-            </div>
+    
             <!-- #/ container -->
 <?php
 $sql_usuarios = "SELECT c.*, u.Nombre_Usuarios, u.Apellido_Usuarios
@@ -445,7 +445,7 @@ $conn->close();
         var precioUnitarioInput = document.getElementById("precio_unitario");
         var precioUnitario = selectedProduct.options[selectedProduct.selectedIndex].getAttribute("data-precio");
         precioUnitarioInput.value = precioUnitario;
-        updateTotal(); // Llamamos a esta función también para actualizar el total cuando se cambia el producto.
+        updateTotal(); 
     }
 
     function updateTotal() {
@@ -459,7 +459,7 @@ $conn->close();
     }
 
     function calcularTotal() {
-    updateTotal(); // Actualiza el valor total de los productos
+    updateTotal();
     
     var totalProductosInput = document.getElementById("total_productos").value;
     var precioServicioInput = document.getElementById("precio_servicio").value;
@@ -489,7 +489,7 @@ $conn->close();
 
 </script>
 
-
+</div>
    
     </div>
 </div>
