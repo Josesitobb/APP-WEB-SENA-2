@@ -93,14 +93,16 @@ Precio_Total_Productos int NOT NULL,
 Precio_Total_Servicios int NOT NULL,
 Factura_Total decimal(12,2) NOT NULL,
 Cantidad_Productos int,
-Cantidad_Servicios,
+Cantidad_Servicios int,
 primary key(Id_Facturas),
 Id_Productos INT,
 Id_Servicios INT,
 Id_Clientes INT,
+Id_Estilistas INT,
 constraint FK1_Id_Productos foreign key(Id_Productos) references Productos(Id_Productos),
 constraint FK2_Id_Servicios foreign key(Id_Servicios) references servicios(Id_Servicios),
-constraint FK3_Id_Clientes foreign key(Id_Clientes) references clientes(Id_Clientes)
+constraint FK3_Id_Clientes foreign key(Id_Clientes) references clientes(Id_Clientes),
+constraint FK4_Id_Estilistas foreign key(Id_Estilistas) references Estilistas(Id_Estilistas)
 ON DELETE CASCADE
 ON UPDATE CASCADE
 );

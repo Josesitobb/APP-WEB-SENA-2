@@ -369,67 +369,92 @@ $sql_servicios = "SELECT Id_Servicios, Nombre_Servicios, Valor_Servicios FROM se
 $result_servicios = $conn->query($sql_servicios);
 if ($result_usuarios->num_rows > 0 && $result_productos->num_rows > 0 && $result_servicios->num_rows > 0) {
 ?>
-    <div class="container">
-        <h2 class="text-center">Formulario de Pedido y Facturación</h2>
-        <form action="procesar_pedido_factura.php" method="POST">
-            <div class="mb-3">
-                <label for="usuario" class="form-label form-label-custom">Seleccionar Usuario:</label>
-                <select name="usuario" id="usuario" class="form-select">
-                    <?php
-                    while ($row = $result_usuarios->fetch_assoc()) {
-                        echo "<option value='" . $row["Id_Usuarios"] . "' class='form-select-option'>" . $row["Nombre_Usuarios"] . "</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="mb-3">
+<div class="container">
+    <h2 class="text-center">Formulario de Pedido y Facturación</h2>
+    <form action="procesar_pedido_factura.php" method="POST">
+        <!-- Seleccionar Usuario -->
+        <div class="mb-3">
+            <label for="usuario" class="form-label form-label-custom">Seleccionar Usuario:</label>
+            <select name="cliente" id="cliente" class="form-select">
+    <?php while ($row = $result_usuarios->fetch_assoc()): ?>
+        <option value="<?= $row["Id_Clientes"] ?>" class="form-select-option"><?= $row["Nombre_Usuarios"] ?></option>
+    <?php endwhile; ?>
+</select>
+        </div>
+
+        <!-- Seleccionar Producto -->
+        <div class="mb-3">
             <label for="producto" class="form-label form-label-custom">Seleccionar Producto:</label>
-    <select name="producto" id="producto" class="form-select" onchange="updatePrecioUnitario()">
-        <option value="" selected>-- Seleccionar Producto --</option>
-        <?php
-        while ($row = $result_productos->fetch_assoc()) {
-            echo "<option value='" . $row["Id_Productos"] . "' data-precio='" . $row["Precio_Productos"] . "' class='form-select-option'>" . $row["Nombre_Productos"] . "</option>";
-        }
-        ?>
-    </select>
+            <select name="producto" id="producto" class="form-select" onchange="updatePrecioUnitario()">
+                <option value="" selected>-- Seleccionar Producto --</option>
+                <?php while ($row = $result_productos->fetch_assoc()): ?>
+                    <option value="<?= $row["Id_Productos"] ?>" data-precio="<?= $row["Precio_Productos"] ?>" class="form-select-option"><?= $row["Nombre_Productos"] ?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <!-- Precio Unitario y Cantidad de Producto -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="precio_unitario" class="form-label form-label-custom">Precio Unitario:</label>
+                <input type="number" name="precio_unitario" id="precio_unitario" class="form-control" step="0.01" readonly>
             </div>
-            <div class="row mb-3">
-                <div class="col-md">
-                    <label for="precio_unitario" class="form-label form-label-custom">Precio Unitario:</label>
-                    <input type="number" name="precio_unitario" id="precio_unitario" class="form-control" step="0.01" readonly>
-                </div>
-                <div class="col-md">
+            <div class="col-md-6">
                 <label for="cantidad" class="form-label form-label-custom">Cantidad:</label>
-    <input type="number" name="cantidad" id="cantidad" class="form-control" min="1" onchange="calcularTotal()">
-                </div>
+                <input type="number" name="cantidad" id="cantidad" class="form-control" min="1" onchange="calcularTotal()">
             </div>
-            <div class="mb-3">
-                <label for="total_productos" class="form-label form-label-custom">Valor Total Productos:</label>
-                <input type="text" name="total_productos" id="total_productos" class="form-control" readonly>
-            </div>
-            <div class="mb-3">
+        </div>
+
+        <!-- Valor Total Productos -->
+        <div class="mb-3">
+            <label for="total_productos" class="form-label form-label-custom">Valor Total Productos:</label>
+            <input type="text" name="total_productos" id="total_productos" class="form-control" readonly>
+        </div>
+
+        <!-- Seleccionar Servicio -->
+        <div class="mb-3">
             <label for="servicio" class="form-label form-label-custom">Seleccionar Servicio:</label>
-            
-    <select name="servicio" id="servicio" class="form-select" onchange="updatePrecioServicio(); calcularTotal()">
-        <?php
-        while ($row = $result_servicios->fetch_assoc()) {
-            echo "<option value='" . $row["Id_Servicios"] . "' data-precio='" . $row["Valor_Servicios"] . "' class='form-select-option'>" . $row["Nombre_Servicios"] . " - Precio: $" . $row["Valor_Servicios"] . "</option>";
-        }
-        ?>
-    </select>
+            <select name="servicio" id="servicio" class="form-select" onchange="updatePrecioServicio(); calcularTotal()">
+                <?php while ($row = $result_servicios->fetch_assoc()): ?>
+                    <option value="<?= $row["Id_Servicios"] ?>" data-precio="<?= $row["Valor_Servicios"] ?>" class="form-select-option"><?= $row["Nombre_Servicios"] ?> - Precio: $<?= $row["Valor_Servicios"] ?></option>
+                <?php endwhile; ?>
+            </select>
+        </div>
+
+        <!-- Cantidad y Valor Total de Servicios -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="cantidad_servicios" class="form-label form-label-custom">Cantidad de Servicios:</label>
+                <input type="number" name="cantidad_servicios" id="cantidad_servicios" class="form-control" min="1" onchange="calcularTotal()">
             </div>
-            <div class="mb-3">
-            <label for="precio_servicio" class="form-label form-label-custom">Precio Servicio:</label>
-    <input type="number" name="precio_servicio" id="precio_servicio" class="form-control" step="0.01" onchange="calcularTotal()">
+            <div class="col-md-6">
+                <label for="precio_servicio" class="form-label form-label-custom">Precio Servicio:</label>
+                <input type="number" name="precio_servicio" id="precio_servicio" class="form-control" step="0.01" onchange="calcularTotal()">
             </div>
-            <div class="mb-3">
+        </div>
+
+        <!-- Valor Total Servicios -->
+        <div class="mb-3">
+            <label for="valor_total_servicios" class="form-label form-label-custom">Valor Total Servicios:</label>
+            <input type="text" name="valor_total_servicios" id="valor_total_servicios" class="form-control" readonly>
+        </div>
+
+        <!-- Valor Total Factura y Botones de Acción -->
+        <div class="mb-3">
             <label for="total_factura" class="form-label form-label-custom">Valor Total Factura:</label>
-    <input type="text" name="total_factura" id="total_factura" class="form-control" readonly>
-            </div>
-            <button type="button" class="btn btn-primary btn-calcular" onclick="calcularTotal()">Calcular Total</button>
+            <input type="text" name="total_factura" id="total_factura" class="form-control" readonly>
+        </div>
+
+        <input type="hidden" name="id_estilista" value="<?= $_SESSION['id_estilista'] ?>">
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="button" class="btn btn-primary btn-calcular me-md-2" onclick="calcularTotal()">Calcular Total</button>
             <button type="submit" class="btn btn-success btn-enviar">Enviar Pedido y Factura</button>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
+
+
 <?php
 } else {
     echo "No se encontraron usuarios, productos o servicios en la base de datos.";
@@ -449,36 +474,59 @@ $conn->close();
     }
 
     function updateTotal() {
-        var cantidadInput = document.getElementById("cantidad");
-        var precioUnitarioInput = document.getElementById("precio_unitario");
-        var totalProductosInput = document.getElementById("total_productos");
-        var cantidad = cantidadInput.value;
-        var precioUnitario = precioUnitarioInput.value;
-        var total = cantidad * precioUnitario;
-        totalProductosInput.value = total.toFixed(2);
+    var cantidadInput = document.getElementById("cantidad");
+    var precioUnitarioInput = document.getElementById("precio_unitario");
+    var totalProductosInput = document.getElementById("total_productos");
+    var cantidad = parseInt(cantidadInput.value); // Parsear la cantidad como un entero
+
+    console.log("Cantidad:", cantidad);
+    console.log("Precio Unitario:", precioUnitarioInput.value);
+
+    if (isNaN(cantidad)) {
+        cantidad = 0; // Si la cantidad no es un número válido, establecerla como 0
     }
 
-    function calcularTotal() {
+    var precioUnitario = parseFloat(precioUnitarioInput.value);
+    var total = cantidad * precioUnitario;
+
+    console.log("Total:", total);
+
+    totalProductosInput.value = total.toFixed(2);
+}
+
+
+
+function calcularTotal() {
     updateTotal();
-    
-    var totalProductosInput = document.getElementById("total_productos").value;
-    var precioServicioInput = document.getElementById("precio_servicio").value;
+
+    var totalProductosInput = parseFloat(document.getElementById("total_productos").value);
+    var precioServicioInput = parseFloat(document.getElementById("precio_servicio").value);
+    var cantidadServicios = parseInt(document.getElementById("cantidad_servicios").value);
+
+    if (isNaN(cantidadServicios)) {
+        cantidadServicios = 0;
+    }
+
+    var totalServicios = precioServicioInput * cantidadServicios;
     var totalFacturaInput = document.getElementById("total_factura");
 
-    var totalProductos = parseFloat(totalProductosInput);
-    var precioServicio = parseFloat(precioServicioInput);
+    var totalFactura = 0;
 
-    // Verifica si el campo de Precio Servicio está vacío
-    if (isNaN(precioServicio)) {
-        precioServicio = 0; // Asigna un valor de 0 si el campo está vacío
+    if (!isNaN(totalProductosInput)) {
+        totalFactura += totalProductosInput;
     }
 
-    // Suma el valor total de los productos con el precio del servicio
-    var totalFactura = totalProductos + precioServicio;
+    if (!isNaN(totalServicios)) {
+        totalFactura += totalServicios;
+    }
 
-    // Actualiza el campo "Valor Total Factura" con el resultado
     totalFacturaInput.value = totalFactura.toFixed(2);
+
+    var valorTotalServiciosInput = document.getElementById("valor_total_servicios");
+    valorTotalServiciosInput.value = totalServicios.toFixed(2);
 }
+
+
 
     function updatePrecioServicio() {
     var selectedService = document.getElementById("servicio");
