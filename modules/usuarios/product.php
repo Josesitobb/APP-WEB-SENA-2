@@ -177,9 +177,7 @@ $conn->close();
                 </div>
             <?php } ?>
         </div>
-        <div class="col-12 text-center">
-            <a href="" class="btn btn-primary py-3 px-5">Ver más</a>
-        </div>
+       
     </div>
 </div>
     <!-- Products End -->

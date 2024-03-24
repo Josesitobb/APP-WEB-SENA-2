@@ -6,6 +6,7 @@ $varsesion = $_SESSION['username'];
 
 if ($varsesion == null || $varsesion = '') {
     echo 'USTED INICIE SESION';
+    header("Location:page-error-500.php");
     die();
 }
 

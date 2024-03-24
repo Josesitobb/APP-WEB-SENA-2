@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 // Verificar si la sesión está iniciada y la variable de sesión está definida
 if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
     // La sesión no está iniciada o la variable de sesión no está definida, redirige al usuario a la página de inicio de sesión
-    header("Location: modules/admin/theme/page-login.php");
+    header("Location: modules/admin/page-error-500.php");
     exit();
 }
 
@@ -125,7 +125,7 @@ $nombre_usuario = $_SESSION['username'];
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserva tu cita</a>
+                            <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
                         </div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@ $nombre_usuario = $_SESSION['username'];
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserva tu cita</a>
+                            <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,7 @@ $nombre_usuario = $_SESSION['username'];
                     <h4 class="font-weight-bold mb-3">Sobre nosotros</h4>
                     <h5 class="text-muted mb-3">!Descubre la experiencia de belleza en su máxima expresión¡ Bienvenidos a nuestra peluquería un referente durante más de cuatro años en el país. </h5>
                     <p>Bogotá D.C</p>
-                    <a href="" class="btn btn-secondary mt-2">MAS INFORMACION</a>
+                    <!-- <a href="" class="btn btn-secondary mt-2">MAS INFORMACION</a> -->
                 </div>
                 <div class="col-lg-4" style="min-height: 400px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
@@ -181,7 +181,7 @@ $nombre_usuario = $_SESSION['username'];
                     <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Servicios de cuidado del cabello</h5>
                     <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Profesionales capacitados</h5>
                     <h5 class="text-muted mb-3"><i class="fa fa-check text-secondary mr-3"></i>Productos de calidad</h5>
-                    <a href="" class="btn btn-primary mt-2">MAS INFORMACION</a>
+                    <!-- <a href="" class="btn btn-primary mt-2">MAS INFORMACION</a> -->
                 </div>
             </div>
         </div>
@@ -210,7 +210,7 @@ $nombre_usuario = $_SESSION['username'];
                     </div>
                     <h3 class="font-weight-bold text-white mt-3 mb-4">Bono de bienvenida</h3>
                     <p class="text-white mb-4">Ven, prueba nuestros servicios y recibe un bono por facturas superiores a $120.000.</p>
-                    <a href="" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                    <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
                 </div>
             </div>
         </div>
@@ -238,7 +238,7 @@ $nombre_usuario = $_SESSION['username'];
 
 
     <!-- Services Start -->
-    <div class="container-fluid py-5">
+    <!-- <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6">
@@ -293,7 +293,7 @@ $nombre_usuario = $_SESSION['username'];
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Services End -->
 
 
@@ -301,7 +301,7 @@ $nombre_usuario = $_SESSION['username'];
     <div class="container-fluid my-5 py-5 px-0">
         <div class="row justify-content-center m-0">
             <div class="col-lg-5">
-                <h1 class="section-title position-relative text-center mb-5">Contando nuestra historia en imagenes</h1>
+                <!-- <h1 class="section-title position-relative text-center mb-5">Contando nuestra historia en imagenes</h1> -->
             </div>
         </div>
         <div class="row m-0 portfolio-container">
@@ -363,12 +363,12 @@ $nombre_usuario = $_SESSION['username'];
 
 
     <!-- Team Start -->
-    <div class="container-fluid py-5">
+    <!-- <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 class="section-title position-relative mb-5">Nuestros colaboradores</h1>
-                </div>
+                     <h1 class="section-title position-relative mb-5">Nuestros colaboradores</h1> -->
+                <!-- </div>
                 <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
             </div>
             <div class="row">
@@ -434,7 +434,7 @@ $nombre_usuario = $_SESSION['username'];
                 </div>
             </div>
         </div>
-    </div>
+    </div>  -->
     <!-- Team End -->
 
     <!-- Footer Start -->

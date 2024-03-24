@@ -10,12 +10,12 @@ if (isset($_SESSION['username'])) {
     echo "¡Hola, $username!";
 } else {
     // El usuario no ha iniciado sesión, realiza la lógica correspondiente
-    echo "Bienvenido a otra_vista.php";
+
+    session_destroy();
+    header("Location:page-error-500.php");
 
     // Destruye la sesión solo si no ha iniciado sesión
-    if(session_status() == PHP_SESSION_ACTIVE) {
-        session_destroy();
-    }
+  
 }
 ?>
 
