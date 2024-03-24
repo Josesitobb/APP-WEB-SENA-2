@@ -35,7 +35,7 @@ if (isset($_SESSION['username'])) {
   
     <title>Inicio Administrador</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
+    <link rel="icon" href="./images/soporte-de-tablero.ico">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
@@ -61,8 +61,8 @@ if (isset($_SESSION['username'])) {
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/logi.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/logi.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/soporte-de-tablero.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/soporte-de-tablero.png" alt=""></span>
                     <span class="brand-title">
                         <img src="images/logi.png" alt="">
                     </span>

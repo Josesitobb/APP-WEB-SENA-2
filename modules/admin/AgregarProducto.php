@@ -20,7 +20,7 @@ $sql="INSERT INTO `productos`(`Id_Productos`, `Nombre_Productos`, `Precio_Produc
 $Resultado=$conn -> query($sql);
 
 if($Resultado){
-header('location:layout-one-column.php');
+header('location:productos.php');
 }else{
     echo"no se inserto los datos";
 }

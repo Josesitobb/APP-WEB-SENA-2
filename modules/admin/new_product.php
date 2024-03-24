@@ -55,7 +55,9 @@
 
     <div class="container">
         <h1 class="text-center">NUEVO PRODUCTO</h1>
-        <form class="mx-auto" style="max-width: 400px;" action="./AgregarProducto.php" method="POST" enctype="multipart/form-data" onsubmit="return ValidacioProductos();">
+        <form class="mx-auto" style="max-width: 400px;" action="./AgregarProducto.php" method="POST" enctype="multipart/form-data">
+        <!-- colocar cuando coloque las valicaciones -->
+        <!-- <form class="mx-auto" style="max-width: 400px;" action="./AgregarProducto.php" method="POST" enctype="multipart/form-data" onsubmit="return ValidacioProductos();"> -->
             <div class="mb-3">
                 <label for="Name_product" class="form-label">Nombre producto</label>
                 <input type="text" class="form-control" id="Name_product" name="Name_product">
@@ -86,7 +88,7 @@
         </form>
     </div>
 
-    <script src="./js/validaciones/ValidacionProductos.js"></script>
+    <!-- <script src="./js/validaciones/ValidacionProductos.js"></script> -->
 </body>
 
 </html>
