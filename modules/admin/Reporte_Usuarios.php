@@ -268,18 +268,13 @@ echo $_SESSION['username'];
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./layout-blank.php">Blank</a></li>
-                            <li><a href="./layout-one-column.php">One Column</a></li>
-                            <li><a href="./layout-two-column.php">Two column</a></li>
-                            <li><a href="./layout-compact-nav.php">Compact Nav</a></li>
-                            <li><a href="./layout-vertical.php">Vertical</a></li>
-                            <li><a href="./layout-horizontal.php">Horizontal</a></li>
-                            <li><a href="./layout-boxed.php">Boxed</a></li>
-                            <li><a href="./layout-wide.php">Wide</a></li>
-                            
-                            
-                            <li><a href="./layout-fixed-header.php">Fixed Header</a></li>
-                            <li><a href="layout-fixed-sidebar.php">Fixed Sidebar</a></li>
+                        <li><a href="./Clientes.php">Usuarios/Clientes</a></li>
+                            <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
+                            <li><a href="./Productos.php">Productos</a></li>
+                            <li><a href="./Servicios.php">Servicios</a></li>
+                            <li><a href="./Citas.php">Citas </a></li>
+                            <li><a href="./Facturas.php">Facturas </a></li>
+                            <li><a href="./layout-compact-nav.php">Roles </a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Apps</li>
@@ -307,12 +302,9 @@ echo $_SESSION['username'];
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Reporte Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./chart-flot.php">Flot</a></li>
-                            <li><a href="./chart-morris.php">Morris</a></li>
-                            <li><a href="./chart-chartjs.php">Chartjs</a></li>
-                            <li><a href="./chart-chartist.php">Chartist</a></li>
-                            <li><a href="./chart-sparkline.php">Sparkline</a></li>
-                            <li><a href="./chart-peity.php">Peity</a></li>
+                        <li><a href="./Reporte_Citas.php">Citas</a></li>
+                            <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
+                            <li><a href="./Reporte_Productos.php">Productos</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">UI Components</li>

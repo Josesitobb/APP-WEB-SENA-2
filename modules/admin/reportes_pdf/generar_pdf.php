@@ -1,6 +1,6 @@
 <?php
 require('PDF/fpdf.php');
-include("db.php");
+include("../db.php");
 
 $id_factura = $_GET['id_factura'];
 
