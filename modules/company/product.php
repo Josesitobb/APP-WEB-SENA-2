@@ -35,7 +35,7 @@ $conn->close();
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon1.png" rel="icon">
+    <link href="icons/SG.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -59,9 +59,9 @@ $conn->close();
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="../admin/theme/page-login.php">Iniciar sesión</a>
+                    <a class="text-white pr-3" href="../admin/page-login.php">Iniciar sesión</a>
                         <span class="text-white">|</span>
-                        <a class="text-white px-3" href="../admin/theme/page-register.php">Registrarse</a>
+                        <a class="text-white px-3" href="../admin/page-register.php">Registrarse</a>
  
                     </div>
                 </div>

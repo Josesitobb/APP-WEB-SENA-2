@@ -58,10 +58,10 @@ echo $_SESSION['username'];
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                <b class="logo-abbr"><img src="images/logi.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/logi.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
                     <span class="brand-title">
-                    <img src="images/logi.png" alt="">
+                        <img src="images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -280,110 +280,66 @@ echo $_SESSION['username'];
             <!-- row -->
 
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                            <div class="container">
-      
-    
-    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container">
+                        <h1 class="text-center">USUARIOS ESTILISTAS</h1>
+                    </div>
 
-    <h1><center>USUARIOS ESTILISTAS</center></h1>
-    
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarEstilistaModal">
-    Agregar Nuevo Estilista
-</button>
+                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#agregarEstilistaModal">Agregar Nuevo Estilista</button>
 
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr class="table-active">
+                                    <th scope="col">ROL</th>
+                                    <th scope="col">NOMBRE USUARIO</th>
+                                    <th scope="col">APELIIDO USUARIO</th>
+                                    <th scope="col">COREOO</th>
+                                    <th scope="col">TELEFONO</th>
+                                    <th scope="col">CONTRASEÑA</th>
+                                    <th scope="col">ACCIONES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                require_once("db.php");
 
-<!-- Modal para agregar nuevo estilista -->
-<div class="modal fade" id="agregarEstilistaModal" tabindex="-1" aria-labelledby="agregarEstilistaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="agregarEstilistaModalLabel">Agregar Nuevo Estilista</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario para agregar nuevo estilista -->
-                <form id="agregarEstilistaForm">
-                    <div class="mb-3">
-                        <label for="nombreNuevoEstilista" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreNuevoEstilista" name="nombreNuevoEstilista">
+                                $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
+                                    FROM Usuarios U
+                                    JOIN Roles R ON U.Id_Rol = R.Id_Rol
+                                    WHERE R.Nombre_Rol = 'estilistas'");
+
+                                while ($resultado = $sql->fetch_assoc()) {
+                                ?>
+                                    <tr class="table-light">
+                                        <th scope="row"><?php echo $resultado['Rol'] ?></th>
+                                        <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
+                                        <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
+                                        <td><?php echo $resultado['Correo_Usuarios'] ?></td>
+                                        <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
+                                        <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
+                                        <td>
+                                            <a href="#" onclick="cargarDatosEstilista('<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios']; ?>', '<?php echo $resultado['Id_Usuarios']; ?>')" data-bs-toggle="modal" data-bs-target="#editarEstilistaModal" class="btn btn-warning">Editar</a>
+
+                                            <a href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-danger">ELIMINAR</a>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="mb-3">
-                        <label for="apellidoNuevoEstilista" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellidoNuevoEstilista" name="apellidoNuevoEstilista">
-                    </div>
-                    <div class="mb-3">
-                        <label for="correoNuevoEstilista" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correoNuevoEstilista" name="correoNuevoEstilista">
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefonoNuevoEstilista" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" id="telefonoNuevoEstilista" name="telefonoNuevoEstilista">
-                    </div>
-                    <div class="mb-3">
-                        <label for="contraseñaNuevoEstilista" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contraseñaNuevoEstilista" name="contraseñaNuevoEstilista">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" onclick="agregarEstilista()">Agregar Estilista</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-    <br>
-  
-      <br>
-      <table class="table table-hover">
-        <thead>
-          <tr class="table-active">
-            <th scope="col">ROL</th>
-            <th scope="col">NOMBRE USUARIO</th>
-            <th scope="col">APELIIDO USUARIO</th>
-            <th scope="col">COREOO</th>
-            <th scope="col">TELEFONO</th>
-            <th scope="col">CONTRASEÑA</th>
-            <th scope="col">ACCIONES</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          require_once("db.php");
-  
-          $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
-          FROM Usuarios U
-          JOIN Roles R ON U.Id_Rol = R.Id_Rol
-          WHERE R.Nombre_Rol = 'estilistas'");
-          
-          while ($resultado = $sql->fetch_assoc()) {
-          ?>
-          <tr class="table-light">
-            <th scope="row"><?php echo $resultado['Rol'] ?></th>
-            <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
-            <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
-            <td><?php echo $resultado['Correo_Usuarios'] ?></td>
-            <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
-            <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
-            <td>
-            <a href="#" onclick="cargarDatosEstilista('<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios']; ?>', '<?php echo $resultado['Id_Usuarios']; ?>')" data-bs-toggle="modal" data-bs-target="#editarEstilistaModal">Editar</a>
 
 
-
-            <a href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('Are you sure you want to delete this user?')">ELIMINAR</a>
-  
-              
-            </td>
-          </tr>
-          <?php
-          }
-          ?>
-        </tbody>
-      </table>
 
 
 

@@ -61,10 +61,10 @@ crossorigin="anonymous">
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <img src="images/logi.png" alt="">
                     </span>
                 </a>
             </div>

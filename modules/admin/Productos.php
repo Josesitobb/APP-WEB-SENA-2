@@ -21,16 +21,100 @@ echo $_SESSION['username'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Productos</title>
+
+    <title>Clientes</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
 
 </head>
 
 <body>
+<!-- MODAL DE AGREGAR -->
+<div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formAgregarProducto" action="AgregarProducto.php" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="nombreProducto" class="form-label">Nombre Producto</label>
+            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="descripcionProducto" class="form-label">Descripción Producto</label>
+            <textarea class="form-control" id="descripcionProducto" name="descripcionProducto" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="precioProducto" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precioProducto" name="precioProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="cantidadProducto" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="imagenProducto" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="imagenProducto" name="imagenProducto" required accept="image/*">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE EDITAR -->
+
+<div class="modal fade" id="modificarProductoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formModificarProducto" action="EditarProductos.php" method="post" enctype="multipart/form-data">
+          <input type="hidden" id="idProducto" name="idProducto">
+          <div class="mb-3">
+            <label for="editarNombreProducto" class="form-label">Nombre Producto</label>
+            <input type="text" class="form-control" id="editarNombreProducto" name="nombreProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="editarDetalleProducto" class="form-label">Detalle Producto</label>
+            <textarea class="form-control" id="editarDetalleProducto" name="Destalleproductos" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editarPrecioProducto" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="editarPrecioProducto" name="precioProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="editarCantidadProducto" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="editarCantidadProducto" name="cantidadProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="editarImagenesProducto" class="form-label">Imagenes</label>
+            <input type="file" class="form-control" id="editarImagenesProducto" name="imagenesProducto" multiple accept="image/*">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     <!--*******************
         Preloader start
@@ -46,7 +130,7 @@ echo $_SESSION['username'];
         Preloader end
     ********************-->
 
-
+    
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -58,10 +142,10 @@ echo $_SESSION['username'];
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                <b class="logo-abbr"><img src="images/logi.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/logi.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
                     <span class="brand-title">
-                    <img src="images/logi.png" alt="">
+                        <img src="images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -73,9 +157,9 @@ echo $_SESSION['username'];
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">
+        <div class="header">    
             <div class="header-content clearfix">
-
+                
                 <div class="nav-control">
                     <div class="hamburger">
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
@@ -88,16 +172,17 @@ echo $_SESSION['username'];
                         </div>
                         <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
                         <div class="drop-down   d-md-none">
-                            <form action="#">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </form>
+							<form action="#">
+								<input type="text" class="form-control" placeholder="Search">
+							</form>
                         </div>
                     </div>
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
+
                         <li class="icons dropdown">
-                            <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <img src="images/user/1.png" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile   dropdown-menu">
@@ -106,7 +191,10 @@ echo $_SESSION['username'];
                                         <li>
                                             <a href="app-profile.php"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
+
+                                        
                                         <hr class="my-2">
+
                                         <li><a href="page-login.php"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
@@ -147,6 +235,7 @@ echo $_SESSION['username'];
                             <li><a href="./Citas.php">Citas </a></li>
                             <li><a href="./Facturas.php">Facturas </a></li>
                             <li><a href="./layout-compact-nav.php">Roles </a></li>
+                            
                         </ul>
                     </li>
                     <li>
@@ -162,7 +251,7 @@ echo $_SESSION['username'];
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Reportes Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./Reporte_Citas.php">Citas</a></li>
+                        <li><a href="./Reporte_Citas.php">Citas</a></li>
                             <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
                             <li><a href="./Reporte_Productos.php">Productos</a></li>
 
@@ -186,6 +275,7 @@ echo $_SESSION['username'];
 
                         </ul>
                     </li>
+
                     <li class="nav-label">Table</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -221,173 +311,159 @@ echo $_SESSION['username'];
         <!--**********************************
             Sidebar end
         ***********************************-->
-<!-- Modal para modificar producto -->
-<div class="modal fade" id="modificarProductoModal" tabindex="-1" aria-labelledby="modificarProductoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modificarProductoModalLabel">Modificar Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="modificarProductoForm">
-                    <div class="mb-3">
-                        <label for="nombreProducto" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreProducto" name="nombreProducto">
-                    </div>
-                    <div class="mb-3">
-                        <label for="detalleProducto" class="form-label">Detalle</label>
-                        <input type="text" class="form-control" id="detalleProducto" name="detalleProducto">
-                    </div>
-                    <div class="mb-3">
-                        <label for="precioProducto" class="form-label">Precio</label>
-                        <input type="text" class="form-control" id="precioProducto" name="precioProducto">
-                    </div>
-                    <div class="mb-3">
-                        <label for="cantidadProducto" class="form-label">Cantidad</label>
-                        <input type="text" class="form-control" id="cantidadProducto" name="cantidadProducto">
-                    </div>
-                    <div class="mb-3">
-                        <label for="imagenProducto" class="form-label">Imagen</label>
-                        <input type="file" class="form-control" id="imagenProducto" name="imagenProducto">
-                    </div>
-                    <input type="hidden" id="idProducto" name="idProducto">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="guardarCambiosProducto()">Guardar cambios</button>
-            </div>
-        </div>
+
+        <div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editarClienteForm">
+          <!-- Aquí van los campos para editar el cliente -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
     </div>
+  </div>
 </div>
+
 
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
 
+
             <!-- row -->
 
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Lista de productos</h1>
+                    <div class="container mt-4">
+                        <button type="button" class="btn btn-info" onclick="mostrarModalAgregarProducto()">Agregar nuevo producto</button>
+                    </div>
+                    <div class="container mt-4">
+                        <table class="table table-striped">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Id Productos</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Detalle</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Imágenes</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                include("db.php");
+                                $sql = "SELECT * FROM `productos`";
+                                $resultado = $conn->query($sql);
+                                while ($fila = $resultado->fetch_assoc()) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $fila['Id_Productos'] ?></td>
+                                        <td><?php echo $fila['Nombre_Productos'] ?></td>
+                                        <td><?php echo $fila['Descripcion_Productos'] ?></td>
+                                        <td><?php echo $fila['Precio_Productos'] ?></td>
+                                        <td><?php echo $fila['Cantidad_Productos'] ?></td>
+                                        <td><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos']) ?>" alt=""></td>
+                                        <td>
+                                            <button type="button" class="btn btn-warning" onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Modificar</button>
+                                            <button type="button" class="btn btn-danger" onclick="confirmarEliminar(<?php echo $fila['Id_Productos'] ?>)">Eliminar</button>
+
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-                                <div class="container">
-                                    <h1>Lista de productos</h1>
-                                </div>
+   
 
+    <!-- Optional JavaScript; choose one of the two! -->
 
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-
-
-                                <div class="cotainer">
-
-                                    <br> <br>
-                                    <a href="./new_product.php" class="btn btn-dark">agregar nuevo producto</a>
-
-                                    <br> <br>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Id Productos</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Detalle</th>
-                                                <th scope="col">Precio</th>
-                                                <th scope="col">Cantidad</th>
-                                                <th scope="col">Imagenes</th>
-                                                <th scope="col">Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <?php
-
-                                            include("db.php");
-                                            $sql = "SELECT * FROM `productos` ";
-                                            $resultado = $conn->query($sql);
-
-                                            while ($fila = $resultado->fetch_assoc()) { ?>
-
-
-
-
-
-                                                <tr>
-                                                    <th scope="row"><?php echo $fila['Id_Productos'] ?></th>
-                                                    <th><?php echo $fila['Nombre_Productos'] ?></th>
-                                                    <th><?php echo $fila['Descripcion_Productos'] ?></th>
-                                                    <th><?php echo $fila['Precio_Productos'] ?></th>
-                                                    <th><?php echo $fila['Cantidad_Productos'] ?></th>
-                                                    <th><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos'])  ?>" alt=""></th>
-                                                    <th><a class="btn  btn-warning" href="deleteProducto.php?id=<?php echo $fila['Id_Productos'] ?>">eliminar</a>
-                                                    <th>
-    <a class="btn btn-danger" onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Modificar</a>
-</th>
-
-                                                    </th>
-
-                                                </tr>
-                                                </tr>
-                                        </tbody>
-
-                                    <?php } ?>
-                                    </table>
-                                </div>
-
-
-
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- #/ container -->
-
-
-
-
-            <!--**********************************
-            Footer start
-        ***********************************-->
-            <div class="footer">
-                <div class="copyright">
-                    <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
-                </div>
-            </div>
-            <!--**********************************
-            Footer end
-        ***********************************-->
         </div>
         <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        <div id="mensaje"></div>
+
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
         Main wrapper end
     ***********************************-->
 
-        <!--**********************************
+    <!--**********************************
         Scripts
     ***********************************-->
-        <script src="plugins/common/common.min.js"></script>
-        <script src="js/custom.min.js"></script>
-        <script src="js/settings.js"></script>
-        <script src="js/gleek.js"></script>
-        <script src="js/styleSwitcher.js"></script>
-
-        <script>
-    function mostrarModalModificar(id, nombre, detalle, precio, cantidad, imagen) {
-        document.getElementById('idProducto').value = id;
-        document.getElementById('nombreProducto').value = nombre;
-        document.getElementById('detalleProducto').value = detalle;
-        document.getElementById('precioProducto').value = precio;
-        document.getElementById('cantidadProducto').value = cantidad;
-
-        // Puedes manejar la carga de la imagen aquí, por ejemplo, si tienes la URL de la imagen, puedes asignarla a un elemento <img> en el modal.
-        // document.getElementById('imagenProducto').src = imagen;
-
-        var modal = new bootstrap.Modal(document.getElementById('modificarProductoModal'));
-        modal.show();
+    <script src="./js/validaciones/ValidacionProductos.js"></script>
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+    <script>
+  function mostrarModalAgregarProducto() {
+    $('#agregarProductoModal').modal('show');
+  }
+</script>
+<script>
+  function mostrarModalModificar(id, nombre, detalle, precio, cantidad) {
+    $('#idProducto').val(id);
+    $('#editarNombreProducto').val(nombre);
+    $('#editarDetalleProducto').val(detalle);
+    $('#editarPrecioProducto').val(precio);
+    $('#editarCantidadProducto').val(cantidad);
+    $('#modificarProductoModal').modal('show');
+  }
+</script>
+<script>
+    function confirmarEliminar(idProducto) {
+        if (confirm('¿Está seguro de que desea eliminar este producto?')) {
+            // Si el usuario confirma, redirigir a la página de eliminación con el ID del producto
+            window.location.href = 'deleteProducto.php?id=' + idProducto;
+        }
     }
 </script>
 

@@ -57,10 +57,10 @@ echo $_SESSION['username'];
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <img src="images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -266,7 +266,7 @@ echo $_SESSION['username'];
                     </li>
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Modulos</span>
                         </a>
                         <ul aria-expanded="false">
                         <li><a href="./Clientes.php">Usuarios/Clientes</a></li>

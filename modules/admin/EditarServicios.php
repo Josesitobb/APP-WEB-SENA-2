@@ -5,14 +5,14 @@ ini_set('display_errors', 1);
 
 include("db.php");
 
-$Id = $_REQUEST['IdEditar'];
-$servicio_nombre = $_POST['servicio_nombre'];
-$servicio_valor = $_POST['servicio_valor'];
-$servicio_descripcion = $_POST['servicio_descripcion'];
+$Id = $_REQUEST['editId'];
+$servicio_nombre = $_POST['editNombre'];
+$servicio_valor = $_POST['editPrecio'];
+$servicio_descripcion = $_POST['editDescripcion'];
 
 // Check if a new image is uploaded
-if (!empty($_FILES['servicio_Imagen']['tmp_name'])) {
-    $servicio_Imagen = addslashes(file_get_contents($_FILES['servicio_Imagen']['tmp_name']));
+if (!empty($_FILES['editImagen']['tmp_name'])) {
+    $servicio_Imagen = addslashes(file_get_contents($_FILES['editImagen']['tmp_name']));
     $updateImage = true;
 } else {
     // No new image uploaded, use the existing image from the database
@@ -39,7 +39,7 @@ if ($updateImage) {
 $resultado = $conn->query($sql);
 
 if ($resultado) {
-    header('location:layout-two-column.php');
+    header('location:Servicios.php');
 } else {
     echo "No se editó el dato.";
 }

@@ -4,15 +4,15 @@ ini_set('display_errors', 1);
 
 include("db.php");
 
-$Name_product=$_POST['Name_product'];
+$Name_product=$_POST['nombreProducto'];
 
-$Price_Name = $_POST['Price_Name'];
+$Price_Name = $_POST['precioProducto'];
 
-$Product_description= $_POST['Product_description'];
+$Product_description= $_POST['descripcionProducto'];
 
-$Product_amount = $_POST['Product_amount'];
+$Product_amount = $_POST['cantidadProducto'];
 
-$Product_Image =addslashes(file_get_contents($_FILES['Product_Image']['tmp_name']));
+$Product_Image =addslashes(file_get_contents($_FILES['imagenProducto']['tmp_name']));
 
 $sql="INSERT INTO `productos`(`Id_Productos`, `Nombre_Productos`, `Precio_Productos`, `Cantidad_Productos`, `Descripcion_Productos`,`Imagen_Productos`) VALUES (null,'$Name_product','$Price_Name','$Product_amount','$Product_description','$Product_Image')";
 

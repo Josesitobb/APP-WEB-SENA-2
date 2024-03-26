@@ -30,6 +30,79 @@ echo $_SESSION['username'];
 </head>
 
 <body>
+   <!-- MODAL AGREGAR SERVICIO -->
+<div class="modal fade" id="agregarServicioModal" tabindex="-1" role="dialog" aria-labelledby="agregarServicioModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="agregarServicioModalLabel">Agregar Nuevo Servicio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Aquí van los campos del formulario -->
+        <form action="AgregarServicios.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <input type="text" class="form-control" id="precio" name="precio" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control-file" id="imagen" name="imagen" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR -->
+<div class="modal fade" id="editarServicioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Servicio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="editarServicioForm" action="EditarServicios.php" method="POST" enctype="multipart/form-data">
+          <input type="hidden" id="editId" name="editId">
+          <div class="form-group">
+            <label for="editNombre">Nombre</label>
+            <input type="text" class="form-control" id="editNombre" name="editNombre" required>
+          </div>
+          <div class="form-group">
+            <label for="editPrecio">Precio</label>
+            <input type="text" class="form-control" id="editPrecio" name="editPrecio" required>
+          </div>
+          <div class="form-group">
+            <label for="editDescripcion">Descripción</label>
+            <textarea class="form-control" id="editDescripcion" name="editDescripcion" required></textarea>
+          </div>
+          <div class="form-group">
+    <label for="editImagen">Imagen</label>
+    <input type="file" class="form-control-file" id="editImagen" name="editImagen">
+</div>
+
+          <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
     <!--*******************
         Preloader start
@@ -57,10 +130,10 @@ echo $_SESSION['username'];
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                <b class="logo-abbr"><img src="images/logi.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/logi.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
                     <span class="brand-title">
-                    <img src="images/logi.png" alt="">
+                        <img src="images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -231,62 +304,60 @@ echo $_SESSION['username'];
             <!-- row -->
 
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                            <div class="container">
-        <br>
-        <h1>Lista de Servicio</h1>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container">
+                        <br>
+                        <h1 class="text-center">Lista de Servicio</h1>
+                    </div>
+
+                    <div class="container mt-4">
+                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#agregarServicioModal">Agregar Nuevo Servicio</a>
+                    </div>
+
+                    <div class="container mt-4">
+                        <table class="table table-striped table-hover" style="background-color: #e7f0fd;">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Descripción</th>
+                                    <th scope="col">Imagen</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                include("db.php");
+                                $sql = "SELECT * FROM `servicios`";
+                                $resultado = $conn->query($sql);
+                                while ($fila = $resultado->fetch_assoc()) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $fila['Id_Servicios'] ?></td>
+                                        <td><?php echo $fila['Nombre_Servicios'] ?></td>
+                                        <td><?php echo $fila['Valor_Servicios'] ?></td>
+                                        <td><?php echo $fila['Descripcion_Servicios'] ?></td>
+                                        <td><img style="max-width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios']) ?>" alt=""></td>
+                                        <td>
+                                            <a class="btn btn-warning" href="deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">Eliminar</a>
+                                            <a class="btn btn-danger" href="#" onclick="editarServicio('<?php echo $fila['Id_Servicios']; ?>', '<?php echo $fila['Nombre_Servicios']; ?>', '<?php echo $fila['Valor_Servicios']; ?>', '<?php echo $fila['Descripcion_Servicios']; ?>')">Editar</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 
 
-
-
-
-    <div class="cotainer">
-        <br>
-
-        <a href="./new_servicio.php" class="btn btn-dark">Agregar Nuevo Servicio</a>
-        <br>
-        <table class="table">
-            <br>
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Imagen</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php
-
-                include("db.php");
-                $sql = "SELECT * FROM `servicios` ";
-                $resultado = $conn->query($sql);
-
-                while ($fila = $resultado->fetch_assoc()) { ?>
-                    <tr>
-                        <th scope="row"><?php echo $fila['Id_Servicios'] ?></th>
-                        <th><?php echo $fila['Nombre_Servicios'] ?></th>
-                        <th><?php echo $fila['Valor_Servicios'] ?></th>
-                        <th><?php echo $fila['Descripcion_Servicios'] ?></th>
-                        <th><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios'])  ?>" alt=""></th>
-                        <th><a class="btn  btn-warning" href="deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">eliminar</a>
-                            <a class="btn  btn-danger" href="vistas_Editar_Servicio.php?Id=<?php echo $fila['Id_Servicios'] ?>">modificar</a>
-                        </th>
-
-                    </tr>
-                    </tr>
-            </tbody>
-
-        <?php } ?>
-        </table>
-    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -334,6 +405,22 @@ echo $_SESSION['username'];
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
+    <script>
+  function editarServicio(id, nombre, precio, descripcion, imagenBase64) {
+    $('#editId').val(id);
+    $('#editNombre').val(nombre);
+    $('#editPrecio').val(precio);
+    $('#editDescripcion').val(descripcion);
+    if (imagenBase64) {
+        $('#editImagen').siblings('label').text('Imagen seleccionada');
+    } else {
+        $('#editImagen').siblings('label').text('Seleccione una imagen');
+    }
+    $('#editarServicioModal').modal('show');
+  }
+</script>
+
+
 
 </body>
 

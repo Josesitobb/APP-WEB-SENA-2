@@ -29,7 +29,7 @@ $resultado = mysqli_query($conn, $sql_servicios);
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
     <!-- Favicon icon -->
-    <link type="image/png" sizes="16x16" rel="icon" href=".../icons8-s-16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -63,8 +63,8 @@ $resultado = mysqli_query($conn, $sql_servicios);
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.html">
-                    <b class="logo-abbr"><img src="images/Logo_compañia.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/Logo_compañia.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/favicon.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/favicon.png" alt=""></span>
                     <span class="brand-title">
                         <img src="images/Logo_compañia.png" alt="">
                     </span>
@@ -266,7 +266,7 @@ $resultado = mysqli_query($conn, $sql_servicios);
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./index.html">Home 1</a></li>
+                            <li><a href="./index.php">Home 1</a></li>
                             <!-- <li><a href="./index-2.html">Home 2</a></li> -->
                         </ul>
                     </li>

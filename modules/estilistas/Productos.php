@@ -109,8 +109,8 @@ include("db.php");
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.html">
-                    <b class="logo-abbr"><img src="images/Logo_compañia.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/Logo_compañia.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/favicon.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/favicon.png" alt=""></span>
                     <span class="brand-title">
                         <img src="images/Logo_compañia.png" alt="">
                     </span>
@@ -315,7 +315,7 @@ include("db.php");
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./index.html">Home 1</a></li>
+                            <li><a href="./index.php">Home 1</a></li>
                             <!-- <li><a href="./index-2.html">Home 2</a></li> -->
                         </ul>
                     </li>

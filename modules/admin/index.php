@@ -18,9 +18,6 @@ if (isset($_SESSION['username'])) {
   
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -35,12 +32,13 @@ if (isset($_SESSION['username'])) {
   
     <title>Inicio Administrador</title>
     <!-- Favicon icon -->
-    <link rel="icon" href="./images/soporte-de-tablero.ico">
+    <!-- <link rel="icon" href="icons/SG.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
-    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
-    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
@@ -61,8 +59,8 @@ if (isset($_SESSION['username'])) {
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/soporte-de-tablero.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/soporte-de-tablero.png" alt=""></span>
+                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
                     <span class="brand-title">
                         <img src="images/logi.png" alt="">
                     </span>
