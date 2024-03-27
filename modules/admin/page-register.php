@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Registrar</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     
@@ -41,9 +41,9 @@
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
                                 
-                                    <a class="text-center" href="index.php"> <h4>Regitrar nuevo usuario</h4></a>
+                                    <a class="text-center" href="index.php"> <h4>Registrarme</h4></a>
         
-                                <form class="mt-5 mb-5 login-input" action="./register.php" method="post"  onsubmit="return validarRegister();">
+                                <form class="mt-5 mb-5 login-input" action="./register.php" method="post" onsubmit="return register();">
 
                                     <div class="form-group">
                                         <input type="text" class="form-control"  placeholder="Nombre" name="Nombre_usuario" id="Nombre_usuario" required >
@@ -58,11 +58,11 @@
                                         <input type="email" class="form-control" placeholder="Correo" name="Correo_Usuario" id="Correo_Usuario" required >
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="Telefono" name="Telefono_usuario" id="Telefono_usuario" required >
+                                        <input type="number" class="form-control" placeholder="Teléfono " name="Telefono_usuario" id="Telefono_usuario" required >
                                     </div>
-                                    <button class="btn login-form__btn submit w-100">Sign in</button>
+                                    <button class="btn login-form__btn submit w-100">Registrar</button>
                                 </form>
-                                    <p class="mt-5 login-form__footer">Ya tiene cuenta <a href="page-login.php" class="text-primary">click  </a>aqui</p>
+                                    <p class="mt-5 login-form__footer">¿Ya tiene una cuenta? <a href="page-login.php" class="text-primary">Click  </a>aquí.</p>
                                     </p>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
     <script src="js/settings.js"></script>
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
-    <script src="./js/validaciones/ValidacionRegister.js"></script>
+    <script src="../admin/js/validaciones/ValidacionRegister.js"></script>
 </body>
 </html>
 
