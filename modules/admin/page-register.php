@@ -53,7 +53,9 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Contraseña" name="Contraseña_Usuario" id="Contraseña_Usuario" required >
+                                        <button class="btn btn-outline-success col-12 mx-auto" type="button" id="togglePassword" onclick="togglePasswordVisibility()">Visualizar Contraseña</i></button>
                                     </div>
+
                                     <div class="form-group">
                                         <input type="email" class="form-control" placeholder="Correo" name="Correo_Usuario" id="Correo_Usuario" required >
                                     </div>
@@ -85,6 +87,22 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
     <script src="../admin/js/validaciones/ValidacionRegister.js"></script>
+    <script>
+  function togglePasswordVisibility() {
+    var passwordInput = document.getElementById("Contraseña_Usuario");
+    var toggleButton = document.getElementById("togglePassword");
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleButton.innerHTML = 'Ocultar Contraseña';
+    } else {
+      passwordInput.type = "password";
+      toggleButton.innerHTML = 'Visualizar Contraseña';
+    }
+  }
+</script>
+
+
 </body>
 </html>
 
