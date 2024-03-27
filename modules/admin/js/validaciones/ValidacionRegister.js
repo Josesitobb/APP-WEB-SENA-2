@@ -17,8 +17,8 @@ function register () {
         alert("El nombre debe tener menos de 25 letras.");
         return false;
     }
-    if (!/^[a-zA-Z]+$/.test(Nombre_usuario)) {
-        alert("El nombre solo debe contener letras.");
+    if (!/^[a-zA-Z]+(\s[a-zA-Z]+){0,2}$/.test(Nombre_usuario)) {
+        alert("El nombre debe contener uno o dos nombres separados por uno o dos espacios.");
         return false;
     }
     // Apellido
@@ -58,35 +58,35 @@ function register () {
         return false;
     }  
     // Correo
-    if (correo_usuario.length < 5 || correo_usuario.length > 50) {
+    if (Correo_Usuario.length < 5 || Correo_Usuario.length > 50) {
         alert("El correo electrónico debe tener entre 5 y 50 caracteres.");
         return false;
     }
-
+    
     var correo_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!correo_regex.test(correo_usuario)) {
+    if (!correo_regex.test(Correo_Usuario)) {
         alert("El correo electrónico no tiene un formato válido.");
         return false;
     }
-
-    if (correo_usuario.indexOf('.') === -1) {
-        alert("El correo electrónico debe contener al menos un punto en el dominio.");
+    
+    if (Correo_Usuario.indexOf('.') === -1 || Correo_Usuario.indexOf('@') === -1) {
+        alert("El correo electrónico debe contener al menos un punto en el dominio y un símbolo '@'.");
         return false;
     }
-
-    if (!/^[a-zA-Z0-9._-]+$/.test(correo_usuario)) {
-        alert("El correo electrónico solo debe contener letras, números, puntos, guiones bajos (_) o guiones.");
+    
+    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(Correo_Usuario)) {
+        alert("El correo electrónico solo debe contener letras, números, puntos, guiones bajos (_) o guiones en la parte local.");
         return false;
     }
     // Teléfono
-    if (telefono_usuario.length < 7 || telefono_usuario.length > 15) {
-        alert("El número de teléfono debe tener entre 7 y 15 caracteres.");
+    if (Telefono_usuario.length !== 10) {
+        alert("El número de teléfono debe tener exactamente 10 dígitos.");
         return false;
     }
-
-    var telefono_regex = /^\d+$/;
-    if (!telefono_regex.test(telefono_usuario)) {
-        alert("El número de teléfono solo puede contener dígitos numéricos.");
+    
+    var telefono_regex = /^3\d{9}$/;
+    if (!telefono_regex.test(Telefono_usuario)) {
+        alert("El número de teléfono debe comenzar con el número 3 y tener exactamente 10 dígitos numéricos.");
         return false;
     }
 }

@@ -31,8 +31,8 @@ if(!$result_usuario){
         echo "ERROR al insertar cliente";
     } else {
         echo '<script>
-        alert("Usuario registrado y cliente creado");
-        window.location.replace("../../../index.html");
+        alert("Se registro exitosamente");
+        window.location.replace("./page-login.php");
         </script>';
     }
 }

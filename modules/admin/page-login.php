@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Login </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
     <link href="css/style.css" rel="stylesheet">
     
@@ -45,15 +45,16 @@
         
                                 <form class="mt-5 mb-5 login-input" action="validad.php" method="post" onsubmit="return validarlogin();" >
                                     <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Correo de usuario" name="emailuser" id="emailuser" required/>
+                                        <input type="text" class="form-control" placeholder="Correo" name="emailuser" id="emailuser" required/>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control" placeholder="Contraseña" name="passwordlog" id="passwordlog" required/>
+                                        <button class="btn btn-outline-success col-12 mx-auto" type="button" id="togglePassword" onclick="togglePasswordVisibility()">Visualizar Contraseña</i></button>
                                     </div>
                                     
                                     <button class="btn login-form__btn submit w-100">Iniciar sesion</button>
                                 </form>
-                                <p class="mt-5 login-form__footer">¿No tienes una cuenta? <a href="page-register.php" class="text-primary">Click </a> aqui para crear una</p>
+                                <p class="mt-5 login-form__footer">¿No tienes una cuenta? <a href="page-register.php" class="text-primary">Click </a> aquí para registrarte.</p>
                             </div>
                         </div>
                     </div>
@@ -74,7 +75,20 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
     <script src="./js/validaciones/ValidacionLogin.js"></script>
-    
+    <script>
+  function togglePasswordVisibility() {
+    var passwordInput = document.getElementById("passwordlog");
+    var toggleButton = document.getElementById("togglePassword");
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleButton.innerHTML = 'Ocultar Contraseña';
+    } else {
+      passwordInput.type = "password";
+      toggleButton.innerHTML = 'Visualizar Contraseña';
+    }
+  }
+</script>
 </body>
 </html>
 
