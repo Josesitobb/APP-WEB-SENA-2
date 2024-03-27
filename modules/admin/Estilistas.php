@@ -27,6 +27,19 @@ echo $_SESSION['username'];
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <style>
+.btn-custom-pink {
+    background-color: #F299B9;
+    border-color: #F299B9;
+    color: white; 
+}
+
+.btn-custom-blue {
+    background-color: #6BCCF2; 
+    border-color: #6BCCF2;
+    color: white; 
+}
+</style>
 
 </head>
 
@@ -122,7 +135,7 @@ echo $_SESSION['username'];
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                <div class="header-left">
+                <!-- <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
@@ -134,7 +147,7 @@ echo $_SESSION['username'];
 							</form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="header-right">
                     <ul class="clearfix">
                             </a>
@@ -335,54 +348,42 @@ echo $_SESSION['username'];
 <br>
 
 
-
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr class="table-active">
-                                    <th scope="col">ROL</th>
-                                    <th scope="col">NOMBRE USUARIO</th>
-                                    <th scope="col">APELIIDO USUARIO</th>
-                                    <th scope="col">COREOO</th>
-                                    <th scope="col">TELEFONO</th>
-                                    <th scope="col">CONTRASEÑA</th>
-                                    <th scope="col">ACCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                require_once("db.php");
-
-                                $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
-                                    FROM Usuarios U
-                                    JOIN Roles R ON U.Id_Rol = R.Id_Rol
-                                    WHERE R.Nombre_Rol = 'estilistas'");
-
-                                while ($resultado = $sql->fetch_assoc()) {
-                                ?>
-                                    <tr class="table-light">
-                                        <th scope="row"><?php echo $resultado['Rol'] ?></th>
-                                        <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
-                                        <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
-                                        <td><?php echo $resultado['Correo_Usuarios'] ?></td>
-                                        <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
-                                        <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
-                                        <td>
-                                            <a href="#" onclick="cargarDatosEstilista('<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios']; ?>', '<?php echo $resultado['Id_Usuarios']; ?>')" data-bs-toggle="modal" data-bs-target="#editarEstilistaModal" class="btn btn-warning">Editar</a>
-
-                                            <a href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-danger">ELIMINAR</a>
-                                        </td>
-                                    </tr>
-                                <?php
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Rol</th>
+                <th scope="col">Nombre usuario</th>
+                <th scope="col">Apellido usuario</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Contraseña</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            require_once("db.php");
+            $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol FROM Usuarios U JOIN Roles R ON U.Id_Rol = R.Id_Rol WHERE R.Nombre_Rol = 'estilistas'");
+            while ($resultado = $sql->fetch_assoc()) {
+            ?>
+                <tr class="table-light">
+                    <th scope="row"><?php echo $resultado['Rol'] ?></th>
+                    <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Correo_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
+                    <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
+                    <td>
+                        <a class="btn btn-custom-blue my-1" href="#" onclick="cargarDatosEstilista('<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios']; ?>', '<?php echo $resultado['Id_Usuarios']; ?>')" data-bs-toggle="modal" data-bs-target="#editarEstilistaModal" class="btn btn-warning">Editar</a>
+                        <a class="btn btn-custom-pink my-1" href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </tbody>
+    </table>
 </div>
 
 

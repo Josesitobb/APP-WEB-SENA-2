@@ -26,6 +26,19 @@ echo $_SESSION['username'];
     <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+.btn-custom-pink {
+    background-color: #F299B9;
+    border-color: #F299B9;
+    color: white; 
+}
+
+.btn-custom-blue {
+    background-color: #6BCCF2; 
+    border-color: #6BCCF2;
+    color: white; 
+}
+</style>
 
 </head>
 
@@ -153,7 +166,7 @@ echo $_SESSION['username'];
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                <div class="header-left">
+                <!-- <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
@@ -165,7 +178,7 @@ echo $_SESSION['username'];
 							</form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="header-right">
                     <ul class="clearfix">
                         <li class="icons dropdown">
@@ -302,7 +315,6 @@ echo $_SESSION['username'];
 
 
             <!-- row -->
-
             <div class="container-fluid">
     <div class="row">
         <div class="col">
@@ -318,44 +330,48 @@ echo $_SESSION['username'];
                     </div>
 
                     <div class="container mt-4">
-                        <table class="table table-striped table-hover" style="background-color: #e7f0fd;">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Precio</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Imagen</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                include("db.php");
-                                $sql = "SELECT * FROM `servicios`";
-                                $resultado = $conn->query($sql);
-                                while ($fila = $resultado->fetch_assoc()) {
-                                ?>
+                        <div class="table-responsive"> <!-- Aquí se agrega la clase para hacer la tabla responsive -->
+                            <table class="table">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $fila['Id_Servicios'] ?></td>
-                                        <td><?php echo $fila['Nombre_Servicios'] ?></td>
-                                        <td><?php echo $fila['Valor_Servicios'] ?></td>
-                                        <td><?php echo $fila['Descripcion_Servicios'] ?></td>
-                                        <td><img style="max-width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios']) ?>" alt=""></td>
-                                        <td>
-                                            <a class="btn btn-warning" href="deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">Eliminar</a>
-                                            <a class="btn btn-danger" href="#" onclick="editarServicio('<?php echo $fila['Id_Servicios']; ?>', '<?php echo $fila['Nombre_Servicios']; ?>', '<?php echo $fila['Valor_Servicios']; ?>', '<?php echo $fila['Descripcion_Servicios']; ?>')">Editar</a>
-                                        </td>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Imagen</th>
+                                        <th scope="col">Acciones</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <?php
+                                    include("db.php");
+                                    $sql = "SELECT * FROM `servicios`";
+                                    $resultado = $conn->query($sql);
+                                    while ($fila = $resultado->fetch_assoc()) {
+                                    ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $fila['Id_Servicios'] ?></th>
+                                            <td><?php echo $fila['Nombre_Servicios'] ?></td>
+                                            <td><?php echo $fila['Valor_Servicios'] ?></td>
+                                            <td><?php echo $fila['Descripcion_Servicios'] ?></td>
+                                            <td><img style="max-width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios']) ?>" alt=""></td>
+                                            <td>
+                                                <a class="btn btn-custom-blue my-1" href="#" onclick="editarServicio('<?php echo $fila['Id_Servicios']; ?>', '<?php echo $fila['Nombre_Servicios']; ?>', '<?php echo $fila['Valor_Servicios']; ?>', '<?php echo $fila['Descripcion_Servicios']; ?>')">Editar</a>
+                                                <a class="btn btn-custom-pink my-1" href="deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">Eliminar</a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 
 
     <!-- Optional JavaScript; choose one of the two! -->

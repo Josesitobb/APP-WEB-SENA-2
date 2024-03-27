@@ -27,6 +27,19 @@ echo $_SESSION['username'];
     <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+.btn-custom-pink {
+    background-color: #F299B9;
+    border-color: #F299B9;
+    color: white; 
+}
+
+.btn-custom-blue {
+    background-color: #6BCCF2; 
+    border-color: #6BCCF2;
+    color: white; 
+}
+</style>
     
 
 </head>
@@ -165,7 +178,7 @@ echo $_SESSION['username'];
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                <div class="header-left">
+                <!-- <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
@@ -177,7 +190,7 @@ echo $_SESSION['username'];
 							</form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="header-right">
                     <ul class="clearfix">
 
@@ -350,10 +363,10 @@ echo $_SESSION['username'];
                         <button type="button" class="btn btn-info" onclick="mostrarModalAgregarProducto()">Agregar nuevo producto</button>
                     </div>
                     <div class="container mt-4">
-                        <table class="table table-striped">
-                            <thead class="thead-light">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <th scope="col">Id Productos</th>
+                                    <th scope="col">#</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Detalle</th>
                                     <th scope="col">Precio</th>
@@ -377,8 +390,8 @@ echo $_SESSION['username'];
                                         <td><?php echo $fila['Cantidad_Productos'] ?></td>
                                         <td><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos']) ?>" alt=""></td>
                                         <td>
-                                            <button type="button" class="btn btn-warning" onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Modificar</button>
-                                            <button type="button" class="btn btn-danger" onclick="confirmarEliminar(<?php echo $fila['Id_Productos'] ?>)">Eliminar</button>
+                                            <button type="button" class="btn btn-custom-blue my-1"  onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Editar</button>
+                                            <button type="button" class="btn btn-custom-pink my-1" onclick="confirmarEliminar(<?php echo $fila['Id_Productos'] ?>)">Eliminar</button>
 
                                         </td>
                                     </tr>

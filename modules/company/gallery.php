@@ -98,7 +98,7 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="service.php" class="nav-item nav-link">Servicios</a>
                         <a href="gallery.php" class="nav-item nav-link">Galeria</a>
-                        <a href="contact.php" class="nav-item nav-link">Contactenos</a>
+                        <a href="contact.php" class="nav-item nav-link">Mas informacion</a>
                     </div>
                 </div>
             </nav>

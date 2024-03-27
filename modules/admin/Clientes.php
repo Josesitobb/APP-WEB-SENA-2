@@ -48,6 +48,19 @@ var roles = <?php echo $roles_json; ?>;
     <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+.btn-custom-pink {
+    background-color: #F299B9;
+    border-color: #F299B9;
+    color: white; 
+}
+
+.btn-custom-blue {
+    background-color: #6BCCF2; 
+    border-color: #6BCCF2;
+    color: white; 
+}
+</style>
 
 </head>
 
@@ -102,7 +115,7 @@ var roles = <?php echo $roles_json; ?>;
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                <div class="header-left">
+                <!-- <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
@@ -114,7 +127,7 @@ var roles = <?php echo $roles_json; ?>;
 							</form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="header-right">
                     <ul class="clearfix">
 
@@ -335,17 +348,18 @@ var roles = <?php echo $roles_json; ?>;
 
   <br>
     <br>
+
     <div class="table-responsive">
-    <table class="table table-hover">
+    <table class="table">
         <thead>
-            <tr class="table-active">
-                <th scope="col">ROL</th>
-                <th scope="col">NOMBRE USUARIO</th>
-                <th scope="col">APELLIDO USUARIO</th>
-                <th scope="col">CORREO</th>
-                <th scope="col">TELÉFONO</th>
-                <th scope="col">CONTRASEÑA</th>
-                <th scope="col">ACCIONES</th>
+            <tr>
+                <th scope="col">Rol</th>
+                <th scope="col">Nombre usuario</th>
+                <th scope="col">Apellido usuario</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Contraseña</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -367,8 +381,8 @@ var roles = <?php echo $roles_json; ?>;
                     <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
                     <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
                     <td>
-                        <a href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">Editar</a>
-                        <a href="Borrar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
+                        <a class="btn btn-custom-blue my-1" href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">Editar</a>
+                        <a class="btn btn-custom-pink my-1" href="Borrar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
                     </td>
                 </tr>
             <?php
@@ -377,9 +391,6 @@ var roles = <?php echo $roles_json; ?>;
         </tbody>
     </table>
 </div>
-
-
-
 
 
    

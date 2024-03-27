@@ -81,7 +81,7 @@ echo $_SESSION['username'];
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                <div class="header-left">
+                <!-- <div class="header-left">
                     <div class="input-group icons">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
@@ -93,7 +93,7 @@ echo $_SESSION['username'];
 							</form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="header-right">
                     <ul class="clearfix">
                         <li class="icons dropdown">
@@ -277,14 +277,14 @@ echo $_SESSION['username'];
         ***********************************-->
         <div class="content-body">
 
-            <div class="row page-titles mx-0">
+            <!-- <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
                         <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
                     </ol>
                 </div>
-            </div>
+            </div> -->
             <!-- row -->
 
             <?php
