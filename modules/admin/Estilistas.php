@@ -344,6 +344,7 @@ echo $_SESSION['username'];
 
                     <!-- Botón para abrir el modal de agregar nuevo estilista -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarEstilistaModal">Agregar Nuevo Estilista</button>
+<a href="reportes_excel/execel_estilistas.php" class="btn btn-primary">Descargar</a>
 <br>
 <br>
 

@@ -304,6 +304,7 @@ var roles = <?php echo $roles_json; ?>;
     
   <!-- Botón para abrir el modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">Agregar Usuario</button>
+<a href="reportes_excel/execel_clientes.php" class="btn btn-primary">Descargar</a>
 
 <!-- Modal para agregar un nuevo usuario -->
 <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -349,6 +350,7 @@ var roles = <?php echo $roles_json; ?>;
   <br>
     <br>
 
+<a href="">Descargar</a>
     <div class="table-responsive">
     <table class="table">
         <thead>
@@ -360,6 +362,7 @@ var roles = <?php echo $roles_json; ?>;
                 <th scope="col">Telefono</th>
                 <th scope="col">Contraseña</th>
                 <th scope="col">Acciones</th>
+               
             </tr>
         </thead>
         <tbody>

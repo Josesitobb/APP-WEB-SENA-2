@@ -541,7 +541,7 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Citas</title>
     <!-- Enlace a Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 </head>
 <body>
     <div class="container">
@@ -555,7 +555,7 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Citas</title>
     <!-- Enlace a Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -687,6 +687,7 @@ $result = $conn->query($sql);
                     ?>
                 </select>
             </div>
+            <a href="reportes_excel/execel_citas.php" class="btn btn-primary">Descargar</a>
             <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
             <button type="button" class="btn btn-secondary" onclick="location.href='index.php';">Quitar filtro</button>
         </form>
