@@ -326,7 +326,8 @@ echo $_SESSION['username'];
                     </div>
 
                     <div class="container mt-4">
-                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#agregarServicioModal">Agregar Nuevo Servicio</a>
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#agregarServicioModal">Agregar Nuevo Servicio</a>
+                        <a href="reportes_excel/execel_servicios.php" class="btn btn-primary">Descargar</a>
                     </div>
 
                     <div class="container mt-4">

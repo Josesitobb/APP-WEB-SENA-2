@@ -360,7 +360,8 @@ echo $_SESSION['username'];
                 <div class="card-body">
                     <h1 class="text-center">Lista de productos</h1>
                     <div class="container mt-4">
-                        <button type="button" class="btn btn-info" onclick="mostrarModalAgregarProducto()">Agregar nuevo producto</button>
+                        <button type="button" class="btn btn-primary" onclick="mostrarModalAgregarProducto()">Agregar nuevo producto</button>
+                        <a href="reportes_excel/execel_productos.php" class="btn btn-primary">Descargar</a>
                     </div>
                     <div class="container mt-4">
                         <table class="table">
