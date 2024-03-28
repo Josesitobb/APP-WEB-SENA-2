@@ -27,7 +27,7 @@ $nombre_usuario = $_SESSION['username'];
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon1.png" rel="icon">
+    <link rel="icon" href="../../views/SG.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -57,18 +57,12 @@ $nombre_usuario = $_SESSION['username'];
             </div>
             <div class="col-md-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=100083475433076&mibextid=rS40aB7S9Ucbxw6v">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-white px-3" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA==">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     <a class="text-white px-3" href="./cerrar_Sesion.php">
                         <i class="fas fa-sign-out-alt"></i> <!-- Ícono de salida -->
                         Cerrar sesión
@@ -104,7 +98,7 @@ $nombre_usuario = $_SESSION['username'];
                         
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
                         <a href="./citas.php" class="nav-item nav-link">Citas</a>
-                        <a href="gallery.php" class="nav-item nav-link">Galeria</a>
+
 
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
                     </div>
@@ -125,7 +119,7 @@ $nombre_usuario = $_SESSION['username'];
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                            <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
                         </div>
                     </div>
                 </div>
@@ -135,7 +129,7 @@ $nombre_usuario = $_SESSION['username'];
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                            <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
                         </div>
                     </div>
                 </div>
@@ -166,7 +160,7 @@ $nombre_usuario = $_SESSION['username'];
             <div class="row">
                 <div class="col-lg-4 py-5">
                     <h4 class="font-weight-bold mb-3">Sobre nosotros</h4>
-                    <h5 class="text-muted mb-3">!Descubre la experiencia de belleza en su máxima expresión¡ Bienvenidos a nuestra peluquería un referente durante más de cuatro años en el país. </h5>
+                    <h5 class="text-muted mb-3">¡Sumérgete en la belleza en su máximo esplendor! Te recibimos en nuestro salón de belleza, líder en la zona desde hace más de cuatro años. Déjanos realzar tu belleza y hacerte brillar como nunca. ¡Bienvenido a una experiencia única!</h5>
                     <p>Bogotá D.C</p>
                     <!-- <a href="" class="btn btn-secondary mt-2">MAS INFORMACION</a> -->
                 </div>
@@ -210,7 +204,7 @@ $nombre_usuario = $_SESSION['username'];
                     </div>
                     <h3 class="font-weight-bold text-white mt-3 mb-4">Bono de bienvenida</h3>
                     <p class="text-white mb-4">Ven, prueba nuestros servicios y recibe un bono por facturas superiores a $120.000.</p>
-                    <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                    <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
                 </div>
             </div>
         </div>
