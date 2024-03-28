@@ -10,7 +10,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
-    <link href="../views/Views Admin/css/style.css" rel="stylesheet">
+    <link href="../views/Views_Admin/css/style.css" rel="stylesheet">
     
 </head>
 
@@ -70,12 +70,12 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="../views/Views Admin/plugins/common/common.min.js"></script>
-    <script src="../views/Views Admin/js/custom.min.js"></script>
-    <script src="../views/Views Admin/js/settings.js"></script>
-    <script src="../views/Views Admin/js/gleek.js"></script>
-    <script src="../views/Views Admin/js/styleSwitcher.js"></script>
-    <script src="../views/Views Admin/js/validaciones/ValidacionLogin.js"></script>
+    <script src="../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../views/Views_Admin/js/settings.js"></script>
+    <script src="../views/Views_Admin/js/gleek.js"></script>
+    <script src="../views/Views_Admin/js/styleSwitcher.js"></script>
+    <script src="../views/Views_Admin/js/validaciones/ValidacionLogin.js"></script>
     <script>
   function togglePasswordVisibility() {
     var passwordInput = document.getElementById("passwordlog");
