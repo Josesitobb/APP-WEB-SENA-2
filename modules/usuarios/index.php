@@ -27,7 +27,7 @@ $nombre_usuario = $_SESSION['username'];
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon1.png" rel="icon">
+    <link rel="icon" href="../../views/SG.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -57,18 +57,12 @@ $nombre_usuario = $_SESSION['username'];
             </div>
             <div class="col-md-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-white px-3" href="#">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=100083475433076&mibextid=rS40aB7S9Ucbxw6v">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-white px-3" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA==">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     <a class="text-white px-3" href="./cerrar_Sesion.php">
                         <i class="fas fa-sign-out-alt"></i> <!-- Ícono de salida -->
                         Cerrar sesión
@@ -104,7 +98,7 @@ $nombre_usuario = $_SESSION['username'];
                         
                         <a href="./service.php" class="nav-item nav-link">Servicios</a>
                         <a href="./citas.php" class="nav-item nav-link">Citas</a>
-                        <a href="gallery.php" class="nav-item nav-link">Galeria</a>
+
 
                         <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
                     </div>
@@ -125,7 +119,7 @@ $nombre_usuario = $_SESSION['username'];
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                            <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
                         </div>
                     </div>
                 </div>
@@ -135,7 +129,7 @@ $nombre_usuario = $_SESSION['username'];
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                            <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
                         </div>
                     </div>
                 </div>
@@ -166,7 +160,7 @@ $nombre_usuario = $_SESSION['username'];
             <div class="row">
                 <div class="col-lg-4 py-5">
                     <h4 class="font-weight-bold mb-3">Sobre nosotros</h4>
-                    <h5 class="text-muted mb-3">!Descubre la experiencia de belleza en su máxima expresión¡ Bienvenidos a nuestra peluquería un referente durante más de cuatro años en el país. </h5>
+                    <h5 class="text-muted mb-3">¡Sumérgete en la belleza en su máximo esplendor! Te recibimos en nuestro salón de belleza, líder en la zona desde hace más de cuatro años. Déjanos realzar tu belleza y hacerte brillar como nunca. ¡Bienvenido a una experiencia única!</h5>
                     <p>Bogotá D.C</p>
                     <!-- <a href="" class="btn btn-secondary mt-2">MAS INFORMACION</a> -->
                 </div>
@@ -210,7 +204,7 @@ $nombre_usuario = $_SESSION['username'];
                     </div>
                     <h3 class="font-weight-bold text-white mt-3 mb-4">Bono de bienvenida</h3>
                     <p class="text-white mb-4">Ven, prueba nuestros servicios y recibe un bono por facturas superiores a $120.000.</p>
-                    <a href="service.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                    <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
                 </div>
             </div>
         </div>
@@ -234,208 +228,6 @@ $nombre_usuario = $_SESSION['username'];
             </div>
         </div>
     </div>
-    <!-- Video Modal End -->
-
-
-    <!-- Services Start -->
-    <!-- <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="section-title position-relative mb-5">Nuestros servicios</h1>
-                </div>
-                <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="owl-carousel service-carousel">
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/servicios (1).png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Manicura</h5>
-                                <p>$20.000 > </p>
-                                <a href="" class="border-bottom border-secondary text-decoration-none text-secondary">Detalles</a>
-                            </div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/servicios (2).png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Tintura de cabello</h5>
-                                <p>$120.000</p>
-                                <a href="" class="border-bottom border-secondary text-decoration-none text-secondary">Detalles</a>
-                            </div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/servicios (3).png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Corte de cabello</h5>
-                                <p>$15.000 ></p>
-                                <a href="" class="border-bottom border-secondary text-decoration-none text-secondary">Detalles</a>
-                            </div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/3.png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Peinados</h5>
-                                <p>$50.000</p>
-                                <a href="" class="border-bottom border-secondary text-decoration-none text-secondary">Detalles</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- Services End -->
-
-
-    <!-- Portfolio Start -->
-    <div class="container-fluid my-5 py-5 px-0">
-        <div class="row justify-content-center m-0">
-            <div class="col-lg-5">
-                <!-- <h1 class="section-title position-relative text-center mb-5">Contando nuestra historia en imagenes</h1> -->
-            </div>
-        </div>
-        <div class="row m-0 portfolio-container">
-            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (1).png" alt="">
-                    <a class="portfolio-btn" href="img/galeria (1).png" data-lightbox="portfolio">
-                        <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (2).png" alt="">
-                    <a class="portfolio-btn" href="img/galeria (2).png" data-lightbox="portfolio">
-                        <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (3).png" alt="">
-                    <a class="portfolio-btn" href="img/galeria (3).png" data-lightbox="portfolio">
-                        <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (4).png" alt="">
-                    <a class="portfolio-btn" href="img/galeria (4).png" data-lightbox="portfolio">
-                        <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (5).png" alt="">
-                    <a class="portfolio-btn" href="img/galeria (5).png" data-lightbox="portfolio">
-                        <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 p-0 portfolio-item">
-                <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (6).png" alt="">
-                    <a class="portfolio-btn" href="img/galeria (6).png" data-lightbox="portfolio">
-                        <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Portfolio End -->
-
-
-    
-    <!-- Products End -->
-
-
-    <!-- Team Start -->
-    <!-- <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-6">
-                     <h1 class="section-title position-relative mb-5">Nuestros colaboradores</h1> -->
-                <!-- </div>
-                <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="owl-carousel team-carousel">
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="modules/company/img/Jose.png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Jose</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Estilista</h6>
-                                <div class="d-flex justify-content-center pt-1">
-
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="modules/company/img/Jose.png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Camilo</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Estilista</h6>
-                                <div class="d-flex justify-content-center pt-1">
-
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="modules/company/img/Jose.png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Carlos</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Barbero</h6>
-                                <div class="d-flex justify-content-center pt-1">
-
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="team-item">
-                            <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/diana.png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
-                                <h3 class="font-weight-bold mt-5 mb-3 pt-5">Diana</h3>
-                                <h6 class="text-uppercase text-muted mb-4">Manicurista</h6>
-                                <div class="d-flex justify-content-center pt-1">
-
-                                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>  -->
-    <!-- Team End -->
 
     <!-- Footer Start -->
     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
@@ -448,9 +240,9 @@ $nombre_usuario = $_SESSION['username'];
                 </div>
                 <div class="col-12 mb-4">
                     
-                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-secondary btn-social mr-2" href="https://www.facebook.com/profile.php?id=100083475433076&mibextid=rS40aB7S9Ucbxw6v"><i class="fab fa-facebook-f"></i></a>
 
-                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-secondary btn-social" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA=="><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="col-12 mt-2 mb-4">
                     <div class="row">
@@ -466,8 +258,10 @@ $nombre_usuario = $_SESSION['username'];
                         </div>
                     </div>
                 </div>
+
+                
                 <div class="col-12">
-                    <p class="m-0">&copy; <a href="#"></a>Estamos aquí para servirte<a href=""></a>
+                    <p class="m-0"><a href="#"></a>Nos dedicamos a servirte con excelencia.<a href=""></a>
                     </p>
                 </div>
             </div>

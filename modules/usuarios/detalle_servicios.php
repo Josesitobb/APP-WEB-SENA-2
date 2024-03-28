@@ -45,7 +45,7 @@ if (isset($_GET['Id_Servicios'])) {
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon1.png" rel="icon">
+    <link rel="icon" href="../../views/SG.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -116,21 +116,16 @@ if (isset($_GET['Id_Servicios'])) {
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white px-3" href="">
+                    <a class="text-white px-3" href="https://www.facebook.com/profile.php?id=100083475433076&mibextid=rS40aB7S9Ucbxw6v">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-white px-3" href="">
+                        <a class="text-white px-3" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA==">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a class="text-white pl-3" href="">
-                            <i class="fab fa-youtube"></i>
-                        </a>
+                    <a class="text-white px-3" href="./cerrar_Sesion.php">
+                        <i class="fas fa-sign-out-alt"></i> <!-- Ícono de salida -->
+                        Cerrar sesión
+                    </a>
                     </div>
                 </div>
             </div>
@@ -206,16 +201,14 @@ if (isset($_GET['Id_Servicios'])) {
                     </div>
 
                     <div class="col-md-6 order-md-2 text-center">
-                        <h2><?php echo MONEDA . number_format($row['Valor_Servicios'], 2, '.', ','); ?></h2>
-                        <p><?php echo $row['Descripcion_Servicios']; ?></p>
-                        <div class="d-grid gap-3 col-10 mx-auto">
+    <h2><?php echo MONEDA . $row['Valor_Servicios']; ?></h2>
+    <p><?php echo $row['Descripcion_Servicios']; ?></p>
+    <div class="d-grid gap-3 col-10 mx-auto">
+        <!-- <a href="#" class="btn btn-primary btn-agendar-cita">Agendar Cita</a> -->
+        <a href="index.php" class="btn btn-primary">Volver Al inicio</a>
+    </div>
+</div>
 
-                        <!-- <a href="#" class="btn btn-primary btn-agendar-cita">Agendar Cita</a> -->
-
-                        <a href="index.php" class="btn btn-primary">Volver Al inicio</a>
-
-                 
-                        </div>
                     </div>
                 </div>
             </div>

@@ -85,7 +85,7 @@ if ($filas) {
 } else {
     ob_end_flush(); // Limpia el búfer de salida
     echo '<script>
-        alert("DATOS INCORRECTOS");
+        alert("Datos incorrectos, vuelva a intentarlo.");
         window.history.go(-1);
     </script>';
 }
