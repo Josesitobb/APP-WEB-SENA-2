@@ -8,6 +8,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <link href="../views/Views Admin/css/style.css" rel="stylesheet">
+    <link href="    ../../views/Views_Admin/css/style.css" rel="stylesheet">
+    
+
 </head>
 <body class="h-100">
     <div class="login-form-bg h-100">

@@ -40,6 +40,8 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
     <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -59,10 +61,10 @@ if (isset($_SESSION['username'])) {
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
+                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logi.png" alt="">
+                        <img src="../../views/Views_Admin/images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -125,7 +127,7 @@ if (isset($_SESSION['username'])) {
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Inicio</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./index.php">Inicio</a></li>
+                            <li><a href="admin_controller.php?rol=indexadmin">Inicio</a></li>
                             <!-- <li><a href="./index-2.php">Home 2</a></li> -->
                         </ul>
                     </li>
@@ -134,13 +136,12 @@ if (isset($_SESSION['username'])) {
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Modulos</span>
                         </a>
                         <ul aria-expanded="false">
-                        <li><a href="./Clientes.php">Usuarios/Clientes</a></li>
-                            <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
-                            <li><a href="./Productos.php">Productos</a></li>
-                            <li><a href="./Servicios.php">Servicios</a></li>
-                            <li><a href="./Citas.php">Citas </a></li>
-                            <li><a href="./Facturas.php">Facturas </a></li>
-                            <li><a href="./layout-compact-nav.php">Roles </a></li>
+                        <li><a href="admin_views.php?vista=usuariosC">Usuarios/Clientes</a></li>
+                            <li><a href="admin_views.php?vista=usuariosE">Usuarios/Estilistas</a></li>
+                            <li><a href="admin_views.php?vista=productos">Productos</a></li>
+                            <li><a href="admin_views.php?vista=servicios">Servicios</a></li>
+                            <li><a href="admin_views.php?vista=citas">Citas </a></li>
+                            <li><a href="admin_views.php?vista=factura">Facturas </a></li>
                         </ul>
                     </li>
 
@@ -352,33 +353,30 @@ if (isset($_SESSION['username'])) {
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../../views/Views_Admin/js/settings.js"></script>
+    <script src="../../views/Views_Admin/js/gleek.js"></script>
+    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
 
     <!-- Chartjs -->
-    <script src="./plugins/chart.js/Chart.bundle.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/chart.js/Chart.bundle.min.js"></script>
     <!-- Circle progress -->
-    <script src="./plugins/circle-progress/circle-progress.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/circle-progress/circle-progress.min.js"></script>
     <!-- Datamap -->
-    <script src="./plugins/d3v3/index.js"></script>
-    <script src="./plugins/topojson/topojson.min.js"></script>
-    <script src="./plugins/datamaps/datamaps.world.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/d3v3/index.js"></script>
+    <script src="../../views/Views_Admin/plugins/topojson/topojson.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/datamaps/datamaps.world.min.js"></script>
     <!-- Morrisjs -->
-    <script src="./plugins/raphael/raphael.min.js"></script>
-    <script src="./plugins/morris/morris.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/raphael/raphael.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/morris/morris.min.js"></script>
     <!-- Pignose Calender -->
-    <script src="./plugins/moment/moment.min.js"></script>
-    <script src="./plugins/pg-calendar/js/pignose.calendar.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/moment/moment.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
     <!-- ChartistJS -->
-    <script src="./plugins/chartist/js/chartist.min.js"></script>
+    <script src="../../views/Views_Admin/plugins/chartist/js/chartist.min.js"></script>
     <script src="./plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-
-
-
-    <script src="./js/dashboard/dashboard-1.js"></script>
+    <script src="../../views/Views_Admin/js/dashboard/dashboard-1.js"></script>
 
 </body>
 

@@ -14,6 +14,26 @@ if($varsesion == null || $varsesion=''){
 echo $_SESSION['username'];
 ?>
 
+
+<?php
+// Realiza una consulta SQL para obtener todos los roles
+$sql_roles = $conn->query("SELECT * FROM Roles");
+
+// Almacena los resultados en un array
+$roles = array();
+while ($row = $sql_roles->fetch_assoc()) {
+    $roles[] = $row;
+}
+
+// Convierte el array de roles a formato JSON
+$roles_json = json_encode($roles);
+?>
+
+<script>
+// Almacena la lista de roles en una variable JavaScript
+var roles = <?php echo $roles_json; ?>;
+</script>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,12 +41,17 @@ echo $_SESSION['username'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Estilistas</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+
+    <title>Clientes</title>
+   <!-- Pignose Calender -->
+   <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
     <style>
 .btn-custom-pink {
     background-color: #F299B9;
@@ -44,47 +69,6 @@ echo $_SESSION['username'];
 </head>
 
 <body>
-
-<!-- Modal para agregar nuevo estilista -->
-<div class="modal fade" id="agregarEstilistaModal" tabindex="-1" aria-labelledby="agregarEstilistaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="agregarEstilistaModalLabel">Agregar Nuevo Estilista</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario para agregar nuevo estilista -->
-                <form id="agregarEstilistaForm" action="Agregar_Estilista.php" method="POST">
-                    <div class="mb-3">
-                        <label for="nombreEstilista" class="form-label">Nombre Usuario</label>
-                        <input type="text" class="form-control" id="nombreEstilista" name="nombreEstilista">
-                    </div>
-                    <div class="mb-3">
-                        <label for="apellidoEstilista" class="form-label">Apellido Usuario</label>
-                        <input type="text" class="form-control" id="apellidoEstilista" name="apellidoEstilista">
-                    </div>
-                    <div class="mb-3">
-                        <label for="correoEstilista" class="form-label">Correo</label>
-                        <input type="email" class="form-control" id="correoEstilista" name="correoEstilista">
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefonoEstilista" class="form-label">Teléfono</label>
-                        <input type="text" class="form-control" id="telefonoEstilista" name="telefonoEstilista">
-                    </div>
-                    <div class="mb-3">
-                        <label for="contraseñaEstilista" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="contraseñaEstilista" name="contraseñaEstilista">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Agregar Estilista</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
     <!--*******************
         Preloader start
@@ -112,10 +96,10 @@ echo $_SESSION['username'];
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
+                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logi.png" alt="">
+                        <img src="../../views/Views_Admin/images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -150,7 +134,6 @@ echo $_SESSION['username'];
                 </div> -->
                 <div class="header-right">
                     <ul class="clearfix">
-                            </a>
 
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
@@ -162,6 +145,7 @@ echo $_SESSION['username'];
                                         <li>
                                             <a href="app-profile.php"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
+
                                         
                                         <hr class="my-2">
 
@@ -198,7 +182,7 @@ echo $_SESSION['username'];
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Modulos</span>
                         </a>
                         <ul aria-expanded="false">
-                        <li><a href="./Clientes.php">Usuarios/Clientes</a></li>
+                            <li><a href="./Clientes.php">Usuarios/Clientes</a></li>
                             <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
                             <li><a href="./Productos.php">Productos</a></li>
                             <li><a href="./Servicios.php">Servicios</a></li>
@@ -218,12 +202,13 @@ echo $_SESSION['username'];
                     </li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Reporte Graficos</span>
+                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Reportes Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./Reporte_Citas.php">Citas</a></li>
+                        <li><a href="./Reporte_Citas.php">Citas</a></li>
                             <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
                             <li><a href="./Reporte_Productos.php">Productos</a></li>
+
 
                         </ul>
                     </li>
@@ -244,6 +229,7 @@ echo $_SESSION['username'];
 
                         </ul>
                     </li>
+
                     <li class="nav-label">Table</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -276,54 +262,29 @@ echo $_SESSION['username'];
                 </ul>
             </div>
         </div>
-
-<!-- Modal para editar estilista -->
-<div class="modal fade" id="editarEstilistaModal" tabindex="-1" aria-labelledby="editarEstilistaModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarEstilistaModalLabel">Editar Estilista</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Formulario para editar estilista -->
-                <form id="editarEstilistaForm">
-                    <div class="mb-3">
-                        <label for="nombreUsuario" class="form-label">Nombre Usuario</label>
-                        <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario">
-                    </div>
-                    <div class="mb-3">
-                        <label for="apellidoUsuario" class="form-label">Apellido Usuario</label> <!-- Nuevo campo para el apellido -->
-                        <input type="text" class="form-control" id="apellidoUsuario" name="apellidoUsuario">
-                    </div>
-                    <div class="mb-3">
-                        <label for="correoUsuario" class="form-label">Correo Usuario</label>
-                        <input type="email" class="form-control" id="correoUsuario" name="correoUsuario">
-                    </div>
-                    <div class="mb-3">
-                        <label for="telefonoUsuario" class="form-label">Telefono Usuario</label>
-                        <input type="text" class="form-control" id="telefonoUsuario" name="telefonoUsuario">
-                    </div>
-                    <div class="mb-3">
-                        <label for="contraseñaUsuario" class="form-label">Contraseña Usuario</label>
-                        <input type="password" class="form-control" id="contraseñaUsuario" name="contraseñaUsuario">
-                    </div>
-                    <input type="hidden" id="idUsuario" name="idUsuario"> <!-- Campo oculto para la ID del usuario -->
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" onclick="guardarCambiosEstilista()">Guardar cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
         <!--**********************************
             Sidebar end
         ***********************************-->
+
+        <div class="modal fade" id="editarClienteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Cliente</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editarClienteForm">
+          <!-- Aquí van los campos para editar el cliente -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
 
         <!--**********************************
             Content body start
@@ -334,22 +295,67 @@ echo $_SESSION['username'];
             <!-- row -->
 
             <div class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <div class="container">
-                        <h1 class="text-center">USUARIOS ESTILISTAS</h1>
-                    </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                            <div class="container">
+        <br>
+       
+    </div>
+    <br>
+  <h1><center>USUARIOS CLIENTES</center></h1>
+    
+  <!-- Botón para abrir el modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">Agregar Usuario</button>
+<a href="reportes_excel/execel_clientes.php" class="btn btn-primary">Descargar</a>
 
-                    <!-- Botón para abrir el modal de agregar nuevo estilista -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarEstilistaModal">Agregar Nuevo Estilista</button>
-<a href="reportes_excel/execel_estilistas.php" class="btn btn-primary">Descargar</a>
-<br>
-<br>
+<!-- Modal para agregar un nuevo usuario -->
+<div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="agregarUsuarioForm">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="apellido" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input type="email" class="form-control" id="correo" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input type="text" class="form-control" id="telefono" required>
+          </div>
+          <div class="mb-3">
+            <label for="contraseña" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="contraseña" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<div class="table-responsive">
+  <br>
+    <br>
+
+<a href="">Descargar</a>
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -360,24 +366,29 @@ echo $_SESSION['username'];
                 <th scope="col">Telefono</th>
                 <th scope="col">Contraseña</th>
                 <th scope="col">Acciones</th>
+               
             </tr>
         </thead>
         <tbody>
             <?php
-            require_once("db.php");
-            $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol FROM Usuarios U JOIN Roles R ON U.Id_Rol = R.Id_Rol WHERE R.Nombre_Rol = 'estilistas'");
+
+            $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
+            FROM Usuarios U
+            JOIN Roles R ON U.Id_Rol = R.Id_Rol
+            WHERE R.Nombre_Rol = 'clientes'");
+
             while ($resultado = $sql->fetch_assoc()) {
             ?>
                 <tr class="table-light">
-                    <th scope="row"><?php echo $resultado['Rol'] ?></th>
+                    <td><?php echo $resultado['Rol'] ?></td>
                     <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
                     <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
                     <td><?php echo $resultado['Correo_Usuarios'] ?></td>
                     <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
                     <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
                     <td>
-                        <a class="btn btn-custom-blue my-1" href="#" onclick="cargarDatosEstilista('<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios']; ?>', '<?php echo $resultado['Id_Usuarios']; ?>')" data-bs-toggle="modal" data-bs-target="#editarEstilistaModal" class="btn btn-warning">Editar</a>
-                        <a class="btn btn-custom-pink my-1" href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-danger">Eliminar</a>
+                        <a class="btn btn-custom-blue my-1" href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">Editar</a>
+                        <a class="btn btn-custom-pink my-1" href="Borrar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
                     </td>
                 </tr>
             <?php
@@ -388,10 +399,8 @@ echo $_SESSION['username'];
 </div>
 
 
-
-
-
    
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -413,7 +422,8 @@ echo $_SESSION['username'];
             Content body end
         ***********************************-->
         
-        
+        <div id="mensaje"></div>
+
         <!--**********************************
             Footer start
         ***********************************-->
@@ -433,67 +443,138 @@ echo $_SESSION['username'];
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="./js/validaciones/ValidacionProductos.js"></script>
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-    
-    <script> 
-    function cargarDatosEstilista(nombre, apellido, correo, telefono, contraseña, idUsuario) {
-    document.getElementById("nombreUsuario").value = nombre;
-    document.getElementById("apellidoUsuario").value = apellido;
-    document.getElementById("correoUsuario").value = correo;
-    document.getElementById("telefonoUsuario").value = telefono;
-    document.getElementById("contraseñaUsuario").value = contraseña;
-    document.getElementById("idUsuario").value = idUsuario; // Establecer el valor de la ID del usuario
-}
+    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../../views/Views_Admin/js/settings.js"></script>
+    <script src="../../views/Views_Admin/js/gleek.js"></script>
+    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
+    <script>
+function cargarDatosCliente(idCliente, nombre, apellido, correo, telefono, contraseña ,idRol ) {
+    // Genera las opciones de selección para los roles
+    var opcionesRol = '';
+    for (var i = 0; i < roles.length; i++) {
+        opcionesRol += `<option value="${roles[i].Id_Rol}" ${roles[i].Id_Rol == idRol ? 'selected' : ''}>${roles[i].Nombre_Rol}</option>`;
+    }
 
+    document.getElementById('editarClienteForm').innerHTML = `
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" value="${nombre}">
+      </div>
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="apellido" value="${apellido}">
+      </div>
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo</label>
+        <input type="email" class="form-control" id="correo" value="${correo}">
+      </div>
+      <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" value="${telefono}">
+      </div>
+      <div class="mb-3">
+        <label for="contraseña" class="form-label">Contraseña</label>
+        <input type="text" class="form-control" id="contraseña" value="${contraseña}">
+      </div>
+     
+      <input type="hidden" id="idCliente" value="${idCliente}">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar Cambios</button>
+      </div>
+    `;
+    $('#editarClienteModal').modal('show');
+}
 </script>
+
+
 
 <script>
-    function guardarCambiosEstilista() {
-        // Obtener los valores de los campos del formulario
-        var nombreUsuario = document.getElementById('nombreUsuario').value;
-        var apellidoUsuario = document.getElementById('apellidoUsuario').value; // Nuevo
-        var correoUsuario = document.getElementById('correoUsuario').value;
-        var telefonoUsuario = document.getElementById('telefonoUsuario').value;
-        var contraseñaUsuario = document.getElementById('contraseñaUsuario').value;
-        var idUsuario = document.getElementById('idUsuario').value;
+function guardarCambios() {
+    // Obtener los valores del formulario
+    var idCliente = document.getElementById('idCliente').value;
+    var nombre = document.getElementById('nombre').value;
+    var apellido = document.getElementById('apellido').value;
+    var correo = document.getElementById('correo').value;
+    var telefono = document.getElementById('telefono').value;
+    var contraseña = document.getElementById('contraseña').value;
 
-        // Crear un objeto FormData para enviar los datos
-        var formData = new FormData();
-        formData.append('nombreUsuario', nombreUsuario);
-        formData.append('apellidoUsuario', apellidoUsuario); // Nuevo
-        formData.append('correoUsuario', correoUsuario);
-        formData.append('telefonoUsuario', telefonoUsuario);
-        formData.append('contraseñaUsuario', contraseñaUsuario);
-        formData.append('idUsuario', idUsuario);
 
-        // Enviar los datos mediante AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'Editar_Estilistas.php', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Procesar la respuesta del servidor si es necesario
-                console.log(xhr.responseText);
-                
-                // Cerrar el modal
-                var modal = new bootstrap.Modal(document.getElementById('editarEstilistaModal'));
-                modal.hide();
-                
-                // Recargar la página
-                location.reload();
-            } else {
-                // Manejar errores si es necesario
-                console.error('Error al enviar los datos');
-            }
-        };
-        xhr.send(formData);
-    }
+    // Crear un objeto con los datos del formulario
+    var datos = {
+        idCliente: idCliente,
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        telefono: telefono,
+        contraseña: contraseña,
+
+    };
+
+    // Enviar los datos mediante AJAX a un archivo PHP
+    $.ajax({
+        url: 'Editar_Clientes.php',
+        type: 'POST',
+        data: datos,
+        success: function(response) {
+            // Manejar la respuesta del servidor
+            console.log(response);
+            // Recargar la página
+            location.reload();
+            // Mostrar mensaje de actualización
+            $('#mensaje').text(response); // Aquí se muestra el mensaje recibido del servidor
+        },
+        error: function(xhr, status, error) {
+            // Manejar errores de AJAX
+            console.error(xhr.responseText);
+            // Mostrar mensaje de error
+            $('#mensaje').text('Error al guardar los cambios.'); // Mensaje genérico en caso de error
+        }
+    });
+}
 </script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    // Cuando se envía el formulario dentro del modal
+    $('#agregarUsuarioForm').submit(function(e) {
+        e.preventDefault(); // Evita que se envíe el formulario de manera tradicional
+
+        // Recopila los datos del formulario
+        var nombre = $('#nombre').val();
+        var apellido = $('#apellido').val();
+        var correo = $('#correo').val();
+        var telefono = $('#telefono').val();
+        var contraseña = $('#contraseña').val();
+
+        // Envía los datos mediante AJAX a un archivo PHP
+        $.ajax({
+            url: 'Agregar_Clientes.php',
+            type: 'POST',
+            data: {
+                nombre: nombre,
+                apellido: apellido,
+                correo: correo,
+                telefono: telefono,
+                contraseña: contraseña
+            },
+            success: function(response) {
+                // Mostrar el mensaje al usuario
+                alert(response);
+                
+                // Recargar la página si la inserción fue exitosa
+                // location.reload();
+            },
+            error: function(xhr, status, error) {
+                // Manejar errores de AJAX
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+</script>
 
 
 

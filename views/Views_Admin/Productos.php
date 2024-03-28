@@ -2,11 +2,10 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-$varsesion=$_SESSION['username'];
+$varsesion = $_SESSION['username'];
 
-if($varsesion == null || $varsesion=''){
+if ($varsesion == null || $varsesion = '') {
     echo 'USTED INICIE SESION';
-    header("Location:page-error-500.php");
     die();
 }
 
@@ -14,26 +13,6 @@ if($varsesion == null || $varsesion=''){
 echo $_SESSION['username'];
 ?>
 
-
-<?php
-include("db.php");
-// Realiza una consulta SQL para obtener todos los roles
-$sql_roles = $conn->query("SELECT * FROM Roles");
-
-// Almacena los resultados en un array
-$roles = array();
-while ($row = $sql_roles->fetch_assoc()) {
-    $roles[] = $row;
-}
-
-// Convierte el array de roles a formato JSON
-$roles_json = json_encode($roles);
-?>
-
-<script>
-// Almacena la lista de roles en una variable JavaScript
-var roles = <?php echo $roles_json; ?>;
-</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,9 +23,16 @@ var roles = <?php echo $roles_json; ?>;
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <title>Clientes</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
+    <!-- <link rel="icon" href="icons/SG.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>
 .btn-custom-pink {
@@ -61,10 +47,94 @@ var roles = <?php echo $roles_json; ?>;
     color: white; 
 }
 </style>
+    
 
 </head>
 
 <body>
+<!-- MODAL DE AGREGAR -->
+<div class="modal fade" id="agregarProductoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Nuevo Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formAgregarProducto" action="AgregarProducto.php" method="post" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="nombreProducto" class="form-label">Nombre Producto</label>
+            <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="descripcionProducto" class="form-label">Descripción Producto</label>
+            <textarea class="form-control" id="descripcionProducto" name="descripcionProducto" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="precioProducto" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="precioProducto" name="precioProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="cantidadProducto" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="imagenProducto" class="form-label">Imagen</label>
+            <input type="file" class="form-control" id="imagenProducto" name="imagenProducto" required accept="image/*">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE EDITAR -->
+
+<div class="modal fade" id="modificarProductoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modificar Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formModificarProducto" action="EditarProductos.php" method="post" enctype="multipart/form-data">
+          <input type="hidden" id="idProducto" name="idProducto">
+          <div class="mb-3">
+            <label for="editarNombreProducto" class="form-label">Nombre Producto</label>
+            <input type="text" class="form-control" id="editarNombreProducto" name="nombreProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="editarDetalleProducto" class="form-label">Detalle Producto</label>
+            <textarea class="form-control" id="editarDetalleProducto" name="Destalleproductos" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editarPrecioProducto" class="form-label">Precio</label>
+            <input type="number" class="form-control" id="editarPrecioProducto" name="precioProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="editarCantidadProducto" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="editarCantidadProducto" name="cantidadProducto" required>
+          </div>
+          <div class="mb-3">
+            <label for="editarImagenesProducto" class="form-label">Imagenes</label>
+            <input type="file" class="form-control" id="editarImagenesProducto" name="imagenesProducto" multiple accept="image/*">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
     <!--*******************
         Preloader start
@@ -92,10 +162,10 @@ var roles = <?php echo $roles_json; ?>;
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
+                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logi.png" alt="">
+                        <img src="../../views/Views_Admin/images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -291,108 +361,56 @@ var roles = <?php echo $roles_json; ?>;
             <!-- row -->
 
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                            <div class="container">
-        <br>
-       
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="text-center">Lista de productos</h1>
+                    <div class="container mt-4">
+                        <button type="button" class="btn btn-primary" onclick="mostrarModalAgregarProducto()">Agregar nuevo producto</button>
+                        <a href="reportes_excel/execel_productos.php" class="btn btn-primary">Descargar</a>
+                    </div>
+                    <div class="container mt-4">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Detalle</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Imágenes</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                
+                                $sql = "SELECT * FROM `productos`";
+                                $resultado = $conn->query($sql);
+                                while ($fila = $resultado->fetch_assoc()) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $fila['Id_Productos'] ?></td>
+                                        <td><?php echo $fila['Nombre_Productos'] ?></td>
+                                        <td><?php echo $fila['Descripcion_Productos'] ?></td>
+                                        <td><?php echo $fila['Precio_Productos'] ?></td>
+                                        <td><?php echo $fila['Cantidad_Productos'] ?></td>
+                                        <td><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos']) ?>" alt=""></td>
+                                        <td>
+                                            <button type="button" class="btn btn-custom-blue my-1"  onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Editar</button>
+                                            <button type="button" class="btn btn-custom-pink my-1" onclick="confirmarEliminar(<?php echo $fila['Id_Productos'] ?>)">Eliminar</button>
+
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <br>
-  <h1><center>USUARIOS CLIENTES</center></h1>
-    
-  <!-- Botón para abrir el modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal">Agregar Usuario</button>
-<a href="reportes_excel/execel_clientes.php" class="btn btn-primary">Descargar</a>
-
-<!-- Modal para agregar un nuevo usuario -->
-<div class="modal fade" id="agregarUsuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="agregarUsuarioForm">
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" required>
-          </div>
-          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido</label>
-            <input type="text" class="form-control" id="apellido" required>
-          </div>
-          <div class="mb-3">
-            <label for="correo" class="form-label">Correo</label>
-            <input type="email" class="form-control" id="correo" required>
-          </div>
-          <div class="mb-3">
-            <label for="telefono" class="form-label">Teléfono</label>
-            <input type="text" class="form-control" id="telefono" required>
-          </div>
-          <div class="mb-3">
-            <label for="contraseña" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contraseña" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Agregar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  <br>
-    <br>
-
-<a href="">Descargar</a>
-    <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Rol</th>
-                <th scope="col">Nombre usuario</th>
-                <th scope="col">Apellido usuario</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Contraseña</th>
-                <th scope="col">Acciones</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            require_once("db.php");
-
-            $sql = $conn->query("SELECT U.*, R.Nombre_Rol as Rol
-            FROM Usuarios U
-            JOIN Roles R ON U.Id_Rol = R.Id_Rol
-            WHERE R.Nombre_Rol = 'clientes'");
-
-            while ($resultado = $sql->fetch_assoc()) {
-            ?>
-                <tr class="table-light">
-                    <td><?php echo $resultado['Rol'] ?></td>
-                    <td><?php echo $resultado['Nombre_Usuarios'] ?></td>
-                    <td><?php echo $resultado['Apellido_Usuarios'] ?></td>
-                    <td><?php echo $resultado['Correo_Usuarios'] ?></td>
-                    <td><?php echo $resultado['Telefono_Usuarios'] ?></td>
-                    <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
-                    <td>
-                        <a class="btn btn-custom-blue my-1" href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">Editar</a>
-                        <a class="btn btn-custom-pink my-1" href="Borrar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
-                    </td>
-                </tr>
-            <?php
-            }
-            ?>
-        </tbody>
-    </table>
 </div>
 
 
@@ -440,140 +458,34 @@ var roles = <?php echo $roles_json; ?>;
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="./js/validaciones/ValidacionProductos.js"></script>
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../../views/Views_Admin/js/settings.js"></script>
+    <script src="../../views/Views_Admin/js/gleek.js"></script>
+    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
     <script>
-function cargarDatosCliente(idCliente, nombre, apellido, correo, telefono, contraseña ,idRol ) {
-    // Genera las opciones de selección para los roles
-    var opcionesRol = '';
-    for (var i = 0; i < roles.length; i++) {
-        opcionesRol += `<option value="${roles[i].Id_Rol}" ${roles[i].Id_Rol == idRol ? 'selected' : ''}>${roles[i].Nombre_Rol}</option>`;
-    }
-
-    document.getElementById('editarClienteForm').innerHTML = `
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" value="${nombre}">
-      </div>
-      <div class="mb-3">
-        <label for="apellido" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido" value="${apellido}">
-      </div>
-      <div class="mb-3">
-        <label for="correo" class="form-label">Correo</label>
-        <input type="email" class="form-control" id="correo" value="${correo}">
-      </div>
-      <div class="mb-3">
-        <label for="telefono" class="form-label">Teléfono</label>
-        <input type="text" class="form-control" id="telefono" value="${telefono}">
-      </div>
-      <div class="mb-3">
-        <label for="contraseña" class="form-label">Contraseña</label>
-        <input type="text" class="form-control" id="contraseña" value="${contraseña}">
-      </div>
-     
-      <input type="hidden" id="idCliente" value="${idCliente}">
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar Cambios</button>
-      </div>
-    `;
-    $('#editarClienteModal').modal('show');
-}
+  function mostrarModalAgregarProducto() {
+    $('#agregarProductoModal').modal('show');
+  }
 </script>
-
-
-
 <script>
-function guardarCambios() {
-    // Obtener los valores del formulario
-    var idCliente = document.getElementById('idCliente').value;
-    var nombre = document.getElementById('nombre').value;
-    var apellido = document.getElementById('apellido').value;
-    var correo = document.getElementById('correo').value;
-    var telefono = document.getElementById('telefono').value;
-    var contraseña = document.getElementById('contraseña').value;
-
-
-    // Crear un objeto con los datos del formulario
-    var datos = {
-        idCliente: idCliente,
-        nombre: nombre,
-        apellido: apellido,
-        correo: correo,
-        telefono: telefono,
-        contraseña: contraseña,
-
-    };
-
-    // Enviar los datos mediante AJAX a un archivo PHP
-    $.ajax({
-        url: 'Editar_Clientes.php',
-        type: 'POST',
-        data: datos,
-        success: function(response) {
-            // Manejar la respuesta del servidor
-            console.log(response);
-            // Recargar la página
-            location.reload();
-            // Mostrar mensaje de actualización
-            $('#mensaje').text(response); // Aquí se muestra el mensaje recibido del servidor
-        },
-        error: function(xhr, status, error) {
-            // Manejar errores de AJAX
-            console.error(xhr.responseText);
-            // Mostrar mensaje de error
-            $('#mensaje').text('Error al guardar los cambios.'); // Mensaje genérico en caso de error
+  function mostrarModalModificar(id, nombre, detalle, precio, cantidad) {
+    $('#idProducto').val(id);
+    $('#editarNombreProducto').val(nombre);
+    $('#editarDetalleProducto').val(detalle);
+    $('#editarPrecioProducto').val(precio);
+    $('#editarCantidadProducto').val(cantidad);
+    $('#modificarProductoModal').modal('show');
+  }
+</script>
+<script>
+    function confirmarEliminar(idProducto) {
+        if (confirm('¿Está seguro de que desea eliminar este producto?')) {
+            // Si el usuario confirma, redirigir a la página de eliminación con el ID del producto
+            window.location.href = 'deleteProducto.php?id=' + idProducto;
         }
-    });
-}
+    }
 </script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Cuando se envía el formulario dentro del modal
-    $('#agregarUsuarioForm').submit(function(e) {
-        e.preventDefault(); // Evita que se envíe el formulario de manera tradicional
-
-        // Recopila los datos del formulario
-        var nombre = $('#nombre').val();
-        var apellido = $('#apellido').val();
-        var correo = $('#correo').val();
-        var telefono = $('#telefono').val();
-        var contraseña = $('#contraseña').val();
-
-        // Envía los datos mediante AJAX a un archivo PHP
-        $.ajax({
-            url: 'Agregar_Clientes.php',
-            type: 'POST',
-            data: {
-                nombre: nombre,
-                apellido: apellido,
-                correo: correo,
-                telefono: telefono,
-                contraseña: contraseña
-            },
-            success: function(response) {
-                // Mostrar el mensaje al usuario
-                alert(response);
-                
-                // Recargar la página si la inserción fue exitosa
-                // location.reload();
-            },
-            error: function(xhr, status, error) {
-                // Manejar errores de AJAX
-                console.error(xhr.responseText);
-            }
-        });
-    });
-});
-</script>
-
 
 
 </body>

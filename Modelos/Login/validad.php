@@ -66,20 +66,21 @@ if ($filas) {
     switch ($usuario['Id_Rol']) {
         case 1:
             // ESTILISTA
-            header("location:../estilistas/index.php"); 
+            header("location:../estilistas_controller.php?rol=estilista");
             break;
         case 2:
             // CLIENTES
-            header("location:../usuarios/index.php"); 
+            header("location:../usuarios_controller.php?rol=cliente");
             break;
         case 3:
             // ADMIN
-            header("location:./index.php"); 
+            header("location:../controllers/admin/admin_controller.php?rol=indexadmin");
             break;
         default:
             header("location:./index.php");
             break;
     }
+    
 
     exit();
 } else {

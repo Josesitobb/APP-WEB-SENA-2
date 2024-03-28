@@ -25,10 +25,17 @@ echo $_SESSION['username'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>Clientes</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
+    <title>Facturas</title>
+    <!-- <link rel="icon" href="icons/SG.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -61,10 +68,10 @@ echo $_SESSION['username'];
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
+                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logi.png" alt="">
+                        <img src="../../views/Views_Admin/images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -332,7 +339,7 @@ echo $_SESSION['username'];
             </thead>
             <tbody>
                 <?php
-                include("db.php");
+               
 
                 // Consulta SQL para obtener las facturas
                 $sql = "SELECT 
@@ -442,139 +449,14 @@ echo $_SESSION['username'];
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="./js/validaciones/ValidacionProductos.js"></script>
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-    <script>
-function cargarDatosCliente(idCliente, nombre, apellido, correo, telefono, contraseña ,idRol ) {
-    // Genera las opciones de selección para los roles
-    var opcionesRol = '';
-    for (var i = 0; i < roles.length; i++) {
-        opcionesRol += `<option value="${roles[i].Id_Rol}" ${roles[i].Id_Rol == idRol ? 'selected' : ''}>${roles[i].Nombre_Rol}</option>`;
-    }
-
-    document.getElementById('editarClienteForm').innerHTML = `
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" value="${nombre}">
-      </div>
-      <div class="mb-3">
-        <label for="apellido" class="form-label">Apellido</label>
-        <input type="text" class="form-control" id="apellido" value="${apellido}">
-      </div>
-      <div class="mb-3">
-        <label for="correo" class="form-label">Correo</label>
-        <input type="email" class="form-control" id="correo" value="${correo}">
-      </div>
-      <div class="mb-3">
-        <label for="telefono" class="form-label">Teléfono</label>
-        <input type="text" class="form-control" id="telefono" value="${telefono}">
-      </div>
-      <div class="mb-3">
-        <label for="contraseña" class="form-label">Contraseña</label>
-        <input type="text" class="form-control" id="contraseña" value="${contraseña}">
-      </div>
-     
-      <input type="hidden" id="idCliente" value="${idCliente}">
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar Cambios</button>
-      </div>
-    `;
-    $('#editarClienteModal').modal('show');
-}
-</script>
+    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../../views/Views_Admin/js/settings.js"></script>
+    <script src="../../views/Views_Admin/js/gleek.js"></script>
+    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
+  
 
 
-
-<script>
-function guardarCambios() {
-    // Obtener los valores del formulario
-    var idCliente = document.getElementById('idCliente').value;
-    var nombre = document.getElementById('nombre').value;
-    var apellido = document.getElementById('apellido').value;
-    var correo = document.getElementById('correo').value;
-    var telefono = document.getElementById('telefono').value;
-    var contraseña = document.getElementById('contraseña').value;
-
-
-    // Crear un objeto con los datos del formulario
-    var datos = {
-        idCliente: idCliente,
-        nombre: nombre,
-        apellido: apellido,
-        correo: correo,
-        telefono: telefono,
-        contraseña: contraseña,
-
-    };
-
-    // Enviar los datos mediante AJAX a un archivo PHP
-    $.ajax({
-        url: 'Editar_Clientes.php',
-        type: 'POST',
-        data: datos,
-        success: function(response) {
-            // Manejar la respuesta del servidor
-            console.log(response);
-            // Recargar la página
-            location.reload();
-            // Mostrar mensaje de actualización
-            $('#mensaje').text(response); // Aquí se muestra el mensaje recibido del servidor
-        },
-        error: function(xhr, status, error) {
-            // Manejar errores de AJAX
-            console.error(xhr.responseText);
-            // Mostrar mensaje de error
-            $('#mensaje').text('Error al guardar los cambios.'); // Mensaje genérico en caso de error
-        }
-    });
-}
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-$(document).ready(function() {
-    // Cuando se envía el formulario dentro del modal
-    $('#agregarUsuarioForm').submit(function(e) {
-        e.preventDefault(); // Evita que se envíe el formulario de manera tradicional
-
-        // Recopila los datos del formulario
-        var nombre = $('#nombre').val();
-        var apellido = $('#apellido').val();
-        var correo = $('#correo').val();
-        var telefono = $('#telefono').val();
-        var contraseña = $('#contraseña').val();
-
-        // Envía los datos mediante AJAX a un archivo PHP
-        $.ajax({
-            url: 'Agregar_Clientes.php',
-            type: 'POST',
-            data: {
-                nombre: nombre,
-                apellido: apellido,
-                correo: correo,
-                telefono: telefono,
-                contraseña: contraseña
-            },
-            success: function(response) {
-                // Mostrar el mensaje al usuario
-                alert(response);
-                
-                // Recargar la página si la inserción fue exitosa
-                // location.reload();
-            },
-            error: function(xhr, status, error) {
-                // Manejar errores de AJAX
-                console.error(xhr.responseText);
-            }
-        });
-    });
-});
-</script>
 
 
 

@@ -21,12 +21,19 @@ echo $_SESSION['username'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Facturas</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/logi.png">
+    <title>Citas</title>
+       <!-- Favicon icon -->
+    <!-- <link rel="icon" href="icons/SG.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 
 </head>
 
@@ -58,10 +65,10 @@ echo $_SESSION['username'];
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="index.php">
-                    <b class="logo-abbr"><img src="images/SG.png" alt=""> </b>
-                    <span class="logo-compact"><img src="images/SG.png" alt=""></span>
+                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" alt=""> </b>
+                    <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
-                        <img src="images/logi.png" alt="">
+                        <img src="../../views/Views_Admin/images/logi.png" alt="">
                     </span>
                 </a>
             </div>
@@ -288,7 +295,7 @@ echo $_SESSION['username'];
             <!-- row -->
 
             <?php
-include("db.php");
+
 
 // Obtener la lista de clientes
 $query = "SELECT clientes.Id_Clientes, usuarios.Nombre_Usuarios
@@ -867,12 +874,11 @@ window.onclick = function(event) {
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="./js/validaciones/ValidacionProductos.js"></script>
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../../views/Views_Admin/js/settings.js"></script>
+    <script src="../../views/Views_Admin/js/gleek.js"></script>
+    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
 
 </body>
 
