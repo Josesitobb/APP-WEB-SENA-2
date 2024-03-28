@@ -145,7 +145,7 @@ echo $_SESSION['username'];
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Inicio</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./index.php">Inicio</a></li>
+                        <li><a href="admin_controller.php?rol=indexadmin">Inicio</a></li>
                             <!-- <li><a href="./index-2.php">Home 2</a></li> -->
                         </ul>
                     </li>
@@ -154,13 +154,11 @@ echo $_SESSION['username'];
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Modulos</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./Clientes.php">Usuarios/Clientes</a></li>
-                            <li><a href="./Estilistas.php">Usuarios/Estilistas</a></li>
-                            <li><a href="./layout-one-column.php">Productos</a></li>
-                            <li><a href="./layout-two-column.php">Servicios</a></li>
-                            <li><a href="./Citas.php">Citas </a></li>
-                            <li><a href="./Facturas.php">Facturas </a></li>
-                            <li><a href="./layout-compact-nav.php">Roles </a></li>
+                        <li><a href="admin_views.php?vista=usuariosE">Usuarios/Estilistas</a></li>
+                            <li><a href="admin_views.php?vista=productos">Productos</a></li>
+                            <li><a href="admin_views.php?vista=servicios">Servicios</a></li>
+                            <li><a href="admin_views.php?vista=citas">Citas </a></li>
+                            <li><a href="admin_views.php?vista=factura">Facturas </a></li>
                             
                         </ul>
                     </li>
