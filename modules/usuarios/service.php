@@ -201,9 +201,9 @@ if (!$resultado_estilistas) {
                 </div>
                 <div class="col-12 mb-4">
                     
-                    <a class="btn btn-outline-secondary btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-secondary btn-social mr-2" href="https://www.facebook.com/profile.php?id=100083475433076&mibextid=rS40aB7S9Ucbxw6v"><i class="fab fa-facebook-f"></i></a>
 
-                    <a class="btn btn-outline-secondary btn-social" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-secondary btn-social" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA=="><i class="fab fa-instagram"></i></a>
                 </div>
                 <div class="col-12 mt-2 mb-4">
                     <div class="row">
@@ -219,14 +219,15 @@ if (!$resultado_estilistas) {
                         </div>
                     </div>
                 </div>
+
+                
                 <div class="col-12">
-                    <p class="m-0">&copy; <a href="#"></a>Estamos aquí para servirte<a href=""></a>
+                    <p class="m-0"><a href="#"></a>Nos dedicamos a servirte con excelencia.<a href=""></a>
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Footer End -->
 
 
 <!-- Modal -->
