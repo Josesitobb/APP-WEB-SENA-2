@@ -182,6 +182,7 @@ var roles = <?php echo $roles_json; ?>;
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Modulos</span>
                         </a>
                         <ul aria-expanded="false">
+                        <li><a href="admin_views.php?vista=usuariosC">Usuarios/Clientes</a></li>
                         <li><a href="admin_views.php?vista=usuariosE">Usuarios/Estilistas</a></li>
                             <li><a href="admin_views.php?vista=productos">Productos</a></li>
                             <li><a href="admin_views.php?vista=servicios">Servicios</a></li>

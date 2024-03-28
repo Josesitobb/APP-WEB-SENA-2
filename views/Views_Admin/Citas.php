@@ -149,6 +149,7 @@ echo $_SESSION['username'];
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
                         </a>
                         <ul aria-expanded="false">
+                            
                         <li><a href="admin_views.php?vista=usuariosC">Usuarios/Clientes</a></li>
                             <li><a href="admin_views.php?vista=usuariosE">Usuarios/Estilistas</a></li>
                             <li><a href="admin_views.php?vista=productos">Productos</a></li>
