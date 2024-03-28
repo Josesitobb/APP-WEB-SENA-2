@@ -30,9 +30,10 @@ if(!$result_usuario){
     if(!$result_cliente){
         echo "ERROR al insertar cliente";
     } else {
+        // Redirigir al controlador deseado después del registro exitoso
         echo '<script>
-        alert("Se registro exitosamente");
-        window.location.replace("./page-login.php");
+        alert("Se registró exitosamente");
+        window.location.replace("principal.php?action=productos");
         </script>';
     }
 }

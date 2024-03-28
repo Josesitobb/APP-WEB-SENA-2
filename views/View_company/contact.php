@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="icons/SG.png" rel="icon">
+    <link rel="icon" href="../views/View_company/SG.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,11 +19,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../views/View_company/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,9 +33,9 @@
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="../admin/page-login.php">Iniciar sesión</a>
+                    <a class="text-white pr-3" href="../controllers/Login.php?action=login">Iniciar sesión</a>
                         <span class="text-white">|</span>
-                        <a class="text-white px-3" href="../admin/page-register.php">Registrarse</a>
+                        <a class="text-white px-3" href="../controllers/Login.php?action=register">Registrarse</a>
  
                     </div>
                 </div>
@@ -76,17 +76,19 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="../../index.html" class="nav-item nav-link active">Inicio</a>
-                        <a href="about.php" class="nav-item nav-link">Nosotros</a>
-                        <a href="product.php" class="nav-item nav-link">Productos</a>
+                        <a href="../controllers/principal.php?action=index" class="nav-item nav-link active">Inicio</a>
+                        <a href="../controllers/principal.php?action=nosotros" class="nav-item nav-link">Nosotros</a>
+                        <a href="../controllers/principal.php?action=productos" class="nav-item nav-link">Productos</a>
                     </div>
-                    <a href="../../index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                    
+                    
+                    <a href="../controllers/principal.php?action=index" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.php" class="nav-item nav-link">Servicios</a>
-                        <a href="gallery.php" class="nav-item nav-link">Galeria</a>
-                        <a href="contact.php" class="nav-item nav-link">Mas informacion</a>
+                        <a href="../controllers/principal.php?action=servicios" class="nav-item nav-link">Servicios</a>
+                        <a href="../controllers/principal.php?action=galeria" class="nav-item nav-link">Galeria</a>
+                        <a href="../controllers/principal.php?action=contacto" class="nav-item nav-link">Contactenos</a>
                     </div>
                 </div>
             </nav>
@@ -98,75 +100,34 @@
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Servicios</h1>
+            <h1 class="text-white display-3 mt-lg-5">Mas informacion </h1>
         </div>
     </div>
     <!-- Header End -->
 
 
-    <!-- Services Start -->
+    <!-- Contact Start -->
     <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h1 class="section-title position-relative mb-5">Nuestros servicios</h1>
-                </div>
-                <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="owl-carousel service-carousel">
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="./img/servicios (1).png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Manicura</h5>
-                                <p>$20.000 > </p>
-                                
-                            </div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="./img/servicios (2).png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Tintura de cabello</h5>
-                                <p>$120.000</p>
-                                
-                            </div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="./img/servicios (3).png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Corte de cabello</h5>
-                                <p>$15.000 ></p>
-                                
-                            </div>
-                        </div>
-                        <div class="service-item">
-                            <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="./img/3.png" style="object-fit: cover;">
-                            </div>
-                            <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
-                                <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Peinados</h5>
-                                <p>$50.000</p>
-                                
-                            </div>
-                        </div>
-                    </div>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="text-center">
+                    <h2 class="section-title position-relative mb-4">Más Información</h2>
+                    <p class="text-muted">Para obtener más detalles sobre nuestros servicios y productos, no dude en ponerse en contacto con nosotros. Estamos encantados de ayudarle en todo lo que podamos. Nuestro equipo profesional está listo para brindarle toda la información que necesite para tomar decisiones informadas. Además, estamos comprometidos a proporcionarle la mejor experiencia posible y garantizar su satisfacción. No dude en contactarnos para cualquier pregunta, comentario o solicitud especial. ¡Esperamos poder atenderle pronto!</p>
+
+                    <p class="text-muted">Puede visitarnos en nuestra dirección:</p>
+                    <p class="text-muted">Cra 11 #180a-9, 110141 Bogotá</p>
+                    <p class="text-muted">O llámenos al siguiente número:</p>
+                    <p class="text-muted">+57 322 4014764</p>
+                    <p class="text-muted">¡Estamos aquí para servirle!</p>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Services End -->
+</div>
+    <!-- Contact End -->
 
 
-
-
-    
     <!-- Footer Start -->
     <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
         <div class="container text-center py-5">

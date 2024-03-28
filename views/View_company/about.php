@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="icons/SG.png" rel="icon">
+    <link rel="icon" href="../views/View_company/SG.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,11 +19,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../views/View_company/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,9 +33,9 @@
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="../admin/theme/page-login.php">Iniciar sesión</a>
+                    <a class="text-white pr-3" href="../controllers/Login.php?action=login">Iniciar sesión</a>
                         <span class="text-white">|</span>
-                        <a class="text-white px-3" href="../admin/theme/page-register.php">Registrarse</a>
+                        <a class="text-white px-3" href="../controllers/Login.php?action=register">Registrarse</a>
                       
                     </div>
                 </div>
@@ -76,17 +76,19 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="../../index.html" class="nav-item nav-link active">Inicio</a>
-                        <a href="about.php" class="nav-item nav-link">Nosotros</a>
-                        <a href="product.php" class="nav-item nav-link">Productos</a>
+                        <a href="../controllers/principal.php?action=index" class="nav-item nav-link active">Inicio</a>
+                        <a href="../controllers/principal.php?action=nosotros" class="nav-item nav-link">Nosotros</a>
+                        <a href="../controllers/principal.php?action=productos" class="nav-item nav-link">Productos</a>
                     </div>
-                    <a href="../../index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                    
+                    
+                    <a href="../controllers/principal.php?action=index" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.php" class="nav-item nav-link">Servicios</a>
-                        <a href="gallery.php" class="nav-item nav-link">Galeria</a>
-                        <a href="contact.php" class="nav-item nav-link">Contactenos</a>
+                        <a href="../controllers/principal.php?action=servicios" class="nav-item nav-link">Servicios</a>
+                        <a href="../controllers/principal.php?action=galeria" class="nav-item nav-link">Galeria</a>
+                        <a href="../controllers/principal.php?action=contacto" class="nav-item nav-link">Contactenos</a>
                     </div>
                 </div>
             </nav>
@@ -121,7 +123,7 @@
                 </div>
                 <div class="col-lg-4" style="min-height: 400px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="./img/000.png" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="../views/View_company/img/000.png" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-4 py-5">
@@ -138,12 +140,12 @@
     <!-- About End -->
 
 
-    <!-- Team Start -->
-    <div class="container-fluid py-5">
+        <!-- Team Start -->
+        <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-6">
-                    <h1 class="section-title position-relative mb-5">Nuestros colaboradores</h1>
+                    <!-- <h1 class="section-title position-relative mb-5">Nuestros colaboradores</h1> -->
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0 pb-5 pb-lg-0"></div>
             </div>
@@ -152,7 +154,7 @@
                     <div class="owl-carousel team-carousel">
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/Jose.png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/Jose.png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Jose</h3>
@@ -166,7 +168,7 @@
                         </div>
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/estilista (3).png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/estilista (3).png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Camilo</h3>
@@ -180,7 +182,7 @@
                         </div>
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/carlos.png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/estilista (2).png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Carlos</h3>
@@ -194,7 +196,7 @@
                         </div>
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="img/diana.png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/estilista (1).png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Diana</h3>

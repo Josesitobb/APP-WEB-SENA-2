@@ -9,7 +9,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link rel="icon" href="views/SG.png">
+    <link rel="icon" href="../views/View_company/SG.png">
 
     <!-- Google Web Fonts -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
@@ -19,11 +19,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="modules/company/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="modules/company/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="modules/company/css/style.css" rel="stylesheet">
+    <link href="../views/View_company/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="views/View_company/css/style.css">
 </head>
 
 <body>
@@ -33,9 +34,9 @@
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                    
-                        <a class="text-white pr-3" href="modules/admin/page-login.php">Iniciar Sesión</a>
+                <a class="text-white pr-3" href="../controllers/Login.php?action=login">Iniciar sesión</a>
                         <span class="text-white">|</span>
-                        <a class="text-white px-3" href="modules/admin/page-register.php">Registrarme</a>
+                        <a class="text-white px-3" href="../controllers/Login.php?action=register">Registrarse</a>
                       
                         
                    
@@ -69,16 +70,17 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         <a href="#" class="nav-item nav-link active">Inicio</a>
-                        <a href="modules/company/about.php" class="nav-item nav-link">Nosotros</a>
-                        <a href="modules/company/product.php" class="nav-item nav-link">Productos</a>
+                        <a href="principal.php?action=nosotros" class="nav-item nav-link">Nosotros</a>
+                        <a href="principal.php?action=productos" class="nav-item nav-link">Productos</a>
                     </div>
-                    <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                    <a href="#" class="navbar-brand mx-5 d-none d-lg-block">
                         <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="modules/company/service.php" class="nav-item nav-link">Servicios</a>
-                        <a href="modules/company/gallery.php" class="nav-item nav-link">Galeria</a>
-                        <a href="modules/company/contact.php" class="nav-item nav-link">Mas informacion</a>
+                        <a href="principal.php?action=servicios" class="nav-item nav-link">Servicios</a>
+                        <a href="principal.php?action=galeria" class="nav-item nav-link">Galeria</a>
+
+                        <a href="principal.php?action=contacto" class="nav-item nav-link">Mas informacion</a>
                     </div>
                 </div>
             </nav>
@@ -92,7 +94,7 @@
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="modules/company/img/6_IMAGEN_INICIO_PRINCIPAL.png" alt="Image">
+                    <img class="w-100" src="../views/View_company/img/6_IMAGEN_INICIO_PRINCIPAL.png" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
@@ -102,7 +104,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="modules/company/img/8_IMAGEN_INICIAL_PROTOTIPO.png" alt="Image">
+                    <img class="w-100" src="../views/View_company/img/8_IMAGEN_INICIAL_PROTOTIPO.png" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
@@ -144,7 +146,7 @@
                 </div>
                 <div class="col-lg-4" style="min-height: 400px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="modules/company/img/000.png" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="../views/View_company/img/000.png" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-4 py-5">
@@ -166,7 +168,7 @@
         <div class="row bg-primary m-0">
             <div class="col-md-6 px-0" style="min-height: 500px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100" src="modules/company/img/1_IMAGEN_INICIO_PRINCIPAL.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="../views/View_company/img/1_IMAGEN_INICIO_PRINCIPAL.jpg" style="object-fit: cover;">
                     <button type="button" class="btn-play" data-toggle="modal"
                         data-src="./modules/company/video/y2mate.com - Video Publicitario Salon de Belleza_480p.mp4" data-target="#videoModal">
                         
@@ -223,7 +225,7 @@
                     <div class="owl-carousel service-carousel">
                         <div class="service-item">
                             <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/servicios (1).png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="../views/View_company/img/servicios (1).png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
                                 <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Manicura</h5>
@@ -233,7 +235,7 @@
                         </div>
                         <div class="service-item">
                             <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/servicios (2).png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="../views/View_company/img/servicios (2).png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
                                 <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Tintura de cabello</h5>
@@ -243,7 +245,7 @@
                         </div>
                         <div class="service-item">
                             <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/servicios (3).png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="../views/View_company/img/servicios (3).png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
                                 <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Corte de cabello</h5>
@@ -253,7 +255,7 @@
                         </div>
                         <div class="service-item">
                             <div class="service-img mx-auto">
-                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="modules/company/img/3.png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100 bg-light p-3" src="../views/View_company/img/3.png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded p-4 pb-5" style="margin-top: -75px;">
                                 <h5 class="font-weight-semi-bold mt-5 mb-3 pt-5">Peinados</h5>
@@ -279,48 +281,48 @@
         <div class="row m-0 portfolio-container">
             <div class="col-lg-4 col-md-6 p-0 portfolio-item">
                 <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (1).png" alt="">
-                    <a class="portfolio-btn" href="modules/company/img/galeria (1).png" data-lightbox="portfolio">
+                    <img class="img-fluid w-100" src="../views/View_company/img/galeria (1).png" alt="">
+                    <a class="portfolio-btn" href="../views/View_company/img/galeria (1).png" data-lightbox="portfolio">
                         <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 p-0 portfolio-item">
                 <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (2).png" alt="">
-                    <a class="portfolio-btn" href="modules/company/img/galeria (2).png" data-lightbox="portfolio">
+                    <img class="img-fluid w-100" src="../views/View_company/img/galeria (2).png" alt="">
+                    <a class="portfolio-btn" href="../views/View_company/img/galeria (2).png" data-lightbox="portfolio">
                         <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 p-0 portfolio-item">
                 <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (3).png" alt="">
-                    <a class="portfolio-btn" href="modules/company/img/galeria (3).png" data-lightbox="portfolio">
+                    <img class="img-fluid w-100" src="../views/View_company/img/galeria (3).png" alt="">
+                    <a class="portfolio-btn" href="../views/View_company/img/galeria (3).png" data-lightbox="portfolio">
                         <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 p-0 portfolio-item">
                 <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (4).png" alt="">
-                    <a class="portfolio-btn" href="modules/company/img/galeria (4).png" data-lightbox="portfolio">
+                    <img class="img-fluid w-100" src="../views/View_company/img/galeria (4).png" alt="">
+                    <a class="portfolio-btn" href="../views/View_company/img/galeria (4).png" data-lightbox="portfolio">
                         <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 p-0 portfolio-item">
                 <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (5).png" alt="">
-                    <a class="portfolio-btn" href="modules/company/img/galeria (5).png" data-lightbox="portfolio">
+                    <img class="img-fluid w-100" src="../views/View_company/img/galeria (5).png" alt="">
+                    <a class="portfolio-btn" href="../views/View_company/img/galeria (5).png" data-lightbox="portfolio">
                         <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                     </a>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 p-0 portfolio-item">
                 <div class="position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="modules/company/img/galeria (6).png" alt="">
-                    <a class="portfolio-btn" href="modules/company/img/galeria (6).png" data-lightbox="portfolio">
+                    <img class="img-fluid w-100" src="../views/View_company/img/galeria (6).png" alt="">
+                    <a class="portfolio-btn" href="../views/View_company/img/galeria (6).png" data-lightbox="portfolio">
                         <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                     </a>
                 </div>
@@ -348,7 +350,7 @@
                     <div class="owl-carousel team-carousel">
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="modules/company/img/Jose.png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/Jose.png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Jose</h3>
@@ -362,7 +364,7 @@
                         </div>
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="modules/company/img/Jose.png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/Jose.png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Camilo</h3>
@@ -376,7 +378,7 @@
                         </div>
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="modules/company/img/Jose.png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/Jose.png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Carlos</h3>
@@ -390,7 +392,7 @@
                         </div>
                         <div class="team-item">
                             <div class="team-img mx-auto">
-                                <img class="rounded-circle w-100 h-100" src="modules/company/img/estilista (1).png" style="object-fit: cover;">
+                                <img class="rounded-circle w-100 h-100" src="../views/View_company/img/estilista (1).png" style="object-fit: cover;">
                             </div>
                             <div class="position-relative text-center bg-light rounded px-4 py-5" style="margin-top: -100px;">
                                 <h3 class="font-weight-bold mt-5 mb-3 pt-5">Diana</h3>

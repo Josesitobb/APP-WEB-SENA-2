@@ -1,3 +1,25 @@
+<?php
+// Consulta SQL
+$sql = "SELECT Id_Productos, Nombre_Productos, Precio_Productos, Cantidad_Productos, Imagen_Productos, Id_Clientes FROM productos";
+
+// Ejecutar consulta
+$resultado = $conn->query($sql);
+
+// Verificar si se encontraron resultados
+if ($resultado->num_rows > 0) {
+    // Obtener resultados y procesarlos
+    while ($row = $resultado->fetch_assoc()) {
+        // Procesar cada fila de resultados aquí
+        // echo "ID: " . $row["Id_Productos"]. " - Nombre: " . $row["Nombre_Productos"]. "<br>";
+    }
+} else {
+    echo "0 resultados";
+}
+
+// Cerrar conexión
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +31,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="icons/SG.png" rel="icon">
+    <link rel="icon" href="../views/View_company/SG.png">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,13 +41,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../views/View_company/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../views/View_company/css/style.css" rel="stylesheet">
 </head>
-
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid bg-primary py-3 d-none d-md-block">
@@ -33,9 +54,9 @@
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
                     <div class="d-inline-flex align-items-center">
-                    <a class="text-white pr-3" href="../admin/page-login.php">Iniciar sesión</a>
+                    <a class="text-white pr-3" href="../controllers/Login.php?action=login">Iniciar sesión</a>
                         <span class="text-white">|</span>
-                        <a class="text-white px-3" href="../admin/page-register.php">Registrarse</a>
+                        <a class="text-white px-3" href="../controllers/Login.php?action=register">Registrarse</a>
  
                     </div>
                 </div>
@@ -68,62 +89,74 @@
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
-                <a href="../../index.html" class="navbar-brand d-block d-lg-none">
-                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
+     
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="../../index.html" class="nav-item nav-link active">Inicio</a>
-                        <a href="about.php" class="nav-item nav-link">Nosotros</a>
-                        <a href="product.php" class="nav-item nav-link">Productos</a>
+                        <a href="../controllers/principal.php?action=index" class="nav-item nav-link active">Inicio</a>
+                        <a href="../controllers/principal.php?action=nosotros" class="nav-item nav-link">Nosotros</a>
+                        <a href="../controllers/principal.php?action=productos" class="nav-item nav-link">Productos</a>
                     </div>
-                    <a href="../../index.html" class="navbar-brand mx-5 d-none d-lg-block">
-                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
+                    
+                    
+                    <a href="../controllers/principal.php?action=index" class="navbar-brand mx-5 d-none d-lg-block">
+                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
                     </a>
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="service.php" class="nav-item nav-link">Servicios</a>
-                        <a href="gallery.php" class="nav-item nav-link">Galeria</a>
-                        <a href="contact.php" class="nav-item nav-link">Mas informacion</a>
+                        <a href="../controllers/principal.php?action=servicios" class="nav-item nav-link">Servicios</a>
+                        <a href="../controllers/principal.php?action=galeria" class="nav-item nav-link">Galeria</a>
+                        <a href="../controllers/principal.php?action=contacto" class="nav-item nav-link">Contactenos</a>
                     </div>
                 </div>
             </nav>
         </div>
-    </div>
-    <!-- Navbar End -->
+    </div>   <!-- Navbar End -->
 
 
     <!-- Header Start -->
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
-            <h1 class="text-white display-3 mt-lg-5">Mas informacion </h1>
+            <h1 class="text-white display-3 mt-lg-5">Productos</h1>
         </div>
     </div>
     <!-- Header End -->
 
 
-    <!-- Contact Start -->
+    <!-- Products Start -->
     <div class="container-fluid py-5">
     <div class="container py-5">
         <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="text-center">
-                    <h2 class="section-title position-relative mb-4">Más Información</h2>
-                    <p class="text-muted">Para obtener más detalles sobre nuestros servicios y productos, no dude en ponerse en contacto con nosotros. Estamos encantados de ayudarle en todo lo que podamos. Nuestro equipo profesional está listo para brindarle toda la información que necesite para tomar decisiones informadas. Además, estamos comprometidos a proporcionarle la mejor experiencia posible y garantizar su satisfacción. No dude en contactarnos para cualquier pregunta, comentario o solicitud especial. ¡Esperamos poder atenderle pronto!</p>
-
-                    <p class="text-muted">Puede visitarnos en nuestra dirección:</p>
-                    <p class="text-muted">Cra 11 #180a-9, 110141 Bogotá</p>
-                    <p class="text-muted">O llámenos al siguiente número:</p>
-                    <p class="text-muted">+57 322 4014764</p>
-                    <p class="text-muted">¡Estamos aquí para servirle!</p>
-                </div>
+            <div class="col-lg-6">
+                <h1 class="section-title position-relative text-center mb-5">Descubre los MEJORES productos para realzar tu belleza! </h1>
             </div>
+        </div>
+        <div class="row">
+            <?php foreach ($resultado as $row) { ?>
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="">
+                            <h4 class="font-weight-bold text-white mb-0">$<?php echo $row['Precio_Productos']; ?></h4>
+                        </div>
+                        <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3" style="width: 150px; height: 150px;">
+                        <?php
+                            $imagen_base64 = base64_encode($row['Imagen_Productos']);
+                            $imagen_src = 'data:image/png;base64,' . $imagen_base64;
+                            ?>
+                            <img class="rounded-circle w-100 h-100" src="<?php echo $imagen_src; ?>" alt="<?php echo $row['Nombre_Productos']; ?>">
+                        </div>
+                        <h5 class="font-weight-bold mb-4"><?php echo $row['Nombre_Productos']; ?></h5>
+                        <br>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
-    <!-- Contact End -->
+
+    <!-- Products End -->
 
 
     <!-- Footer Start -->

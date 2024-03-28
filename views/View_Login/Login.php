@@ -10,7 +10,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../views/Views Admin/css/style.css" rel="stylesheet">
     
 </head>
 
@@ -43,7 +43,8 @@
                             <div class="card-body pt-5">
                                 <a class="text-center" href="index.php"> <h4>Iniciar sesion</h4></a>
         
-                                <form class="mt-5 mb-5 login-input" action="validad.php" method="post" onsubmit="return validarlogin();" >
+                                <form class="mt-5 mb-5 login-input" action="Login.php?action=validar" method="post" onsubmit="return validarlogin();">
+
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Correo" name="emailuser" id="emailuser" required/>
                                     </div>
@@ -54,7 +55,7 @@
                                     
                                     <button class="btn login-form__btn submit w-100">Iniciar sesion</button>
                                 </form>
-                                <p class="mt-5 login-form__footer">¿No tienes una cuenta? <a href="page-register.php" class="text-primary">Click </a> aquí para registrarte.</p>
+                                <p class="mt-5 login-form__footer">¿No tienes una cuenta? <a href="../controllers/Login.php?action=register" class="text-primary">Click </a> aquí para registrarte.</p>
                             </div>
                         </div>
                     </div>
@@ -69,12 +70,12 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-    <script src="./js/validaciones/ValidacionLogin.js"></script>
+    <script src="../views/Views Admin/plugins/common/common.min.js"></script>
+    <script src="../views/Views Admin/js/custom.min.js"></script>
+    <script src="../views/Views Admin/js/settings.js"></script>
+    <script src="../views/Views Admin/js/gleek.js"></script>
+    <script src="../views/Views Admin/js/styleSwitcher.js"></script>
+    <script src="../views/Views Admin/js/validaciones/ValidacionLogin.js"></script>
     <script>
   function togglePasswordVisibility() {
     var passwordInput = document.getElementById("passwordlog");

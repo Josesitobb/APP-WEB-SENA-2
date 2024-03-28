@@ -1,7 +1,18 @@
-<!-- en este archivo se conecta a la base de datos -->
-
 <?php
-// CONEXION A LA BASE DE DATOS
-$conexion=mysqli_connect("localhost","root","","mydb",3307);
+// db.php
 
+// CONEXION A LA BASE DE DATOS
+$servername="localhost";
+$username ="root";
+$password ="";
+$db="SGCitas";
+
+$conn=mysqli_connect($servername,$username,$password,$db);
+
+// // Verificar la conexión
+// if (!$conn) {
+//     die("Conexión fallida: " . mysqli_connect_error());
+// }else{
+//     echo "existe";
+// }
 ?>
