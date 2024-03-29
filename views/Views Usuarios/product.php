@@ -13,9 +13,8 @@ $nombre_usuario = $_SESSION['username'];
 ?>
 
 <?php
-include('config/db.php');
-require('config/config.php');
-
+include('../../controllers/db.php');
+require('../../Modelos/Usuarios/config/config.php');
 
 // Consulta SQL
 $sql = "SELECT Id_Productos, Nombre_Productos, Precio_Productos, Cantidad_Productos, Imagen_Productos, Id_Clientes FROM productos";

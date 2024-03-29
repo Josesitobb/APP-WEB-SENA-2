@@ -26,8 +26,8 @@ $id_cliente = $_SESSION['client_id'];
 
 $nombre_usuario = $_SESSION['username'];
 // Incluir archivos de configuración y conexión a la base de datos
-include('config/db.php');
-require('config/config.php');
+include('../../controllers/db.php');
+require('../../Modelos/Usuarios/config/config.php');
 
 // Consulta SQL para obtener información de servicios
 $sql_servicios = "SELECT Id_Servicios, Nombre_Servicios, Valor_Servicios, Descripcion_Servicios, Imagen_Servicios FROM servicios";
