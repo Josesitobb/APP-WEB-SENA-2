@@ -34,251 +34,181 @@ echo $_SESSION['username'];
     <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
     <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .hoy {
+        background-color: #ffe0b2;
+    }
+
+    /* Estilos para el modal */
+    .modal {
+        display: none; /* Ocultar el modal por defecto */
+        position: fixed; /* Posición fija para cubrir toda la ventana */
+        z-index: 1; /* Situar el modal por encima de todo */
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; /* Habilitar desplazamiento si el contenido es más grande que la ventana */
+        background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* Margen superior e inferior para centrar verticalmente */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Ancho del contenido del modal */
+    }
+
+    /* Estilo para el botón de cerrar */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select.form-control {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        select.form-control:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        button[type="submit"], button[type="button"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="button"] {
+            background-color: #6c757d;
+            color: #fff;
+            margin-left: 10px;
+        }
+
+        button[type="button"]:hover {
+            background-color: #5a6268;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            background-color: #fff;
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tbody tr:hover {
+            background-color: #e2e2e2;
+        }
+
+        .btn-primary, .btn-primary:hover {
+            background-color: #007bff !important;
+            border-color: #007bff !important;
+        }
+
+        .btn-danger, .btn-danger:hover {
+            background-color: #dc3545 !important;
+            border-color: #dc3545 !important;
+        }
+    </style>
+</style>
+
 
 </head>
 
 <body>
 
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
 
-    
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
-    <div id="main-wrapper">
+<?php Include ("Model/header.php"); ?>
 
-        <!--**********************************
-            Nav header start
-        ***********************************-->
-        <div class="nav-header">
-            <div class="brand-logo">
-                <a href="index.php">
-                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" alt=""> </b>
-                    <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
-                    <span class="brand-title">
-                        <img src="../../views/Views_Admin/images/logi.png" alt="">
-                    </span>
-                </a>
-            </div>
-        </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Header start
-        ***********************************-->
-        <div class="header">    
-            <div class="header-content clearfix">
-                
-                <div class="nav-control">
-                    <div class="hamburger">
-                        <span class="toggle-icon"><i class="icon-menu"></i></span>
-                    </div>
-                </div>
-                <!-- <div class="header-left">
-                    <div class="input-group icons">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                        </div>
-                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                        <div class="drop-down   d-md-none">
-							<form action="#">
-								<input type="text" class="form-control" placeholder="Search">
-							</form>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="header-right">
-                    <ul class="clearfix">
-                        <li class="icons dropdown">
-                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                                <span class="activity active"></span>
-                                <img src="images/user/1.png" height="40" width="40" alt="">
-                            </div>
-                            <div class="drop-down dropdown-profile   dropdown-menu">
-                                <div class="dropdown-content-body">
-                                    <ul>
-                                        <li>
-                                            <a href="app-profile.php"><i class="icon-user"></i> <span>Profile</span></a>
-                                        </li>
-                                        <hr class="my-2">
-                                        <li><a href="page-login.php"><i class="icon-key"></i> <span>Logout</span></a></li>
-                                    </ul>  
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        <div class="nk-sidebar">           
-            <div class="nk-nav-scroll">
-                <ul class="metismenu" id="menu">
-                    <li class="nav-label">Dashboard</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
-                        </a>
-                        <ul aria-expanded="false">
-                        <li><a href="admin_controller.php?rol=indexadmin">Inicio</a></li>
-                            <!-- <li><a href="./index-2.php">Home 2</a></li> -->
-                        </ul>
-                    </li>
-                    <li class="mega-menu mega-menu-sm">
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            
-                        <li><a href="admin_views.php?vista=usuariosC">Usuarios/Clientes</a></li>
-                            <li><a href="admin_views.php?vista=usuariosE">Usuarios/Estilistas</a></li>
-                            <li><a href="admin_views.php?vista=productos">Productos</a></li>
-                            <li><a href="admin_views.php?vista=servicios">Servicios</a></li>
-                            <li><a href="admin_views.php?vista=citas">Citas </a></li>
-                            <li><a href="admin_views.php?vista=factura">Facturas </a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Apps</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Email</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./email-inbox.php">Inbox</a></li>
-                            <li><a href="./email-read.php">Read</a></li>
-                            <li><a href="./email-compose.php">Compose</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Apps</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./app-profile.php">Profile</a></li>
-                            <li><a href="./app-calender.php">Calender</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Reporte Graficos</span>
-                        </a>
-                        <ul aria-expanded="false">
-                        <li><a href="admin_views.php?vista=citasr">Citas</a></li>
-                            <li><a href="admin_views.php?vista=usuariosr">Usuarios</a></li>
-                            <li><a href="admin_views.php?vista=productosr">Productos</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="nav-label">UI Components</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-grid menu-icon"></i><span class="nav-text">UI Components</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./ui-accordion.php">Accordion</a></li>
-                            <li><a href="./ui-alert.php">Alert</a></li>
-                            <li><a href="./ui-badge.php">Badge</a></li>
-                            <li><a href="./ui-button.php">Button</a></li>
-                            <li><a href="./ui-button-group.php">Button Group</a></li>
-                            <li><a href="./ui-cards.php">Cards</a></li>
-                            <li><a href="./ui-carousel.php">Carousel</a></li>
-                            <li><a href="./ui-dropdown.php">Dropdown</a></li>
-                            <li><a href="./ui-list-group.php">List Group</a></li>
-                            <li><a href="./ui-media-object.php">Media Object</a></li>
-                            <li><a href="./ui-modal.php">Modal</a></li>
-                            <li><a href="./ui-pagination.php">Pagination</a></li>
-                            <li><a href="./ui-popover.php">Popover</a></li>
-                            <li><a href="./ui-progressbar.php">Progressbar</a></li>
-                            <li><a href="./ui-tab.php">Tab</a></li>
-                            <li><a href="./ui-typography.php">Typography</a></li>
-                        <!-- </ul>
-                    </li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-layers menu-icon"></i><span class="nav-text">Components</span>
-                        </a>
-                        <ul aria-expanded="false"> -->
-                            <li><a href="./uc-nestedable.php">Nestedable</a></li>
-                            <li><a href="./uc-noui-slider.php">Noui Slider</a></li>
-                            <li><a href="./uc-sweetalert.php">Sweet Alert</a></li>
-                            <li><a href="./uc-toastr.php">Toastr</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="widgets.php" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text">Widget</span>
-                        </a>
-                    </li>
-                    <li class="nav-label">Forms</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-note menu-icon"></i><span class="nav-text">Forms</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./form-basic.php">Basic Form</a></li>
-                            <li><a href="./form-validation.php">Form Validation</a></li>
-                            <li><a href="./form-step.php">Step Form</a></li>
-                            <li><a href="./form-editor.php">Editor</a></li>
-                            <li><a href="./form-picker.php">Picker</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Table</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-menu menu-icon"></i><span class="nav-text">Table</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./table-basic.php" aria-expanded="false">Basic Table</a></li>
-                            <li><a href="./table-datatable.php" aria-expanded="false">Data Table</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-label">Pages</li>
-                    <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Pages</span>
-                        </a>
-                        <ul aria-expanded="false">
-                            <li><a href="./page-login.php">Login</a></li>
-                            <li><a href="./page-register.php">Register</a></li>
-                            <li><a href="./page-lock.php">Lock Screen</a></li>
-                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
-                                <ul aria-expanded="false">
-                                    <li><a href="./page-error-404.php">Error 404</a></li>
-                                    <li><a href="./page-error-403.php">Error 403</a></li>
-                                    <li><a href="./page-error-400.php">Error 400</a></li>
-                                    <li><a href="./page-error-500.php">Error 500</a></li>
-                                    <li><a href="./page-error-503.php">Error 503</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!--**********************************
-            Sidebar end
-        ***********************************-->
-
+<?php Include ("Model/navbar.php"); ?>
         <!--**********************************
             Content body start
         ***********************************-->
@@ -350,86 +280,6 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
 
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calendario PHP</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<style>
-    body {
-        font-family: Arial, sans-serif;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        padding: 10px;
-        border: 1px solid #ddd;
-        text-align: center;
-    }
-
-    th {
-        background-color: #f2f2f2;
-    }
-
-    .hoy {
-        background-color: #ffe0b2;
-    }
-
-    /* Estilos para el modal */
-    .modal {
-        display: none; /* Ocultar el modal por defecto */
-        position: fixed; /* Posición fija para cubrir toda la ventana */
-        z-index: 1; /* Situar el modal por encima de todo */
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto; /* Habilitar desplazamiento si el contenido es más grande que la ventana */
-        background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* Margen superior e inferior para centrar verticalmente */
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%; /* Ancho del contenido del modal */
-    }
-
-    /* Estilo para el botón de cerrar */
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
-
-</head>
 <body>
 
 <?php
@@ -555,129 +405,18 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h1>Lista de Citas</h1>
+       
         
         
-        <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Citas</title>
-    <!-- Enlace a Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        .container {
-            margin-top: 50px;
-        }
-
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        form .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        select.form-control {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
-            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-        }
-
-        select.form-control:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-
-        button[type="submit"], button[type="button"] {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        button[type="button"] {
-            background-color: #6c757d;
-            color: #fff;
-            margin-left: 10px;
-        }
-
-        button[type="button"]:hover {
-            background-color: #5a6268;
-        }
-
-        .table-container {
-            display: flex;
-            justify-content: center;
-        }
-
-        table {
-            background-color: #fff;
-            width: 100%;
-            border-collapse: collapse;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        table th, table td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-
-        table th {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        table tbody tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        table tbody tr:hover {
-            background-color: #e2e2e2;
-        }
-
-        .btn-primary, .btn-primary:hover {
-            background-color: #007bff !important;
-            border-color: #007bff !important;
-        }
-
-        .btn-danger, .btn-danger:hover {
-            background-color: #dc3545 !important;
-            border-color: #dc3545 !important;
-        }
-    </style>
+        
+  
 </head>
 <body>
     <div class="container">
 
         
         <!-- Formulario de filtrado por cliente -->
-        <form action="" method="GET" style="display: none;">
+        <form action="admin_cliente_citas.php?cliente=cliente" method="GET" style="display: none;">
             <div class="form-group">
                 <label for="cliente">Seleccione un cliente:</label>
                 <select class="form-control" id="cliente" name="cliente">
@@ -697,7 +436,7 @@ $result = $conn->query($sql);
                     ?>
                 </select>
             </div>
-            <a href="reportes_excel/execel_citas.php" class="btn btn-primary">Descargar</a>
+            <a href="admin_data.php?action=excelcitas" class="btn btn-primary">Descargar</a>
             <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
             <button type="button" class="btn btn-secondary" onclick="location.href='index.php';">Quitar filtro</button>
         </form>
@@ -880,11 +619,7 @@ window.onclick = function(event) {
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
-    <script src="../../views/Views_Admin/js/custom.min.js"></script>
-    <script src="../../views/Views_Admin/js/settings.js"></script>
-    <script src="../../views/Views_Admin/js/gleek.js"></script>
-    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
+    <?php Include ("Model/footer.php"); ?>
 
 </body>
 
