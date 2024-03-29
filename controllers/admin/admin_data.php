@@ -49,8 +49,26 @@ if(isset($_GET['action'])) {
             break;
         case 'EliminarCita':
             require_once('../../Modelos/Admin/Eliminar_Cita.php');
+            break;
         case 'generarPDF':
             require_once('../../Modelos/Admin/reportes_pdf/generar_pdf.php');
+            break;
+        case 'excelclientes':
+            require_once('../../Modelos/Admin/reportes_excel/execel_clientes.php');
+            break;
+        case 'excelcitas':
+            require_once('../../Modelos/Admin/reportes_excel/execel_citas.php');
+            break;
+        case 'excelestilistas':
+            require_once('../../Modelos/Admin/reportes_excel/execel_estilistas.php');
+            break;
+        case 'excelproductos':
+            require_once('../../Modelos/Admin/reportes_excel/execel_productos.php');
+            break;
+        case 'excelservicios':
+            require_once('../../Modelos/Admin/reportes_excel/execel_servicios.php');
+            break;
+            
 
             echo "pa donde va rey";
             break;

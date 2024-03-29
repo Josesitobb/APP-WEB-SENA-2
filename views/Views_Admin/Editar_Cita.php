@@ -90,6 +90,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     </style>
 </head>
 <body>
+
 <div class="container">
         <h1 class="mt-5 mb-4">Editar Cita</h1>
         <div class="table-responsive">

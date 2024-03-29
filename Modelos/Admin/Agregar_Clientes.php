@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+
 
 
 $nombre = $_POST['nombre'];
