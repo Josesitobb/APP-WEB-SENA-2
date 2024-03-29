@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['Id_Citas'])) {
 
     if ($result) {
         // Redirigir a la página principal con un mensaje de éxito
-        echo "<script>alert('Se elimino.'); window.location.href = 'Citas.php';</script>";
+        echo "<script>alert('Se elimino.'); window.location.href = '../../controllers/admin/admin_views.php?vista=citas';</script>";
         exit();
     } else {
         echo "Error al eliminar la cita: " . mysqli_error($conn);

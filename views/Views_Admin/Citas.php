@@ -183,9 +183,9 @@ echo $_SESSION['username'];
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Reporte Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                        <li><a href="./Reporte_Citas.php">Citas</a></li>
-                            <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
-                            <li><a href="./Reporte_Productos.php">Productos</a></li>
+                        <li><a href="admin_views.php?vista=citasr">Citas</a></li>
+                            <li><a href="admin_views.php?vista=usuariosr">Usuarios</a></li>
+                            <li><a href="admin_views.php?vista=productosr">Productos</a></li>
 
                         </ul>
                     </li>
@@ -730,8 +730,12 @@ $result = $conn->query($sql);
                                 echo "<td>" . $row["Nombre_Servicios"] . "</td>";
                                 // echo "<td>" . $row["end"] . "</td>";
                                 echo "<td>" . $row["Precio_Servicio"] . "</td>";
-                                echo "<td><a href='editar_cita.php?Id_Citas=" . $row["Id_Citas"] . "' class='btn btn-primary'>Editar</a></td>";
-                                echo "<td><a href='eliminar_cita.php?Id_Citas=" . $row["Id_Citas"] . "' onclick='return confirmarEliminar();' class='btn btn-danger'>Eliminar</a></td>";
+                                echo "<td><a href='../../controllers/admin/admin_views.php?vista=EditarCita&Id_Citas=" . $row["Id_Citas"] . "' class='btn btn-primary'>Editar</a></td>";
+
+
+                                echo "<td><a href='../../controllers/admin/admin_data.php?action=EliminarCita&Id_Citas=" . $row["Id_Citas"] . "' onclick='return confirmarEliminar();' class='btn btn-danger'>Eliminar</a></td>";
+
+
                                 echo "</tr>";
                             }
                         } else {
@@ -778,8 +782,7 @@ $conn->close();
                 <button type="button" class="close" data-dismiss="modal" onclick="cerrarModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="formulario" action="Agrega._citas.php" method="POST">
-                <form id="formulario" action="Agrega._citas.php" method="POST">
+                <form id="formulario" action="admin_data.php?action=agregarcitas" method="POST">
                     <div class="form-group">
                         <label for="Nombre_Cliente">Nombre del Cliente:</label>
                         <select id="Nombre_Cliente" name="Nombre_Cliente" class="form-control">

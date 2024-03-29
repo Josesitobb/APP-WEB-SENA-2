@@ -175,9 +175,9 @@ echo $_SESSION['username'];
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Reportes Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                        <li><a href="./Reporte_Citas.php">Citas</a></li>
-                            <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
-                            <li><a href="./Reporte_Productos.php">Productos</a></li>
+                        <li><a href="admin_views.php?vista=citasr">Citas</a></li>
+                            <li><a href="admin_views.php?vista=usuariosr">Usuarios</a></li>
+                            <li><a href="admin_views.php?vista=productosr">Productos</a></li>
 
 
                         </ul>
@@ -380,7 +380,7 @@ echo $_SESSION['username'];
                         $fechaFormateada = date('d/m/Y', strtotime($row["Fecha_Factura"]));
                         echo "<td>". $row["Nombre_Cliente"] . "</td>";
                         echo "<td>" . $fechaFormateada . "</td>";
-                        echo "<td><a href='./reportes_pdf/generar_pdf.php?id_factura=" . $row["Id_Facturas"] . "'>Descargar PDF</a></td>";
+                        echo "<td><a href='../../controllers/admin/admin_data.php?action=generarPDF&id_factura=" . $row["Id_Facturas"] . "'>Descargar PDF</a></td>";
                         echo "</tr>";
                     }
                 } else {

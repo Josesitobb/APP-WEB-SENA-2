@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($query) {
         // Éxito: imprimir script de alerta y redirigir
-        echo "<script>alert('Cita agregada exitosamente.'); window.location.href = 'Citas.php';</script>";
+        echo "<script>alert('Cita agregada exitosamente.'); window.location.href = '../../controllers/admin/admin_views.php?vista=citas';</script>";
     } else {
         // Error: imprimir mensaje de error
         echo "NO EXITOSO: " . mysqli_error($conn);

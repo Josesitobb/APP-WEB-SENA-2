@@ -28,6 +28,20 @@ function cargarServicioView($conn){
     require('../../views/Views_Admin/Servicios.php');
 }
 
+function cargarEditarCita($conn){
+    require('../../views/Views_Admin/Editar_Cita.php');
+}
+
+function cargarReporteCitasview($conn){
+    require('../../views/Views_Admin/Reporte_Citas.php');
+}
+
+function cargarReporteProductosview($conn){
+    require('../../views/Views_Admin/Reporte_Productos.php');
+}
+function cargarReporteUsuarioview($conn){
+    require('../../views/Views_Admin/Reporte_Usuarios.php');
+}
 // Verificar la acción solicitada
 if(isset($_GET['vista'])) {
     $vistas = $_GET['vista'];
@@ -51,6 +65,19 @@ if(isset($_GET['vista'])) {
         case 'factura':
             cargarFacturaView($conn);
             break;
+        case 'EditarCita':
+            cargarEditarCita($conn);
+            break;
+        case 'citasr':
+            cargarReporteCitasview($conn);
+            break;
+        case 'usuariosr':
+            cargarReporteUsuarioview($conn);
+            break;
+        case 'productosr':
+            cargarReporteProductosview($conn);
+            break;
+
             
         default:
             // Acción por defecto si no se reconoce ninguna acción

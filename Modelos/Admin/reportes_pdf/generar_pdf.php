@@ -1,5 +1,5 @@
 <?php
-require('PDF/fpdf.php');
+require('../../Modelos/Admin/reportes_pdf/PDF/fpdf.php');
 include("../db.php");
 
 $id_factura = $_GET['id_factura'];
@@ -9,7 +9,7 @@ $pdf = new FPDF();
 $pdf->AddPage();
 
 // Agregar el logo
-$pdf->Image('logi.png', 10, 10, 30);
+$pdf->Image('../../Modelos/Admin/reportes_pdf/logi.png', 10, 10, 30);
 
 // Configurar fuente y color
 $pdf->SetFont('Arial', '', 12);

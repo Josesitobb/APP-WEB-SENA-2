@@ -204,9 +204,9 @@ var roles = <?php echo $roles_json; ?>;
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Reportes Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                        <li><a href="./Reporte_Citas.php">Citas</a></li>
-                            <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
-                            <li><a href="./Reporte_Productos.php">Productos</a></li>
+                        <li><a href="admin_views.php?vista=citasr">Citas</a></li>
+                            <li><a href="admin_views.php?vista=usuariosr">Usuarios</a></li>
+                            <li><a href="admin_views.php?vista=productosr">Productos</a></li>
 
 
                         </ul>
@@ -562,7 +562,6 @@ $(document).ready(function() {
                 contraseña: contraseña
             },
             success: function(response) {
-                // Mostrar el mensaje al usuario
                 alert(response);
                 
                 // Recargar la página si la inserción fue exitosa

@@ -2,19 +2,14 @@
 // obtener_precio_servicio.php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-require("../../controllers/db.php");
-
 if(isset($_POST['servicioSeleccionado'])) {
     $id_servicio = $_POST['servicioSeleccionado'];
-
-    // Consulta SQL para obtener el precio del servicio seleccionado
     $query = "SELECT Valor_Servicios FROM servicios WHERE Id_Servicios = $id_servicio";
     $result = mysqli_query($conn, $query);
 
     if ($result) {
         $fila = mysqli_fetch_assoc($result);
-        echo $fila['Valor_Servicios']; // Devolver el precio como respuesta
+        echo $fila['Valor_Servicios']; 
     } else {
         echo "Error al obtener el precio del servicio";
     }

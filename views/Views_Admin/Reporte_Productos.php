@@ -21,13 +21,19 @@ echo $_SESSION['username'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <!-- Custom Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
 
-</head>
+    <title>Facturas</title>
+    <!-- <link rel="icon" href="icons/SG.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
 <body>
 
@@ -435,7 +441,6 @@ echo $_SESSION['username'];
 
     <?php
 
-    include("db.php");
 
 
     $sqlProductos = "SELECT Nombre_Productos, Cantidad_Productos FROM productos";
@@ -525,14 +530,11 @@ echo $_SESSION['username'];
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-
-    <script src="./plugins/chart.js/Chart.bundle.min.js"></script>
-    <script src="./js/plugins-init/chartjs-init.js"></script>
+    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../../views/Views_Admin/js/settings.js"></script>
+    <script src="../../views/Views_Admin/js/gleek.js"></script>
+    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
 
 </body>
 

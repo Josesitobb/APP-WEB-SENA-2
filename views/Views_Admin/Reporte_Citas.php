@@ -20,10 +20,18 @@ echo $_SESSION['username'];
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+
+    <title>Facturas</title>
+    <!-- <link rel="icon" href="icons/SG.png"> -->
+    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 </head>
@@ -302,9 +310,9 @@ echo $_SESSION['username'];
                             <i class="icon-graph menu-icon"></i> <span class="nav-text">Reporte Graficos</span>
                         </a>
                         <ul aria-expanded="false">
-                        <li><a href="./Reporte_Citas.php">Citas</a></li>
-                            <li><a href="./Reporte_Usuarios.php">Usuarios</a></li>
-                            <li><a href="./Reporte_Productos.php">Productos</a></li>
+                        <li><a href="admin_views.php?vista=citasr">Citas</a></li>
+                            <li><a href="admin_views.php?vista=usuariosr">Usuarios</a></li>
+                            <li><a href="admin_views.php?vista=productosr">Productos</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">UI Components</li>
@@ -441,27 +449,24 @@ echo $_SESSION['username'];
     setlocale(LC_TIME, 'es_ES.UTF-8');
 
     // Conexión a la base de datos
-    include("db.php");
 
 
     $sqlCitas = "SELECT MONTH(start) AS mes, COUNT(*) AS cantidad_citas
-                 FROM Citas
-                 GROUP BY MONTH(start)";
-    $resultCitas = $conn->query($sqlCitas);
+    FROM Citas
+    GROUP BY MONTH(start)";
+$resultCitas = $conn->query($sqlCitas);
 
+$labelsCitas = [];
+$dataCitas = [];
+while ($row = $resultCitas->fetch_assoc()) {
+$nombre_mes = date('F', mktime(0, 0, 0, $row['mes'], 1)); // Obtener el nombre completo del mes
+$labelsCitas[] = ucfirst($nombre_mes); // Convertir la primera letra en mayúscula
+$dataCitas[] = $row['cantidad_citas'];
+}
 
-    $labelsCitas = [];
-    $dataCitas = [];
-    while ($row = $resultCitas->fetch_assoc()) {
+$conn->close();
+?>
 
-        $nombre_mes = strftime('%B', mktime(0, 0, 0, $row['mes'], 1));
-        $labelsCitas[] = ucfirst($nombre_mes); 
-        $dataCitas[] = $row['cantidad_citas'];
-    }
-
-
-    $conn->close();
-    ?>
 
     <script>
 
@@ -555,14 +560,12 @@ echo $_SESSION['username'];
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
-
-    <script src="./plugins/chart.js/Chart.bundle.min.js"></script>
-    <script src="./js/plugins-init/chartjs-init.js"></script>
+    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+    <script src="../../views/Views_Admin/js/custom.min.js"></script>
+    <script src="../../views/Views_Admin/js/settings.js"></script>
+    <script src="../../views/Views_Admin/js/gleek.js"></script>
+    <script src="../../views/Views_Admin/js/styleSwitcher.js"></script>
+  
 
 </body>
 

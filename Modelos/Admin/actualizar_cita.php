@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result) {
             // Redirigir después de mostrar la alerta
-            echo "<script>alert('Se edito exitosamente.'); window.location.href = 'Citas.php';</script>";
+            echo "<script>alert('Se edito exitosamente.'); window.location.href = '../../controllers/admin/admin_views.php?vista=citas';</script>";
         exit();
         } else {
             echo "Error al actualizar la cita: " . mysqli_error($conn);

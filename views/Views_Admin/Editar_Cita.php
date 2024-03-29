@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-require("../../controllers/db.php");
+
 // Obtener la lista de clientes
 $query = "SELECT clientes.Id_Clientes, usuarios.Nombre_Usuarios
 FROM clientes
@@ -97,7 +97,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
         </div>
    
             <?php
-            include("./db.php");
+
 
             if(isset($_GET['Id_Citas'])) {
                 $id_cita = $_GET['Id_Citas'];
@@ -128,7 +128,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
                 if ($result_cita->num_rows > 0) {
                     $row = $result_cita->fetch_assoc();
                     ?>
-                    <form action='actualizar_cita.php' method='post'>
+                    <form action='../../controllers/admin/admin_data.php?action=actualizarcita' method='post'>
                         <input type='hidden' name='id_cita' value='<?php echo $row["Id_Citas"]; ?>'>
                         <div class="form-group">
                             <label for="fecha_hora">Fecha y Hora:</label>
@@ -208,7 +208,7 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
                 var servicioSeleccionado = $(this).val();
 
                 $.ajax({
-                    url: 'obtener_precio_servicio.php',
+                    url: '../../controllers/admin/admin_data.php?action=actualizarprecio',
                     method: 'POST',
                     data: { servicioSeleccionado: servicioSeleccionado },
                     success: function(response){
