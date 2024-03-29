@@ -1,0 +1,177 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: #EEE;
+}
+
+/* Color blanco */
+.color-blanco{
+    background: #FFF;
+}
+
+/* Color gris claro */
+.color-gris-cla{
+    background: #BBB;
+}
+
+/* Color gris oscuro */
+.color-gris-osc{
+    background: #777;
+}
+
+/* Color negro */
+.color-negro{
+    background: #000;
+}
+
+.borde{
+    border: 1px solid #CCC;
+}
+
+/* Contenedor */
+.contenedor{
+    max-width: 1280px;
+    width: 95%;    
+    margin: auto;    
+}
+
+/* Navegador */
+nav{
+    width: 100%;
+    height: 50px;
+}
+
+/* Logo */
+.logo{
+    width: 10%;
+    height: 100%;    
+    float: left;
+}
+
+/* Menú */
+.menu{
+    width: 90%;
+    height: 100%;
+    float: left;
+}
+
+/* Encabezado */
+.inicio-sesion{
+    width: 100%;
+    height: 650px;
+}
+
+/* Video */
+.video-container{
+    position:relative;
+    width: 60%;
+    height: 60%;
+}
+
+.video-container video{
+    position: absolute;
+    top: 31%;
+    left: 0%;
+    width: 70%;
+    height: 100%;
+}
+
+.perfil-usuario{
+    display: flex;
+    justify-content:end;
+    align-items: flex-start;
+    width: 100%;
+    height: 40%;
+}
+
+.cliente,
+.colaborador,
+.administrador{
+    width: 70%;
+    height: 15%;
+    margin: 30px;
+    float: left;
+}
+
+.cliente{
+    background-color: #CCC;
+}
+
+.colaborador{
+    background-color: #AAA;
+}
+
+.administrador{
+    background-color: #888;
+}
+
+/* Pie de Página */
+footer{
+    width: 100%;
+    height: 70px;
+}
+
+
+@media (max-width: 992px) {
+    /* Contenedor */
+    .contenedor{        
+        width: 100%;
+    }
+    /* Navegador */
+    nav{
+        width: 100%;
+        height: 150px;
+    }
+    /* Logo */
+    .logo{
+        width: 100%;
+        height: 100px;
+    }
+    /* Menú */
+    .menu{
+        width: 80%;
+        height: 50px;        
+    }
+    /* Ingreso */
+    .ingreso{
+        width: 20%;
+        height: 50px;        
+    }
+    /* Nosotros */
+    .nosotros{}
+    .nos-fila-arr .nos-col-der,
+    .nos-fila-abj .nos-col-der,
+    .nos-fila-cnt .nos-col-izq{
+        display: none;
+    }
+    .nos-fila-arr .nos-col-izq,
+    .nos-fila-abj .nos-col-izq,
+    .nos-fila-cnt .nos-col-der{
+        width: 70%;
+    }
+    .nos-col-cnt{
+        background: #FFF;
+        width: 30%;
+    }
+}
+@media (max-width: 768px) {        
+    /* Logo */
+    .logo{
+        width: 100%;
+        height: 50px;
+    }
+    /* Menú */
+    .menu{
+        width: 100%;
+        height: 50px;        
+    }
+    /* Ingreso */
+    .ingreso{
+        width: 100%;
+        height: 50px;        
+    }
+}
