@@ -59,7 +59,7 @@ echo $_SESSION['username'];
             </div>
             <div class="modal-body">
                 <!-- Formulario para agregar nuevo estilista -->
-                <form id="agregarEstilistaForm" action="Agregar_Estilista.php" method="POST">
+                <form id="agregarEstilistaForm" action="../../controllers/admin/admin_data.php?action=agregarestilista" method="POST">
                     <div class="mb-3">
                         <label for="nombreEstilista" class="form-label">Nombre Usuario</label>
                         <input type="text" class="form-control" id="nombreEstilista" name="nombreEstilista">
@@ -380,7 +380,7 @@ echo $_SESSION['username'];
                     <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
                     <td>
                         <a class="btn btn-custom-blue my-1" href="#" onclick="cargarDatosEstilista('<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios']; ?>', '<?php echo $resultado['Id_Usuarios']; ?>')" data-bs-toggle="modal" data-bs-target="#editarEstilistaModal" class="btn btn-warning">Editar</a>
-                        <a class="btn btn-custom-pink my-1" href="Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-danger">Eliminar</a>
+                        <a class="btn btn-custom-pink my-1" href="../../Modelos/Admin/Borrar_Estilistas.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
             <?php
@@ -475,7 +475,7 @@ echo $_SESSION['username'];
 
         // Enviar los datos mediante AJAX
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'Editar_Estilistas.php', true);
+        xhr.open('POST', 'admin_data.php?action=usuariosestilistaseditar', true);
         xhr.onload = function () {
             if (xhr.status === 200) {
                 // Procesar la respuesta del servidor si es necesario

@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include("./db.php");
+require("../../controllers/db.php");
 // Obtener la lista de clientes
 $query = "SELECT clientes.Id_Clientes, usuarios.Nombre_Usuarios
 FROM clientes

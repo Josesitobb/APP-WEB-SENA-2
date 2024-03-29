@@ -61,7 +61,7 @@ echo $_SESSION['username'];
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="formAgregarProducto" action="AgregarProducto.php" method="post" enctype="multipart/form-data">
+        <form id="formAgregarProducto" action="../../controllers/admin/admin_data.php?action=agregarproducto" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="nombreProducto" class="form-label">Nombre Producto</label>
             <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" required>
@@ -102,7 +102,7 @@ echo $_SESSION['username'];
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="formModificarProducto" action="EditarProductos.php" method="post" enctype="multipart/form-data">
+        <form id="formModificarProducto" action="../../controllers/admin/admin_data.php?action=editarproducto" method="post" enctype="multipart/form-data">
           <input type="hidden" id="idProducto" name="idProducto">
           <div class="mb-3">
             <label for="editarNombreProducto" class="form-label">Nombre Producto</label>
@@ -477,11 +477,13 @@ echo $_SESSION['username'];
     $('#modificarProductoModal').modal('show');
   }
 </script>
+
 <script>
     function confirmarEliminar(idProducto) {
         if (confirm('¿Está seguro de que desea eliminar este producto?')) {
             // Si el usuario confirma, redirigir a la página de eliminación con el ID del producto
-            window.location.href = 'deleteProducto.php?id=' + idProducto;
+            window.location.href = '../../Modelos/Admin/deleteProducto.php?id=' + idProducto;
+            
         }
     }
 </script>

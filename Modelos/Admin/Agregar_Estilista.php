@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+require("../../controllers/db.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST["nombreEstilista"];
@@ -32,7 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_estilistas->bind_param("i", $id_usuario);
         if ($stmt_estilistas->execute()) {
             // Redirect to estilistas.php along with the ID of the newly inserted user
-            header("Location: estilistas.php?id_usuario=$id_usuario");
+            // header("Location: estilistas.php?id_usuario=$id_usuario");
+            header("location:../../controllers/admin/admin_views.php?vista=usuariosE");
+            
             exit();
         } else {
             echo "Error al agregar el estilista a la tabla 'estilistas': " . $conn->error;

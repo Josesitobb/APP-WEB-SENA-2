@@ -1,8 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-include("db.php");
+require("../../controllers/db.php");
 
 $Name_product=$_POST['nombreProducto'];
 
@@ -20,7 +19,7 @@ $sql="INSERT INTO `productos`(`Id_Productos`, `Nombre_Productos`, `Precio_Produc
 $Resultado=$conn -> query($sql);
 
 if($Resultado){
-header('location:productos.php');
+header('location:../../controllers/admin/admin_views.php?vista=productos');
 }else{
     echo"no se inserto los datos";
 }

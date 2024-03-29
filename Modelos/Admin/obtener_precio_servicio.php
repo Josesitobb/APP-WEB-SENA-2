@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include("./db.php");
+require("../../controllers/db.php");
 
 if(isset($_POST['servicioSeleccionado'])) {
     $id_servicio = $_POST['servicioSeleccionado'];

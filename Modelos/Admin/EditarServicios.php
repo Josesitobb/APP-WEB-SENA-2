@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include("db.php");
+require("../../controllers/db.php");
 
 $Id = $_REQUEST['editId'];
 $servicio_nombre = $_POST['editNombre'];
@@ -39,7 +39,7 @@ if ($updateImage) {
 $resultado = $conn->query($sql);
 
 if ($resultado) {
-    header('location:Servicios.php');
+    header('location:../../controllers/admin/admin_views.php?vista=servicios');
 } else {
     echo "No se editó el dato.";
 }

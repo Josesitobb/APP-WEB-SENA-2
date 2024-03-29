@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include("db.php");
+require("../../controllers/db.php");
 
 $id = $_REQUEST['id'];
 
@@ -11,7 +11,7 @@ $Resultado = $conn->query($sql);
 
 if ($Resultado) {
     echo "<script>alert('El producto se ha eliminado exitosamente.');</script>";
-    header("Refresh: 0; URL=productos.php"); // Redireccionar a productos.php inmediatamente
+    header("Refresh: 0; URL=../../controllers/admin/admin_views.php?vista=productos"); // Redireccionar a productos.php inmediatamente
 } else {
     echo "<script>alert('No se pudo eliminar el producto.');</script>";
 }

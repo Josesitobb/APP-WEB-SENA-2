@@ -387,7 +387,9 @@ var roles = <?php echo $roles_json; ?>;
                     <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
                     <td>
                         <a class="btn btn-custom-blue my-1" href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">Editar</a>
-                        <a class="btn btn-custom-pink my-1" href="Borrar_Clientes.php?Id_Usuarios=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
+                        <a class="btn btn-custom-pink my-1" href="../../Modelos/Admin/Borrar_Clientes.php?id=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
+
+
                     </td>
                 </tr>
             <?php
@@ -513,7 +515,7 @@ function guardarCambios() {
 
     // Enviar los datos mediante AJAX a un archivo PHP
     $.ajax({
-        url: 'Editar_Clientes.php',
+        url: 'admin_data.php?action=usuariosclienteseditar',
         type: 'POST',
         data: datos,
         success: function(response) {
@@ -550,7 +552,7 @@ $(document).ready(function() {
 
         // Envía los datos mediante AJAX a un archivo PHP
         $.ajax({
-            url: 'Agregar_Clientes.php',
+            url: 'admin_data.php?action=usuariosclientesagregar',
             type: 'POST',
             data: {
                 nombre: nombre,
@@ -564,7 +566,7 @@ $(document).ready(function() {
                 alert(response);
                 
                 // Recargar la página si la inserción fue exitosa
-                // location.reload();
+                location.reload();
             },
             error: function(xhr, status, error) {
                 // Manejar errores de AJAX

@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+require("../../controllers/db.php");
 
 // Recibir los datos del formulario
 $nombreUsuario = $_POST['nombreUsuario'];
@@ -37,4 +37,4 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 ?>
 
-?>
+

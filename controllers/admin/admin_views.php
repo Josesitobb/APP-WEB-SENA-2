@@ -1,6 +1,8 @@
 <?php
-require_once('../db.php');
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
+require_once('../db.php');
 
 function cargarUsuariosCView($conn){
     require('../../views/Views_Admin/Clientes.php');
@@ -25,6 +27,7 @@ function cargarFacturaView($conn){
 function cargarServicioView($conn){
     require('../../views/Views_Admin/Servicios.php');
 }
+
 // Verificar la acción solicitada
 if(isset($_GET['vista'])) {
     $vistas = $_GET['vista'];
@@ -53,5 +56,10 @@ if(isset($_GET['vista'])) {
             // Acción por defecto si no se reconoce ninguna acción
             require_once('../../views/View_Error/page-error-400.php');
     }
+} elseif (isset($_GET['mes']) && isset($_GET['año'])) {
+   
+} else {
+
+    echo "No se proporcionaron parámetros para mostrar la vista.";
 }
 ?>

@@ -2,7 +2,7 @@
 // eliminar_cita.php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include("./db.php");
+require("../../controllers/db.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['Id_Citas'])) {
     $id_cita = $_GET['Id_Citas'];

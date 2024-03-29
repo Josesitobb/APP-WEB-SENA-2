@@ -464,9 +464,12 @@ $nombre_del_mes = $meses_en_espanol[$mes - 1];
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center"><?php echo $nombre_del_mes . ' ' . $año; ?></h2>
             <div class="text-center mb-3">
-                <a href="?mes=<?php echo ($mes == 1) ? 12 : $mes - 1; ?>&año=<?php echo ($mes == 1) ? $año - 1 : $año; ?>" class="btn btn-primary mr-2">Mes Anterior</a>
-                <a href="?mes=<?php echo ($mes == 12) ? 1 : $mes + 1; ?>&año=<?php echo ($mes == 12) ? $año + 1 : $año; ?>" class="btn btn-primary mr-2">Mes Siguiente</a>
-                <a href="?mes=<?php echo date('n'); ?>&año=<?php echo date('Y'); ?>" class="btn btn-primary">Mes Actual</a>
+            <a href="../../controllers/admin/admin_views.php?vista=citas&mes=<?php echo ($mes == 1) ? 12 : $mes - 1; ?>&año=<?php echo ($mes == 1) ? $año - 1 : $año; ?>" class="btn btn-primary mr-2">Mes Anterior</a>
+
+
+            <a href="../../controllers/admin/admin_views.php?vista=citas&mes=<?php echo ($mes == 12) ? 1 : $mes + 1; ?>&año=<?php echo ($mes == 12) ? $año + 1 : $año; ?>" class="btn btn-primary mr-2">Mes Siguiente</a>
+            <a href="../../controllers/admin/admin_views.php?vista=citas&mes=<?php echo date('n'); ?>&año=<?php echo date('Y'); ?>" class="btn btn-primary">Mes Actual</a>
+
             </div>
             <table class="table">
                 <thead>

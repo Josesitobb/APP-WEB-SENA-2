@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include("db.php");
+require("../../controllers/db.php");
 
 $Id = $_REQUEST['idProducto'];
 $producto_nombret = $_POST['nombreProducto'];
@@ -29,7 +29,7 @@ if ($updateImage) {
 $resultado = $conn->query($sql);
 
 if ($resultado) {
-    header('location:Productos.php');
+    header('location:../../controllers/admin/admin_views.php?vista=productos');
 } else {
     echo "No se editó el dato: " . mysqli_error($conn);
 }

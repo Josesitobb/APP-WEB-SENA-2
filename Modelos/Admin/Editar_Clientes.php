@@ -1,5 +1,5 @@
 <?php
-include("db.php"); 
+require("../../controllers/db.php");
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

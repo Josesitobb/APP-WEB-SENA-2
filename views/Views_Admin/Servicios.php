@@ -62,7 +62,7 @@ echo $_SESSION['username'];
       </div>
       <div class="modal-body">
         <!-- Aquí van los campos del formulario -->
-        <form action="AgregarServicios.php" method="POST" enctype="multipart/form-data">
+        <form action="../../controllers/admin/admin_data.php?action=agregarservicio" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -97,7 +97,8 @@ echo $_SESSION['username'];
         </button>
       </div>
       <div class="modal-body">
-        <form id="editarServicioForm" action="EditarServicios.php" method="POST" enctype="multipart/form-data">
+
+        <form id="editarServicioForm" action="../../Modelos/Admin/EditarServicios.php" method="POST" enctype="multipart/form-data">
           <input type="hidden" id="editId" name="editId">
           <div class="form-group">
             <label for="editNombre">Nombre</label>
@@ -364,7 +365,7 @@ echo $_SESSION['username'];
                                             <td><img style="max-width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios']) ?>" alt=""></td>
                                             <td>
                                                 <a class="btn btn-custom-blue my-1" href="#" onclick="editarServicio('<?php echo $fila['Id_Servicios']; ?>', '<?php echo $fila['Nombre_Servicios']; ?>', '<?php echo $fila['Valor_Servicios']; ?>', '<?php echo $fila['Descripcion_Servicios']; ?>')">Editar</a>
-                                                <a class="btn btn-custom-pink my-1" href="deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">Eliminar</a>
+                                                <a class="btn btn-custom-pink my-1" href="../../Modelos/Admin/deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">Eliminar</a>
                                             </td>
                                         </tr>
                                     <?php } ?>

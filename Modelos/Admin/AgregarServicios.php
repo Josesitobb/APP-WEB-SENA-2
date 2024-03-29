@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include("db.php");
+require("../../controllers/db.php");
 
 $Servicio_Nombre = $_POST['nombre'];
 $Servicio_Precio = $_POST['precio'];
@@ -14,7 +14,7 @@ $sql = "INSERT INTO `servicios`(`Id_Servicios`, `Nombre_Servicios`, `Valor_Servi
 $Resultado = $conn->query($sql);
 
 if ($Resultado) {
-    header('location:Servicios.php');
+    header("location:../../controllers/admin/admin_views.php?vista=servicios");
 } else {
     echo "No se insertaron los datos: " . $conn->error;
 }
