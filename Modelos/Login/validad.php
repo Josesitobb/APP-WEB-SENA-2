@@ -70,7 +70,7 @@ if ($filas) {
             break;
         case 2:
             // CLIENTES
-            header("location:../usuarios_controller.php?rol=cliente");
+            header("location:../controllers/user/user_controller.php?rol=indexuser");
             break;
         case 3:
             // ADMIN

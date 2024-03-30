@@ -42,7 +42,7 @@ $nombre_usuario = $_SESSION['username'];
 
     <!-- Customized Bootstrap Stylesheet -->
     
-    <link href="./css/style.css" rel="stylesheet">
+    <link href="../../views/Views Usuarios/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -75,61 +75,28 @@ $nombre_usuario = $_SESSION['username'];
 
     
 
-    <!-- Navbar Start -->
-    <div class="container-fluid position-relative nav-bar p-0">
-        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
-            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
-                <a href="" class="navbar-brand d-block d-lg-none">
-                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
-                </a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="./index.php" class="nav-item nav-link active">Inicio</a>
-                        <!-- <a href="./about.php" class="nav-item nav-link">Nosotros</a> -->
-                        <a href="./product.php" class="nav-item nav-link">Productos</a>
-                    </div>
-                    <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
-                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
-                    </a>
-                    <div class="navbar-nav mr-auto py-0">
-                        
-                        <a href="./service.php" class="nav-item nav-link">Servicios</a>
-                        <a href="./citas.php" class="nav-item nav-link">Citas</a>
-
-
-                        <!-- <a href="./contact.php" class="nav-item nav-link">Contactenos</a> -->
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
-    <!-- Navbar End -->
-
-
+<?php include('Model/header.php'); ?>
     <!-- Carousel Start -->
     <div class="container-fluid p-0 mb-5 pb-5">
         <div id="header-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="img/6_IMAGEN_INICIO_PRINCIPAL.png" alt="Image">
+                    <img class="w-100" src="../../views/Views Usuarios/img/6_IMAGEN_INICIO_PRINCIPAL.png" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
+                            <a href="../../controllers/user/user_views.php?vista=servicios" class="btn btn-secondary ">Agregar cita</a>
                         </div>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="img/8_IMAGEN_INICIAL_PROTOTIPO.png" alt="Image">
+                    <img class="w-100" src="../../views/Views Usuarios/img/8_IMAGEN_INICIAL_PROTOTIPO.png" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
+                            <a href="../../controllers/user/user_views.php?vista=servicios" class="btn btn-secondary ">Agregar cita</a>
                         </div>
                     </div>
                 </div>
@@ -166,7 +133,7 @@ $nombre_usuario = $_SESSION['username'];
                 </div>
                 <div class="col-lg-4" style="min-height: 400px;">
                     <div class="position-relative h-100 rounded overflow-hidden">
-                        <img class="position-absolute w-100 h-100" src="img/000.png" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="../../views/Views Usuarios/img/000.png" style="object-fit: cover;">
                     </div>
                 </div>
                 <div class="col-lg-4 py-5">
@@ -188,9 +155,9 @@ $nombre_usuario = $_SESSION['username'];
         <div class="row bg-primary m-0">
             <div class="col-md-6 px-0" style="min-height: 500px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100" src="img/1_IMAGEN_INICIO_PRINCIPAL.jpg" style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="../../views/Views Usuarios/img/1_IMAGEN_INICIO_PRINCIPAL.jpg" style="object-fit: cover;">
                     <button type="button" class="btn-play" data-toggle="modal"
-                        data-src="img/1_IMAGEN_INICIO_PRINCIPAL.jpg" data-target="#videoModal">
+                        data-src="../../views/Views Usuarios/img/1_IMAGEN_INICIO_PRINCIPAL.jpg" data-target="#videoModal">
                         
                         <span></span>
                     </button>
@@ -204,7 +171,7 @@ $nombre_usuario = $_SESSION['username'];
                     </div>
                     <h3 class="font-weight-bold text-white mt-3 mb-4">Bono de bienvenida</h3>
                     <p class="text-white mb-4">Ven, prueba nuestros servicios y recibe un bono por facturas superiores a $120.000.</p>
-                    <a href="service.php" class="btn btn-secondary ">Agregar cita</a>
+                    <a href="../../controllers/user/user_views.php?vista=servicios" class="btn btn-secondary ">Agregar cita</a>
                 </div>
             </div>
         </div>
@@ -229,66 +196,7 @@ $nombre_usuario = $_SESSION['username'];
         </div>
     </div>
 
-    <!-- Footer Start -->
-    <div class="container-fluid footer bg-light py-5" style="margin-top: 90px;">
-        <div class="container text-center py-5">
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <a href="index.html" class="navbar-brand m-0">
-                        <h1 class="m-0 mt-n2 display-4 text-primary"><span class="text-secondary">SG</span>CITAS</h1>
-                    </a>
-                </div>
-                <div class="col-12 mb-4">
-                    
-                    <a class="btn btn-outline-secondary btn-social mr-2" href="https://www.facebook.com/profile.php?id=100083475433076&mibextid=rS40aB7S9Ucbxw6v"><i class="fab fa-facebook-f"></i></a>
-
-                    <a class="btn btn-outline-secondary btn-social" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA=="><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="col-12 mt-2 mb-4">
-                    <div class="row">
-                        <div class="col-sm-6 text-center text-sm-right border-right mb-3 mb-sm-0">
-                            <h5 class="font-weight-bold mb-2">Ubicación</h5>
-                            <p class="mb-2">Cra 11 #180a-9, 110141 Bogotá</p>
-                            <p class="mb-0">+57 322 4014764</p>
-                        </div>
-                        <div class="col-sm-6 text-center text-sm-left">
-                            <h5 class="font-weight-bold mb-2">Horarios</h5>
-                            <p class="mb-2">Lun – Vie, 8AM – 8PM</p>
-                            <p class="mb-0">Sab – Dom, 9AM – 4PM</p>
-                        </div>
-                    </div>
-                </div>
-
-                
-                <div class="col-12">
-                    <p class="m-0"><a href="#"></a>Nos dedicamos a servirte con excelencia.<a href=""></a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <?php include('Model/footer.php'); ?>
 </body>
 
 </html>
