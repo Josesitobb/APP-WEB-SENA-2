@@ -74,11 +74,7 @@ if (isset($_GET['Id_Productos'])) {
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center">
-                        <a class="text-white pr-3" href="../admin/theme/page-login.php">Iniciar sesión</a>
-                        <span class="text-white">|</span>
-                        <a class="text-white px-3" href="../admin/theme/page-register.php">Registrarse</a>
-                    </div>
+                    
                 </div>
                 <div class="col-md-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
@@ -139,7 +135,7 @@ if (isset($_GET['Id_Productos'])) {
                     <p><?php echo $producto['Descripcion_Productos']; ?></p>
                     <!-- Botón para comprar -->
                     <div class="d-grid gap-3 col-10 mx-auto">
-                    <a href="user_controller.php?rol=indexuser" class="btn btn-primary">Volver al inicio</a>
+                    <a href="user_views.php?vista=productos" class="btn btn-primary">Volver al inicio</a>
 
                     </div>
                 </div>

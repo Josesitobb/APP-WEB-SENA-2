@@ -23,6 +23,8 @@ if(isset($_GET['action'])) {
         case 'agregarcita':
             require_once('../../Modelos/Usuarios/Agregarcita.php');
             break;
+        case 'cerrarsesion':
+            require_once('../../Modelos/Usuarios/cerrar_Sesion.php');
         default:
             // require_once('../views/View_Error/page-error-400.php');
             break; // Agregamos break aquí
