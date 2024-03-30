@@ -34,12 +34,19 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Poppins", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+
+h1, .navbar-brand {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700; /* Opcional: establece el peso de la fuente */
 }
 
 html {

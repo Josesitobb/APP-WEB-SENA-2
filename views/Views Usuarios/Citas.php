@@ -86,6 +86,7 @@ $conn->close();
     <!-- NOSE QUE MONDA ES ESTO -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
     <!-- Favicon -->
@@ -256,7 +257,84 @@ $conn->close();
         </div>
     </div>
     <!-- Header End -->
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 col-xl-10 mx-auto">
+            <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                <div class="card-body p-4 p-sm-5">
+                <div class="users-table">
+                    <h5 class="card-title text-center mb-5 fw-light fs-5">Clothes-Areas-Cargo</h5>
+                    <div class="d-flex justify-content-between mb-3">
 
+                        <!-- Botón Agregar Usuario -->
+                        <a href="registrar_Clothes-Areas-Cargo.php" class="btn btn-primary">
+                            <i class="bi bi-person-plus"></i> Agregar Clothes-Areas-Cargo
+                        </a>
+
+                        <!-- Sección de búsqueda -->
+                        <div class="col-lg-3 col-xl-3">
+                                <form class="d-flex">
+                                    <input class="form-control me-2 light-table-filter text-start" data-table="table_id" type="search" placeholder="Buscar Clothes-Areas-Cargo">
+                                </form>
+                            </div>
+
+
+                    </div>
+
+                            <h2> </h2>
+                                <table class="table_id">
+                                    <thead>
+                                        <tr>
+                                            <th>Servicio</th>
+                                            <th>Nombre Estilista</th>
+                                            <th>Precio</th>
+                                            <th>Fecha</th>
+                                            <th>Acciones</th>
+
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                        
+                                        <?php while ($row_cita = $resultado_citas->fetch_assoc()) { ?>
+
+                                            <tr>
+                                                <td><?php echo $row_cita['Nombre_Servicios']; ?></td>
+                                                <td><?php echo $row_cita['Nombre_Estilista']; ?></td>
+                                                <td><?php echo '$' . $row_cita['Precio_Servicio']; ?></td>
+                                                <td><?php echo $row_cita['start']; ?></td>
+                                                <td>
+                                                <button class="users-table--edit"  
+                                                    data-id="<?php echo $row_cita['Id_Citas']; ?>"
+                                                    data-nombre-estilista="<?php echo $row_cita['Nombre_Estilista']; ?>"
+                                                    data-nombre-servicio="<?php echo $row_cita['Nombre_Servicios']; ?>"
+                                                    data-precio="<?php echo $row_cita['Precio_Servicio']; ?>"
+                                                    data-fecha="<?php echo $row_cita['start']; ?>">
+                                                    <i class="bi bi-gear"></i> 
+                                                </button>
+
+                                                         
+                                                    <button class="users-table--delete" data-id="<?php echo $row_cita['Id_Citas']; ?>"><i class="bi bi-x-circle"></i></button>
+                                                </td>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                                </tbody>
+                                </table>
+                                <div class="text-center">
+                                    <a href="../../back_end/reportes_colaboradores.php" class="btn btn-primary">
+                                        <i class="bi bi-box-arrow-in-down"></i> Descargar Historial
+                                    </a>
+                                </div>
+
+                                </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Contact Start -->
     <center>
