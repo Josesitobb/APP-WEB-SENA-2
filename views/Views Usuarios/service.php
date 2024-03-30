@@ -99,7 +99,7 @@ if (!$resultado_estilistas) {
                         <a class="text-white px-3" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA==">
                             <i class="fab fa-instagram"></i>
                         </a>
-                    <a class="text-white px-3" href="./cerrar_Sesion.php">
+                    <a class="text-white px-3" href="user_data.php?action=cerrarsesion">
                         <i class="fas fa-sign-out-alt"></i> <!-- Ícono de salida -->
                         Cerrar sesión
                     </a>
