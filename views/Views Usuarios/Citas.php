@@ -237,7 +237,7 @@ $conn->close();
                         <a class="text-white px-3" href="https://www.instagram.com/espejismosycolor?igsh=MTUwazNnenQ4dm53OA==">
                             <i class="fab fa-instagram"></i>
                         </a>
-                    <a class="text-white px-3" href="user_data.php?action=cerrarsesion">
+                    <a class="text-white px-3" href="./cerrar_Sesion.php">
                         <i class="fas fa-sign-out-alt"></i> <!-- Ícono de salida -->
                         Cerrar sesión
                     </a>
@@ -305,7 +305,7 @@ $conn->close();
                                                 <td><?php echo '$' . $row_cita['Precio_Servicio']; ?></td>
                                                 <td><?php echo $row_cita['start']; ?></td>
                                                 <td>
-                                                <button class="users-table--edit"  
+                                                <button class="btn-editar"  
                                                     data-id="<?php echo $row_cita['Id_Citas']; ?>"
                                                     data-nombre-estilista="<?php echo $row_cita['Nombre_Estilista']; ?>"
                                                     data-nombre-servicio="<?php echo $row_cita['Nombre_Servicios']; ?>"
@@ -315,7 +315,7 @@ $conn->close();
                                                 </button>
 
                                                          
-                                                    <button class="users-table--delete" data-id="<?php echo $row_cita['Id_Citas']; ?>"><i class="bi bi-x-circle"></i></button>
+                                                    <button class="btn-inactivar" data-id="<?php echo $row_cita['Id_Citas']; ?>"><i class="bi bi-x-circle"></i></button>
                                                 </td>
                                             </td>
                                         </tr>
