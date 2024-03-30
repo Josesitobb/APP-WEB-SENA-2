@@ -165,9 +165,9 @@ $nombre_usuario = $_SESSION['username'];
             </div>
             <div class="col-md-6 py-5 py-md-0 px-0">
                 <div class="h-100 d-flex flex-column align-items-center justify-content-center text-center p-5">
-                    <div class="d-flex align-items-center justify-content-center bg-white rounded-circle mb-4"
+                    <div class="d-flex align-items-center justify-content-center rounded-circle mb-4"
                         style="width: 100px; height: 100px;">
-                        <h3 class="font-weight-bold text-secondary mb-0">$20.000</h3>
+                        <h3 class="font-weight-bold text-white mb-0">$20.000</h3>
                     </div>
                     <h3 class="font-weight-bold text-white mt-3 mb-4">Bono de bienvenida</h3>
                     <p class="text-white mb-4">Ven, prueba nuestros servicios y recibe un bono por facturas superiores a $120.000.</p>

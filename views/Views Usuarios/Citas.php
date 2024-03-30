@@ -75,7 +75,7 @@ $conn->close();
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -87,6 +87,8 @@ $conn->close();
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 
 
     <!-- Favicon -->
@@ -109,6 +111,7 @@ $conn->close();
         table {
             width: 100%;
             border-collapse: collapse;
+            background-color: #ffffff
         }
 
         table,
@@ -117,10 +120,11 @@ $conn->close();
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
+            background-color: #ffffff
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #ffffff
         }
 
 
@@ -128,6 +132,7 @@ $conn->close();
             display: flex;
             justify-content: center;
             margin-top: 50px;
+            background-color: #ffffff
         }
     </style>
    <style>
@@ -154,6 +159,8 @@ $conn->close();
         border-radius: 10px; 
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
+
 
     .modal-content h2 {
         margin-top: 0; 
@@ -188,6 +195,17 @@ $conn->close();
         font-weight: bold;
     }
 
+    table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+table th{
+    padding: 16px;
+    text-align: center;
+    font-size: .85em;
+}
     .close:hover,
     .close:focus {
         color: black;
@@ -201,6 +219,28 @@ $conn->close();
             width: 95%;
         }
     }
+
+    .btn-editar {
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    padding: 6px;
+    color: #5ca16e;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px; /* Puedes ajustar el valor según tus necesidades */
+}
+
+.btn-inactivar{
+    border: 1px solid #ffffff;
+    background-color: #ffffff;
+    padding: 6px;
+    color: rgb(203, 129, 19);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px; 
+}
+
+
 </style>
 <style>
     /* Estilos para el botón Guardar cambios */
@@ -263,18 +303,18 @@ $conn->close();
             <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
                 <div class="card-body p-4 p-sm-5">
                 <div class="users-table">
-                    <h5 class="card-title text-center mb-5 fw-light fs-5">Clothes-Areas-Cargo</h5>
+                    <h5 class="card-title text-center mb-5 fw-light fs-5">Citas</h5>
                     <div class="d-flex justify-content-between mb-3">
 
                         <!-- Botón Agregar Usuario -->
-                        <a href="registrar_Clothes-Areas-Cargo.php" class="btn btn-primary">
-                            <i class="bi bi-person-plus"></i> Agregar Clothes-Areas-Cargo
+                        <a href="../../controllers/user/user_views.php?vista=servicios" class="btn btn-primary">
+                            <i class="bi bi-person-plus"></i> Agregar Citas
                         </a>
 
                         <!-- Sección de búsqueda -->
                         <div class="col-lg-3 col-xl-3">
                                 <form class="d-flex">
-                                    <input class="form-control me-2 light-table-filter text-start" data-table="table_id" type="search" placeholder="Buscar Clothes-Areas-Cargo">
+                                    <input class="form-control me-2 light-table-filter text-start" data-table="table_id" type="search" placeholder="Buscar Citas">
                                 </form>
                             </div>
 
@@ -289,7 +329,6 @@ $conn->close();
                                             <th>Nombre Estilista</th>
                                             <th>Precio</th>
                                             <th>Fecha</th>
-                                            <th>Acciones</th>
 
                                             <th></th>
                                             <th></th>
@@ -300,11 +339,11 @@ $conn->close();
                                         <?php while ($row_cita = $resultado_citas->fetch_assoc()) { ?>
 
                                             <tr>
-                                                <td><?php echo $row_cita['Nombre_Servicios']; ?></td>
-                                                <td><?php echo $row_cita['Nombre_Estilista']; ?></td>
-                                                <td><?php echo '$' . $row_cita['Precio_Servicio']; ?></td>
-                                                <td><?php echo $row_cita['start']; ?></td>
-                                                <td>
+                                                <td style="text-align: center;"><?php echo $row_cita['Nombre_Servicios']; ?></td>
+                                                <td style="text-align: center;"><?php echo $row_cita['Nombre_Estilista']; ?></td>
+                                                <td style="text-align: center;"><?php echo '$' . $row_cita['Precio_Servicio']; ?></td>
+                                                <td style="text-align: center;"><?php echo $row_cita['start']; ?></td>
+                                                <td style="text-align: center;">
                                                 <button class="btn-editar"  
                                                     data-id="<?php echo $row_cita['Id_Citas']; ?>"
                                                     data-nombre-estilista="<?php echo $row_cita['Nombre_Estilista']; ?>"
@@ -313,20 +352,15 @@ $conn->close();
                                                     data-fecha="<?php echo $row_cita['start']; ?>">
                                                     <i class="bi bi-gear"></i> 
                                                 </button>
-
-                                                         
-                                                    <button class="btn-inactivar" data-id="<?php echo $row_cita['Id_Citas']; ?>"><i class="bi bi-x-circle"></i></button>
+                                                </td>     
+                                                <td>
+                                                <button class="btn-inactivar" data-id="<?php echo $row_cita['Id_Citas']; ?>"><i class="bi bi-x-circle"></i></button>
                                                 </td>
                                             </td>
                                         </tr>
                                     <?php } ?>
                                                 </tbody>
                                 </table>
-                                <div class="text-center">
-                                    <a href="../../back_end/reportes_colaboradores.php" class="btn btn-primary">
-                                        <i class="bi bi-box-arrow-in-down"></i> Descargar Historial
-                                    </a>
-                                </div>
 
                                 </div>
                         </div>
@@ -337,43 +371,6 @@ $conn->close();
 </div>
 
     <!-- Contact Start -->
-    <center>
-        <h1>Citas</h1>
-    </center>
-    <div class="container table-container" id="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Servicio</th>
-                    <th>Nombre Estilista</th>
-                    <th>Precio</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php while ($row_cita = $resultado_citas->fetch_assoc()) { ?>
-    <tr>
-        <td><?php echo $row_cita['Nombre_Servicios']; ?></td>
-        <td><?php echo $row_cita['Nombre_Estilista']; ?></td>
-        <td><?php echo '$' . $row_cita['Precio_Servicio']; ?></td>
-        <td><?php echo $row_cita['start']; ?></td>
-        <td>
-            <button class="btn-editar" 
-                    data-id="<?php echo $row_cita['Id_Citas']; ?>"
-                    data-nombre-estilista="<?php echo $row_cita['Nombre_Estilista']; ?>"
-                    data-nombre-servicio="<?php echo $row_cita['Nombre_Servicios']; ?>"
-                    data-precio="<?php echo $row_cita['Precio_Servicio']; ?>"
-                    data-fecha="<?php echo $row_cita['start']; ?>">Editar</button>
-                 
-                 <button class="btn-inactivar" data-id="<?php echo $row_cita['Id_Citas']; ?>">Cancelar cita</button>
-</td>
-        </td>
-    </tr>
-<?php } ?>
-            </tbody>
-        </table>
-    </div>
 
     <!-- Contact End -->
 
@@ -610,6 +607,7 @@ xhr.send(formData);
 });
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 
 </body>

@@ -172,13 +172,15 @@ if (isset($_GET['Id_Servicios'])) {
                     </div>
 
                     <div class="col-md-6 order-md-2 text-center">
-                        <h2><?php echo MONEDA . number_format($row['Valor_Servicios'], 2, '.', ','); ?></h2>
+                    <h2><?php echo MONEDA . $row['Valor_Servicios']; ?></h2>
+
+
                         <p><?php echo $row['Descripcion_Servicios']; ?></p>
                         <div class="d-grid gap-3 col-10 mx-auto">
 
                         <!-- <a href="#" class="btn btn-primary btn-agendar-cita">Agendar Cita</a> -->
 
-                        <a href="user_views.php?vista=servicios" class="btn btn-primary">Volver Al inicio</a>
+                        <a href="user_views.php?vista=servicios" class="btn btn-primary">Volver</a>
 
                  
                         </div>
