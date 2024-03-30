@@ -27,8 +27,8 @@ if (isset($_SESSION['client_id'])) {
 $nombre_usuario = $_SESSION['username'];
 
 // Incluir archivos de configuración y conexión a la base de datos
-include('config/db.php');
-require('config/config.php');
+include('../../controllers/db.php');
+require('../../Modelos/Usuarios/config/config.php');
 
 // Verificar la conexión a la base de datos
 if ($conn->connect_error) {
@@ -377,7 +377,8 @@ $conn->close();
 
    <?php
 // Incluir archivos de configuración y conexión a la base de datos
-include('config/db.php');
+include('../../controllers/db.php');
+
 
 
 
