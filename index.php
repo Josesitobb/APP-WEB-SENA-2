@@ -5,7 +5,7 @@
 $action = "index";
 
 
-header("Location: controllers/principal.php?action=$action");
-exit;
+header("Location:controllers/principal.php?action=index");
+
 
 ?>
