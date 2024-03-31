@@ -13,7 +13,7 @@ function validarInicioSesion() {
 
 // Función para cargar la vista de registro
 function cargarRegisterView(){
-    require_once('../views/View_Login/register.php');
+    require_once('../views/View_Login/register.html');
 }
 
 // Función para registrar usuarios
