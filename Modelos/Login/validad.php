@@ -66,7 +66,7 @@ if ($filas) {
     switch ($usuario['Id_Rol']) {
         case 1:
             // ESTILISTA
-            header("location:../estilistas_controller.php?rol=estilista");
+            header("location:../controllers/estilista/estilista_controller.php?rol=indexestilista");
             break;
         case 2:
             // CLIENTES
