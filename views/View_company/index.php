@@ -99,7 +99,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="modules/admin/page-login.php" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserva tu cita</a>
+                            <a href="../controllers/Login.php?action=login" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserva tu cita</a>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h4 class="text-white text-uppercase mb-md-3">Servicios de calidad</h4>
                             <h1 class="display-3 text-white mb-md-4">Espejismo y color</h1>
-                            <a href="modules/admin/page-login.php" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserva tu cita</a>
+                            <a href="../controllers/Login.php?action=login" class="btn btn-primary py-md-3 px-md-5 mt-2">Reserva tu cita</a>
                         </div>
                     </div>
                 </div>
