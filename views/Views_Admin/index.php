@@ -69,10 +69,6 @@ while ($row = $resultado->fetch_assoc()) {
 }
 ?>
   
-<<<<<<< HEAD
-
-
-=======
   <?php
 
 $sql = "SELECT COUNT(*) AS cantidad_comisiones_estado_cero FROM comisiones WHERE Estado_De_Pago_Comisiones = 0";
@@ -97,26 +93,27 @@ $resultClientes = $conn->query($sqlClientes);
 $rowClientes = $resultClientes->fetch_assoc();
 $cantidadClientes = $rowClientes['cantidad_clientes'];
 ?>
->>>>>>> 6ea3a7d3a0a01342dd0c2c39c1ee9061c0fb4c54
 
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
-<<<<<<< HEAD
 
           <div class="container-fluid mt-3">
               <div class="row">
-                  <div class="col-lg-3 col-sm-6">
+                  <div class="col-lg-4 col-sm-6">
                       <div class="card-now gradient-1">
                           <div class="card-body">
                             <a href="../consultas/consulta_roles.php" class="card-title text-white">Usuarios</a>
                               <span ><i class="fa fa-shopping-cart"></i></span>
                               <i class="bi bi-person-gear text-white"></i>
+                              <div class="d-inline-block">
+                                <h2 class="text-white"><?php echo $cantidadClientes ?></h2>
+                              </div>
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-3 col-sm-6">
+                  <div class="col-lg-4 col-sm-6">
                       <div class="card-now gradient-3">
                           <div class="card-body">
                             <a href="../consultas/consulta_prendas.php" class="card-title text-white">
@@ -126,16 +123,16 @@ $cantidadClientes = $rowClientes['cantidad_clientes'];
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-3 col-sm-6">
+                  <div class="col-lg-4 col-sm-6">
                     <div class="card-now gradient-2">
                         <div class="card-body">
                           <a href="../consultas/consulta_usuarios.php" class="card-title text-white">Servicios</a>
                           <span ><i class="fa fa-money"></i></span>
-                          <i class="bi bi-scissors"></i>
+                          <i class="bi bi-scissors"></i> 
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6">
                   <div class="card-now gradient-4">
                       <div class="card-body">
                           <a href="../consultas/consulta_lockers.php" class="card-title text-white">Facturas</a>
@@ -144,68 +141,31 @@ $cantidadClientes = $rowClientes['cantidad_clientes'];
                       </div>
                   </div>
               </div>
-              <div class="col-lg-12 col-sm-6">
+              <div class="col-lg-4 col-sm-6">
                   <div class="card-now gradient-4">
                       <div class="card-body">
                           <a href="../consultas/consulta_lockers.php" class="card-title text-white">Citas</a>
                           <span><i class="fa fa-heart text-white"></i></span>
                           <i class="bi bi-calendar-plus"></i>
+                          <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $total_citas; ?></h2>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-sm-6">
+                  <div class="card-now gradient-4">
+                      <div class="card-body">
+                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Pagos</a>
+                          <span><i class="fa fa-heart text-white"></i></span>
+                          <i class="bi bi-cash-stack"></i>
+                          <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $cantidad_comisiones_estado_cero ?></h2>
+                        </div>
                       </div>
                   </div>
               </div>
           </div>
-=======
-    <div class="container-fluid mt-3">
-        <div class="row justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las columnas -->
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-1">
-                    <div class="card-body">
-                        <h3 class="card-title text-white">Citas</h3>
-                        <span><i class="fa fa-calendar"></i></span>
-                        <div class="d-inline-block">
-                            <h2 class="text-white"><?php echo $total_citas; ?></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-2">
-                    <div class="card-body">
-                        <h3 class="card-title text-white">Pagos</h3>
-                        <span><i class="fa fa-money"></i></span>
-                        <div class="d-inline-block">
-                            <h2 class="text-white"><?php echo $cantidad_comisiones_estado_cero ?></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-sm-6">
-                <div class="card gradient-3">
-                    <div class="card-body">
-                        <h3 class="card-title text-white">Usuarios</h3>
-                        <span><i class="fa fa-users"></i></span>
-                        <div class="d-inline-block">
-                            <h2 class="text-white"><?php echo $cantidadClientes ?></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-          
-
-                
-
-            <!-- #/ container -->
->>>>>>> 6ea3a7d3a0a01342dd0c2c39c1ee9061c0fb4c54
         </div>
 
     </div>
