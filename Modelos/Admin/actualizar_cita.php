@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_cliente = $_POST['Nombre_Cliente'];
         $id_estilista = $_POST['Nombre_Estilista'];
         $id_servicio = $_POST['Nombre_Servicios'];
-        $hora = $_POST['hora'];
+        $hora = $_POST['fecha_hora'];
         $precio = $_POST['precio'];
 
         // Actualizar la cita en la base de datos

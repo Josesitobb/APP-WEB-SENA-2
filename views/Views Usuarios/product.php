@@ -30,7 +30,7 @@ if ($resultado->num_rows > 0) {
         // echo "ID: " . $row["Id_Productos"]. " - Nombre: " . $row["Nombre_Productos"]. "<br>";
     }
 } else {
-    echo "0 resultados";
+    // echo "0 resultados";
 }
 
 // Cerrar conexión

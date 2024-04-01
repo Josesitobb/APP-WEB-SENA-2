@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        include("../../../controllers/db.php");
+                    
                         session_start();
 
                         $sql_1 = "SELECT U.*, R.Nombre_Rol as Rol

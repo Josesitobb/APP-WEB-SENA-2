@@ -31,6 +31,17 @@ $total_servicios = !empty($_POST['valor_total_servicios']) ? $_POST['valor_total
 // Porcentaje en Valor Total Servicios
 $porcentaje = 50; // Cambia este valor al porcentaje deseado
 
+// Verificar si $total_productos es 'NaN' y asignarle 0 si es así
+if (!is_numeric($total_productos)) {
+    $total_productos = 0;
+}
+
+// Verificar si $total_servicios es 'NaN' y asignarle 0 si es así
+if (!is_numeric($total_servicios)) {
+    $total_servicios = 0;
+}
+
+
 // Calcular el porcentaje en Valor Total Servicios
 if (is_numeric($total_servicios) && $total_servicios != 0) {
     $porcentaje_valor_total_servicios = ($total_servicios * $porcentaje) / 100;

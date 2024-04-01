@@ -7,7 +7,7 @@ if (isset($_GET['Id_Productos'])) {
     $id_producto = $_GET['Id_Productos'];
 
     // Incluir el archivo de configuración de la base de datos
-    include('config/db.php');
+
 
     // Consulta SQL para obtener los detalles del producto
     $sql = "SELECT * FROM productos WHERE Id_Productos = $id_producto";
