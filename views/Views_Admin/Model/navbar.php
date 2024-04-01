@@ -1,18 +1,14 @@
  <!--**********************************
             Sidebar start
         ***********************************-->
-        <style>
-        .has-arrow {
-            background-color: #F299B9; 
-                    }
-        </style> 
+ 
 
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li>
-                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Inicio</span>
+                        <a class="has-arrow"  aria-expanded="false">
+                            <i class="icon-speedometer menu-icon" href="admin_controller.php?rol=indexadmin"></i><span class="nav-text">Inicio</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="admin_controller.php?rol=indexadmin">Inicio</a></li>
@@ -84,6 +80,8 @@
                 </ul>
             </div>
         </div>
+        
         <!--**********************************
             Sidebar end
         ***********************************-->
+        

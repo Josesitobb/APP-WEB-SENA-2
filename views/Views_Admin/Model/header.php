@@ -25,7 +25,7 @@
 
             <style>
              .brand-logo {
-                  background-color: #F2F2F2; 
+                  background-color: #E1D7C8; 
                     }
              </style>
                 <a href="index.php">
@@ -44,6 +44,7 @@
         <!--**********************************
             Header start
         ***********************************-->
+
         <div class="header">    
             <div class="header-content clearfix">
                 

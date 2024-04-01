@@ -41,8 +41,7 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
     <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
-    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+
 
 </head>
 
