@@ -45,7 +45,7 @@
                                   <img src="../views/View_Login/images/logi.png" alt="Logo" class="mb-3">
                                 </div>
         
-                                <form class="mt-5 mb-5 login-input" action="Login.php?action=registrar" method="post" onsubmit="return register();">
+                                <form class="mt-5 mb-5 login-input" action="Login.php?action=registrar" method="post" onsubmit="return register()">
 
                                     <div class="form-group">
                                         <input type="text" class="form-control"  placeholder="Nombre" name="Nombre_usuario" id="Nombre_usuario" required >
@@ -88,7 +88,7 @@
     <script src="../views/Views_Admin/js/settings.js"></script>
     <script src="../views/Views_Admin/js/gleek.js"></script>
     <script src="../views/Views_Admin/js/styleSwitcher.js"></script>
-    <script src="../admin/js/validaciones/ValidacionRegister.js"></script>
+    <script src="../Views_Admin/js/validaciones/ValidacionRegister.js"></script>
     <script>
   function togglePasswordVisibility() {
     var passwordInput = document.getElementById("Contraseña_Usuario");
@@ -102,13 +102,13 @@
       toggleButton.innerHTML = 'Visualizar Contraseña';
     }
   }
+
+  // Cambié el nombre de la función de 'register' a 'registerValidation' para que coincida con la función definida en el script de validación.
+  function register() {
+    return registerValidation(); // Llamo a la función de validación con el nombre correcto.
+  }
 </script>
 
 
 </body>
 </html>
-
-
-
-
-

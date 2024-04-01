@@ -1,4 +1,4 @@
-function register () {
+function register() {
     var Nombre_usuario = document.getElementById("Nombre_usuario").value; 
     var Apellido_Usuario = document.getElementById("Apellido_Usuario").value;
     var Contraseña_Usuario = document.getElementById("Contraseña_Usuario").value;
@@ -90,4 +90,3 @@ function register () {
         return false;
     }
 }
-

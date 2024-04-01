@@ -79,7 +79,7 @@
     <script src="../views/Views_Admin/js/settings.js"></script>
     <script src="../views/Views_Admin/js/gleek.js"></script>
     <script src="../views/Views_Admin/js/styleSwitcher.js"></script>
-    <script src="../views/Views_Admin/js/validaciones/ValidacionLogin.js"></script>
+    <script src="../Views_Admin/js/validaciones/ValidacionLogin.js"></script>
     <script>
   function togglePasswordVisibility() {
     var passwordInput = document.getElementById("passwordlog");
