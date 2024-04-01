@@ -54,14 +54,56 @@ if (isset($_SESSION['username'])) {
 <?php Include("Model/header.php") ?>
        
 <?php Include("Model/navbar.php") ?>
+
+
+<?php
+// Ejecutar la consulta SQL para obtener la cantidad de citas por mes
+$sql = "SELECT COUNT(*) AS cantidad_citas FROM Citas GROUP BY MONTH(start)";
+$resultado = $conn->query($sql);
+
+$total_citas = 0;
+
+
+while ($row = $resultado->fetch_assoc()) {
+    $total_citas += $row['cantidad_citas'];
+}
+?>
   
+<<<<<<< HEAD
 
 
+=======
+  <?php
+
+$sql = "SELECT COUNT(*) AS cantidad_comisiones_estado_cero FROM comisiones WHERE Estado_De_Pago_Comisiones = 0";
+$resultado = $conn->query($sql);
+
+
+if ($resultado->num_rows > 0) {
+
+    $row = $resultado->fetch_assoc();
+
+    $cantidad_comisiones_estado_cero = $row['cantidad_comisiones_estado_cero'];
+} else {
+
+    $cantidad_comisiones_estado_cero = 0;
+}
+?>
+
+<?php
+
+$sqlClientes = "SELECT COUNT(*) AS cantidad_clientes FROM clientes";
+$resultClientes = $conn->query($sqlClientes);
+$rowClientes = $resultClientes->fetch_assoc();
+$cantidadClientes = $rowClientes['cantidad_clientes'];
+?>
+>>>>>>> 6ea3a7d3a0a01342dd0c2c39c1ee9061c0fb4c54
 
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
+<<<<<<< HEAD
 
           <div class="container-fluid mt-3">
               <div class="row">
@@ -112,6 +154,58 @@ if (isset($_SESSION['username'])) {
                   </div>
               </div>
           </div>
+=======
+    <div class="container-fluid mt-3">
+        <div class="row justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las columnas -->
+            <div class="col-lg-3 col-sm-6">
+                <div class="card gradient-1">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Citas</h3>
+                        <span><i class="fa fa-calendar"></i></span>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $total_citas; ?></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="card gradient-2">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Pagos</h3>
+                        <span><i class="fa fa-money"></i></span>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $cantidad_comisiones_estado_cero ?></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="card gradient-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Usuarios</h3>
+                        <span><i class="fa fa-users"></i></span>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $cantidadClientes ?></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+          
+
+                
+
+            <!-- #/ container -->
+>>>>>>> 6ea3a7d3a0a01342dd0c2c39c1ee9061c0fb4c54
         </div>
 
     </div>

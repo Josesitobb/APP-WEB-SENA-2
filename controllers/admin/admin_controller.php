@@ -2,7 +2,7 @@
 require_once('../db.php');
 
 
-function cargarIndexView(){
+function cargarIndexView($conn){
     require('../../views/Views_Admin/index.php');
 }
 // Verificar la acción solicitada
@@ -11,7 +11,7 @@ if(isset($_GET['rol'])) {
     
     switch ($rol) {
         case 'indexadmin':
-            cargarIndexView();
+            cargarIndexView($conn);
             break;
         default:
             // Acción por defecto si no se reconoce ninguna acción
