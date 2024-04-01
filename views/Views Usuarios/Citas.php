@@ -7,7 +7,7 @@ session_start();
 // Verificar si la sesión está iniciada y la variable de sesión está definida
 if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
     // La sesión no está iniciada o la variable de sesión no está definida, redirige al usuario a la página de inicio de sesión
-    header("Location: modules/admin/theme/page-login.php");
+    header("Location:../../controllers/principal.php?action=sesion?");
     exit();
 }
 
@@ -538,15 +538,27 @@ document.getElementById("formEditarCita").onsubmit = function(event) {
     xhr.open("POST", "../../Modelos/Usuarios/Editar_Cita.php", true);
     xhr.onload = function() {
         if (xhr.status === 200) {
-            // Mostrar una alerta cuando la cita se ha editado con éxito
-            alert("La cita se ha editado correctamente.");
-            
-            setTimeout(function() {
-            window.location.reload();
-        }, 1000);
-    }
-};
-xhr.send(formData);
+            var response = JSON.parse(xhr.responseText);
+            if (response.success) {
+                // Mostrar una alerta cuando la cita se ha editado con éxito
+                alert(response.message);
+                setTimeout(function() {
+                    window.location.reload();
+                }, 1000); // Recargar la página después de 1 segundo
+            } else {
+                // Mostrar una alerta cuando hay un error al editar la cita
+                alert(response.message);
+            }
+        } else {
+            // Mostrar una alerta cuando hay un error en la solicitud AJAX
+            alert('Error en la solicitud AJAX. Por favor, inténtalo de nuevo más tarde.');
+        }
+    };
+    xhr.onerror = function() {
+        // Mostrar una alerta cuando hay un error de red
+        alert('Error de red. Por favor, verifica tu conexión e inténtalo de nuevo.');
+    };
+    xhr.send(formData);
 };
 
 </script>
@@ -571,7 +583,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 </script>
 
-
 <script>
     // JavaScript para inactivar citas
 document.addEventListener("DOMContentLoaded", function() {
@@ -581,29 +592,33 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             // Obtener la ID de la cita desde el atributo "data-id" del botón
             var citaId = button.getAttribute('data-id');
+            
+            // Preguntar al usuario si realmente desea inactivar la cita
+            if (confirm("¿Estás seguro de que deseas inactivar esta cita?")) {
+                // Crear objeto FormData con la ID de la cita
+                var formData = new FormData();
+                formData.append('cita_id', citaId);
 
-            // Crear objeto FormData con la ID de la cita
-            var formData = new FormData();
-            formData.append('cita_id', citaId);
-
-            // Crear y enviar la solicitud AJAX al archivo PHP
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '../../Modelos/Usuarios/Inactivar_Cita.php', true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Manejar la respuesta del servidor si es necesario
-                    alert('La cita se ha marcado como inactiva.');
-                    setTimeout(function() {
-            window.location.reload();
-        }, 1000);
-    }
-};
-xhr.send(formData);
+                // Crear y enviar la solicitud AJAX al archivo PHP
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '../../Modelos/Usuarios/Inactivar_Cita.php', true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        // Manejar la respuesta del servidor si es necesario
+                        alert('La cita se ha marcado como inactiva.');
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
+                    }
+                };
+                xhr.send(formData);
+            }
         });
     });
 });
 
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 

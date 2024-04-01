@@ -40,12 +40,12 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Perfil</span></a>
+                                            
                                         </li>
                                         
                                         <hr class="my-2">
 
-                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Cerrar Sesión</span></a></li>
+                                        <li><a href="../../controllers/admin/admin_data.php?action=cerrarsesion"><i class="icon-key"></i> <span>Cerrar Sesión</span></a></li>
                                     </ul>
                                 </div>
                             </div>

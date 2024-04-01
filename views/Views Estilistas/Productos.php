@@ -5,7 +5,7 @@ session_start();
 
 if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
     // La sesión no está iniciada o la variable de sesión no está definida, redirige al usuario a la página de inicio de sesión
-    header("Location: modules/admin/theme/page-login.php");
+    header("Location:../../controllers/principal.php?action=sesion?");
     exit();
 }
 

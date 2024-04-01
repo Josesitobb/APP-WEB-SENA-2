@@ -1,7 +1,14 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+session_start();
 
+if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
+    // La sesión no está iniciada o la variable de sesión no está definida, redirige al usuario a la página de inicio de sesión
+    header("Location:../../controllers/principal.php?action=sesion?");
+    exit();
+  
+}
 // Obtener la lista de clientes
 $query = "SELECT clientes.Id_Clientes, usuarios.Nombre_Usuarios
 FROM clientes

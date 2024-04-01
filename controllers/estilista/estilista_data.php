@@ -30,7 +30,9 @@ if(isset($_GET['action'])) {
         case 'estadocita':
             require_once('../../Modelos/Estilistas/actualizar_atendido.php');
             break;
-
+        case 'Actualizarcantidadproductos':
+            require_once('../../Modelos/Estilistas/Actualizar_Cantidad_Productos.php');
+            break;
             echo "pa donde va rey";
             break;
     }

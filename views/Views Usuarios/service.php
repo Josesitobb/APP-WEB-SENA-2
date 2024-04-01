@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 // Verificar si la sesión está iniciada y la variable de sesión está definida
 if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
     // La sesión no está iniciada o la variable de sesión no está definida, redirige al usuario a la página de inicio de sesión
-    header("Location: modules/admin/theme/page-login.php");
+    header("Location:../../controllers/principal.php?action=sesion?");
     exit();
 }
 
@@ -220,7 +220,6 @@ if (!$resultado_estilistas) {
 <?php include('Model/footer.php'); ?>
 
 </script>
-
 <script>
 $(document).ready(function() {
     $('.open-modal').click(function() {
@@ -244,31 +243,33 @@ $(document).ready(function() {
         
         // Enviar los datos del formulario a través de una solicitud AJAX
         $.ajax({
-    url: '../../Modelos/Usuarios/Agregarcita.php',
-    type: 'POST',
-    data: {
-        servicioId: servicioId, // Agregar el ID del servicio
-        estilistaId: estilistaId, // Agregar el ID del estilista seleccionado
-        estilistaNombre: estilistaNombre, // Agregar el nombre del estilista seleccionado
-        fecha: fecha,
-        hora: hora,
-        clienteId: clienteId // Esta es la ID del cliente, asegúrate de que sea correcta
-    },
-    success: function(response) {
-        // Mostrar mensaje de éxito
-        alert('La cita ha sido programada correctamente.');
-        // Cerrar el modal después de mostrar el mensaje de éxito
-        $('#citaModal').modal('hide');
-    },
-    error: function(xhr, status, error) {
-        // Mostrar mensaje de error
-        alert('Error al programar la cita. Por favor, inténtalo de nuevo.');
-    }
-});
-
+            url: '../../Modelos/Usuarios/Agregarcita.php',
+            type: 'POST',
+            data: {
+                servicioId: servicioId, // Agregar el ID del servicio
+                estilistaId: estilistaId, // Agregar el ID del estilista seleccionado
+                estilistaNombre: estilistaNombre, // Agregar el nombre del estilista seleccionado
+                fecha: fecha,
+                hora: hora,
+                clienteId: clienteId // Esta es la ID del cliente, asegúrate de que sea correcta
+            },
+            success: function(response) {
+                // Mostrar mensaje recibido desde PHP
+                alert(response);
+                // Cerrar el modal después de mostrar el mensaje
+                $('#citaModal').modal('hide');
+            },
+            error: function(xhr, status, error) {
+                // Mostrar mensaje de error genérico
+                alert('Error al programar la cita. Por favor, inténtelo de nuevo.');
+            }
+        });
     });
 });
 </script>
+
+
+
 
 
 

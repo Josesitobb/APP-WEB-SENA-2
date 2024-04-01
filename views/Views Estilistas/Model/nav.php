@@ -48,6 +48,7 @@
                             <li><a href="estilista_views.php?vista=citas">Citas</a></li>
                           
                             <li><a href="estilista_views.php?vista=productos">Productos</a></li>
+                            <li><a href="estilista_views.php?vista=ProductosC">Productos Cantidad</a></li>
                             <li><a href="estilista_views.php?vista=comisiones">Comisiones</a></li>
                         </ul>
                     </li>

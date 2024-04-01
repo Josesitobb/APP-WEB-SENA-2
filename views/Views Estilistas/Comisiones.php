@@ -5,8 +5,9 @@ session_start();
 
 if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
     // La sesión no está iniciada o la variable de sesión no está definida, redirige al usuario a la página de inicio de sesión
-    header("Location: modules/admin/theme/page-login.php");
+    header("Location:../../controllers/principal.php?action=sesion?");
     exit();
+  
 }
 $id_estilista=$_SESSION['id_estilista'];
 $sql_servicios = "SELECT c.Id_Comisiones, c.Pagar_Comisiones, c.Estado_De_Pago_Comisiones, f.Fecha_Factura, u.Nombre_Usuarios AS Nombre_Usuario

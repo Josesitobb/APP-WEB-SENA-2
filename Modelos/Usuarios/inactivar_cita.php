@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $citaId = $_POST['cita_id'];
 
     // Incluir el archivo de configuración y conexión a la base de datos
-    include('config/db.php');
+    include('../../controllers/db.php');
 
     // Consulta SQL para actualizar el estado de la cita como inactiva
     $sql = "UPDATE Citas SET activo = 0 WHERE Id_Citas = ?";

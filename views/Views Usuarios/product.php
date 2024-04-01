@@ -6,7 +6,7 @@ ini_set('display_errors', 1);
 
 if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== true) {
  
-    header("Location: modules/admin/theme/page-login.php");
+    header("Location:../../controllers/principal.php?action=sesion?");
     exit();
 }
 $nombre_usuario = $_SESSION['username'];

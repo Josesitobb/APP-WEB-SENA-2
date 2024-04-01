@@ -21,6 +21,10 @@ function cargarEditarCitaView($conn){
 function cargarComisionesVies($conn){
     require_once('../../views/Views Estilistas/Comisiones.php');
 }
+function cargarProductosCView($conn){
+    require_once('../../views/Views Estilistas/Productos_Cantidad.php');
+
+}
 
 if(isset($_GET['vista'])) {
     $action = $_GET['vista'];
@@ -41,7 +45,9 @@ if(isset($_GET['vista'])) {
         case 'comisiones':
             cargarComisionesVies($conn);
             break;
-
+        case 'ProductosC':
+            cargarProductosCView($conn);
+            break;
         default:
             // require_once('../views/View_Error/page-error-400.php');
             echo "hola";

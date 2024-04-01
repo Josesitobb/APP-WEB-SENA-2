@@ -48,21 +48,6 @@ $id_estilista = !empty($_POST['id_estilista']) ? $_POST['id_estilista'] : null;
 // Obtener la fecha y hora actual
 $fecha_actual = date("Y-m-d H:i:s");
 
-// Imprimir los valores recibidos
-echo "Usuario: " . $cliente . "<br>";
-echo "Producto: " . $producto . "<br>";
-echo "Precio unitario: " . $precio_unitario . "<br>";
-echo "Cantidad productos: " . $cantidad_productos . "<br>";
-echo "Total productos: " . $total_productos . "<br>";
-echo "Servicio: " . $servicio . "<br>";
-echo "Cantidad servicios: " . $cantidad_servicios . "<br>";
-echo "Precio servicio: " . $precio_servicio . "<br>";
-echo "Total servicios: " . $total_servicios . "<br>";
-echo "Porcentaje en Valor Total Servicios: " . $porcentaje . "%<br>";
-echo "Valor del porcentaje: " . $porcentaje_valor_total_servicios . "<br>";
-echo "Total factura: " . $total_factura . "<br>";
-echo "Id estilista: " . $id_estilista . "<br>";
-
 // Insertar la factura en la base de datos
 $sql_insert_factura = "INSERT INTO `facturas`(`Fecha_Factura`, `Precio_Total_Productos`, `Precio_Total_Servicios`, `Factura_Total`, `Cantidad_Productos`, `Cantidad_Servicios`, `Id_Productos`, `Id_Servicios`, `Id_Clientes`, `Id_Estilistas`) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -87,23 +72,35 @@ if ($stmt_insert_factura->execute()) {
         $stmt_insert_comision->bind_param("sss", $last_insert_id, $id_estilista, $porcentaje_valor_total_servicios);
         // Ejecutar la consulta para insertar comisión
         if ($stmt_insert_comision->execute()) {
-            echo "Factura insertada correctamente.";
+            // Cerrar la consulta para insertar comisión
+            $stmt_insert_comision->close();
         } else {
             echo "Error al insertar comisión: " . $conn->error;
         }
-        // Cerrar la consulta para insertar comisión
-        $stmt_insert_comision->close();
     } else {
         // Mostrar un mensaje indicando que no se insertó comisión
         echo "No se insertó comisión porque el Valor Total de Servicios es nulo o cero.";
     }
+
+    // Actualizar la cantidad de productos en la base de datos si la cantidad vendida es mayor que 0
+    if ($cantidad_productos > 0) {
+        $sql_update_productos = "UPDATE productos SET Cantidad_Productos = Cantidad_Productos - ? WHERE Id_Productos = ?";
+        $stmt_update_productos = $conn->prepare($sql_update_productos);
+        $stmt_update_productos->bind_param("ss", $cantidad_productos, $producto);
+        $stmt_update_productos->execute();
+        $stmt_update_productos->close();
+    }
+
+    // Cerrar la consulta para insertar factura
+    $stmt_insert_factura->close();
+
+    // Cerrar la conexión
+    $conn->close();
+
+ // Alerta de éxito y redireccionamiento
+ echo "<script>alert('La operación fue exitosa.'); window.location.href = 'estilista_views.php?vista=productos';</script>";
 } else {
+    // Mostrar un mensaje de error si la inserción falla
     echo "Error al insertar factura: " . $conn->error;
 }
-
-// Cerrar la consulta para insertar factura
-$stmt_insert_factura->close();
-
-// Cerrar la conexión
-$conn->close();
 ?>

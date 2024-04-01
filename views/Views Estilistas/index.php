@@ -10,7 +10,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
     echo "ID del estilista: $id_estilista";
 } else {
     // La sesión de estilista no está iniciada, manejar el caso aquí
-    echo "La sesión de estilista no está iniciada.";
+    header("Location:../../controllers/principal.php?action=sesion?");
 }
 
 $sql = "SELECT 
@@ -47,8 +47,50 @@ $sql = "SELECT
 $result = $conn->query($sql);
 
 
+
+
+
+?>
+<?php
+$sqlProductos = "SELECT COUNT(*) AS productos FROM productos";
+$resultadoProductos = $conn->query($sqlProductos);
+$rowProductos = $resultadoProductos->fetch_assoc();
+$cantidadProductos = $rowProductos['productos'];
 ?>
 
+
+
+<?php
+// Consulta SQL para obtener el total de citas activas para el estilista actual
+$sql = "SELECT COUNT(*) AS total_citas FROM Citas WHERE activo = 1 AND Id_Estilistas = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $id_estilista); // Usar $id_estilista obtenido de $_SESSION
+$stmt->execute();
+$resultado = $stmt->get_result();
+
+if ($resultado->num_rows > 0) {
+    $row = $resultado->fetch_assoc();
+    $total_citas = $row['total_citas'];
+} else {
+    $total_citas = 0;
+}
+
+?>
+
+<?php
+  $sql = "SELECT COUNT(*) AS total_comisiones FROM Comisiones WHERE Estado_De_Pago_Comisiones = 0 AND Id_Estilistas = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $id_estilista); // "i" indica que es un parámetro entero (ID del estilista)
+  $stmt->execute();
+  $resultado = $stmt->get_result();
+
+  if ($resultado->num_rows > 0) {
+      $row = $resultado->fetch_assoc();
+      $total_comisiones = $row['total_comisiones'];
+  } else {
+      $total_comisiones = 0;
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,7 +153,7 @@ $result = $conn->query($sql);
                             <a href="estilista_views.php?vista=productos" class="card-title text-white">
                               Productos</a>
                               <span ><i class="fa fa-users"></i></span>
-                              <i class="bi bi-basket"></i>
+                              <i class="bi bi-basket"><?php echo $cantidadProductos; ?></i>
                           </div>
                       </div>
                   </div>
@@ -120,7 +162,7 @@ $result = $conn->query($sql);
                       <div class="card-body">
                           <a href="estilista_views.php?vista=citas" class="card-title text-white">Citas</a>
                           <span><i class="fa fa-heart text-white"></i></span>
-                          <i class="bi bi-calendar-plus"></i>
+                          <i class="bi bi-calendar-plus"><?php echo $total_citas ?></i>
                       </div>
                   </div>
               </div>
@@ -129,7 +171,7 @@ $result = $conn->query($sql);
                       <div class="card-body">
                           <a href="estilista_views.php?vista=comisiones" class="card-title text-white">Pagos</a>
                           <span><i class="fa fa-heart text-white"></i></span>
-                          <i class="bi bi-cash-stack"></i>
+                          <i class="bi bi-cash-stack"><?php echo $total_comisiones ?></i>
                       </div>
                   </div>
               </div>

@@ -9,10 +9,11 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
     // Hacer algo con la variable $id_estilista
     echo "ID del estilista: $id_estilista";
 } else {
-    // La sesión de estilista no está iniciada, manejar el caso aquí
-    echo "La sesión de estilista no está iniciada.";
+    header("Location:../../controllers/principal.php?action=sesion?");
+    exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
