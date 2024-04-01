@@ -1,9 +1,16 @@
  <!--**********************************
             Sidebar start
         ***********************************-->
+
         <style>
         .has-arrow {
-            background-color: #Ffffff; 
+            background-color: #F4F2EF; 
+                    }
+        </style>
+
+        <style>
+        .nk-sidebar {
+            background-color: #F4F2EF; 
                     }
         </style> 
 
@@ -15,7 +22,7 @@
                             <i class="icon-speedometer menu-icon" href="admin_controller.php?rol=indexadmin"></i><span class="nav-text">Inicio</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="admin_controller.php?rol=indexadmin">Inicio</a></li>
+                            <li><a href="admin_controller.php?rol=indexadmin" >Inicio</a></li>
                             <!-- <li><a href="./index-2.php">Home 2</a></li> -->
                         </ul>
                     </li>

@@ -39,6 +39,8 @@ if (isset($_SESSION['username'])) {
     <!-- Chartist -->
     <link rel="stylesheet" href="../../views/Views_Admin/plugins/chartist/css/chartist.min.css">
     <link rel="stylesheet" href="../../views/Views_Admin/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
     <!-- Custom Stylesheet -->
     <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
     <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
@@ -53,134 +55,67 @@ if (isset($_SESSION['username'])) {
        
 <?php Include("Model/navbar.php") ?>
   
+
+
+
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
 
-            <div class="container-fluid mt-3">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-1">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Productos</h3>
-                                <span ><i class="fa fa-shopping-cart"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-2">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Pagos</h3>
-                                <span ><i class="fa fa-money"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-3">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Usuarios</h3>
-                                <span ><i class="fa fa-users"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-4">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Citas</h3>
-                                <span ><i class="fa fa-heart"></i></span>
-                            </div>
+          <div class="container-fluid mt-3">
+              <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="card-now gradient-1">
+                          <div class="card-body">
+                            <a href="../consultas/consulta_roles.php" class="card-title text-white">Usuarios</a>
+                              <span ><i class="fa fa-shopping-cart"></i></span>
+                              <i class="bi bi-person-gear text-white"></i>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                      <div class="card-now gradient-3">
+                          <div class="card-body">
+                            <a href="../consultas/consulta_prendas.php" class="card-title text-white">
+                              Productos</a>
+                              <span ><i class="fa fa-users"></i></span>
+                              <i class="bi bi-basket"></i>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="card-now gradient-2">
+                        <div class="card-body">
+                          <a href="../consultas/consulta_usuarios.php" class="card-title text-white">Servicios</a>
+                          <span ><i class="fa fa-money"></i></span>
+                          <i class="bi bi-scissors"></i>
                         </div>
                     </div>
                 </div>
-
-
-                
-                
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/8.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">Ana Liem</h5>
-                                    <p class="m-0">Senior Manager</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/5.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">John Abraham</h5>
-                                    <p class="m-0">Store Manager</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/7.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">John Doe</h5>
-                                    <p class="m-0">Sales Man</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/1.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">Mehedi Titas</h5>
-                                    <p class="m-0">Online Marketer</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                                              
-                    </div>
-                </div>
-
-                
-
-            <!-- #/ container -->
+                <div class="col-lg-3 col-sm-6">
+                  <div class="card-now gradient-4">
+                      <div class="card-body">
+                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Facturas</a>
+                          <span><i class="fa fa-heart text-white"></i></span>
+                          <i class="bi bi-receipt"></i>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-12 col-sm-6">
+                  <div class="card-now gradient-4">
+                      <div class="card-body">
+                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Citas</a>
+                          <span><i class="fa fa-heart text-white"></i></span>
+                          <i class="bi bi-calendar-plus"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-        
-        
-        <!--**********************************
-            Footer start
-        ***********************************-->
-      
-        <!--**********************************
-            Footer end
-        ***********************************-->
-    </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
 
-    <!--**********************************
-        Scripts
-    ***********************************-->
+    </div>
+
     <?php Include("Model/footer.php") ?>
 
    

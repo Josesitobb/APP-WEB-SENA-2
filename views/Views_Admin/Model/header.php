@@ -25,11 +25,11 @@
 
             <style>
              .brand-logo {
-                  background-color: #E1D7C8; 
+                  background-color: #F4F2EF; 
                     }
              </style>
-                <a href="index.php">
-                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" alt=""> </b>
+                <a href="index.php ">
+                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" height="40" width="40" alt="" > </b>
                     <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
                         <img src="../../views/Views_Admin/images/logi.png" alt="">
@@ -44,7 +44,11 @@
         <!--**********************************
             Header start
         ***********************************-->
-
+        <style>
+             .header{
+                  background-color: #E1D7C8; 
+                    }
+             </style>
         <div class="header">    
             <div class="header-content clearfix">
                 
