@@ -352,11 +352,9 @@ table th{
                                                     <i class="bi bi-gear"></i> 
                                                 </button>
                                                 </td>     
-                                                <td>
-                                                <button class="btn-inactivar" data-id="<?php echo $row_cita['Id_Citas']; ?>"><i class="bi bi-x-circle"></i></button>
+                                                <td><button class="btn-inactivar" data-id="<?php echo $row_cita['Id_Citas']; ?>"><i class="bi bi-x-circle"></i></button></td>
                                                 </td>
-                                            </td>
-                                        </tr>
+                                            </tr>
                                     <?php } ?>
                                                 </tbody>
                                 </table>

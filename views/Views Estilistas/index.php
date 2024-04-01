@@ -65,11 +65,14 @@ $result = $conn->query($sql);
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+
     <!-- Chartist -->
     <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
     <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
     <link href="../../views/Views Estilistas/css/style.css" rel="stylesheet">
+    
 
 </head>
 
@@ -100,94 +103,97 @@ $result = $conn->query($sql);
         ***********************************-->
         <div class="content-body">
 
-            <div class="container-fluid mt-3">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-1">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Products Sold</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">4565</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-2">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Net Profit</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">$ 8541</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-3">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">New Customers</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">4565</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-4">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Customer Satisfaction</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">99%</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="container-fluid mt-3">
+              <div class="row">
+                  <div class="col-lg-4 col-sm-6">
+                      <div class="card-now gradient-3">
+                          <div class="card-body">
+                            <a href="../consultas/consulta_prendas.php" class="card-title text-white">
+                              Productos</a>
+                              <span ><i class="fa fa-users"></i></span>
+                              <i class="bi bi-basket"></i>
+                          </div>
+                      </div>
+                  </div>
+              <div class="col-lg-4 col-sm-6">
+                  <div class="card-now gradient-4">
+                      <div class="card-body">
+                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Citas</a>
+                          <span><i class="fa fa-heart text-white"></i></span>
+                          <i class="bi bi-calendar-plus"></i>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-sm-6">
+                  <div class="card-now gradient-4">
+                      <div class="card-body">
+                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Pagos</a>
+                          <span><i class="fa fa-heart text-white"></i></span>
+                          <i class="bi bi-cash-stack"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
 
-                <!-- <div class="row">
-             
-            < #/ container -->
-        <!-- </div> -->
-        <div class="container">
-    <h2 class="mt-4 mb-4">Tabla de Citas</h2>
-    <table class="table table-striped table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Nombre Cliente</th>
-                <th scope="col">Nombre Servicio</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">¿Atendido?</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Iterar sobre los resultados de la consulta y mostrar los datos en la tabla
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["Nombre_Cliente"] . "</td>";
-                    echo "<td>" . $row["Nombre_Servicios"] . "</td>";
-                    echo "<td>$" . $row["Precio_Servicio"] . "</td>";
-                    echo "<td>" . date('M d, Y - h:i A', strtotime($row["start"])) . "</td>";
-                    // Agregar un botón para marcar si la cita ha sido atendida o no
-                    echo "<td><button onclick='confirmAtendido(" . $row['Id_Citas'] . ")' class='btn btn-primary'>¿Atendido?</button></td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'>No hay citas programadas.</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 col-xl-10 mx-auto">
+            <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                <div class="card-body p-4 p-sm-5">
+                <div class="users-table">
+                    <h5 class="card-title text-center mb-5 fw-light fs-5">Citas</h5>
+                    <div class="d-flex justify-content-between mb-3">
+
+
+                        <!-- Sección de búsqueda -->
+                        <div class="col-lg-3 col-xl-3">
+                                <form class="d-flex">
+                                    <input class="form-control me-2 light-table-filter text-start" data-table="table_id" type="search" placeholder="Buscar Citas">
+                                </form>
+                            </div>
+                            </div>
+
+                            <table class="table_id">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre Cliente</th>
+                                        <th scope="col">Nombre Servicio</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col"></th>
+                                    </tr>    
+                                </thead>
+                                <tbody style="text-align: center;">
+
+                                    <?php
+                                    
+                                    // Iterar sobre los resultados de la consulta y mostrar los datos en la tabla
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "<tr>";
+                                            echo "<td>" . $row["Nombre_Cliente"] . "</td>";
+                                            echo "<td>" . $row["Nombre_Servicios"] . "</td>";
+                                            echo "<td>$" . $row["Precio_Servicio"] . "</td>";
+                                            echo "<td>" . date('M d, Y - h:i A', strtotime($row["start"])) . "</td>";
+                                            // Agregar un botón para marcar si la cita ha sido atendida o no
+                                            echo "<td><button onclick='confirmAtendido(" . $row['Id_Citas'] . ")' class='btn btn-primary'>¿Atendido?</button></td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='5'>No hay citas programadas.</td></tr>";
+                                    
+                                    ?>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                      </div>
+                      </div>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
 
 <script>
@@ -219,6 +225,7 @@ $result = $conn->query($sql);
 
         
         <?php include('Model/footer.php') ?>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
 
