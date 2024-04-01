@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        include("../db.php");
+                        include("../../../controllers/db.php");
                         session_start();
 
                         $sql_1 = "SELECT U.*, R.Nombre_Rol as Rol FROM Usuarios U JOIN Roles R ON U.Id_Rol = R.Id_Rol WHERE R.Nombre_Rol = 'estilistas'";

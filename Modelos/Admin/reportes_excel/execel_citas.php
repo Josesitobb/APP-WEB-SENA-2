@@ -45,7 +45,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        include("../db.php");
+                        include("../../../controllers/db.php");
                         session_start();
 
                         $sql_1 = "SELECT 

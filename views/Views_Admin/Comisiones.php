@@ -75,8 +75,9 @@ if (isset($_SESSION['username'])) {
                         <h1 class="text-center">Lista de comisiones</h1>
                     </div>
 
-                  
+                   
                     <div class="container mt-4">
+                    <a class="btn btn-success btn-sm" href="../../Modelos/Admin/reportes_excel/execel_comisiones.php">Descargar</a>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead class="table-dark">
