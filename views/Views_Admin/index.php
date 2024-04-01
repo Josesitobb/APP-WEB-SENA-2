@@ -52,110 +52,96 @@ if (isset($_SESSION['username'])) {
 <?php Include("Model/header.php") ?>
        
 <?php Include("Model/navbar.php") ?>
+
+
+<?php
+// Ejecutar la consulta SQL para obtener la cantidad de citas por mes
+$sql = "SELECT COUNT(*) AS cantidad_citas FROM Citas GROUP BY MONTH(start)";
+$resultado = $conn->query($sql);
+
+$total_citas = 0;
+
+
+while ($row = $resultado->fetch_assoc()) {
+    $total_citas += $row['cantidad_citas'];
+}
+?>
   
+  <?php
+
+$sql = "SELECT COUNT(*) AS cantidad_comisiones_estado_cero FROM comisiones WHERE Estado_De_Pago_Comisiones = 0";
+$resultado = $conn->query($sql);
+
+
+if ($resultado->num_rows > 0) {
+
+    $row = $resultado->fetch_assoc();
+
+    $cantidad_comisiones_estado_cero = $row['cantidad_comisiones_estado_cero'];
+} else {
+
+    $cantidad_comisiones_estado_cero = 0;
+}
+?>
+
+<?php
+
+$sqlClientes = "SELECT COUNT(*) AS cantidad_clientes FROM clientes";
+$resultClientes = $conn->query($sqlClientes);
+$rowClientes = $resultClientes->fetch_assoc();
+$cantidadClientes = $rowClientes['cantidad_clientes'];
+?>
+
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
-
-            <div class="container-fluid mt-3">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-1">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Productos</h3>
-                                <span ><i class="fa fa-shopping-cart"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-2">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Pagos</h3>
-                                <span ><i class="fa fa-money"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-3">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Usuarios</h3>
-                                <span ><i class="fa fa-users"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-4">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Citas</h3>
-                                <span ><i class="fa fa-heart"></i></span>
-                            </div>
+    <div class="container-fluid mt-3">
+        <div class="row justify-content-center"> <!-- Agregamos la clase justify-content-center para centrar las columnas -->
+            <div class="col-lg-3 col-sm-6">
+                <div class="card gradient-1">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Citas</h3>
+                        <span><i class="fa fa-calendar"></i></span>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $total_citas; ?></h2>
                         </div>
                     </div>
                 </div>
+            </div>
 
-
-                
-                
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/8.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">Ana Liem</h5>
-                                    <p class="m-0">Senior Manager</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card gradient-2">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Pagos</h3>
+                        <span><i class="fa fa-money"></i></span>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $cantidad_comisiones_estado_cero ?></h2>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/5.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">John Abraham</h5>
-                                    <p class="m-0">Store Manager</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/7.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">John Doe</h5>
-                                    <p class="m-0">Sales Man</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img src="./images/users/1.jpg" class="rounded-circle" alt="">
-                                    <h5 class="mt-3 mb-1">Mehedi Titas</h5>
-                                    <p class="m-0">Online Marketer</p>
-                                    <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                                              
                     </div>
                 </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="card gradient-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">Usuarios</h3>
+                        <span><i class="fa fa-users"></i></span>
+                        <div class="d-inline-block">
+                            <h2 class="text-white"><?php echo $cantidadClientes ?></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+          
 
                 
 
