@@ -79,9 +79,9 @@ if(isset($_GET['vista'])) {
             break;
         case 'productosr':
             cargarReporteProductosview($conn);
+            break;
         case 'comisiones':
             cargarComisionesView($conn);
-
             break;
 
             
