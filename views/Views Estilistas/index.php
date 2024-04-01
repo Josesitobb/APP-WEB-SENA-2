@@ -108,7 +108,7 @@ $result = $conn->query($sql);
                   <div class="col-lg-4 col-sm-6">
                       <div class="card-now gradient-3">
                           <div class="card-body">
-                            <a href="../consultas/consulta_prendas.php" class="card-title text-white">
+                            <a href="estilista_views.php?vista=productos" class="card-title text-white">
                               Productos</a>
                               <span ><i class="fa fa-users"></i></span>
                               <i class="bi bi-basket"></i>
@@ -118,7 +118,7 @@ $result = $conn->query($sql);
               <div class="col-lg-4 col-sm-6">
                   <div class="card-now gradient-4">
                       <div class="card-body">
-                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Citas</a>
+                          <a href="estilista_views.php?vista=citas" class="card-title text-white">Citas</a>
                           <span><i class="fa fa-heart text-white"></i></span>
                           <i class="bi bi-calendar-plus"></i>
                       </div>
@@ -127,7 +127,7 @@ $result = $conn->query($sql);
               <div class="col-lg-4 col-sm-6">
                   <div class="card-now gradient-4">
                       <div class="card-body">
-                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Pagos</a>
+                          <a href="estilista_views.php?vista=comisiones" class="card-title text-white">Pagos</a>
                           <span><i class="fa fa-heart text-white"></i></span>
                           <i class="bi bi-cash-stack"></i>
                       </div>
@@ -149,9 +149,7 @@ $result = $conn->query($sql);
 
                         <!-- Sección de búsqueda -->
                         <div class="col-lg-3 col-xl-3">
-                                <form class="d-flex">
-                                    <input class="form-control me-2 light-table-filter text-start" data-table="table_id" type="search" placeholder="Buscar Citas">
-                                </form>
+
                             </div>
                             </div>
 
