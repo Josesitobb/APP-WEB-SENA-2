@@ -24,9 +24,6 @@ function cargarFacturaView($conn){
     require('../../views/Views_Admin/Facturas.php');
 }
 
-function cargarServicioView($conn){
-    require('../../views/Views_Admin/Servicios.php');
-}
 
 function cargarEditarCita($conn){
     require('../../views/Views_Admin/Editar_Cita.php');
@@ -58,9 +55,6 @@ if(isset($_GET['vista'])) {
             break;
         case 'productos':
             cargarProductosView($conn);
-            break;
-        case 'servicios':
-            cargarServicioView($conn);
             break;
         case 'citas':
             cargarCitaView($conn);

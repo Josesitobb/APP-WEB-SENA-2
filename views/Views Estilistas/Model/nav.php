@@ -46,7 +46,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="estilista_views.php?vista=citas">Citas</a></li>
-                            <li><a href="estilista_views.php?vista=servicios">Servicios</a></li>
+                          
                             <li><a href="estilista_views.php?vista=productos">Productos</a></li>
                             <li><a href="estilista_views.php?vista=comisiones">Comisiones</a></li>
                         </ul>

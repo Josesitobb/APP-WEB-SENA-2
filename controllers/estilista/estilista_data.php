@@ -27,6 +27,9 @@ if(isset($_GET['action'])) {
         case 'factura':
             require_once('../../Modelos/Estilistas/procesar_pedido_factura.php');
             break;
+        case 'estadocita':
+            require_once('../../Modelos/Estilistas/actualizar_atendido.php');
+            break;
 
             echo "pa donde va rey";
             break;

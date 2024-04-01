@@ -1,3 +1,54 @@
+<?php 
+session_start();
+
+// Verificar si la sesión de estilista está iniciada
+if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+    // Acceder a la variable de sesión específica para estilistas
+    $id_estilista = $_SESSION['id_estilista'];
+
+    // Hacer algo con la variable $id_estilista
+    echo "ID del estilista: $id_estilista";
+} else {
+    // La sesión de estilista no está iniciada, manejar el caso aquí
+    echo "La sesión de estilista no está iniciada.";
+}
+
+$sql = "SELECT 
+            Citas.Id_Citas,
+            Citas.start,
+            Citas.end,
+            Clientes.Id_Clientes,
+            CONCAT(Usuarios_Clientes.Nombre_Usuarios, ' ', Usuarios_Clientes.Apellido_Usuarios) AS Nombre_Cliente,
+            Estilistas.Id_Estilistas,
+            CONCAT(Usuarios_Estilistas.Nombre_Usuarios, ' ', Usuarios_Estilistas.Apellido_Usuarios) AS Nombre_Estilista,
+            Servicios.Id_Servicios,
+            Servicios.Nombre_Servicios,
+            Servicios.Valor_Servicios AS Precio_Servicio
+        FROM 
+            Citas
+        INNER JOIN 
+            Clientes ON Citas.Id_Clientes = Clientes.Id_Clientes
+        INNER JOIN 
+            Usuarios AS Usuarios_Clientes ON Clientes.Id_Usuarios = Usuarios_Clientes.Id_Usuarios
+        INNER JOIN 
+            Estilistas ON Citas.Id_Estilistas = Estilistas.Id_Estilistas
+        INNER JOIN 
+            Usuarios AS Usuarios_Estilistas ON Estilistas.Id_Usuarios = Usuarios_Estilistas.Id_Usuarios
+        INNER JOIN 
+            Servicios ON Citas.Id_Servicios = Servicios.Id_Servicios
+        WHERE 
+            Estilistas.Id_Estilistas = $id_estilista
+            AND Citas.activo = 1"; // Filtra las citas con estado activo en 0
+
+
+
+
+// Ejecutar la consulta SQL
+$result = $conn->query($sql);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -106,30 +157,65 @@
             < #/ container -->
         <!-- </div> -->
         <div class="container">
-            <h2 class="mt-4 mb-4">Tabla de Usuarios y Servicios</h2>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Usuarios</th>
-                        <th scope="col">Hora y Fecha</th>
-                        <th scope="col">Servicio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Usuario 1</td>
-                        <td>2024-03-05 12:30:00</td>
-                        <td>Servicio A</td>
-                    </tr>
-                    <tr>
-                        <td>Usuario 2</td>
-                        <td>2024-03-05 13:45:00</td>
-                        <td>Servicio B</td>
-                    </tr>
-                    <!-- Añade más filas según sea necesario -->
-                </tbody>
-            </table>
-        </div>
+    <h2 class="mt-4 mb-4">Tabla de Citas</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre Cliente</th>
+                <th scope="col">Nombre Servicio</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">¿Atendido?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Iterar sobre los resultados de la consulta y mostrar los datos en la tabla
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["Nombre_Cliente"] . "</td>";
+                    echo "<td>" . $row["Nombre_Servicios"] . "</td>";
+                    echo "<td>$" . $row["Precio_Servicio"] . "</td>";
+                    echo "<td>" . date('M d, Y - h:i A', strtotime($row["start"])) . "</td>";
+                    // Agregar un botón para marcar si la cita ha sido atendida o no
+                    echo "<td><button onclick='confirmAtendido(" . $row['Id_Citas'] . ")' class='btn btn-primary'>¿Atendido?</button></td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='5'>No hay citas programadas.</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function confirmAtendido(idCita) {
+        // Mostrar un mensaje de confirmación al usuario
+        var confirmacion = confirm("¿Se ha atendido a este cliente?");
+        if (confirmacion) {
+            // Crear un objeto FormData para enviar los datos por POST
+            var formData = new FormData();
+            formData.append('id_cita', idCita);
+
+            // Ruta absoluta al archivo PHP
+            var url = "../../Modelos/Estilistas/actualizar_atendido.php";
+
+            // Realizar una solicitud AJAX por POST para actualizar el estado 'atendido' en la base de datos
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Actualizar la interfaz de usuario si la actualización fue exitosa
+                    console.log("Estado 'atendido' actualizado para la cita con ID " + idCita);
+                }
+            };
+            xhttp.open("POST", url, true);
+            xhttp.send(formData);
+        }
+    }
+</script>
+
 
         
         <?php include('Model/footer.php') ?>
