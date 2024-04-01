@@ -17,7 +17,7 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
+        <script src="../../views/Views_Admin/plugins/common/common.min.js"></script>
     <script src="../../views/Views_Admin/js/custom.min.js"></script>
     <script src="../../views/Views_Admin/js/settings.js"></script>
     <script src="../../views/Views_Admin/js/gleek.js"></script>
