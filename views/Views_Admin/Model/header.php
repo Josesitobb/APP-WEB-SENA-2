@@ -29,7 +29,7 @@
                     }
              </style>
                 <a href="index.php ">
-                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SG.png" height="40" width="40" alt="" > </b>
+                    <b class="logo-abbr"><img src="../../views/Views_Admin/images/SGC.png" height="40" width="40" alt="" > </b>
                     <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
                         <img src="../../views/Views_Admin/images/logi.png" alt="">
@@ -63,7 +63,7 @@
 
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
-                                <img src="images/user/1.png" height="40" width="40" alt="">
+                                <img src="../../views/Views_Admin/images/user.png" height="40" width="40" alt="wtf">
                             </div>
                             <div class="drop-down dropdown-profile   dropdown-menu">
                                 <div class="dropdown-content-body">

@@ -33,7 +33,7 @@ if (isset($_SESSION['username'])) {
     <title>Inicio Administrador</title>
     <!-- Favicon icon -->
     <!-- <link rel="icon" href="icons/SG.png"> -->
-    <link rel="icon" type="image/png" sizes="16x16" href="SG.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../views/Views_Admin/images/sgc.png">
     <!-- Pignose Calender -->
     <link href="../../views/Views_Admin/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
