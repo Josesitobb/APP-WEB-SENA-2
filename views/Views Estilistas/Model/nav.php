@@ -1,6 +1,16 @@
 
     <div id="main-wrapper">
+    <style>
+        .has-arrow {
+            background-color: #F4F2EF; 
+                    }
+        </style>
 
+        <style>
+        .nk-sidebar {
+            background-color: #F4F2EF; 
+                    }
+        </style> 
 
         <div class="nav-header">
             <div class="brand-logo">
@@ -20,7 +30,7 @@
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li class="nav-label">Dashboard</li>
+                   
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Inicio</span>

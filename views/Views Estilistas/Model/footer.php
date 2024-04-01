@@ -3,20 +3,9 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+                <p>Copyright &copy;<a href="#"> SGCITAS</a> 2024</p>
             </div>
         </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
-    </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
-    <!--**********************************
-        Scripts
-    ***********************************-->
 
     <script src="../../views/Views Estilistas/plugins/common/common.min.js"></script>
     <script src="../../views/Views Estilistas/js/custom.min.js"></script>
