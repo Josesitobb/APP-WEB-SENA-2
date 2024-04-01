@@ -200,7 +200,7 @@ $result = $conn->query($sql);
             formData.append('id_cita', idCita);
 
             // Ruta absoluta al archivo PHP
-            var url = "../../Modelos/Estilistas/actualizar_atendido.php";
+            var url = "../../controllers/estilista/estilista_data.php?action=estadocita";
 
             // Realizar una solicitud AJAX por POST para actualizar el estado 'atendido' en la base de datos
             var xhttp = new XMLHttpRequest();

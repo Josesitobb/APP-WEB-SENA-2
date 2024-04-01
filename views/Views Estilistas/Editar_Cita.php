@@ -65,6 +65,10 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Cita</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../../views/Views Estilistas/css/style.css" rel="stylesheet">
+
+
+
 
     <style>
         /* Estilo para el contenedor del formulario */
@@ -87,9 +91,12 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
         .btn-primary {
             width: 100%;
         }
+        
     </style>
 </head>
 <body>
+<?php include('Model/nav.php') ?>
+<?php include('Model/header.php') ?>
 
 <div class="container">
         <h1 class="mt-5 mb-4">Editar Cita</h1>
@@ -132,9 +139,13 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
                     <form action='../../controllers/estilista/estilista_data.php?action=actualizarcita' method='post'>
                         <input type='hidden' name='id_cita' value='<?php echo $row["Id_Citas"]; ?>'>
                         <div class="form-group">
-                            <label for="fecha_hora">Fecha y Hora:</label>
-                            <input type="text" class="form-control" id="fecha_hora" name="fecha_hora" value="<?php echo $row["start"]; ?>">
-                        </div>
+    <label for="fecha_hora">Fecha y Hora:</label>
+    <div class="datetime-input">
+        <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" value="<?php echo date('Y-m-d\TH:i', strtotime($row["start"])); ?>">
+        <span class="input-icon"><i class="far fa-calendar-alt"></i></span>
+    </div>
+</div>
+
 
                         <div class="form-group">
                             <label for="Nombre_Cliente">Nombre del Cliente:</label>
@@ -169,6 +180,8 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
                         </div>
 
                         <button type='submit' class='btn btn-primary'>Guardar Cambios</button>
+                        <br><br>
+                        <a href="../../controllers/estilista/estilista_views.php?vista=citas"  class='btn btn-primary'>Cancelar</a>
                     </form>
                     <?php
                 } else {
@@ -222,5 +235,10 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
             });
         });
     </script>
+
+
+    <br>
+    <br>
+            <?php include('Model/footer.php') ?>
 </body>
 </html>
