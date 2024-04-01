@@ -69,13 +69,13 @@
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
-                                            <a href="app-profile.php"><i class="icon-user"></i> <span>Profile</span></a>
+                                            <a href="app-profile.php"><i class="icon-user"></i> <span>Perfil</span></a>
                                         </li>
 
                                         
                                         <hr class="my-2">
 
-                                        <li><a href="page-login.php"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="page-login.php"><i class="icon-key"></i> <span>Cerrar Sesión</span></a></li>
                                     </ul>
                                 </div>
                             </div>
