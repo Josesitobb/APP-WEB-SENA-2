@@ -1,17 +1,17 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 session_start();
-$varsesion=$_SESSION['username'];
 
-if($varsesion == null || $varsesion=''){
-    echo 'USTED INICIE SESION';
-    header("Location:page-error-500.php");
-    die();
+// Verificar si la sesión de estilista está iniciada
+if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true) {
+    // Acceder a la variable de sesión específica para estilistas
+    $id_estilista = $_SESSION['id_estilista'];
+
+    // Hacer algo con la variable $id_estilista
+    echo "ID del estilista: $id_estilista";
+} else {
+    // La sesión de estilista no está iniciada, manejar el caso aquí
+    echo "La sesión de estilista no está iniciada.";
 }
-
-
-echo $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -383,7 +383,8 @@ INNER JOIN Usuarios AS Usuarios_Clientes ON Clientes.Id_Usuarios = Usuarios_Clie
 INNER JOIN Estilistas ON Citas.Id_Estilistas = Estilistas.Id_Estilistas
 INNER JOIN Usuarios AS Usuarios_Estilistas ON Estilistas.Id_Usuarios = Usuarios_Estilistas.Id_Usuarios
 INNER JOIN Servicios ON Citas.Id_Servicios = Servicios.Id_Servicios
-";
+WHERE Estilistas.Id_Estilistas = $id_estilista";
+
 
 // Agregar la cláusula WHERE si se ha seleccionado un cliente
 if ($clienteSeleccionado !== null) {

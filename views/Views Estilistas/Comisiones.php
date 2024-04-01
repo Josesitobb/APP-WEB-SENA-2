@@ -8,15 +8,16 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
     header("Location: modules/admin/theme/page-login.php");
     exit();
 }
-
-
-
-
-$sql_servicios = "SELECT Id_Servicios, Nombre_Servicios, Valor_Servicios, Descripcion_Servicios, Imagen_Servicios FROM servicios";
-
-
-
+$id_estilista=$_SESSION['id_estilista'];
+$sql_servicios = "SELECT c.Id_Comisiones, c.Pagar_Comisiones, c.Estado_De_Pago_Comisiones, f.Fecha_Factura, u.Nombre_Usuarios AS Nombre_Usuario
+        FROM comisiones c
+        JOIN estilistas e ON c.Id_Estilistas = e.Id_Estilistas
+        JOIN usuarios u ON e.Id_Usuarios = u.Id_Usuarios
+        JOIN facturas f ON c.Id_Facturas = f.Id_Facturas
+        WHERE e.Id_Estilistas = $id_estilista";
 $resultado = mysqli_query($conn, $sql_servicios);
+
+
 ?>
 
 
@@ -27,7 +28,7 @@ $resultado = mysqli_query($conn, $sql_servicios);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title>Comisiones</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -74,30 +75,42 @@ $resultado = mysqli_query($conn, $sql_servicios);
             </div>
             <!-- #/ container -->
             <div class="container">
-    <h2>Tabla de Servicios</h2>
+            <center><h2>Comisiones</h2></center> 
+
     <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Valor</th>
-                    <th>Descripción</th>
-                    <th>Acciones</th>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>    
+                    <th>Id</th>
+                    <th>Nombre Estilista</th>
+                    <th>Comision</th>
+                    <th>Estado de comision</th>
+                    <th>Fecha de factura</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($resultado as $row) { ?>
                     <tr>
-                        <td><?php echo $row['Nombre_Servicios']; ?></td>
-                        <td><?php echo '$' . number_format($row['Valor_Servicios'], 2); ?></td>
-                        <td><?php echo $row['Descripcion_Servicios']; ?></td>
-                        <td><button class="btn btn-primary">Agregar al carrito</button></td>
+                        <td><?php echo $row['Id_Comisiones']; ?></td>
+                        <td><?php echo $row['Nombre_Usuario']; ?></td>
+                        <td><?php echo $row['Pagar_Comisiones']; ?></td>
+                        <td>
+                            <?php
+                            if ($row['Estado_De_Pago_Comisiones'] == 0) {
+                                echo '<span class="text-danger">Por pagar</span>';
+                            } else {
+                                echo '<span class="text-success">Pagado</span>';
+                            }
+                            ?>
+                        </td>
+                        <td><?php echo $row['Fecha_Factura']; ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
 </div>
+
 
         <!--**********************************
             Content body end

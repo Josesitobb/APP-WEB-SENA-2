@@ -42,6 +42,9 @@ function cargarReporteProductosview($conn){
 function cargarReporteUsuarioview($conn){
     require('../../views/Views_Admin/Reporte_Usuarios.php');
 }
+function cargarComisionesView($conn){
+    require_once('../../views/Views_Admin/Comisiones.php');
+}
 // Verificar la acción solicitada
 if(isset($_GET['vista'])) {
     $vistas = $_GET['vista'];
@@ -76,6 +79,9 @@ if(isset($_GET['vista'])) {
             break;
         case 'productosr':
             cargarReporteProductosview($conn);
+        case 'comisiones':
+            cargarComisionesView($conn);
+
             break;
 
             

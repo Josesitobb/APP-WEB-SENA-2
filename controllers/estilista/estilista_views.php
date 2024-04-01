@@ -18,6 +18,10 @@ function cargarEditarCitaView($conn){
     require_once('../../views/Views Estilistas/Editar_Cita.php');
 }
 
+function cargarComisionesVies($conn){
+    require_once('../../views/Views Estilistas/Comisiones.php');
+}
+
 if(isset($_GET['vista'])) {
     $action = $_GET['vista'];
     
@@ -33,6 +37,9 @@ if(isset($_GET['vista'])) {
             break;
         case 'EditarCita':
             cargarEditarCitaView($conn);
+            break;
+        case 'comisiones':
+            cargarComisionesVies($conn);
             break;
 
         default:

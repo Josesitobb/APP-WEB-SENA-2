@@ -3,7 +3,7 @@
         ***********************************-->
         <style>
         .has-arrow {
-            background-color: #F299B9; 
+            background-color: #0000; 
                     }
         </style> 
 
@@ -65,6 +65,18 @@
                         <li><a href="admin_views.php?vista=factura">Facturas </a></li>
                         </ul>
                     </li>
+
+
+                    
+                    <li class="mega-menu mega-menu-sm">
+                    <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Comisiones</span>
+                        </a>
+                        <ul aria-expanded="false">
+                        <li><a href="admin_views.php?vista=comisiones">Comisiones </a></li>
+                        </ul>
+                    </li>
+
 
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
