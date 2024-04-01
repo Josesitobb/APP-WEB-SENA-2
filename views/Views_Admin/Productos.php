@@ -2,15 +2,21 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 session_start();
-$varsesion = $_SESSION['username'];
 
-if ($varsesion == null || $varsesion = '') {
-    echo 'USTED INICIE SESION';
-    die();
+
+// Verifica si el nombre de usuario está en la sesión
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    // echo "¡Hola, $username!";
+} else {
+    // El usuario no ha iniciado sesión, realiza la lógica correspondiente
+
+    session_destroy();
+    header("Location:../../controllers/principal.php?action=sesion?");
+
+    // Destruye la sesión solo si no ha iniciado sesión
+  
 }
-
-
-echo $_SESSION['username'];
 ?>
 
 

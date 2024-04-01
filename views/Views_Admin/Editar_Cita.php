@@ -1,6 +1,27 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+session_start();
+
+
+// Verifica si el nombre de usuario está en la sesión
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    // echo "¡Hola, $username!";
+} else {
+    // El usuario no ha iniciado sesión, realiza la lógica correspondiente
+
+    session_destroy();
+    header("Location:../../controllers/principal.php?action=sesion?");
+
+    // Destruye la sesión solo si no ha iniciado sesión
+  
+}
+?>
+
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Obtener la lista de clientes
 $query = "SELECT clientes.Id_Clientes, usuarios.Nombre_Usuarios

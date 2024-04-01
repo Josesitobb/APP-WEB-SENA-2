@@ -75,7 +75,7 @@
                                         
                                         <hr class="my-2">
 
-                                        <li><a href="page-login.php"><i class="icon-key"></i> <span>Cerrar Sesión</span></a></li>
+                                        <li><a href="../../controllers/admin/admin_data.php?action=cerrarsesion"><i class="icon-key"></i> <span>Cerrar Sesión</span></a></li>
                                     </ul>
                                 </div>
                             </div>

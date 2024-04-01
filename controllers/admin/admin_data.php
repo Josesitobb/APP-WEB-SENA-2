@@ -68,6 +68,8 @@ if(isset($_GET['action'])) {
         case 'excelservicios':
             require_once('../../Modelos/Admin/reportes_excel/execel_servicios.php');
             break;
+        case 'cerrarsesion':
+            require_once('../../Modelos/Admin/Cerrar_Sesion.php');
             
 
             echo "pa donde va rey";

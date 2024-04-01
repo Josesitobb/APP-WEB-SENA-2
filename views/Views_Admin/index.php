@@ -12,7 +12,7 @@ if (isset($_SESSION['username'])) {
     // El usuario no ha iniciado sesión, realiza la lógica correspondiente
 
     session_destroy();
-    header("Location:page-error-500.php");
+    header("Location:../../controllers/principal.php?action=sesion?");
 
     // Destruye la sesión solo si no ha iniciado sesión
   
@@ -57,17 +57,18 @@ if (isset($_SESSION['username'])) {
 
 
 <?php
-// Ejecutar la consulta SQL para obtener la cantidad de citas por mes
-$sql = "SELECT COUNT(*) AS cantidad_citas FROM Citas GROUP BY MONTH(start)";
+// Ejecutar la consulta SQL para contar todas las citas donde activo sea 1
+$sql = "SELECT COUNT(*) AS total_citas FROM Citas WHERE activo = 1";
 $resultado = $conn->query($sql);
 
-$total_citas = 0;
-
-
-while ($row = $resultado->fetch_assoc()) {
-    $total_citas += $row['cantidad_citas'];
+if ($resultado->num_rows > 0) {
+    $row = $resultado->fetch_assoc();
+    $total_citas = $row['total_citas'];
+} else {
+    $total_citas = 0;
 }
 ?>
+
   
   <?php
 
@@ -94,6 +95,28 @@ $rowClientes = $resultClientes->fetch_assoc();
 $cantidadClientes = $rowClientes['cantidad_clientes'];
 ?>
 
+<?php
+$sqlProductos = "SELECT COUNT(*) AS productos FROM productos";
+$resultadoProductos = $conn->query($sqlProductos);
+$rowProductos = $resultadoProductos->fetch_assoc();
+$cantidadProductos = $rowProductos['productos'];
+?>
+
+<?php
+$sqlFacturas ="SELECT COUNT(*) AS total_facturas FROM Facturas;";
+$resultadoFacturas =$conn->query($sqlFacturas);
+$rowFactura=$resultadoFacturas->fetch_assoc();
+$cantidadFactura=$rowFactura['total_facturas'];
+
+?>
+
+<?php
+$sqlServicios ="SELECT COUNT(*) AS total_servicios FROM Servicios;";
+$resultadoServicios =$conn->query($sqlServicios);
+$rowServicios=$resultadoServicios->fetch_assoc();
+$cantidadServicios=$rowServicios['total_servicios'];
+?>
+
         <!--**********************************
             Content body start
         ***********************************-->
@@ -104,11 +127,11 @@ $cantidadClientes = $rowClientes['cantidad_clientes'];
                   <div class="col-lg-4 col-sm-6">
                       <div class="card-now gradient-1">
                           <div class="card-body">
-                            <a href="../consultas/consulta_roles.php" class="card-title text-white">Usuarios</a>
+                            <a href="admin_views.php?vista=usuariosC" class="card-title text-white">Usuarios</a>
                               <span ><i class="fa fa-shopping-cart"></i></span>
                               <i class="bi bi-person-gear text-white"></i>
                               <div class="d-inline-block">
-                                <h2 class="text-white"><?php echo $cantidadClientes ?></h2>
+                                <h2 class="text-white"><?php echo $cantidadClientes; ?></h2>
                               </div>
                           </div>
                       </div>
@@ -116,39 +139,39 @@ $cantidadClientes = $rowClientes['cantidad_clientes'];
                   <div class="col-lg-4 col-sm-6">
                       <div class="card-now gradient-3">
                           <div class="card-body">
-                            <a href="../consultas/consulta_prendas.php" class="card-title text-white">
+                            <a href="admin_views.php?vista=productos" class="card-title text-white">
                               Productos</a>
                               <span ><i class="fa fa-users"></i></span>
-                              <i class="bi bi-basket"></i>
+                              <i class="bi bi-basket"><?php echo $cantidadProductos; ?></i>
                           </div>
                       </div>
                   </div>
                   <div class="col-lg-4 col-sm-6">
                     <div class="card-now gradient-2">
                         <div class="card-body">
-                          <a href="../consultas/consulta_usuarios.php" class="card-title text-white">Servicios</a>
+                          <a href="admin_views.php?vista=servicios" class="card-title text-white">Servicios</a>
                           <span ><i class="fa fa-money"></i></span>
-                          <i class="bi bi-scissors"></i> 
+                          <i class="bi bi-scissors"><?php echo $cantidadServicios; ?></i> 
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
                   <div class="card-now gradient-4">
                       <div class="card-body">
-                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Facturas</a>
+                          <a href="admin_views.php?vista=factura" class="card-title text-white">Facturas</a>
                           <span><i class="fa fa-heart text-white"></i></span>
-                          <i class="bi bi-receipt"></i>
+                          <i class="bi bi-receipt"><?php echo $cantidadFactura; ?></i>
                       </div>
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6">
                   <div class="card-now gradient-4">
                       <div class="card-body">
-                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Citas</a>
+                          <a href="admin_views.php?vista=citas" class="card-title text-white">Citas</a>
                           <span><i class="fa fa-heart text-white"></i></span>
                           <i class="bi bi-calendar-plus"></i>
                           <div class="d-inline-block">
-                            <h2 class="text-white"><?php echo $total_citas; ?></h2>
+                            <h2 class="text-white"><?php echo  $total_citas; ?></h2>
                           </div>
                       </div>
                   </div>
@@ -156,11 +179,11 @@ $cantidadClientes = $rowClientes['cantidad_clientes'];
               <div class="col-lg-4 col-sm-6">
                   <div class="card-now gradient-4">
                       <div class="card-body">
-                          <a href="../consultas/consulta_lockers.php" class="card-title text-white">Pagos</a>
+                          <a href="admin_views.php?vista=comisiones" class="card-title text-white">Pagos</a>
                           <span><i class="fa fa-heart text-white"></i></span>
                           <i class="bi bi-cash-stack"></i>
                           <div class="d-inline-block">
-                            <h2 class="text-white"><?php echo $cantidad_comisiones_estado_cero ?></h2>
+                            <h2 class="text-white"><?php echo $cantidad_comisiones_estado_cero; ?></h2>
                         </div>
                       </div>
                   </div>

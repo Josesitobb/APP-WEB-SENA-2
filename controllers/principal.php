@@ -33,6 +33,10 @@ function cargarProductosView($conn){
 function cargarIndexView(){
     require('../views/View_company/index.php');
 }
+
+function cargarErrorSesion(){
+    require_once('../views/View_Error/page-error-500.php');
+}
 // Verificar la acción solicitada
 if(isset($_GET['action'])) {
     $action = $_GET['action'];
@@ -61,6 +65,9 @@ if(isset($_GET['action'])) {
         case 'index':
             cargarIndexView();
             break;
+        case 'sesion?':
+            require_once('../views/View_Error/page-error-500.php');
+
         default:
             // Acción por defecto si no se reconoce ninguna acción
             require_once('../views/View_Error/page-error-400.php');
