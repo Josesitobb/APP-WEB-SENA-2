@@ -60,26 +60,27 @@ $resultado = mysqli_query($conn, $sql_servicios);
         ***********************************-->
         <div class="content-body">
 
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                    </ol>
-                </div>
-            </div>
-            <!-- row -->
+
+
 
             <div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 col-xl-10 mx-auto">
+            <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                <div class="card-body p-4 p-sm-5">
+                <div class="users-table">
+                    <h5 class="card-title text-center mb-5 fw-light fs-5">Comisiones</h5>
+                    <div class="d-flex justify-content-between mb-3">
 
-            </div>
-            <!-- #/ container -->
-            <div class="container">
-            <center><h2>Comisiones</h2></center> 
 
-    <div class="table-responsive">
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
+                        <!-- Sección de búsqueda -->
+                        <div class="col-lg-3 col-xl-3">
+
+                            </div>
+                            </div>
+
+                            <table class="table_id">
+                                <thead>
                 <tr>    
                     <th>Id</th>
                     <th>Nombre Estilista</th>
@@ -88,7 +89,7 @@ $resultado = mysqli_query($conn, $sql_servicios);
                     <th>Fecha de factura</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="text-align: center;">
                 <?php foreach ($resultado as $row) { ?>
                     <tr>
                         <td><?php echo $row['Id_Comisiones']; ?></td>
@@ -106,9 +107,15 @@ $resultado = mysqli_query($conn, $sql_servicios);
                         <td><?php echo $row['Fecha_Factura']; ?></td>
                     </tr>
                 <?php } ?>
-            </tbody>
-        </table>
+                </tbody>
+                            </table>
+                      </div>
+                      </div>
+            </div>
+        </div>
     </div>
+    </div>
+</div>
 </div>
 
 
