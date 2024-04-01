@@ -96,7 +96,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #A96E70;
         }
 
         .container {
@@ -104,7 +104,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         }
 
         form {
-            background-color: #fff;
+            background-color: #A96E70;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -127,7 +127,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         }
 
         select.form-control:focus {
-            border-color: #80bdff;
+            border-color: #A96E70;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
 
@@ -139,12 +139,12 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         }
 
         button[type="submit"] {
-            background-color: #007bff;
+            background-color: #A96E70;
             color: #fff;
         }
 
         button[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: #A96E70;
         }
 
         button[type="button"] {
@@ -154,7 +154,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         }
 
         button[type="button"]:hover {
-            background-color: #5a6268;
+            background-color: #A96E70;
         }
 
         .table-container {
@@ -169,6 +169,9 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        .btn-primary{
+            background-color: #A96E70 !important;
+        }
         table th, table td {
             padding: 12px;
             text-align: center;
@@ -176,7 +179,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         }
 
         table th {
-            background-color: #007bff;
+            background-color: #A96E70;
             color: #fff;
         }
 
