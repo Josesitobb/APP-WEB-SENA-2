@@ -3,7 +3,7 @@
         ***********************************-->
         <style>
         .has-arrow {
-            background-color: #F299B9; 
+            background-color: #Ffffff; 
                     }
         </style> 
 
