@@ -21,7 +21,7 @@
 // $servername="localhost";
 // $username ="root";
 // $password ="";
-// $db="sgcitas";
+// $db="SGCitas";
 
 // $conn=mysqli_connect($servername,$username,$password,$db);
 
@@ -31,7 +31,7 @@
 // }else{
 //     // echo "existe";
 // }
-// db.php
+// // db.php
 
 
 
@@ -64,10 +64,6 @@
 // $port=3306;
 
 // $conn=mysqli_connect($servername,$username,$password,$db,$port);
-
-
-
-
 
 
 $servername = "veico.mysql.database.azure.com";
