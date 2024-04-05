@@ -1,32 +1,38 @@
 <?php
+// Verificar si algún campo obligatorio está vacío
+if (empty($_POST['cliente']) || empty($_POST['producto']) || empty($_POST['precio_unitario']) || empty($_POST['cantidad']) || empty($_POST['total_productos']) || empty($_POST['servicio']) || empty($_POST['cantidad_servicios']) || empty($_POST['precio_servicio']) || empty($_POST['valor_total_servicios']) || empty($_POST['total_factura']) || empty($_POST['id_estilista'])) {
+    echo "<script>alert('Por favor, complete todos los campos del formulario'); history.back();</script>";
+    exit; // Detener la ejecución del código PHP
+}
+
 include("../../controllers/db.php");
 
 // Usuario cliente
-$cliente = !empty($_POST['cliente']) ? $_POST['cliente'] : null;
+$cliente = $_POST['cliente'];
 
 // Productos
-$producto = !empty($_POST['producto']) ? $_POST['producto'] : null;
+$producto = $_POST['producto'];
 
 // Precio unitario / individual productos
-$precio_unitario = !empty($_POST['precio_unitario']) ? $_POST['precio_unitario'] : null;
+$precio_unitario = $_POST['precio_unitario'];
 
 // Cantidad productos
-$cantidad_productos = !empty($_POST['cantidad']) ? $_POST['cantidad'] : null;
+$cantidad_productos = $_POST['cantidad'];
 
 // Total productos 
-$total_productos = !empty($_POST['total_productos']) ? $_POST['total_productos'] : null;
+$total_productos = $_POST['total_productos'];
 
 // Servicio
-$servicio = !empty($_POST['servicio']) ? $_POST['servicio'] : null;
+$servicio = $_POST['servicio'];
 
 // Cantidad servicios
-$cantidad_servicios = !empty($_POST['cantidad_servicios']) ? $_POST['cantidad_servicios'] : null;
+$cantidad_servicios = $_POST['cantidad_servicios'];
 
 // Precio unitario /individual servicios
-$precio_servicio = !empty($_POST['precio_servicio']) ? $_POST['precio_servicio'] : null;
+$precio_servicio = $_POST['precio_servicio'];
 
 // Valor total servicios
-$total_servicios = !empty($_POST['valor_total_servicios']) ? $_POST['valor_total_servicios'] : null;
+$total_servicios = $_POST['valor_total_servicios'];
 
 // Porcentaje en Valor Total Servicios
 $porcentaje = 50; // Cambia este valor al porcentaje deseado
@@ -41,7 +47,6 @@ if (!is_numeric($total_servicios)) {
     $total_servicios = 0;
 }
 
-
 // Calcular el porcentaje en Valor Total Servicios
 if (is_numeric($total_servicios) && $total_servicios != 0) {
     $porcentaje_valor_total_servicios = ($total_servicios * $porcentaje) / 100;
@@ -51,10 +56,10 @@ if (is_numeric($total_servicios) && $total_servicios != 0) {
 }
 
 // Total factura
-$total_factura = !empty($_POST['total_factura']) ? $_POST['total_factura'] : null;
+$total_factura = $_POST['total_factura'];
 
 // Id estilista del que inicia sesión
-$id_estilista = !empty($_POST['id_estilista']) ? $_POST['id_estilista'] : null;
+$id_estilista = $_POST['id_estilista'];
 
 // Obtener la fecha y hora actual
 $fecha_actual = date("Y-m-d H:i:s");
@@ -108,8 +113,8 @@ if ($stmt_insert_factura->execute()) {
     // Cerrar la conexión
     $conn->close();
 
- // Alerta de éxito y redireccionamiento
- echo "<script>alert('La operación fue exitosa.'); window.location.href = 'estilista_views.php?vista=productos';</script>";
+    // Alerta de éxito y redireccionamiento
+    echo "<script>alert('La operación fue exitosa.'); window.location.href = 'estilista_views.php?vista=productos';</script>";
 } else {
     // Mostrar un mensaje de error si la inserción falla
     echo "Error al insertar factura: " . $conn->error;

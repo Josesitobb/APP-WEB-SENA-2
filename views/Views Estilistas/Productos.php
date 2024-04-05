@@ -24,6 +24,8 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
     <title>Productos</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <!-- Custom Stylesheet -->
     <link href="../../views/Views Estilistas/css/style.css" rel="stylesheet">
 
@@ -75,11 +77,56 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
             outline: 0;
             box-shadow: 0 0 0 .25rem rgba(0, 123, 255, .25);
         }
+        .btn-login {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
+  font-size: 1.1rem;
+  letter-spacing: 0.05rem;
+  padding: 1.3rem 1rem;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #767683;
+  border-color: #ffffff;
+}
+.navbar{
+background-color: #767683 ;
+}
+.navbar-brand{
+color: rgb(255, 255, 255);
+margin-left: 1.30%;
+
+}
+.nav-link{
+color: #ffffff; /* Cambio de color de texto al pasar el mouse */
+}
+
+.nav-link:hover {
+  color: rgb(99, 126, 103); /* Cambio de color de texto al pasar el mouse */
+}
+
+.nav-link:active {
+color: rgb(99, 126, 103); /* Cambio de color de texto al pasar el mouse */
+}
+
+.nav-link:focus {
+color: rgb(99, 126, 103); /* Color del texto */
+}
+.nav-pills {
+margin-right: 0.5%;
+}
+.btn-login:hover {
+background-color:rgb(99, 126, 103) !important;
+}
+.btn-login:active,
+.btn-login.active {
+background-color: rgb(97, 99, 117) !important;
+}
     </style>
 
 </head>
 
-<body>
+<body class="h-100">
 
     <!--*******************
         Preloader start
@@ -104,15 +151,6 @@ if (!isset($_SESSION['sesion_iniciada']) || $_SESSION['sesion_iniciada'] !== tru
             Content body start
         ***********************************-->
         <div class="content-body">
-
-            <div class="row page-titles mx-0">
-                <div class="col p-md-0">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
-                    </ol>
-                </div>
-            </div>
             <!-- row -->
 
             <div class="container-fluid">
@@ -133,29 +171,40 @@ $sql_servicios = "SELECT Id_Servicios, Nombre_Servicios, Valor_Servicios FROM se
 $result_servicios = $conn->query($sql_servicios);
 if ($result_usuarios->num_rows > 0 && $result_productos->num_rows > 0 && $result_servicios->num_rows > 0) {
 ?>
-<div class="container">
-    <h2 class="text-center">Formulario de Pedido y Facturación</h2>
-    <form action="estilista_data.php?action=factura" method="POST">
-        <!-- Seleccionar Usuario -->
-        <div class="mb-3">
-            <label for="usuario" class="form-label form-label-custom">Seleccionar Usuario:</label>
-            <select name="cliente" id="cliente" class="form-select">
-    <?php while ($row = $result_usuarios->fetch_assoc()): ?>
-        <option value="<?= $row["Id_Clientes"] ?>" class="form-select-option"><?= $row["Nombre_Usuarios"] ?></option>
-    <?php endwhile; ?>
-</select>
-        </div>
 
-        <!-- Seleccionar Producto -->
-        <div class="mb-3">
-            <label for="producto" class="form-label form-label-custom">Seleccionar Producto:</label>
-            <select name="producto" id="producto" class="form-select" onchange="updatePrecioUnitario()">
-                <option value="" selected>-- Seleccionar Producto --</option>
-                <?php while ($row = $result_productos->fetch_assoc()): ?>
-                    <option value="<?= $row["Id_Productos"] ?>" data-precio="<?= $row["Precio_Productos"] ?>" class="form-select-option"><?= $row["Nombre_Productos"] ?></option>
-                <?php endwhile; ?>
-            </select>
-        </div>
+<div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="form-input-content">
+                    <div class="card login-form mb-0">
+                        <div class="card-body pt-5">
+                            <form action="estilista_data.php?action=factura" method="POST">
+
+                            <!-- Seleccionar Usuario -->
+                            <h5 class="card-title text-center mb-5 fw-light fs-5">Pedido y Facturación</h5>
+                            <div class="mb-2">
+                                <label for="usuario" class="form-label form-label-custom">Cliente</label>
+                                <select name="cliente" id="cliente" class="form-control">
+                                    <option value="" class="form-control">Seleccione un usuario</option>
+                                    <?php while ($row = $result_usuarios->fetch_assoc()): ?>
+                                        <option value="<?= $row["Id_Clientes"] ?>" class="form-control"><?= $row["Nombre_Usuarios"] ?></option>
+                                    <?php endwhile; ?>    
+                                </select>      
+                            </div> 
+
+                
+                            <!-- Seleccionar Producto -->
+
+                            <div class="mb-2">
+                                <label for="producto" class="form-label form-label-custom">Productos</label>
+                                <select name="producto" id="producto" class="form-control" onchange="updatePrecioUnitario()">
+                                <option value="" selected>Seleccione un producto</option>
+                                <?php while ($row = $result_productos->fetch_assoc()): ?>
+                                    <option value="<?= $row["Id_Productos"] ?>" data-precio="<?= $row["Precio_Productos"] ?>" class="form-control"><?= $row["Nombre_Productos"] ?></option>
+                                <?php endwhile; ?>
+                                </select>
+                            </div>
+
 
         <!-- Precio Unitario y Cantidad de Producto -->
         <div class="row mb-3">
@@ -178,9 +227,9 @@ if ($result_usuarios->num_rows > 0 && $result_productos->num_rows > 0 && $result
         <!-- Seleccionar Servicio -->
         <div class="mb-3">
             <label for="servicio" class="form-label form-label-custom">Seleccionar Servicio:</label>
-            <select name="servicio" id="servicio" class="form-select" onchange="updatePrecioServicio(); calcularTotal()">
+            <select name="servicio" id="servicio" class="form-control" onchange="updatePrecioServicio(); calcularTotal()">
                 <?php while ($row = $result_servicios->fetch_assoc()): ?>
-                    <option value="<?= $row["Id_Servicios"] ?>" data-precio="<?= $row["Valor_Servicios"] ?>" class="form-select-option"><?= $row["Nombre_Servicios"] ?> - Precio: $<?= $row["Valor_Servicios"] ?></option>
+                    <option value="<?= $row["Id_Servicios"] ?>" data-precio="<?= $row["Valor_Servicios"] ?>" class="form-control"><?= $row["Nombre_Servicios"] ?> - Precio: $<?= $row["Valor_Servicios"] ?></option>
                 <?php endwhile; ?>
             </select>
         </div>
@@ -212,13 +261,11 @@ if ($result_usuarios->num_rows > 0 && $result_productos->num_rows > 0 && $result
         <input type="hidden" name="id_estilista" value="<?= $_SESSION['id_estilista'] ?>">
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="button" class="btn btn-primary btn-calcular me-md-2" onclick="calcularTotal()">Calcular Total</button>
-            <button type="submit" class="btn btn-success btn-enviar">Enviar Pedido y Factura</button>
+            <button type="submit" class="btn login-form__btn submit w-100">Enviar Pedido y Factura</button>
         </div>
     </form>
 </div>
-
-
+</div>
 <?php
 } else {
     echo "No se encontraron usuarios, productos o servicios en la base de datos.";
