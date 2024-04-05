@@ -1,18 +1,12 @@
 <?php
-// Verificar si algún campo obligatorio está vacío
-if (empty($_POST['cliente']) || empty($_POST['producto']) || empty($_POST['servicio']) || empty($_POST['total_factura']) || empty($_POST['id_estilista'])) {
-    echo "<script>alert('Por favor, complete todos los campos del formulario'); history.back();</script>";
+// Verificar si todos los campos están vacíos
+if (empty($_POST['cliente']) && empty($_POST['producto']) && empty($_POST['servicio']) && empty($_POST['total_factura']) && empty($_POST['id_estilista'])) {
+    echo "<script>alert('Por favor, complete al menos un campo del formulario'); history.back();</script>";
     exit; // Detener la ejecución del código PHP
 }
-// Verificar si se cumple la condición para la validación de campos
-// Verificar si se cumple la condición para la validación de campos
-if (
-    (!empty($_POST['producto']) && !empty($_POST['precio_unitario']) && !empty($_POST['cantidad']) && !empty($_POST['total_productos'])) &&
-    (!empty($_POST['servicio']) && (!isset($_POST['cantidad_servicios']) || empty($_POST['cantidad_servicios'])) || !empty($_POST['precio_servicio']) || !empty($_POST['valor_total_servicios']))
-) {
-    echo "<script>alert('Por favor, complete todos los campos del formulario correctamente.'); history.back();</script>";
-    exit; // Detener la ejecución del código PHP
-}
+
+// Resto del código para la inserción de la factura...
+
 
 
 

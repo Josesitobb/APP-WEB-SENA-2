@@ -97,7 +97,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #A96E70;
+            background-color: #f2f2f2;
         }
 
         .container {
@@ -105,7 +105,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         }
 
         form {
-            background-color: #A96E70;
+            background-color: #f2f2f2;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -128,7 +128,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         }
 
         select.form-control:focus {
-            border-color: #A96E70;
+            border-color: #f2f2f2;
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
 
@@ -170,9 +170,11 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-primary{
-            background-color: #A96E70 !important;
-        }
+        .btn-primary-rosa {
+    background-color: #A96E70 !important;
+    color: white !important;
+}
+
         table th, table td {
             padding: 12px;
             text-align: center;
@@ -314,15 +316,15 @@ $nombre_del_mes = $meses_en_espanol[$mes - 1];
 ?>
 
 <div class="container">
-    <div class="row">
+    <div class="row col-md-12 ">
         <div class="col-md-6 offset-md-3">
             <h2 class="text-center"><?php echo $nombre_del_mes . ' ' . $año; ?></h2>
             <div class="text-center mb-3">
-            <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 1) ? 12 : $mes - 1; ?>&año=<?php echo ($mes == 1) ? $año - 1 : $año; ?>" class="btn btn-primary mr-2">Mes Anterior</a>
+            <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 1) ? 12 : $mes - 1; ?>&año=<?php echo ($mes == 1) ? $año - 1 : $año; ?>" class="btn btn-primary-rosa">Mes Anterior</a>
 
 
-            <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 12) ? 1 : $mes + 1; ?>&año=<?php echo ($mes == 12) ? $año + 1 : $año; ?>" class="btn btn-primary mr-2">Mes Siguiente</a>
-            <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo date('n'); ?>&año=<?php echo date('Y'); ?>" class="btn btn-primary">Mes Actual</a>
+            <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 12) ? 1 : $mes + 1; ?>&año=<?php echo ($mes == 12) ? $año + 1 : $año; ?>" class="btn btn-primary-rosa">Mes Siguiente</a>
+            <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo date('n'); ?>&año=<?php echo date('Y'); ?>" class="btn btn-primary-rosa">Mes Actual</a>
 
             </div>
             <table class="table">
