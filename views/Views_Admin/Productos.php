@@ -70,10 +70,12 @@ if (isset($_SESSION['username'])) {
               <label for="descripcionProducto" class="form-label">Descripción Producto</label>
               <textarea class="form-control" id="descripcionProducto" name="descripcionProducto" required></textarea>
             </div>
+
             <div class="mb-3">
               <label for="precioProducto" class="form-label">Precio</label>
-              <input type="number" class="form-control" id="precioProducto" name="precioProducto" required>
+              <input type="text" class="form-control" id="precioProducto" name="precioProducto" required>
             </div>
+            
             <div class="mb-3">
               <label for="cantidadProducto" class="form-label">Cantidad</label>
               <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto" required>
@@ -114,7 +116,7 @@ if (isset($_SESSION['username'])) {
             </div>
             <div class="mb-3">
               <label for="editarPrecioProducto" class="form-label">Precio</label>
-              <input type="number" class="form-control" id="editarPrecioProducto" name="precioProducto" required>
+              <input type="text" class="form-control" id="editarPrecioProducto" name="precioProducto" required>
             </div>
             <div class="mb-3">
               <label for="editarCantidadProducto" class="form-label">Cantidad</label>
@@ -233,6 +235,26 @@ if (isset($_SESSION['username'])) {
     }
   </script>
 
+<script>
+document.getElementById('precioProducto').addEventListener('input', function(evt) {
+    let input = evt.target;
+    let value = input.value.replace(/\./g, ''); // Eliminar todos los puntos actuales
+    value = value.replace(/\D/g, ''); // Eliminar todos los caracteres no numéricos
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Agregar un punto cada tres dígitos
+    input.value = value;
+});
+</script>
+
+
+<script>
+document.getElementById('editarPrecioProducto').addEventListener('input', function(evt) {
+    let input = evt.target;
+    let value = input.value.replace(/\./g, ''); // Eliminar todos los puntos actuales
+    value = value.replace(/\D/g, ''); // Eliminar todos los caracteres no numéricos
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Agregar un punto cada tres dígitos
+    input.value = value;
+});
+</script>
 
 </body>
 

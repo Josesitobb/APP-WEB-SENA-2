@@ -230,7 +230,7 @@ if (isset($_SESSION['username'])) {
       <input type="hidden" id="idCliente" value="${idCliente}">
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        // CUANDO EL USUARIO LE DA AL BOTON guardar cambios SE MANDA LOS VALORES  A UNA FUNCION LLAMADA guardarCambios()
+
         <button type="button" class="btn btn-primary" onclick="guardarCambios()">Guardar Cambios</button>
       </div>
     `;
@@ -239,7 +239,7 @@ if (isset($_SESSION['username'])) {
     }
   </script>
 
-
+<!--         // CUANDO EL USUARIO LE DA AL BOTON guardar cambios SE MANDA LOS VALORES  A UNA FUNCION LLAMADA guardarCambios() -->
 
   <script>
     // SE CREA LA FUNCION
