@@ -29,12 +29,16 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         <link rel="stylesheet" href="plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
         <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
         <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
         <link href="css/style.css" rel="stylesheet">
     </head>
 
     <style>
     body {
         font-family: Arial, sans-serif;
+        width: 100%; /* Establece el ancho del body al 100% del ancho del viewport */
+    height: 100vh; /* Establece la altura del body al 100% del alto del viewport */
     }
 
     table {
@@ -167,7 +171,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-        .btn-primary-rosa {
+    .btn-primary-pink {
     background-color: #A96E70 !important;
     color: white !important;
     }
@@ -198,7 +202,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
 
     </style>
 
-    <body>
+    <body >
 
 
         <?php include('Model/nav.php') ?>
@@ -285,24 +289,33 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
             $nombre_del_mes = $meses_en_espanol[$mes - 1];
             ?>
             
-            <div class="container">
-                <div class="row col-md-12 ">
-                    <div class="col-md-6 offset-md-3">
-                        <h2 class="text-center"><?php echo $nombre_del_mes . ' ' . $año; ?></h2>
-                        <div class="text-center mb-3">
+            <div class="container-fluid" style="width: 100%;">
+            <div class="row">
+        <div class="col-lg-10 col-xl-10 mx-auto">
+            <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                <div class="card-body p-4 p-sm-5">
+                <div class="users-table">
+                    <h5 class="card-title text-center mb-5 fw-light fs-5">Citas</h5>
+                <div class="row col-md-12">
 
-                        <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 1) ? 12 : $mes - 1; ?>&año=<?php echo ($mes == 1) ? $año - 1 : $año; ?>" class="btn btn-primary-rosa">Mes Anterior</a>
-                        <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 12) ? 1 : $mes + 1; ?>&año=<?php echo ($mes == 12) ? $año + 1 : $año; ?>" class="btn btn-primary-rosa">Mes Siguiente</a>
-                        <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo date('n'); ?>&año=<?php echo date('Y'); ?>" class="btn btn-primary-rosa">Mes Actual</a>
-        
-                        </div>
+                    <div class="container-part">
+
+                        <div class="calendar col-md-5">
+                            <h2 class="text-center"><?php echo $nombre_del_mes . ' ' . $año; ?></h2>
+                            <div class="text-center mb-3">
+    
+                                <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 1) ? 12 : $mes - 1; ?>&año=<?php echo ($mes == 1) ? $año - 1 : $año; ?>" class="btn btn-primary-rosa">Mes Anterior</a>
+                                <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo ($mes == 12) ? 1 : $mes + 1; ?>&año=<?php echo ($mes == 12) ? $año + 1 : $año; ?>" class="btn btn-primary-rosa">Mes Siguiente</a>
+                                <a href="../../controllers/estilista/estilista_views.php?vista=citas&mes=<?php echo date('n'); ?>&año=<?php echo date('Y'); ?>" class="btn btn-primary-rosa">Mes Actual</a>
+                            </div>
                         <table class="table">
                             <thead>
-                            <tr>
-                                <?php foreach ($dias_de_la_semana as $dia) : ?>
-                                    <th><?php echo $dia; ?></th>
-                                <?php endforeach; ?>
-                            </tr>
+
+                                <tr>
+                                    <?php foreach ($dias_de_la_semana as $dia) : ?>
+                                        <th><?php echo $dia; ?></th>
+                                    <?php endforeach; ?>
+                                </tr>
                             </thead>
                             <tbody>
                             <tr>
@@ -333,6 +346,36 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
                             ?>
                             </tbody>
                         </table>
+                        <div class="form-group col-md-13">
+                                <label for="cliente">Seleccione un cliente:</label>
+                                <select class="form-control col-md-12" id="cliente" name="cliente" >
+                                    <option value="" disabled>Todos los clientes</option>
+                                    <?php
+                                    // Obtener la lista de clientes desde la base de datos
+                                    $sqlClientes = "SELECT Clientes.*, CONCAT(Usuarios.Nombre_Usuarios, ' ', Usuarios.Apellido_Usuarios) AS Nombre_Usuario
+                                    FROM Clientes
+                                    INNER JOIN Usuarios ON Clientes.Id_Usuarios = Usuarios.Id_Usuarios";
+                                    $resultClientes = $conn->query($sqlClientes);
+                    
+                                    // Imprimir opciones del menú desplegable para cada cliente
+                                    while ($rowCliente = $resultClientes->fetch_assoc()) {
+                                        $selected = ($rowCliente['Nombre_Usuario'] == $clienteSeleccionado) ? 'selected' : '';
+                                        echo "<option value='" . $rowCliente["Id_Clientes"] . "' $selected>" . $rowCliente["Nombre_Usuario"] . "</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="container-botones col-md-13">
+                                <form action="admin_cliente_citas.php?cliente=cliente" method="GET"> <!-- Eliminado el estilo display: none; -->
+                                    <a href="admin_data.php?action=excelcitas" class="btn btn-primary-pink">Descargar</a>
+                                    <button type="submit" class="btn btn-primary-pink">Filtrar</button>
+                                    <button type="button" class="btn btn-secondary" onclick="location.href='index.php';">Quitar filtro</button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="table-responsive col-md-7" style="margin-top: 80px;">
+                            
                         <table class="table">
                         <?php
     
@@ -368,39 +411,8 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
                         // Ejecutar la consulta SQL
                         $result = $conn->query($sql);
                         ?>
-    
-                        <div class="container">
-                           
-                        <!-- Formulario de filtrado por cliente -->
-                        <form action="admin_cliente_citas.php?cliente=cliente" method="GET" style="display: none;">
-                            <div class="form-group">
-                                <label for="cliente">Seleccione un cliente:</label>
-                                <select class="form-control" id="cliente" name="cliente">
-                                    <option value="" disabled>Todos los clientes</option>
-                                    <?php
-                                    // Obtener la lista de clientes desde la base de datos
-                                    $sqlClientes = "SELECT Clientes.*, CONCAT(Usuarios.Nombre_Usuarios, ' ', Usuarios.Apellido_Usuarios) AS Nombre_Usuario
-                                    FROM Clientes
-                                    INNER JOIN Usuarios ON Clientes.Id_Usuarios = Usuarios.Id_Usuarios";
-                                    $resultClientes = $conn->query($sqlClientes);
-                    
-                                    // Imprimir opciones del menú desplegable para cada cliente
-                                    while ($rowCliente = $resultClientes->fetch_assoc()) {
-                                        $selected = ($rowCliente['Nombre_Usuario'] == $clienteSeleccionado) ? 'selected' : '';
-                                        echo "<option value='" . $rowCliente["Id_Clientes"] . "' $selected>" . $rowCliente["Nombre_Usuario"] . "</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-                            <a href="admin_data.php?action=excelcitas" class="btn btn-primary">Descargar</a>
-                            <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
-                            <button type="button" class="btn btn-secondary" onclick="location.href='index.php';">Quitar filtro</button>
-                        </form>
-    
-                        <!-- Tabla de citas -->
-                        <div class="table-container mt-4">
-                            <div class="table-responsive">
-                                <table class="table table-striped">
+                            
+                                <table class="table table-striped ">
                                     <thead>
                                         <tr>
                                             <th>Fecha</th>
@@ -424,8 +436,8 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
                                                 echo "<td>" . $row["Nombre_Servicios"] . "</td>";
                                                 // echo "<td>" . $row["end"] . "</td>";
                                                 echo "<td>" . $row["Precio_Servicio"] . "</td>";
-                                                echo "<td><a href='../../controllers/estilista/estilista_views.php?vista=EditarCita&Id_Citas=" . $row["Id_Citas"] . "' class='btn btn-primary'>Editar</a></td>";
-                                                echo "<td><a href='../../controllers/estilista/estilista_data.php?action=EliminarCita&Id_Citas=" . $row["Id_Citas"] . "' onclick='return confirmarEliminar();' class='btn btn-danger'>Eliminar</a></td>";
+                                                echo "<td><a href='../../controllers/estilista/estilista_views.php?vista=EditarCita&Id_Citas=" . $row["Id_Citas"] . "' class='btn btn-primary-pink'><i class='bi bi-gear'></i></a></td>";
+                                                echo "<td><a href='../../controllers/estilista/estilista_data.php?action=EliminarCita&Id_Citas=" . $row["Id_Citas"] . "' onclick='return confirmarEliminar();' class='btn btn-primary-pink'><i class='bi bi-x-circle'></i></a></td>";
                                                 echo "</tr>";
                                             }
                                         } else {
@@ -436,8 +448,6 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
                                 </table>
                             </div>
                         </div>
-                    </div>
-    
                     <!-- Scripts de Bootstrap JS y otros (si es necesario) -->
                     <script>
                         function confirmarEliminar() {
@@ -451,7 +461,9 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
                 </div>
             </div>
         </div>
-        
+        </div>
+            </div>
+        </div>
         
         <!-- Modal -->
         
