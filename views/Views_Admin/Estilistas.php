@@ -223,48 +223,58 @@ if (isset($_SESSION['username'])) {
         }
     </script>
 
-    <script>
-        // CREAR LA FUNCION 
-        function guardarCambiosEstilista() {
-            // Obtener los valores de los campos del formulario
-            var nombreUsuario = document.getElementById('nombreUsuario').value;
-            var apellidoUsuario = document.getElementById('apellidoUsuario').value; 
-            var correoUsuario = document.getElementById('correoUsuario').value;
-            var telefonoUsuario = document.getElementById('telefonoUsuario').value;
-            var contraseñaUsuario = document.getElementById('contraseñaUsuario').value;
-            var idUsuario = document.getElementById('idUsuario').value;
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-            // Crear un objeto FormData para enviar los datos
-            var formData = new FormData();
-            formData.append('nombreUsuario', nombreUsuario);
-            formData.append('apellidoUsuario', apellidoUsuario); // Nuevo
-            formData.append('correoUsuario', correoUsuario);
-            formData.append('telefonoUsuario', telefonoUsuario);
-            formData.append('contraseñaUsuario', contraseñaUsuario);
-            formData.append('idUsuario', idUsuario);
+<script>
+    function guardarCambiosEstilista() {
+        // Obtener los valores de los campos del formulario
+        var nombreUsuario = document.getElementById('nombreUsuario').value;
+        var apellidoUsuario = document.getElementById('apellidoUsuario').value; 
+        var correoUsuario = document.getElementById('correoUsuario').value;
+        var telefonoUsuario = document.getElementById('telefonoUsuario').value;
+        var contraseñaUsuario = document.getElementById('contraseñaUsuario').value;
+        var idUsuario = document.getElementById('idUsuario').value;
 
-            // Enviar los datos mediante AJAX
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'admin_data.php?action=usuariosestilistaseditar', true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    // Procesar la respuesta del servidor si es necesario
-                    console.log(xhr.responseText);
+        // Crear un objeto FormData para enviar los datos
+        var formData = new FormData();
+        formData.append('nombreUsuario', nombreUsuario);
+        formData.append('apellidoUsuario', apellidoUsuario);
+        formData.append('correoUsuario', correoUsuario);
+        formData.append('telefonoUsuario', telefonoUsuario);
+        formData.append('contraseñaUsuario', contraseñaUsuario);
+        formData.append('idUsuario', idUsuario);
 
-                    // Cerrar el modal
-                    var modal = new bootstrap.Modal(document.getElementById('editarEstilistaModal'));
-                    modal.hide();
+        // Enviar los datos mediante AJAX
+        $.ajax({
+            url: 'admin_data.php?action=usuariosestilistaseditar',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Se muestra en la consola la respuesta
+                console.log(response);
+                // Se muestra una alerta con la respuesta del servidor
+                alert(response);
+                // Mostrar mensaje de actualización
+                // $('#mensaje').text(response); // Aquí se muestra el mensaje recibido del servidor
 
-                    // Recargar la página
-                    location.reload();
-                } else {
-                    // Manejar errores si es necesario
-                    console.error('Error al enviar los datos');
-                }
-            };
-            xhr.send(formData);
-        }
-    </script>
+                // Cerrar el modal
+                var modal = new bootstrap.Modal(document.getElementById('editarEstilistaModal'));
+                modal.hide();
+
+                // Recargar la página
+                location.reload();
+            },
+            error: function(xhr, status, error) {
+                // Manejar errores si es necesario
+                console.error('Error al enviar los datos');
+                console.error(error);
+            }
+        });
+    }
+</script>
+
 
 
 

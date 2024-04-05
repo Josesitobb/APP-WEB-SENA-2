@@ -175,7 +175,8 @@ if (isset($_SESSION['username'])) {
                           <td><img style="max-width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios']) ?>" alt=""></td>
                           <td>
                             <a class="btn btn-custom-blue my-1" href="#" onclick="editarServicio('<?php echo $fila['Id_Servicios']; ?>', '<?php echo $fila['Nombre_Servicios']; ?>', '<?php echo $fila['Valor_Servicios']; ?>', '<?php echo $fila['Descripcion_Servicios']; ?>')">Editar</a>
-                            <a class="btn btn-custom-pink my-1" href="../../Modelos/Admin/deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>">Eliminar</a>
+                            <a class="btn btn-custom-pink my-1" href="../../Modelos/Admin/deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este servicio?')">Eliminar</a>
+
                           </td>
                         </tr>
                       <?php } ?>
@@ -220,7 +221,26 @@ if (isset($_SESSION['username'])) {
     }
   </script>
 
+<script>
+document.getElementById('precio').addEventListener('input', function(evt) {
+    let input = evt.target;
+    let value = input.value.replace(/\./g, ''); // Eliminar todos los puntos actuales
+    value = value.replace(/\D/g, ''); // Eliminar todos los caracteres no numéricos
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Agregar un punto cada tres dígitos
+    input.value = value;
+});
+</script>
 
+
+<script>
+document.getElementById('editPrecio').addEventListener('input', function(evt) {
+    let input = evt.target;
+    let value = input.value.replace(/\./g, ''); // Eliminar todos los puntos actuales
+    value = value.replace(/\D/g, ''); // Eliminar todos los caracteres no numéricos
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Agregar un punto cada tres dígitos
+    input.value = value;
+});
+</script>
 
 </body>
 

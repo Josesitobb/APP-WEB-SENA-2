@@ -28,6 +28,7 @@ $sql = "UPDATE usuarios SET
 
 // Ejecutar la consulta
 if ($conn->query($sql) === TRUE) {
+    
     echo "Los datos se han actualizado correctamente.";
 } else {
     echo "Error al actualizar los datos: " . $conn->error;

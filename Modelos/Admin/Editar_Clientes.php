@@ -19,7 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql_update_usuarios = "UPDATE Usuarios SET Nombre_Usuarios='$nombre', Apellido_Usuarios='$apellido', Correo_Usuarios='$correo', Telefono_Usuarios='$telefono', Contraseña_Usuarios='$contraseña' WHERE Id_Usuarios='$idCliente'";
     // SE HACE EL QUERY PARA LA INSERCION A LA BASE DE DATOS Y SI SU ESTADO ES TRUE MANDA UN MENSAJE DICIENDO Datos actualizados correctamente en la tabla Usuarios<br>
     if ($conn->query($sql_update_usuarios) === TRUE) {
-        echo "Datos actualizados correctamente en la tabla Usuarios<br>";
+        echo "Cliente actualizado";
+      
+
+        
         // CONFIRMA LA TRANSACCION
         $conn->commit();
     } else {
