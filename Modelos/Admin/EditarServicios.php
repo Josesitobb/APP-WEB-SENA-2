@@ -10,12 +10,24 @@ $servicio_nombre = $_POST['editNombre'];
 $servicio_valor = $_POST['editPrecio'];
 $servicio_descripcion = $_POST['editDescripcion'];
 
-// Check if a new image is uploaded
+//Comprueba si se ha subido una nueva imagen
 if (!empty($_FILES['editImagen']['tmp_name'])) {
     $servicio_Imagen = addslashes(file_get_contents($_FILES['editImagen']['tmp_name']));
     $updateImage = true;
+
+    // Obtener la extensión del archivo cargado
+    $extension = strtolower(pathinfo($_FILES['editImagen']['name'], PATHINFO_EXTENSION));
+
+    // Verificar si la extensión es .jpg
+    if ($extension != 'jpg') {
+    // Mostrar un mensaje de error y redirigir
+    echo "<script>alert('Solo se permiten archivos JPEG (.jpg)');</script>";
+    echo "<script>window.history.go(-1);</script>";
+    exit(); // Detener la ejecución del script
+    }
+
 } else {
-    // No new image uploaded, use the existing image from the database
+// No se cargó ninguna imagen nueva, use la imagen existente de la base de datos
     $query = "SELECT Imagen_Servicios FROM servicios WHERE Id_Servicios = $Id";
     $result = $conn->query($query);
 
@@ -39,7 +51,9 @@ if ($updateImage) {
 $resultado = $conn->query($sql);
 
 if ($resultado) {
+    echo "<script>alert('Edicion exitosa');</script>";
     header('location:../../controllers/admin/admin_views.php?vista=servicios');
+
 } else {
     echo "No se editó el dato.";
 }

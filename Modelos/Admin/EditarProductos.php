@@ -14,6 +14,13 @@ $Descripcion_Productos = $_POST['Destalleproductos'];
 if (!empty($_FILES['imagenesProducto']['tmp_name'])) {
     $Imagen_productos = addslashes(file_get_contents($_FILES['imagenesProducto']['tmp_name']));
     $updateImage = true;
+    $extension = strtolower(pathinfo($_FILES['imagenesProducto']['name'], PATHINFO_EXTENSION));
+    if ($extension != 'jpg') {
+        // Mostrar un mensaje de error y redirigir
+        echo "<script>alert('Solo se permiten archivos JPEG (.jpg)');</script>";
+        echo "<script>window.history.go(-1);</script>";
+        exit(); // Detener la ejecución del script
+        }
 } else {
     // Si no se subió un nuevo archivo de imagen, mantener la imagen existente en la base de datos
     $updateImage = false;
