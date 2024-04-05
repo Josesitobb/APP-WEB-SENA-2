@@ -4,28 +4,28 @@ ini_set('display_errors', 1);
 
 require("../../controllers/db.php");
 
-// Verificar si se proporciona el ID del usuario a eliminar
+// VERIFICA QUE SE HAYA MANDADO LA ID
 if(isset($_GET['id'])) {
-    // Obtener y sanitizar el ID del usuario a eliminar
+    //SE OBTIENE LA ID  
     $id_usuario = mysqli_real_escape_string($conn, $_GET['id']);
 
-    // Crear la consulta SQL para eliminar el usuario
+    // CREAR LA CONSULTA A LA BASE DE DATOS
     $sql = "DELETE FROM usuarios WHERE Id_Usuarios = '$id_usuario'";
 
-    // Ejecutar la consulta
+    // EJECUTA EL QUERY
     $query = mysqli_query($conn, $sql);
 
-    // Verificar si la consulta se ejecutó correctamente
+    // VERIFICA QUE SI SE EJECUTO EL QUERY 
     if ($query) {
-        // Redireccionar al controlador después de eliminar el registro
+        // SI SE EJECUTA EL QUERY LO MANDA A UN CONTROLADOR 
         header("location:../../controllers/admin/admin_views.php?vista=usuariosC");
         exit();
     } else {
-        // Mostrar un mensaje de error si la consulta falla
+        // SI NO SE EJECUTA LE MANDA UN ERROR
         echo "Error al eliminar el registro: " . mysqli_error($conn);
     }
 } else {
-    // Mostrar un mensaje de error si no se proporciona el ID del usuario
+
     echo "ID de usuario no proporcionado";
 }
 

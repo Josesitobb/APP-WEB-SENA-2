@@ -86,6 +86,9 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Cita</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
+    <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <style>
         /* Estilo para el contenedor del formulario */
@@ -111,7 +114,9 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     </style>
 </head>
 <body>
+<?php include("Model/header.php"); ?>
 
+    <?php include("Model/navbar.php"); ?>
 <div class="container">
         <h1 class="mt-5 mb-4">Editar Cita</h1>
         <div class="table-responsive">
@@ -151,10 +156,12 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
                     $row = $result_cita->fetch_assoc();
                     ?>
                     <form action='../../controllers/admin/admin_data.php?action=actualizarcita' method='post'>
+
                         <input type='hidden' name='id_cita' value='<?php echo $row["Id_Citas"]; ?>'>
+                        
                         <div class="form-group">
                             <label for="fecha_hora">Fecha y Hora:</label>
-                            <input type="text" class="form-control" id="fecha_hora" name="fecha_hora" value="<?php echo $row["start"]; ?>">
+                            <input type="datetime-local" class="form-control" id="fecha_hora" name="fecha_hora" value="<?php echo $row["start"]; ?>">
                         </div>
 
                         <div class="form-group">
@@ -243,5 +250,9 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
             });
         });
     </script>
+    <br>
+    <br>
+    <br>
+        <?php include("Model/footer.php"); ?> 
 </body>
 </html>
