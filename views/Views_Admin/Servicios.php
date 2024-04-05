@@ -36,15 +36,9 @@ if (isset($_SESSION['username'])) {
   <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <style>
-    .btn-custom-pink {
-      background-color: #F299B9;
-      border-color: #F299B9;
-      color: white;
-    }
-
-    .btn-custom-blue {
-      background-color: #6BCCF2;
-      border-color: #6BCCF2;
+    .btn-primary {
+      background-color: #A96E70 !important;
+      border-color: #F2f2f2;
       color: white;
     }
   </style>
@@ -174,8 +168,8 @@ if (isset($_SESSION['username'])) {
                           <td><?php echo $fila['Descripcion_Servicios'] ?></td>
                           <td><img style="max-width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Servicios']) ?>" alt=""></td>
                           <td>
-                            <a class="btn btn-custom-blue my-1" href="#" onclick="editarServicio('<?php echo $fila['Id_Servicios']; ?>', '<?php echo $fila['Nombre_Servicios']; ?>', '<?php echo $fila['Valor_Servicios']; ?>', '<?php echo $fila['Descripcion_Servicios']; ?>')">Editar</a>
-                            <a class="btn btn-custom-pink my-1" href="../../Modelos/Admin/deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este servicio?')">Eliminar</a>
+                            <a class="btn btn-primary" href="#" onclick="editarServicio('<?php echo $fila['Id_Servicios']; ?>', '<?php echo $fila['Nombre_Servicios']; ?>', '<?php echo $fila['Valor_Servicios']; ?>', '<?php echo $fila['Descripcion_Servicios']; ?>')">Editar</a>
+                            <a class="btn btn-primary" href="../../Modelos/Admin/deleteServicios.php?id=<?php echo $fila['Id_Servicios'] ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este servicio?')">Eliminar</a>
 
                           </td>
                         </tr>

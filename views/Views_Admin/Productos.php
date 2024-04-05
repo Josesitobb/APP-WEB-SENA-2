@@ -31,17 +31,13 @@ if (isset($_SESSION['username'])) {
   <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <style>
-    .btn-custom-pink {
-      background-color: #F299B9;
-      border-color: #F299B9;
+    .btn-primary {
+      background-color: #A96E70 !important;
+      border-color: #F2f2f2;
       color: white;
     }
 
-    .btn-custom-blue {
-      background-color: #6BCCF2;
-      border-color: #6BCCF2;
-      color: white;
-    }
+
   </style>
 
 
@@ -180,8 +176,8 @@ if (isset($_SESSION['username'])) {
                         <td><?php echo $fila['Cantidad_Productos'] ?></td>
                         <td><img style="width: 100px;" src="data:image/jpg;base64,<?php echo base64_encode($fila['Imagen_Productos']) ?>" alt=""></td>
                         <td>
-                          <button type="button" class="btn btn-custom-blue my-1" onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Editar</button>
-                          <button type="button" class="btn btn-custom-pink my-1" onclick="confirmarEliminar(<?php echo $fila['Id_Productos'] ?>)">Eliminar</button>
+                          <button type="button" class="btn btn-primary" onclick="mostrarModalModificar(<?php echo $fila['Id_Productos'] ?>, '<?php echo $fila['Nombre_Productos'] ?>', '<?php echo $fila['Descripcion_Productos'] ?>', '<?php echo $fila['Precio_Productos'] ?>', '<?php echo $fila['Cantidad_Productos'] ?>')">Editar</button>
+                          <button type="button" class="btn btn-primary" onclick="confirmarEliminar(<?php echo $fila['Id_Productos'] ?>)">Eliminar</button>
 
                         </td>
                       </tr>

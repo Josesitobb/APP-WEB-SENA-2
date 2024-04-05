@@ -72,7 +72,7 @@ if (isset($_SESSION['username'])) {
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #A96E70;
         }
         td a {
             color: #007bff;
@@ -134,11 +134,11 @@ if (isset($_SESSION['username'])) {
         <h1>Lista de Facturas</h1>
         <table>
             <thead>
-                <tr>
+                <tr class="titulos text-white">
                     <th>ID Factura</th>
                     <th>Cliente</th>
                     <th>Fecha</th>
-                    <th>Acciones</th>
+                    <th>Links de descarga</th>
                 </tr>
             </thead>
             <tbody>

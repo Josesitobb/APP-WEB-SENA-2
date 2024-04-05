@@ -151,7 +151,7 @@ if ($resultado->num_rows > 0) {
                       <div class="card-now gradient-3">
                           <div class="card-body">
                             <a href="estilista_views.php?vista=productos" class="card-title text-white">
-                              Productos</a>
+                              Pedido facturación</a>
                               <span ><i class="fa fa-users"></i></span>
                               <i class="bi bi-basket"><?php echo $cantidadProductos; ?></i>
                           </div>

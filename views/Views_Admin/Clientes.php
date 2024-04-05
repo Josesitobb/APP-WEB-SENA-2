@@ -21,6 +21,8 @@ if (isset($_SESSION['username'])) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" type="image/png" sizes="16x16" href="../Views_Admin/images/SGC.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
   <title>Clientes</title>
   <link href="../../views/Views_Admin/css/style.css" rel="stylesheet">
   <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
@@ -150,7 +152,7 @@ if (isset($_SESSION['username'])) {
                       <th scope="col">Correo</th>
                       <th scope="col">Telefono</th>
                       <th scope="col">Contraseña</th>
-                      <th scope="col">Acciones</th>
+                      <th ></th>
 
                     </tr>
                   </thead>
@@ -174,8 +176,12 @@ if (isset($_SESSION['username'])) {
                         <td><?php echo $resultado['Contraseña_Usuarios'] ?></td>
                         <td>
                           <!-- CUANDO SE  DA CLICK EN EL BOTON EDITAR  SE LLAMA A LA FUNCION cargarDatosCliente, QUE DEPENDIENDO EL ID_USUARIOS SE VAN A CARGAR LOS DATOS DE ESA ID   -->
-                          <a class="btn btn-custom-blue my-1" href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">Editar</a>
-                          <a class="btn btn-custom-pink my-1" href="../../Modelos/Admin/Borrar_Clientes.php?id=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">Eliminar</a>
+                          <a class="btn btn-primary" href="javascript:void(0);" onclick="cargarDatosCliente(<?php echo $resultado['Id_Usuarios']; ?>, '<?php echo $resultado['Nombre_Usuarios']; ?>', '<?php echo $resultado['Apellido_Usuarios']; ?>', '<?php echo $resultado['Correo_Usuarios']; ?>', '<?php echo $resultado['Telefono_Usuarios']; ?>', '<?php echo $resultado['Contraseña_Usuarios'] ?>', '<?php echo $resultado['Id_Rol']; ?>')">
+                              <i class="bi bi-gear"></i>
+                          </a>
+                          <a class="btn btn-primary" href="../../Modelos/Admin/Borrar_Clientes.php?id=<?php echo $resultado['Id_Usuarios']; ?>" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?')">
+                              <i class="bi bi-x-circle"></i>
+                          </a>
 
 
                         </td>
