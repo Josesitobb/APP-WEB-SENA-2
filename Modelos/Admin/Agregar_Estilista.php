@@ -34,9 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt_estilistas->bind_param("i", $id_usuario);
         // SE EJECUTA LA CONSULTA Y SI TODO ESTA BIEN SE REDIRECCIONA A LA PAGINA PRINCIAP  
         if ($stmt_estilistas->execute()) {
-            // Redirect to estilistas.php along with the ID of the newly inserted user
-            // header("Location: estilistas.php?id_usuario=$id_usuario");
-            echo "Los datos se han actualizado correctamente.";
             header("location:../../controllers/admin/admin_views.php?vista=usuariosE");
             
             exit();
