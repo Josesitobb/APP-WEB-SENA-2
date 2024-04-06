@@ -302,7 +302,7 @@ $conn->close();
 
     console.log("Total:", total);
 
-    totalProductosInput.value = total.toFixed(2);
+    totalProductosInput.value = total.toFixed(3);
 }
 
 
@@ -331,7 +331,7 @@ function calcularTotal() {
         totalFactura += totalServicios;
     }
 
-    totalFacturaInput.value = totalFactura.toFixed(2);
+    totalFacturaInput.value = totalFactura.toFixed(4);
 
     var valorTotalServiciosInput = document.getElementById("valor_total_servicios");
     valorTotalServiciosInput.value = totalServicios.toFixed(2);

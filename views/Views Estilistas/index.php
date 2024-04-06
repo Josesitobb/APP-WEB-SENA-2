@@ -6,8 +6,8 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
     // Acceder a la variable de sesión específica para estilistas
     $id_estilista = $_SESSION['id_estilista'];
 
-    // Hacer algo con la variable $id_estilista
-    echo "ID del estilista: $id_estilista";
+    // // Hacer algo con la variable $id_estilista
+    // echo "ID del estilista: $id_estilista";
 } else {
     // La sesión de estilista no está iniciada, manejar el caso aquí
     header("Location:../../controllers/principal.php?action=sesion?");

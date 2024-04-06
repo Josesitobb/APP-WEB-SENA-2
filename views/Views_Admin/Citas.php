@@ -408,7 +408,7 @@ if (isset($_SESSION['username'])) {
                                     </div>
                                     <a href="admin_data.php?action=excelcitas" class="btn btn-primary">Descargar</a>
                                     <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
-                                    <button type="button" class="btn btn-secondary" onclick="location.href='index.php';">Quitar filtro</button>
+                                    <button type="button" class="btn btn-secondary" onclick="location.href='admin_controller.php?rol=indexadmin';">Quitar filtro</button>
                                 </form>
 
                                 <!-- Tabla de citas -->

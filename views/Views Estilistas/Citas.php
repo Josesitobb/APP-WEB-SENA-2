@@ -7,7 +7,7 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
     $id_estilista = $_SESSION['id_estilista'];
 
     // Hacer algo con la variable $id_estilista
-    echo "ID del estilista: $id_estilista";
+    // echo "ID del estilista: $id_estilista";
 } else {
     header("Location:../../controllers/principal.php?action=sesion?");
     exit();
@@ -346,32 +346,32 @@ if (isset($_SESSION['sesion_iniciada']) && $_SESSION['sesion_iniciada'] === true
                             ?>
                             </tbody>
                         </table>
-                        <div class="form-group col-md-13">
-                                <label for="cliente">Seleccione un cliente:</label>
+                        <!-- <div class="form-group col-md-13"> -->
+                                <!-- <label for="cliente">Seleccione un cliente:</label>
                                 <select class="form-control col-md-12" id="cliente" name="cliente" >
-                                    <option value="" disabled>Todos los clientes</option>
-                                    <?php
+                                    <option value="" disabled>Todos los clientes</option> -->
+                                    <!-- 
                                     // Obtener la lista de clientes desde la base de datos
-                                    $sqlClientes = "SELECT Clientes.*, CONCAT(Usuarios.Nombre_Usuarios, ' ', Usuarios.Apellido_Usuarios) AS Nombre_Usuario
-                                    FROM Clientes
-                                    INNER JOIN Usuarios ON Clientes.Id_Usuarios = Usuarios.Id_Usuarios";
-                                    $resultClientes = $conn->query($sqlClientes);
+                                    // $sqlClientes = "SELECT Clientes.*, CONCAT(Usuarios.Nombre_Usuarios, ' ', Usuarios.Apellido_Usuarios) AS Nombre_Usuario
+                                    // FROM Clientes
+                                    // INNER JOIN Usuarios ON Clientes.Id_Usuarios = Usuarios.Id_Usuarios";
+                                    // $resultClientes = $conn->query($sqlClientes);
                     
                                     // Imprimir opciones del menú desplegable para cada cliente
-                                    while ($rowCliente = $resultClientes->fetch_assoc()) {
-                                        $selected = ($rowCliente['Nombre_Usuario'] == $clienteSeleccionado) ? 'selected' : '';
-                                        echo "<option value='" . $rowCliente["Id_Clientes"] . "' $selected>" . $rowCliente["Nombre_Usuario"] . "</option>";
-                                    }
-                                    ?>
+                                    // while ($rowCliente = $resultClientes->fetch_assoc()) {
+                                    //     $selected = ($rowCliente['Nombre_Usuario'] == $clienteSeleccionado) ? 'selected' : '';
+                                    //     echo "<option value='" . $rowCliente["Id_Clientes"] . "' $selected>" . $rowCliente["Nombre_Usuario"] . "</option>";
+                                    // }
+                                    // ?>
                                 </select>
                             </div>
                             <div class="container-botones col-md-13">
-                                <form action="admin_cliente_citas.php?cliente=cliente" method="GET"> <!-- Eliminado el estilo display: none; -->
-                                    <a href="admin_data.php?action=excelcitas" class="btn btn-primary-pink">Descargar</a>
+                                <-- <form action="admin_cliente_citas.php?cliente=cliente" method="GET"> Eliminado el estilo display: none; -->
+<!--                                  
                                     <button type="submit" class="btn btn-primary-pink">Filtrar</button>
-                                    <button type="button" class="btn btn-secondary" onclick="location.href='index.php';">Quitar filtro</button>
-                                </form>
-                            </div>
+                                    <button type="button" class="btn btn-secondary" onclick="location.href='index.php';">Quitar filtro</button> -->
+                                <!-- </form>
+                            </div> -->
 
                         </div>
                         <div class="table-responsive col-md-7" style="margin-top: 80px;">

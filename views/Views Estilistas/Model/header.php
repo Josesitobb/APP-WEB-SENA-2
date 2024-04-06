@@ -10,7 +10,7 @@
                   background-color: #F4F2EF; 
                     }
              </style>
-                <a href="index.php ">
+                <a href="estilista_controller.php?rol=indexestilista">
                     <b class="logo-abbr"><img src="../../views/Views_Admin/images/SGC.png" height="40" width="40" alt="" > </b>
                     <span class="logo-compact"><img src="../../views/Views_Admin/images/logi.png" alt=""></span>
                     <span class="brand-title">
