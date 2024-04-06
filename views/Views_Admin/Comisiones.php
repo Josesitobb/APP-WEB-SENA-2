@@ -38,17 +38,17 @@ if (isset($_SESSION['username'])) {
     <link href="../../views/Views_Admin/css/style.css.map" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>
-.btn-custom-pink {
-    background-color: #F299B9;
-    border-color: #F299B9;
+.btn_primary_pink {
+    background-color: #A96E70;
+    border-color: #F2f2f2;
+    color: white; 
+}
+.btn_primary_yellow {
+    background-color: #A59886;
+    border-color: #F2f2f2;
     color: white; 
 }
 
-.btn-custom-blue {
-    background-color: #6BCCF2; 
-    border-color: #6BCCF2;
-    color: white; 
-}
 </style>
 
 </head>
@@ -77,7 +77,7 @@ if (isset($_SESSION['username'])) {
 
                    
                     <div class="container mt-4">
-                    <a class="btn btn-success btn-sm" href="../../Modelos/Admin/reportes_excel/execel_comisiones.php">Descargar</a>
+                    <a class="btn btn_primary_pink" href="../../Modelos/Admin/reportes_excel/execel_comisiones.php">Descargar</a>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered">
                                 <thead class="table-dark">
@@ -115,10 +115,10 @@ if (isset($_SESSION['username'])) {
                                                 ?>
                                             </td>
                                             <td>
-                                            <button class="btn btn-success btn-sm" onclick="marcarPagado(<?php echo $fila['Id_Comisiones']; ?>)">
+                                            <button class="btn btn_primary_pink" onclick="marcarPagado(<?php echo $fila['Id_Comisiones']; ?>)">
     <i class="bi bi-check-circle-fill"></i> Marcar como pagado
 </button>
-<button class="btn btn-danger btn-sm" onclick="marcarPorPagar(<?php echo $fila['Id_Comisiones']; ?>)">
+<button class="btn btn_primary_yellow" onclick="marcarPorPagar(<?php echo $fila['Id_Comisiones']; ?>)">
     <i class="bi bi-x-circle-fill"></i> Marcar como por pagar
 </button>
 
