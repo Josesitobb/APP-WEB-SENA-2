@@ -11,7 +11,7 @@ $Resultado = $conn->query($sql);
 
 if ($Resultado) {
     echo "<script>alert('El producto se ha eliminado exitosamente.');</script>";
-    header("Refresh: 0; URL=../../controllers/admin/admin_views.php?vista=productos"); // Redireccionar a productos.php inmediatamente
+    echo "<script>window.location.href='../../controllers/admin/admin_views.php?vista=productos';</script>";
 } else {
     echo "<script>alert('No se pudo eliminar el producto.');</script>";
 }

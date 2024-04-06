@@ -12,7 +12,7 @@ if (isset($_FILES['imagenProducto'])) {
     // Verificar si la extensión es .jpg
     if ($extension != 'jpg') {
         // Mostrar un mensaje de error y redirigir
-        echo "<script>alert('Solo se permiten archivos JPEG (.jpg)');</script>";
+        echo "<script>alert('Solo se permiten archivos JPG (.jpg)');</script>";
         echo "<script>window.history.go(-1);</script>";
         exit(); // Detener la ejecución del script
     }
