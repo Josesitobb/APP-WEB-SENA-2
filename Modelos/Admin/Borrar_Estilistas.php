@@ -9,7 +9,7 @@ $sql = "DELETE FROM `usuarios` WHERE Id_Usuarios = '$Id_Usuarios'";
 $query = mysqli_query($conn, $sql);
 
 if ($query) {
-    header("location:../../controllers/admin/admin_views.php?vista=usuariosC");  // Corrected the space in the file name
+    header("location:../../controllers/admin/admin_views.php?vista=usuariosE");  // Corrected the space in the file name
     exit();
 } else {
     echo "Error deleting record: " . mysqli_error($conn);
