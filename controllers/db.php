@@ -91,6 +91,7 @@ if (mysqli_real_connect($conn, $servername, $username, $password, $database, $po
     // echo "Conexión segura establecida satisfactoriamente.";
 } else {
     echo "Error al conectar de forma segura: " . mysqli_connect_error();
+   
 }
 
 
