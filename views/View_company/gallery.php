@@ -113,7 +113,7 @@
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
-                    <h1 class="section-title position-relative text-center mb-5">¡Bienvenidos a nuestra exquisita galería de arte! Sumérgete en un mundo de creatividad y expresión mientras exploras las obras maestras de artistas de renombre y emergentes</h1>
+                    
                 </div>
             </div>
             <!-- <div class="row">
@@ -129,32 +129,32 @@
             <div class="row m-0 portfolio-container">
                 <div class="col-lg-4 col-md-6 p-0 portfolio-item first">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="../views/View_company/img/1_IMAGEN_INICIO_PRINCIPAL.jpg" alt="">
-                        <a class="portfolio-btn" href="../views/View_company/img/1_IMAGEN_INICIO_PRINCIPAL.jpg" data-lightbox="portfolio">
+                        <img class="img-fluid w-100" src="../views/View_company/img/galeria (1).png" alt="">
+                        <a class="portfolio-btn" href="../views/View_company/img/galeria (1).png" data-lightbox="portfolio">
                             <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 p-0 portfolio-item second">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="../views/View_company/img/4_IMAGEN_INICIO_PRINCIPAL.jpg" alt="">
-                        <a class="portfolio-btn" href="../views/View_company/img/4_IMAGEN_INICIO_PRINCIPAL.jpg" data-lightbox="portfolio">
+                        <img class="img-fluid w-100" src="../views/View_company/img/galeria (2).png" alt="">
+                        <a class="portfolio-btn" href="../views/View_company/img/galeria (2).png" data-lightbox="portfolio">
                             <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 p-0 portfolio-item third">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="../views/View_company/img/3_IMAGEN_INICIO_PRINCIPAL.jpg" alt="">
-                        <a class="portfolio-btn" href="../views/View_company/img/3_IMAGEN_INICIO_PRINCIPAL.jpg" data-lightbox="portfolio">
+                        <img class="img-fluid w-100" src="../views/View_company/img/galeria (3).png" alt="">
+                        <a class="portfolio-btn" href="../views/View_company/img/galeria (3).png" data-lightbox="portfolio">
                             <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 p-0 portfolio-item first">
                     <div class="position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="../views/View_company/img/2_IMAGEN_INICIO_PRINCIPAL.jpg" alt="">
-                        <a class="portfolio-btn" href="../views/View_company/img/2_IMAGEN_INICIO_PRINCIPAL.jpg" data-lightbox="portfolio">
+                        <img class="img-fluid w-100" src="../views/View_company/img/galeria (5).png" alt="">
+                        <a class="portfolio-btn" href="../views/View_company/img/galeria (5).png" data-lightbox="portfolio">
                             <i class="fa fa-plus text-primary" style="font-size: 60px;"></i>
                         </a>
                     </div>

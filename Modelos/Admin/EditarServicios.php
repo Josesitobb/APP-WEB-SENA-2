@@ -20,14 +20,14 @@ if (!empty($_FILES['editImagen']['tmp_name'])) {
 
     // Verificar si la extensión es .jpg
     if ($extension != 'jpg') {
-    // Mostrar un mensaje de error y redirigir
-    echo "<script>alert('Solo se permiten archivos JPEG (.jpg)');</script>";
-    echo "<script>window.history.go(-1);</script>";
-    exit(); // Detener la ejecución del script
+        // Mostrar un mensaje de error y redirigir
+        echo "<script>alert('Solo se permiten archivos JPEG (.jpg)');</script>";
+        echo "<script>window.history.go(-1);</script>";
+        exit(); // Detener la ejecución del script
     }
 
 } else {
-// No se cargó ninguna imagen nueva, use la imagen existente de la base de datos
+    // No se cargó ninguna imagen nueva, use la imagen existente de la base de datos
     $query = "SELECT Imagen_Servicios FROM servicios WHERE Id_Servicios = $Id";
     $result = $conn->query($query);
 
@@ -52,8 +52,7 @@ $resultado = $conn->query($sql);
 
 if ($resultado) {
     echo "<script>alert('Edicion exitosa');</script>";
-    header('location:../../controllers/admin/admin_views.php?vista=servicios');
-
+    echo "<script>window.location.href='../../controllers/admin/admin_views.php?vista=servicios';</script>";
 } else {
     echo "No se editó el dato.";
 }

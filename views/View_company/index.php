@@ -184,7 +184,7 @@
                     </div>
                     <h3 class="font-weight-bold text-white mt-3 mb-4">Bono de bienvenida</h3>
                     <p class="text-white mb-4">Ven, prueba nuestros servicios y recibe un bono por facturas superiores a $120.000.</p>
-                    <a href="modules/admin/page-login.php" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
+                    <a href="../controllers/Login.php?action=login" class="btn btn-secondary py-3 px-5 mt-2">Reserva tu cita</a>
                 </div>
             </div>
         </div>
